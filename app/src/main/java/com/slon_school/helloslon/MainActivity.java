@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-
+        //
     }
     @TargetApi(Build.VERSION_CODES.M)
     private void createAndStartRecognizer() {
