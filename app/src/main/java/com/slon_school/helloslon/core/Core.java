@@ -2,6 +2,8 @@ package com.slon_school.helloslon.core;
 
 import android.app.Activity;
 
+import com.slon_school.helloslon.workers.TestWorker;
+
 import java.util.ArrayList;
 
 public class Core {
@@ -12,7 +14,7 @@ public class Core {
 		this.activity = activity;
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
-		
+		workers.add(new TestWorker(activity));
 	}
 	
 	

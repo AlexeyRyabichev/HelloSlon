@@ -10,10 +10,6 @@ import java.util.ArrayList;
  * Created by 1 on 10.07.2016.
  */
 
-
-
-
-
 //делай свой воркер по образу и подобию этого
 public class TestWorker extends Worker {
 
