@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     Recognizer recognizer;
     private static final int REQUEST_PERMISSION_CODE = 1;
-    Button recording_button = (Button) findViewById(R.id.recording_button);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         setContentView(R.layout.activity_main);
         SpeechKit.getInstance().configure(getApplicationContext(), getString(R.string.api_key));
         createAndStartRecognizer();
+        
+        Button recording_button = (Button) findViewById(R.id.recording_button);
 
         recording_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-
+        //
     }
     @TargetApi(Build.VERSION_CODES.M)
     private void createAndStartRecognizer() {
@@ -100,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             recognizer = Recognizer.create(Recognizer.Language.RUSSIAN, Recognizer.Model.NOTES, this);
             // Don't forget to call start on the created object.
             recognizer.start();
-        }
+           }
     }
     private void resetRecognizer() {
         if (recognizer != null) {
