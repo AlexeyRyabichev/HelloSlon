@@ -2,6 +2,7 @@ package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
 
+import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
@@ -13,25 +14,24 @@ import java.util.ArrayList;
 //делай свой воркер по образу и подобию этого
 public class TestWorker extends Worker {
 
-
-    private ArrayList<String> keys;
+    private ArrayList<Key> keys;
     private boolean isContinue;
 
 
     public TestWorker(Activity activity) {
         super(activity);
         isContinue = false;
-        keys = new ArrayList<String>();
-        keys.add("привет");
-        keys.add("слон");
-        keys.add("как");
-        keys.add("дела");
+        keys = new ArrayList<Key>();
+        keys.add(new Key("привет"));
+        keys.add(new Key("слон"));
+        keys.add(new Key("как"));
+        keys.add(new Key("дела"));
         //etc
     }
 
 
     @Override
-    public ArrayList<String> getKeys() {
+    public ArrayList<Key> getKeys() {
         return keys;
     }
 
@@ -41,7 +41,7 @@ public class TestWorker extends Worker {
     }
 
     @Override
-    public String doWork(ArrayList<String> arguments) {
+    public String doWork(ArrayList<Key> keys, ArrayList<String> arguments) {
         String helloWorld = "Привет";
         return helloWorld;
     }
