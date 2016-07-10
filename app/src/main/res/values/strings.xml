@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">HelloSlon</string>
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
+    <string name="button_text">Talk to me</string>
 </resources>
