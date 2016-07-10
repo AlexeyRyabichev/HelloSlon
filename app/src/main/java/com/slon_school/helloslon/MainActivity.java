@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             recognizer = Recognizer.create(Recognizer.Language.RUSSIAN, Recognizer.Model.NOTES, this);
             // Don't forget to call start on the created object.
             recognizer.start();
-        }
+           }
     }
     private void resetRecognizer() {
         if (recognizer != null) {
