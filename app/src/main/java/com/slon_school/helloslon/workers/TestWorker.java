@@ -42,7 +42,7 @@ public class TestWorker extends Worker {
 
     @Override
     public String doWork(ArrayList<String> arguments) {
-        String helloWorld = "I do something, but I don\'t know what";
+        String helloWorld = "Привет, я работаю.";
         return helloWorld;
     }
 }
