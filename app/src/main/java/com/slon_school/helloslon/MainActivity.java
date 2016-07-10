@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.slon_school.helloslon.core.Core;
+
 import ru.yandex.speechkit.Error;
 import ru.yandex.speechkit.Recognition;
 import ru.yandex.speechkit.Recognizer;
@@ -30,13 +32,18 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         setContentView(R.layout.activity_main);
         SpeechKit.getInstance().configure(getApplicationContext(), getString(R.string.api_key));
         createAndStartRecognizer();
-        
+
+
+
+
         Button recording_button = (Button) findViewById(R.id.recording_button);
 
         recording_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createAndStartRecognizer();
+
+
             }
         });
     }
@@ -77,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
+
         Toast.makeText(this, recognition.getBestResultText(), Toast.LENGTH_LONG).show();
     }
 

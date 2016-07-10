@@ -19,7 +19,9 @@ public class Core {
 	
 	
 	public String request(String string) {
-		
+
+
+			string = string.replaceAll("[.]","");
 			String backString = "...";
 		
 			ArrayList<String> keys = new ArrayList<String>();
