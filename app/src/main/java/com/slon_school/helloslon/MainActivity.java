@@ -10,28 +10,36 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.slon_school.helloslon.core.Core;
+
 import ru.yandex.speechkit.Error;
 import ru.yandex.speechkit.Recognition;
 import ru.yandex.speechkit.Recognizer;
 import ru.yandex.speechkit.RecognizerListener;
 import ru.yandex.speechkit.SpeechKit;
+import ru.yandex.speechkit.Vocalizer;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity implements RecognizerListener{
 
-    Recognizer recognizer;
     private static final int REQUEST_PERMISSION_CODE = 1;
+
+
+    private Recognizer recognizer;
+    private Vocalizer vocalizer;
+    private String answer;
+    Core core;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SpeechKit.getInstance().configure(getApplicationContext(), getString(R.string.api_key));
-        createAndStartRecognizer();
-        
+
         Button recording_button = (Button) findViewById(R.id.recording_button);
+        core = new Core(this);
 
         recording_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,12 +85,20 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-        Toast.makeText(this, recognition.getBestResultText(), Toast.LENGTH_LONG).show();
+
+
+        String kostil = recognition.getBestResultText();
+        kostil = kostil.replaceAll(". ", "");
+        answer = core.request(kostil);
+
+        vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
+        vocalizer.start();
+        Toast.makeText(this, answer, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-        //
+
     }
     @TargetApi(Build.VERSION_CODES.M)
     private void createAndStartRecognizer() {
