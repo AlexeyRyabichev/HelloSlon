@@ -5,7 +5,12 @@ import android.app.Activity;
 import java.util.ArrayList;
 
 public abstract  class Worker {
-	public Worker (Activity activity){};
+	private Activity activity;
+
+	public Worker (Activity activity) {
+		this.activity = activity;
+	}
+
 	public abstract ArrayList<String> getKeys();
 	public abstract boolean isContinue();
 	public abstract String doWork(ArrayList<String> arguments);
