@@ -4,12 +4,14 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.slon_school.helloslon.core.Core;
@@ -36,9 +38,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private String answer;
     private String question;
     private Core core;
-    private ListView dialog_window;
-    private ArrayList<String> dialog_list;
-    private ArrayAdapter<String> adapter;
+    private RecyclerView dialogWindow;
+    private ArrayList<Pair<String, String>> dialogList;
+    private RecyclerViewAdapter adapter;
+    private Pair<String, String> answerPair;
+    private Pair<String, String> questionPair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +52,18 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         Button recording_button = (Button) findViewById(R.id.recording_button);
         core = new Core(this);
-        dialog_window = (ListView) findViewById(R.id.dialog_list);
-        dialog_list = new ArrayList<String>();
+        dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+
+        dialogWindow.setLayoutManager(layoutManager);
+        dialogWindow.setItemAnimator(itemAnimator);
+
+        dialogList = new ArrayList<>();
+        adapter = new RecyclerViewAdapter(dialogList);
+
+        dialogWindow.setAdapter(adapter);
 
         recording_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingDone(Recognizer recognizer) {
+
     }
 
     @Override
@@ -103,12 +118,15 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
         vocalizer.start();
 
-        dialog_list.add(question);
-        dialog_list.add(answer);
+        Toast.makeText(this, answer, Toast.LENGTH_LONG).show();
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dialog_list);
-        dialog_window.setAdapter(adapter);
-//        Toast.makeText(this, answer, Toast.LENGTH_LONG).show();
+        answerPair = Pair.create("User", answer);
+        questionPair = Pair.create("Slon", question);
+
+        dialogList.add(questionPair);
+        dialogList.add(answerPair);
+
+        adapter.notifyDataSetChanged();
     }
 
     @Override
