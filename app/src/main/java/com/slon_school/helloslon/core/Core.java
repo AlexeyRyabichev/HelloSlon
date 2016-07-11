@@ -1,7 +1,9 @@
 package com.slon_school.helloslon.core;
 
 import android.app.Activity;
+import android.widget.Toast;
 
+import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 
 import java.util.ArrayList;
@@ -19,6 +21,7 @@ public class Core {
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
 		workers.add(new TestWorker(activity));
+		workers.add(new BrowserWorker(activity));
 	}
 	
 	public String request(String request) {
@@ -29,15 +32,16 @@ public class Core {
 		for (Worker worker : workers) {
 			boolean access = false;
 			ArrayList<Key> eq = new ArrayList<Key>();
-			//ArrayList<String> other = new ArrayList<String>();
 
 			for (Key key : worker.getKeys()) {
+
 				if (subKey(key, request)) {
 					access = true;
 					eq.add(key);
 					for (String word : key.get())
 						request.replaceAll(word, "");
 				}
+
 			}
 
 			if (access) {

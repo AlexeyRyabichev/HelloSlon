@@ -27,7 +27,7 @@ public class BrowserWorker extends Worker {
         keys.add(new Key("интернет"));
         keys.add(new Key("браузер"));
         keys.add(new Key("яндекс"));
-        keys.add(new Key("гугл"));
+        keys.add(new Key("google"));
         keys.add(new Key("искать"));
         //etc
        }
