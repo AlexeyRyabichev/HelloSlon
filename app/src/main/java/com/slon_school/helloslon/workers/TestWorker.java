@@ -12,7 +12,7 @@ import java.util.ArrayList;
  */
 
 //делай свой воркер по образу и подобию этого
-public class TestWorker extends Worker {
+public class    TestWorker extends Worker {
 
     private ArrayList<Key> keys;
     private boolean isContinue;
