@@ -1,6 +1,7 @@
 package com.slon_school.helloslon;
 
 import android.content.Context;
+import android.support.v4.util.Pair;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +16,9 @@ import java.util.ArrayList;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder> {
 
-    ArrayList<String> items;
+    ArrayList<Pair<String, String>> items;
 
-    public RecyclerViewAdapter(ArrayList<String> items) {
+    public RecyclerViewAdapter(ArrayList<Pair<String, String>> items) {
         this.items = items;
     }
 
@@ -29,8 +30,14 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
-        holder.textViewSlon.setText(items.get(position));
-        holder.textViewUser.setVisibility(View.GONE);
+        if (items.get(position).first.equals("Slon")) {
+            holder.textViewSlon.setText(items.get(position).second);
+            holder.textViewUser.setVisibility(View.GONE);
+        }
+        else{
+            holder.textViewUser.setText(items.get(position).second);
+            holder.textViewSlon.setVisibility(View.GONE);
+        }
     }
 
     @Override
