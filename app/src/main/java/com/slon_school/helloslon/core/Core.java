@@ -29,20 +29,20 @@ public class Core {
 		for (Worker worker : workers) {
 			boolean access = false;
 			ArrayList<Key> eq = new ArrayList<Key>();
-			ArrayList<String> other = new ArrayList<String>();
+			//ArrayList<String> other = new ArrayList<String>();
 
 			for (Key key : worker.getKeys()) {
 				if (subKey(key, request)) {
 					access = true;
 					eq.add(key);
-				} else {
-					for (String str : key.get())
-						other.add(str);
+					for (String word : key.get())
+						request.replaceAll(word, "");
 				}
 			}
 
 			if (access) {
-				response = worker.doWork(eq, other);
+				Key other = new Key(request);
+				response = worker.doWork(eq, other.get());
 			    break;
 			}
 		}
