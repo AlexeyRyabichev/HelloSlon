@@ -39,7 +39,7 @@ public class Core {
 					access = true;
 					eq.add(key);
 					for (String word : key.get())
-						request.replaceAll(word, "");
+						request = request.replaceAll(word, "");
 				}
 
 			}
@@ -52,10 +52,10 @@ public class Core {
 		}
 
 		return response;
-	}
-	
+}
 
-	private boolean subKey(Key key, String string) {
+
+private boolean subKey(Key key, String string) {
 		long counter = 0;
 		for (String str : key.get()) {
 			if (string.contains(str)) {
@@ -63,6 +63,6 @@ public class Core {
 			}
 		}
 		return compare(counter,key.get().size()) >= 0;
-	}
-	
+}
+
 }
