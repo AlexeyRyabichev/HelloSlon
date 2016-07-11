@@ -30,9 +30,7 @@ public class BrowserWorker extends Worker {
         keys.add(new Key("гугл"));
         keys.add(new Key("искать"));
         //etc
-
-
-    }
+       }
 
     @Override
     public ArrayList<Key> getKeys() {
@@ -43,6 +41,8 @@ public class BrowserWorker extends Worker {
     public boolean isContinue(){return false;}
 
     @Override
+
+
     public String doWork(ArrayList<Key> keys,ArrayList<String> arguments) {
         String request = arguments.get(0);
         if(request.equalsIgnoreCase("гугл")){
