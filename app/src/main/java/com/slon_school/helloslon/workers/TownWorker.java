@@ -76,7 +76,7 @@ public class TownWorker extends Worker {
             while (((str = br.readLine()) != null))
                 keys.add(new Key(str));
 
-            br.close();
+            br.close();//--------------------------------------------------------------------------------------------------------
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -99,16 +99,17 @@ public class TownWorker extends Worker {
             // открываем поток для чтения
             BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("FILENAME" + c)));
             // читаем содержимое
-            //while (((str = br.readLine()) != null) && (str != town)) ;
             while(!flag) {
                 while ( ( ( str = br.readLine() ) != null ) && ( used_towns.get( String.valueOf( c.charAt( 0 ) ) ).contains( str ) ) && !flag )
                     if ( r.nextInt( 99 ) + 1 < 15 ) {
                         flag = true;
                     }
-                br.close();
-                br = new BufferedReader(new InputStreamReader(context.openFileInput("FILENAME" + c)));
+                if(!flag) {
+                    br.close();//--------------------------------------------------------------------------------------------------------
+                    br = new BufferedReader(new InputStreamReader(context.openFileInput("FILENAME" + c)));
+                }
             }
-            br.close();
+            br.close();//--------------------------------------------------------------------------------------------------------
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -126,7 +127,7 @@ public class TownWorker extends Worker {
             // читаем содержимое
             while (((str = br.readLine()) != null) && (str != town)) ;
 
-            br.close();
+            br.close();//--------------------------------------------------------------------------------------------------------
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
