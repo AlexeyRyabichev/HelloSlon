@@ -8,14 +8,14 @@
     app:cardCornerRadius="4dp">
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/userText"
         android:layout_gravity="left"
         android:background="@color/userBackground"/>
 
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/slonText"
         android:background="@color/slonBackground"
