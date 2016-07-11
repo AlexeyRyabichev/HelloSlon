@@ -36,24 +36,52 @@ public class FateBallWorker extends Worker {
 
     @Override
     public String doWork(ArrayList<Key> keys, ArrayList<String> arguments) {
-        //String request = arguments.get(0);
-        //Log.d("COBRA",request);
+        /* Generate keywords
+         * Add them to @args
+         */
+        String keywords = "";
+        for (int i = 0; i < arguments.size(); ++i) {
+            keywords += arguments.get(i);
+            keywords += " ";
+        }
+        Key args = new Key(keywords);
+
+        /* Create keys:
+         * @generalKeys & @luckKeys
+         */
+        ArrayList<Key> generalKeys = new ArrayList<Key>();
+        generalKeys.add(new Key("предскажи судьбу"));
+        generalKeys.add(new Key("что меня сегодня ждёт"));
+        generalKeys.add(new Key("debug"));
+
+        ArrayList<Key> luckKeys = new ArrayList<Key>();
+        luckKeys.add(new Key("сегодня удачный день"));
+        luckKeys.add(new Key("удача"));
+        luckKeys.add(new Key("колбаса"));
+
+        /* Just log,
+         * Safe delete
+        */
         for (int i = 0; i < arguments.size(); ++i) {
             Log.d("abracadabra", arguments.get(i));
         }
         for (int j = 0; j < keys.size(); ++j)  {
             Log.d("cadabraabra",keys.get(0).get().get(j));
         }
-
-        if (arguments.contains("предскажи судьбу") || arguments.contains("что меня сегодня ждёт") || arguments.contains("восстание тараканов") || arguments.contains("debug")) {
+        /* Check keywords
+         * According to them fill @predictionList by pattern
+         */
+        if (generalKeys.contains(keywords)) {
                     initList(MODE_GENERAL);
-        } else if(arguments.contains("сегодня удачный день") || arguments.contains("удача") || arguments.contains("колбаса")) {
+        } else if(luckKeys.contains(keywords)) {
             initList(MODE_LUCK);
         } else {
             initList(MODE_UNRECOGNIZED);
         }
+        /* Choose random word from @predictionList
+         * And return it
+         */
         Random randomIndex = new Random();
-        //return request;
         return predictionList.get(randomIndex.nextInt(predictionList.size()));
     }
     private void initList(int mode) {
