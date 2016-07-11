@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
 
         question = recognition.getBestResultText();
+        Toast.makeText(this, question, Toast.LENGTH_LONG).show();
         answer = core.request(question);
 
         vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);

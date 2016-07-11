@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/userText"
-        android:layout_gravity="left"
+        android:gravity="left"
         android:background="@color/userBackground"/>
 
     <TextView
@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/slonText"
         android:background="@color/slonBackground"
-        android:layout_gravity="right"/>
+        android:gravity="right"/>
 
 </android.support.v7.widget.CardView>
