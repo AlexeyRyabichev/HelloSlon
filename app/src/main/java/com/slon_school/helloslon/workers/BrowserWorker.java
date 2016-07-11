@@ -26,8 +26,8 @@ public class BrowserWorker extends Worker {
         keys.add(new Key("поиск"));
         keys.add(new Key("интернет"));
         keys.add(new Key("браузер"));
-        keys.add(new Key("Яндекс"));
-        keys.add(new Key("Гугл"));
+        keys.add(new Key("яндекс"));
+        keys.add(new Key("гугл"));
         keys.add(new Key("искать"));
         //etc
 
@@ -44,12 +44,21 @@ public class BrowserWorker extends Worker {
 
     @Override
     public String doWork(ArrayList<Key> keys,ArrayList<String> arguments) {
-        Intent intent = new Intent();
-        intent.setAction(Intent.ACTION_VIEW);
-        intent.setData(Uri.parse("http://www.yandex.ru?q="+arguments.get(0)));
-        intent.setData(Uri.parse("https://www.google.ru/search?q="+arguments.get(0)));
-        activity.startActivity(intent);
-        return "";
+        String request = arguments.get(0);
+        if(request.equalsIgnoreCase("гугл")){
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("https://www.google.ru/search?q="+arguments.get(0)));
+            activity.startActivity(intent);
+            return "";
+        }
+        else {
+            Intent intent = new Intent();
+            intent.setAction(Intent.ACTION_VIEW);
+            intent.setData(Uri.parse("http://www.yandex.ru?q=" + arguments.get(0)));
+            activity.startActivity(intent);
+            return "";
+        }
 
 
     }
