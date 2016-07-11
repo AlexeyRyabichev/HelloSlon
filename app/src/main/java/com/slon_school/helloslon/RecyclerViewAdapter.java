@@ -2,10 +2,12 @@ package com.slon_school.helloslon;
 
 import android.content.Context;
 import android.support.v4.util.Pair;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -25,18 +27,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = (LayoutInflater) parent.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        return new ItemViewHolder(inflater.inflate(R.layout.item, null ) );
+        return new ItemViewHolder(inflater.inflate(R.layout.item, parent, false ) );
     }
 
     @Override
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         if (items.get(position).first.equals("Slon")) {
+
             holder.textViewSlon.setText(items.get(position).second);
-            holder.textViewUser.setVisibility(View.GONE);
+            holder.slonCard.setVisibility(View.VISIBLE);
+            holder.userCard.setVisibility(View.GONE);
         }
         else{
             holder.textViewUser.setText(items.get(position).second);
-            holder.textViewSlon.setVisibility(View.GONE);
+            holder.userCard.setVisibility(View.VISIBLE);
+            holder.slonCard.setVisibility(View.GONE);
         }
     }
 
@@ -50,11 +55,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public TextView textViewUser;
         public TextView textViewSlon;
+        public CardView slonCard;
+        public CardView userCard;
 
-        public ItemViewHolder(View itemView) {
-            super(itemView);
-            textViewUser = (TextView) itemView.findViewById(R.id.userText);
-            textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
-        }
+            public ItemViewHolder(View itemView) {
+                super(itemView);
+                slonCard = (CardView) itemView.findViewById(R.id.slonCard);
+                userCard = (CardView) itemView.findViewById(R.id.userCard);
+                textViewUser = (TextView) itemView.findViewById(R.id.userText);
+                textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
+            }
     }
 }
