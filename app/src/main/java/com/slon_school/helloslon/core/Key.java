@@ -1,6 +1,10 @@
 package com.slon_school.helloslon.core;
 
+import android.os.Build;
+
 import java.util.ArrayList;
+
+import static java.lang.Long.compare;
 
 
 public class Key {
@@ -27,4 +31,23 @@ public class Key {
     public ArrayList<String> get() {
         return words;
     }
+
+
+    public boolean contains(Key key) {
+        long counter = 0;
+        for (String word : key.get())
+            if (words.contains(word))
+                counter++;
+        return compare(counter, key.get().size()) >= 0;
+    }
+
+
+    @Override
+    public String toString() {
+        String toString = "";
+        for (String word : words)
+            toString += word + " ";
+        return toString;
+    }
+
 }
