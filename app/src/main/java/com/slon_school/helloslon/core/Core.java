@@ -3,8 +3,11 @@ package com.slon_school.helloslon.core;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
+import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.TestWorker;
+import com.slon_school.helloslon.workers.TownWorker;
 
 import java.util.ArrayList;
 
@@ -26,7 +29,9 @@ public class Core {
 		testWorker = new TestWorker(activity);
 		workers.add(testWorker);
 		workers.add(new BrowserWorker(activity));
-
+		workers.add(new FateBallWorker(activity));
+		workers.add(new AlarmWorker(activity));
+		workers.add(new TownWorker(activity));
 
 		currentWorker = idNone;
 	}
