@@ -6,15 +6,19 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
 import android.widget.Toast;
 
 import com.slon_school.helloslon.core.Core;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import ru.yandex.speechkit.Error;
 import ru.yandex.speechkit.Recognition;
@@ -36,9 +40,9 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private String answer;
     private String question;
     private Core core;
-    private ListView dialog_window;
+    private RecyclerView dialog_window;
     private ArrayList<String> dialog_list;
-    private ArrayAdapter<String> adapter;
+    private RecyclerViewAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,8 +52,18 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         Button recording_button = (Button) findViewById(R.id.recording_button);
         core = new Core(this);
-        dialog_window = (ListView) findViewById(R.id.dialog_list);
+        dialog_window = (RecyclerView) findViewById(R.id.dialog_window);
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+
+        dialog_window.setLayoutManager(layoutManager);
+        dialog_window.setItemAnimator(itemAnimator);
+
         dialog_list = new ArrayList<String>();
+        adapter = new RecyclerViewAdapter(dialog_list);
+
+        dialog_window.setAdapter(adapter);
 
         recording_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,8 +120,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         dialog_list.add(question);
         dialog_list.add(answer);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dialog_list);
-        dialog_window.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
+
 //        Toast.makeText(this, answer, Toast.LENGTH_LONG).show();
     }
 
