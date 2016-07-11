@@ -32,7 +32,7 @@ public class TownWorker extends Worker {
         used_towns = new HashMap<String, ArrayList<String>>();
 
         fillKeys(keys);
-        usedInit(used_towns);
+        usedInit();
     }
 
     @Override
@@ -42,14 +42,17 @@ public class TownWorker extends Worker {
 
     @Override
     public boolean isContinue() {
-        return !eog;
+        return true;
     }
 
     @Override
-    public String doWork(ArrayList<Key> keys, ArrayList<String> arguments) {
-        String str = arguments.get(0);
+    public String doWork(ArrayList<Key> keys, Key arguments) {
+        String str = arguments.get().get(0).toLowerCase();
+
+        //arguments.get().size() == 0
+
         String c = String.valueOf( str.charAt(0) );
-        switch ( checkTown(arguments.get(0), activity)) {
+        switch ( checkTown(arguments.get().get(0), activity)) {
             case 0:
                 eog = true; return "нет такого города"; //break;
             case 1:
@@ -60,9 +63,9 @@ public class TownWorker extends Worker {
         return "error";
     }
 
-    private void usedInit(Map<String, ArrayList<String>> used_towns) {
+    private void usedInit() {
         used_towns.clear();
-        for(char c = 'А'; c <= 'Я'; c++) {
+        for(char c = 'а'; c <= 'я'; c++) {
             used_towns.put(String.valueOf(c), new ArrayList<String>());
         }
     }
@@ -83,11 +86,11 @@ public class TownWorker extends Worker {
             e.printStackTrace();
         }*/
 
-        keys.add(new Key("игра"));
-        keys.add(new Key("поиграем"));
-        keys.add(new Key("поиграй"));
-        keys.add(new Key("поиграешь"));
-        keys.add(new Key("играть"));
+        keys.add(new Key("игра города"));
+        keys.add(new Key("поиграем города"));
+        keys.add(new Key("поиграй города"));
+        keys.add(new Key("поиграешь города"));
+        keys.add(new Key("играть города"));
         keys.add(new Key("города"));
     }
 
