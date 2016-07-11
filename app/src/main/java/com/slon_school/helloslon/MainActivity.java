@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
 
 
-        question = recognition.getBestResultText().replaceAll(". ", "");
+        question = recognition.getBestResultText();
         answer = core.request(question);
 
         vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
