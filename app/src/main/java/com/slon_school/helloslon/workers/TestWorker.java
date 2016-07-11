@@ -41,7 +41,7 @@ public class    TestWorker extends Worker {
     }
 
     @Override
-    public String doWork(ArrayList<Key> keys, ArrayList<String> arguments) {
+    public String doWork(ArrayList<Key> keys, Key arguments) {
         String helloWorld = "Привет";
         return helloWorld;
     }
