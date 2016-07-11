@@ -7,31 +7,49 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Toast;
+
+import com.slon_school.helloslon.core.Core;
+
+import java.util.ArrayList;
 
 import ru.yandex.speechkit.Error;
 import ru.yandex.speechkit.Recognition;
 import ru.yandex.speechkit.Recognizer;
 import ru.yandex.speechkit.RecognizerListener;
 import ru.yandex.speechkit.SpeechKit;
+import ru.yandex.speechkit.Vocalizer;
 
 import static android.Manifest.permission.RECORD_AUDIO;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity implements RecognizerListener{
 
-    Recognizer recognizer;
     private static final int REQUEST_PERMISSION_CODE = 1;
+
+
+    private Recognizer recognizer;
+    private Vocalizer vocalizer;
+    private String answer;
+    private String question;
+    private Core core;
+    private ListView dialog_window;
+    private ArrayList<String> dialog_list;
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SpeechKit.getInstance().configure(getApplicationContext(), getString(R.string.api_key));
-        createAndStartRecognizer();
-        
+
         Button recording_button = (Button) findViewById(R.id.recording_button);
+        core = new Core(this);
+        dialog_window = (ListView) findViewById(R.id.dialog_list);
+        dialog_list = new ArrayList<String>();
 
         recording_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,14 +95,29 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-        Toast.makeText(this, recognition.getBestResultText(), Toast.LENGTH_LONG).show();
+
+
+        question = recognition.getBestResultText().replaceAll(". ", "");
+        answer = core.request(question);
+
+        vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
+        vocalizer.start();
+
+        dialog_list.add(question);
+        dialog_list.add(answer);
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dialog_list);
+        dialog_window.setAdapter(adapter);
+//        Toast.makeText(this, answer, Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-        //
+
     }
+
     @TargetApi(Build.VERSION_CODES.M)
+
     private void createAndStartRecognizer() {
         final Context context = getApplicationContext();
         if (context == null) {
@@ -103,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             recognizer.start();
            }
     }
+
     private void resetRecognizer() {
         if (recognizer != null) {
             recognizer.cancel();
