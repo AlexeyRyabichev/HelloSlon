@@ -34,6 +34,12 @@ public class FateBallWorker extends Worker {
         return false;
     }
 
+    private boolean hasKeys(ArrayList<Key> list, Key key) {
+        for (int i = 0; i < list.size(); ++i) {
+            if (list.get(i).contains(key)) return true;
+        } return false;
+    }
+
     @Override
     public String doWork(ArrayList<Key> keys, ArrayList<String> arguments) {
         /* Generate keywords
@@ -45,11 +51,10 @@ public class FateBallWorker extends Worker {
             keywords += " ";
         }
         Key args = new Key(keywords);
-
         /* Create keys:
          * @generalKeys & @luckKeys
          */
-        ArrayList<Key> generalKeys = new ArrayList<Key>();
+        ArrayList<Key> generalKeys = new ArrayList<Key>(3);
         generalKeys.add(new Key("предскажи судьбу"));
         generalKeys.add(new Key("что меня сегодня ждёт"));
         generalKeys.add(new Key("debug"));
@@ -58,22 +63,18 @@ public class FateBallWorker extends Worker {
         luckKeys.add(new Key("сегодня удачный день"));
         luckKeys.add(new Key("удача"));
         luckKeys.add(new Key("колбаса"));
-
         /* Just log,
          * Safe delete
         */
         for (int i = 0; i < arguments.size(); ++i) {
             Log.d("abracadabra", arguments.get(i));
         }
-        for (int j = 0; j < keys.size(); ++j)  {
-            Log.d("cadabraabra",keys.get(0).get().get(j));
-        }
         /* Check keywords
          * According to them fill @predictionList by pattern
          */
-        if (generalKeys.contains(keywords)) {
+        if (hasKeys(generalKeys,args)) {
                     initList(MODE_GENERAL);
-        } else if(luckKeys.contains(keywords)) {
+        } else if(hasKeys(luckKeys,args)) {
             initList(MODE_LUCK);
         } else {
             initList(MODE_UNRECOGNIZED);
