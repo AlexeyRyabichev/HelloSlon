@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Worker;
 
 import java.lang.reflect.Array;
@@ -21,9 +22,9 @@ public class FateBallWorker extends Worker {
 
     public FateBallWorker(Activity activity) { super(activity); }
 
-    public ArrayList<String> getKeys() {
-        ArrayList<String> result = new ArrayList<String>();
-        result.add("Шар судьбы");
+    public ArrayList<Key> getKeys() {
+        ArrayList<Key> result = new ArrayList<Key>();
+        result.add(new Key("Шар судьбы"));
         return result;
     }
 
@@ -33,30 +34,29 @@ public class FateBallWorker extends Worker {
     }
 
     @Override
-    public String doWork(ArrayList<String> arguments) {
+    public String doWork(ArrayList<Key> keys, ArrayList<String> arguments) {
         String request = arguments.get(0);
         if (request.equalsIgnoreCase("Предскажи судьбу") || request.equalsIgnoreCase("Что меня сегодня ждёт")) {
             initList(MODE_GENERAL);
         } else if(request.equalsIgnoreCase("Сегодня удачный день")) {
             initList(MODE_LUCK);
         } else {
-            return "Повтори ещё раз, пожалуйста!";
+            return "Повтори ещё раз, пожалуйста";
         }
         Random randomIndex = new Random();
         return predictionList.get(randomIndex.nextInt(predictionList.size()));
     }
-
     private void initList(int mode) {
         predictionList.clear();
         if (mode == MODE_GENERAL) {
             predictionList.add("Сегодня тебя ждёт отличный день");
-            predictionList.add("А, Что ты говоришь?");
+            predictionList.add("А, Что ты говоришь");
             predictionList.add("Не думай о плохом, и всё будек Ок");
             predictionList.add("Пойди, погуляй, может быть, встретишь хороших знакомых");
             predictionList.add("Всё очень туманно, спроси позже");
             predictionList.add("Сегодня твой день");
             predictionList.add("Пока что не могу тебе сказать, извини");
-            predictionList.add("По моим источникам сегодня Фортуна тебе благоволит");
+            predictionList.add("По моим источникам Фортуна сегодня тебе благоволит");
             predictionList.add("Не стоит сегодня слишком рисковать");
         } else if (mode == MODE_LUCK) {
             predictionList.add("Да");
