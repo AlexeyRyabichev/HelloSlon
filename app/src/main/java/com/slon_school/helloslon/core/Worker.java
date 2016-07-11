@@ -5,7 +5,7 @@ import android.app.Activity;
 import java.util.ArrayList;
 
 public abstract  class Worker {
-	private Activity activity;
+	protected Activity activity;
 
 	public Worker (Activity activity) {
 		this.activity = activity;
