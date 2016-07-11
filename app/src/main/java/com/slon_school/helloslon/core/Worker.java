@@ -11,7 +11,7 @@ public abstract  class Worker {
 		this.activity = activity;
 	}
 
-	public abstract ArrayList<String> getKeys();
+	public abstract ArrayList<Key> getKeys();
 	public abstract boolean isContinue();
-	public abstract String doWork(ArrayList<String> arguments);
+	public abstract String doWork(ArrayList<Key> keys, ArrayList<String> arguments);
 }
