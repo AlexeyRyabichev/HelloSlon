@@ -41,13 +41,13 @@ public class FateBallWorker extends Worker {
     }
 
     @Override
-    public String doWork(ArrayList<Key> keys, ArrayList<String> arguments) {
+    public String doWork(ArrayList<Key> keys, Key arguments) {
         /* Generate keywords
          * Add them to @args
          */
         String keywords = "";
-        for (int i = 0; i < arguments.size(); ++i) {
-            keywords += arguments.get(i);
+        for (String word : arguments.get()) {
+            keywords += word;
             keywords += " ";
         }
         Key args = new Key(keywords);
@@ -66,14 +66,14 @@ public class FateBallWorker extends Worker {
         /* Just log,
          * Safe delete
         */
-        for (int i = 0; i < arguments.size(); ++i) {
-            Log.d("abracadabra", arguments.get(i));
+        for (String word : arguments.get()) {
+            Log.d("abracadabra", word);
         }
         /* Check keywords
          * According to them fill @predictionList by pattern
          */
         if (hasKeys(generalKeys,args)) {
-                    initList(MODE_GENERAL);
+            initList(MODE_GENERAL);
         } else if(hasKeys(luckKeys,args)) {
             initList(MODE_LUCK);
         } else {

@@ -4,10 +4,7 @@ import android.app.Activity;
 import android.widget.Toast;
 
 import com.slon_school.helloslon.workers.BrowserWorker;
-<<<<<<< HEAD
 import com.slon_school.helloslon.workers.FateBallWorker;
-=======
->>>>>>> develop
 import com.slon_school.helloslon.workers.TestWorker;
 
 import java.util.ArrayList;
@@ -25,10 +22,7 @@ public class Core {
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
 		workers.add(new TestWorker(activity));
-<<<<<<< HEAD
 		workers.add(new FateBallWorker(activity));
-=======
->>>>>>> develop
 		workers.add(new BrowserWorker(activity));
 	}
 	
