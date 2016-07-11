@@ -2,6 +2,8 @@ package com.slon_school.helloslon.core;
 
 import android.app.Activity;
 
+import com.slon_school.helloslon.workers.BrowserWorker;
+import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class Core {
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
 		workers.add(new TestWorker(activity));
+		workers.add(new FateBallWorker(activity));
+		workers.add(new BrowserWorker(activity));
 	}
 	
 	public String request(String request) {
