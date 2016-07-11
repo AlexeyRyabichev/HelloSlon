@@ -13,5 +13,5 @@ public abstract  class Worker {
 
 	public abstract ArrayList<Key> getKeys();
 	public abstract boolean isContinue();
-	public abstract String doWork(ArrayList<Key> keys, ArrayList<String> arguments);
+	public abstract String doWork(ArrayList<Key> keys, Key arguments);
 }

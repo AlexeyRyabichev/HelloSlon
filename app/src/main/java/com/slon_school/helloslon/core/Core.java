@@ -46,7 +46,7 @@ public class Core {
 
 			if (access) {
 				Key other = new Key(request);
-				response = worker.doWork(eq, other.get());
+				response = worker.doWork(eq, other);
 			    break;
 			}
 		}
