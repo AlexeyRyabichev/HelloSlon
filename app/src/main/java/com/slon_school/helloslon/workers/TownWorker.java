@@ -61,7 +61,7 @@ public class TownWorker extends Worker {
             case 3:
                 String _bufChar = String.valueOf(str.charAt( str.length() ));
                 String _bufTown = getTown(_bufChar, activity);
-                //used_towns.put(_bufChar, _bufTown);
+               // used_towns.put(_bufChar, used_towns.get(_bufChar).add(_bufTown));
 
                 return new Response(_bufTown, !eog); //break;
         }
