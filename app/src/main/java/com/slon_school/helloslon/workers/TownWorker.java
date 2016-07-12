@@ -97,6 +97,7 @@ public class TownWorker extends Worker {
         keys.add(new Key("поиграешь города"));
         keys.add(new Key("играть города"));
         keys.add(new Key("города"));
+        //comment
     }
 
     private String getTown(String c, Context context) {
