@@ -50,18 +50,24 @@ public class TownWorker extends Worker {
     public Response doWork( ArrayList<Key> keys, Key arguments) {
         String str = arguments.get().get(0).toLowerCase();
 
-        //arguments.get().size() == 0
+        if(arguments.get().size() == 0) {
+            used_towns.get("п").add("пущино");
+            return new Response("Пущино", true );//
+        }
 
         String c = String.valueOf( str.charAt(0) );
-        switch ( checkTown(arguments.get().get(0), activity)) {
+        switch ( checkTown(str, activity)) {
             case 0:
                 eog = true; return new Response("нет такого города", !eog); //break;
             case 1:
                 eog = true; return new Response("такой город уже был", !eog); //break;
             case 3:
-                String _bufChar = String.valueOf(str.charAt( str.length() ));
+                char _bufChar = (str.charAt( str.length() ));
                 String _bufTown = getTown(_bufChar, activity);
-               // used_towns.put(_bufChar, used_towns.get(_bufChar).add(_bufTown));
+
+                // add used towns
+                used_towns.get(c).add(str);
+                used_towns.get(_bufChar).add(_bufTown.toLowerCase());
 
                 return new Response(_bufTown, !eog); //break;
         }
@@ -100,22 +106,22 @@ public class TownWorker extends Worker {
         //comment
     }
 
-    private String getTown(String c, Context context) {
+    private String getTown(char c, Context context) {
         Random r = new Random();
         String str = "";
         boolean flag = false;
         try {
             // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + c)));
+            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + String.valueOf((int)c - (int)'а'))));
             // читаем содержимое
             while(!flag) {
-                while ( ( ( str = br.readLine().toLowerCase() ) != null ) && ( used_towns.get( String.valueOf( c.charAt( 0 ) ) ).contains( str ) ) && !flag )
+                while ( ( ( str = br.readLine()) != null ) && ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) ) && !flag )
                     if ( r.nextInt( 99 ) + 1 < 15 ) {
                         flag = true;
                     }
                 if(!flag) {
                     br.close();//--------------------------------------------------------------------------------------------------------
-                    br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + c)));
+                    br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + String.valueOf((int)c - (int)'а'))));
                 }
             }
             br.close();//--------------------------------------------------------------------------------------------------------
@@ -130,11 +136,12 @@ public class TownWorker extends Worker {
 
     private short checkTown(String town, Context context) {
         String str = "";
+        char c = town.toLowerCase().charAt( 0 );
         try {
             // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/")));
+            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + String.valueOf((int)c - (int)'а'))));
             // читаем содержимое
-            while (((str = br.readLine().toLowerCase()) != null) && (str != town)) ;
+            while (((str = br.readLine()) != null) && (str.toLowerCase() != town)) ;
 
             br.close();//--------------------------------------------------------------------------------------------------------
         } catch (FileNotFoundException e) {
@@ -144,7 +151,7 @@ public class TownWorker extends Worker {
         }
 
         if(str == null) return 0;
-        if(used_towns.get(String.valueOf(town.charAt(0))).contains(str)) return 1;
+        if(used_towns.get(String.valueOf(town.toLowerCase().charAt(0))).contains(str.toLowerCase())) return 1;
         return 2;
     }
 }
