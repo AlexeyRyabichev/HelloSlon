@@ -41,21 +41,19 @@ public class BrowserWorker extends Worker {
     public boolean isContinue(){return false;}
 
     @Override
-
-
-    public String doWork(ArrayList<Key> keys,ArrayList<String> arguments) {
-        String request = arguments.get(0);
-        if(request.equalsIgnoreCase("гугл")){
+    public String doWork(ArrayList<Key> keys, Key arguments) {
+        //String request = arguments.get(0);
+        if(arguments.contains(keys.get(5))){
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("https://www.google.ru/search?q="+arguments.get(0)));
+            intent.setData(Uri.parse("https://www.google.ru/search?q=" + arguments.toString()));
             activity.startActivity(intent);
             return "";
         }
         else {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
-            intent.setData(Uri.parse("http://www.yandex.ru?q=" + arguments.get(0)));
+            intent.setData(Uri.parse("http://www.yandex.ru?q=" + arguments.toString()));
             activity.startActivity(intent);
             return "";
         }
