@@ -50,7 +50,7 @@ public class TownWorker extends Worker {
     public Response doWork( ArrayList<Key> keys, Key arguments) {
         String str = arguments.get().get(0).toLowerCase();
 
-        if(arguments.get().size() == 0) {
+        if(str.equals("")) {
             used_towns.get("п").add("пущино");
             return new Response("Пущино", true );//
         }
