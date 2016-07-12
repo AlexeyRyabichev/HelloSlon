@@ -112,7 +112,7 @@ public class TownWorker extends Worker {
         boolean flag = false;
         try {
             // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + String.valueOf((int)c - (int)'а'))));
+            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/town" + String.valueOf((int)c - (int)'а'))));
             // читаем содержимое
             while(!flag) {
                 while ( ( ( str = br.readLine()) != null ) && ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) ) && !flag )
@@ -121,7 +121,7 @@ public class TownWorker extends Worker {
                     }
                 if(!flag) {
                     br.close();//--------------------------------------------------------------------------------------------------------
-                    br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + String.valueOf((int)c - (int)'а'))));
+                    br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/town" + String.valueOf((int)c - (int)'а'))));
                 }
             }
             br.close();//--------------------------------------------------------------------------------------------------------
@@ -139,7 +139,7 @@ public class TownWorker extends Worker {
         char c = town.toLowerCase().charAt( 0 );
         try {
             // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/" + String.valueOf((int)c - (int)'а'))));
+            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/town" + String.valueOf((int)c - (int)'а'))));
             // читаем содержимое
             while (((str = br.readLine()) != null) && (str.toLowerCase() != town)) ;
 
