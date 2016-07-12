@@ -10,6 +10,6 @@ public abstract  class Worker {
 		this.activity = activity;
 	}
 	public abstract ArrayList<Key> getKeys();
-	public abstract boolean isContinue();
+	public abstract boolean isLoop();
 	public abstract Response doWork(ArrayList<Key> keys, Key arguments);
 }
