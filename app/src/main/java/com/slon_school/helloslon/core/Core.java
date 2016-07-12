@@ -55,7 +55,7 @@ public class Core {
 							request = request.replaceAll(word, "");
 					}
 				}
-
+//we
 				if (access) {
 					Key other = new Key(request);
 
