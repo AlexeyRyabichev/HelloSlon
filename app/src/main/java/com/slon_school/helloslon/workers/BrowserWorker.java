@@ -46,7 +46,7 @@ public class BrowserWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         //String request = arguments.get(0);
-        if(arguments.contains(keys.get(5))){
+        if(arguments.contains(this.keys.get(5))){
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://www.google.ru/search?q=" + arguments.toString()));
