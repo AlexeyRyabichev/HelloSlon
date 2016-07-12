@@ -7,7 +7,7 @@ import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.TestWorker;
-import com.slon_school.helloslon.workers.TownWorker;
+//import com.slon_school.helloslon.workers.TownWorker;
 
 import java.util.ArrayList;
 
@@ -31,7 +31,7 @@ public class Core {
 		workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
 		workers.add(new AlarmWorker(activity));
-		workers.add(new TownWorker(activity));
+//		workers.add(new TownWorker(activity));
 
 		currentWorker = idNone;
 	}

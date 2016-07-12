@@ -51,8 +51,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         SpeechKit.getInstance().configure(getApplicationContext(), getString(R.string.api_key));
 
         progressBar = (LVCircularCD) findViewById(R.id.progressBar);
-        progressBar.startAnim();
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.setVisibility(View.GONE);
 
         Button recording_button = (Button) findViewById(R.id.recording_button);
         core = new Core(this);
@@ -79,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
+        progressBar.startAnim();
         progressBar.setVisibility(View.VISIBLE);
     }
 
@@ -115,7 +115,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
 
-        progressBar.setVisibility(View.INVISIBLE);
+        progressBar.stopAnim();
+        progressBar.setVisibility(View.GONE);
 
         String question = recognition.getBestResultText();
 //        Toast.makeText(this, question, Toast.LENGTH_LONG).show();
