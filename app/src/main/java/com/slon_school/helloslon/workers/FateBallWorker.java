@@ -14,6 +14,7 @@ import java.util.Random;
 /**
  * Created by I. Dmitry on 10.07.2016.
  */
+
 public class FateBallWorker extends Worker {
 
     private final static int MODE_GENERAL = 0;
@@ -65,7 +66,7 @@ public class FateBallWorker extends Worker {
         luckKeys.add(new Key("колбаса"));
         /* Just log,
          * Safe delete
-        */
+         */
         for (String word : arguments.get()) {
             Log.d("abracadabra", word);
         }
