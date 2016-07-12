@@ -7,8 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.slon_school.helloslon.core.Key;
+import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
@@ -29,8 +31,10 @@ public class BrowserWorker extends Worker {
         keys.add(new Key("яндекс"));
         keys.add(new Key("google"));
         keys.add(new Key("искать"));
+        keys.add(new Key("найти"));
+
         //etc
-       }
+    }
 
     @Override
     public ArrayList<Key> getKeys() {
@@ -41,21 +45,24 @@ public class BrowserWorker extends Worker {
     public boolean isContinue(){return false;}
 
     @Override
-    public String doWork(ArrayList<Key> keys, Key arguments) {
+    public Response doWork(ArrayList<Key> result, Key arguments) {
         //String request = arguments.get(0);
-        if(arguments.contains(keys.get(5))){
+        Key google = this.keys.get(5);
+
+
+        if(result.contains(this.keys.get(5))){
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://www.google.ru/search?q=" + arguments.toString()));
             activity.startActivity(intent);
-            return "";
+            return new Response("", false);
         }
         else {
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("http://www.yandex.ru?q=" + arguments.toString()));
             activity.startActivity(intent);
-            return "";
+            return new Response("", false);
         }
 
 
