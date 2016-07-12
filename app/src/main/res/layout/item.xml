@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/slonCard"
-        app:cardCornerRadius="4dp"
+        app:cardCornerRadius="@dimen/angle"
         android:layout_alignParentRight="true">
 
         <TextView
@@ -24,8 +24,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/userCard"
-        app:cardCornerRadius="4dp"
-        android:layout_alignParentLeft="true">
+        app:cardCornerRadius="@dimen/angle"
+        android:layout_alignParentLeft="true"
+        android:background="@android:color/transparent">
 
         <TextView
             android:layout_width="wrap_content"
