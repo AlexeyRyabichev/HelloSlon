@@ -26,4 +26,5 @@ dependencies {
     compile 'com.yandex.android:speechkit:2.5.0'
     compile 'com.android.support:cardview-v7:23.3.0'
     compile 'com.android.support:recyclerview-v7:23.3.0'
+    compile 'com.ldoublem.loadingview:loadingviewlib:0.0.1'
 }

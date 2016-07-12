@@ -43,7 +43,7 @@ public class    TestWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        Response helloWorld = new Response("Тестовый worker" , false);
+        Response helloWorld = new Response("Привет" , false);
         return helloWorld;
     }
 }
