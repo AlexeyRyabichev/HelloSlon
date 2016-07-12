@@ -37,6 +37,7 @@ public class Core {
 	}
 	
 	public String request(String request) {
+		Toast.makeText(activity, request,Toast.LENGTH_LONG).show();
 		request = request.toLowerCase();
 		Response response = new Response(defaultString, false);
 
@@ -60,7 +61,7 @@ public class Core {
 
 					response = workers.get(i).doWork(eq, other);
 
-					if (response.getIsEnd()) {
+					if (!response.getIsEnd()) {
 						currentWorker = idNone;
 					} else {
 						currentWorker = i;
