@@ -40,7 +40,6 @@ public class SMSSendWorker extends Worker {
         if (arguments.get().size() == 0) {
             return new Response(activity.getString(R.string.smssend_unrecognized_string0),finishSession);
         }
-<<<<<<< HEAD
         /*
          * Just Log
          */
@@ -51,17 +50,9 @@ public class SMSSendWorker extends Worker {
              * Calling an intent
              */
         Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("smsto:8(904)201-91-23" + ""));
-        intent.putExtra("sms_body", arguments.get().get(0));
-=======
-        //TODO Get permissions (Already got?)
-
-        //TODO How to call Intents???
-        Intent intent = new Intent();
-        intent.setAction("WHAT???"); //TODO What I have to import to make it work???
-        //TODO How to recognize numbers???
->>>>>>> DimaI
+        intent.putExtra("sms_body", arguments.get().get(0)); //For debug needs
         activity.startActivity(intent);
 
-        return new Response(activity.getString(R.string.smssend_calling) + " " + "8(904)201-91-23", finishSession);
+        return new Response(activity.getString(R.string.smssend_sending) + " " + "8(904)201-91-23", finishSession);
     }
 }

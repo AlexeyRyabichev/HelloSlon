@@ -33,7 +33,7 @@
     <string name="smssend_keyword0">смс</string>
     <string name="smssend_keyword1">отправить смс</string>
     <string name="smssend_keyword2">послать смс</string>
-    <string name="smssend_calling">отправляю СМС</string>
+    <string name="smssend_sending">отправляю СМС</string>
     <string name="smssend_unrecognized_string0">Не понял, кому отправить?</string>
 
 </resources>
