@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
+import com.slon_school.helloslon.workers.SMSSendWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 
 import java.util.ArrayList;
@@ -28,7 +29,7 @@ public class Core {
 		workers.add(testWorker);
 		workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
-
+		workers.add(new SMSSendWorker(activity));
 
 		currentWorker = idNone;
 	}

@@ -19,22 +19,24 @@ import java.util.Random;
 
 public class FateBallWorker extends Worker {
 
-    private ArrayList<Key> keys = new ArrayList<Key>;
     private final static int MODE_GENERAL = 0;
     private final static int MODE_LUCK = 1;
     private final static int MODE_UNRECOGNIZED = 2;
     private ArrayList<String> predictionList = new ArrayList<String>();
+    private ArrayList<Key> keys = new ArrayList<Key>();
+    private final static boolean finishSession = false;
 
     public FateBallWorker(Activity activity) {
         super(activity);
-        keys.add(new Key(activity.getString(R.string.fateballkeyword0)));
-        keys.add(new Key(activity.getString(R.string.fateballkeyword1)));
+        keys.add(new Key(activity.getString(R.string.fateball_keyword0)));
+        keys.add(new Key(activity.getString(R.string.fateball_keyword1)));
     }
 
     public ArrayList<Key> getKeys() {
         return keys;
     }
-    
+
+    //TODO delete THIS shit
     @Override
     public boolean isContinue() {
         return false;
@@ -51,19 +53,19 @@ public class FateBallWorker extends Worker {
         Random randomIndex = new Random();
         if (arguments.toString().isEmpty()) {
             initList(MODE_UNRECOGNIZED);
-            return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),false);
+            return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
         }
         /* Create keys:
          * @generalKeys & @luckKeys
          */
         ArrayList<Key> generalKeys = new ArrayList<Key>();
-        generalKeys.add(new Key(activity.getString(R.string.fateballgeneralkey0)));
-        generalKeys.add(new Key(activity.getString(R.string.fateballgeneralkey1)));
-        generalKeys.add(new Key(activity.getString(R.string.fateballgeneralkey2)));
+        generalKeys.add(new Key(activity.getString(R.string.fateball_general_key0)));
+        generalKeys.add(new Key(activity.getString(R.string.fateball_general_key1)));
+        generalKeys.add(new Key(activity.getString(R.string.fateball_general_key2)));
 
         ArrayList<Key> luckKeys = new ArrayList<Key>();
-        luckKeys.add(new Key(activity.getString(R.string.fateballluckkey0)));
-        luckKeys.add(new Key(activity.getString(R.string.fateballluckkey1)));
+        luckKeys.add(new Key(activity.getString(R.string.fateball_luck_key0)));
+        luckKeys.add(new Key(activity.getString(R.string.fateball_luck_key1)));
         /* Check keywords
          * According to them fill @predictionList by pattern
          */
@@ -77,32 +79,33 @@ public class FateBallWorker extends Worker {
         /* Choose random word from @predictionList
          * And return it
          */
-        return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),false);
+        return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
     }
+
     private void initList(int mode) {
         predictionList.clear();
         if (mode == MODE_GENERAL) {
-            predictionList.add(activity.getString(R.string.fateballgeneralstring0));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring1));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring2));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring3));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring4));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring5));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring6));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring7));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring8));
-            predictionList.add(activity.getString(R.string.fateballgeneralstring9));
+            predictionList.add(activity.getString(R.string.fateball_general_string0));
+            predictionList.add(activity.getString(R.string.fateball_general_string1));
+            predictionList.add(activity.getString(R.string.fateball_general_string2));
+            predictionList.add(activity.getString(R.string.fateball_general_string3));
+            predictionList.add(activity.getString(R.string.fateball_general_string4));
+            predictionList.add(activity.getString(R.string.fateball_general_string5));
+            predictionList.add(activity.getString(R.string.fateball_general_string6));
+            predictionList.add(activity.getString(R.string.fateball_general_string7));
+            predictionList.add(activity.getString(R.string.fateball_general_string8));
+            predictionList.add(activity.getString(R.string.fateball_general_string9));
         } else if (mode == MODE_LUCK) {
-            predictionList.add(activity.getString(R.string.fateballluckstring0));
-            predictionList.add(activity.getString(R.string.fateballluckstring1));
-            predictionList.add(activity.getString(R.string.fateballluckstring2));
-            predictionList.add(activity.getString(R.string.fateballluckstring3));
-            predictionList.add(activity.getString(R.string.fateballluckstring4));
-            predictionList.add(activity.getString(R.string.fateballluckstring5));
+            predictionList.add(activity.getString(R.string.fateball_luck_string0));
+            predictionList.add(activity.getString(R.string.fateball_luck_string1));
+            predictionList.add(activity.getString(R.string.fateball_luck_string2));
+            predictionList.add(activity.getString(R.string.fateball_luck_string3));
+            predictionList.add(activity.getString(R.string.fateball_luck_string4));
+            predictionList.add(activity.getString(R.string.fateball_luck_string5));
         } else if (mode == MODE_UNRECOGNIZED) {
-            predictionList.add(activity.getString(R.string.fateballunrecognizedstring0));
-            predictionList.add(activity.getString(R.string.fateballunrecognizedstring1));
-            predictionList.add(activity.getString(R.string.fateballunrecognizedstring2));
+            predictionList.add(activity.getString(R.string.fateball_unrecognized_string0));
+            predictionList.add(activity.getString(R.string.fateball_unrecognized_string1));
+            predictionList.add(activity.getString(R.string.fateball_unrecognized_string2));
         }
     }
 }
