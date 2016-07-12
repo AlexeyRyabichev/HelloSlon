@@ -42,7 +42,7 @@ public class TownWorker extends Worker {
     }
 
     @Override
-    public boolean isContinue() {
+    public boolean isLoop() {
         return true;
     }
 

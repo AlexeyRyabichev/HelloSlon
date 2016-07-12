@@ -42,7 +42,7 @@ public class BrowserWorker extends Worker {
     }
 
     @Override
-    public boolean isContinue(){return false;}
+    public boolean isLoop(){return false;}
 
     @Override
     public Response doWork(ArrayList<Key> result, Key arguments) {
