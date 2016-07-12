@@ -53,7 +53,7 @@ public class TownWorker extends Worker {
         //arguments.get().size() == 0
 
         String c = String.valueOf( str.charAt(0) );
-        switch ( checkTown(arguments.get().get(0), activity)) {
+        switch ( checkTown(str, activity)) {
             case 0:
                 eog = true; return new Response("нет такого города", !eog); //break;
             case 1:
