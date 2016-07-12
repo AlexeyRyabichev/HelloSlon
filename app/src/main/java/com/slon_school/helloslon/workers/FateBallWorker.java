@@ -36,7 +36,6 @@ public class FateBallWorker extends Worker {
         return keys;
     }
 
-    //TODO delete THIS shit
     @Override
     public boolean isLoop() {
         return false;

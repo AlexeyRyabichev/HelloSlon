@@ -32,6 +32,7 @@ public class Key {
         return words;
     }
 
+    public long size() { return words.size(); }
 
     public boolean contains(Key key) {
         long counter = 0;
