@@ -5,6 +5,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.slon_school.helloslon.core.Key;
+import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.lang.reflect.Array;
@@ -42,7 +43,7 @@ public class FateBallWorker extends Worker {
     }
 
     @Override
-    public String doWork(ArrayList<Key> keys, Key arguments) {
+    public Response doWork(ArrayList<Key> keys, Key arguments) {
         /* Generate keywords
          * Add them to @args
          */
@@ -84,7 +85,7 @@ public class FateBallWorker extends Worker {
          * And return it
          */
         Random randomIndex = new Random();
-        return predictionList.get(randomIndex.nextInt(predictionList.size()));
+        return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),false);
     }
     private void initList(int mode) {
         predictionList.clear();
