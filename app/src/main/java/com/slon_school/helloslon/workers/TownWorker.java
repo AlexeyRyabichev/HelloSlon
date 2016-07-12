@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.slon_school.helloslon.core.Key;
+import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.io.BufferedReader;
@@ -46,7 +47,7 @@ public class TownWorker extends Worker {
     }
 
     @Override
-    public String doWork(ArrayList<Key> keys, Key arguments) {
+    public Response doWork( ArrayList<Key> keys, Key arguments) {
         String str = arguments.get().get(0).toLowerCase();
 
         //arguments.get().size() == 0
@@ -54,13 +55,17 @@ public class TownWorker extends Worker {
         String c = String.valueOf( str.charAt(0) );
         switch ( checkTown(arguments.get().get(0), activity)) {
             case 0:
-                eog = true; return "нет такого города"; //break;
+                eog = true; return new Response("нет такого города", !eog); //break;
             case 1:
-                eog = true; return "такой город уже был"; //break;
+                eog = true; return new Response("такой город уже был", !eog); //break;
             case 3:
-                return getTown(String.valueOf(str.charAt( str.length() ) ), activity); //break;
+                String _bufChar = String.valueOf(str.charAt( str.length() ));
+                String _bufTown = getTown(_bufChar, activity);
+                //used_towns.put(_bufChar, _bufTown);
+
+                return new Response(_bufTown, !eog); //break;
         }
-        return "error";
+        return new Response("error", false);
     }
 
     private void usedInit() {
