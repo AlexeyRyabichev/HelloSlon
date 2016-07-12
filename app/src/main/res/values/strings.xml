@@ -2,7 +2,8 @@
     <string name="app_name">HelloSlon</string>
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
     <string name="button_text">Talk to me</string>
-    <string name="fateballkeyword">шар судьбы</string>
+    <string name="fateballkeyword0">шар судьбы</string>
+    <string name="fateballkeyword1">шар</string>
     <string name="fateballgeneralstring0">сегодня тебя ждет отличный день!</string>
     <string name="fateballgeneralstring1">а! что ты говоришь?</string>
     <string name="fateballgeneralstring2">не думай о плохом, и все будек ок</string>
@@ -27,4 +28,5 @@
     <string name="fateballgeneralkey2">хочу предсказания</string>
     <string name="fateballluckkey0">сегодня удачный день</string>
     <string name="fateballluckkey1">мне повезет</string>
+    <string name="smssendworkerkeyword">sms</string>
 </resources>

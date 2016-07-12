@@ -19,17 +19,20 @@ import java.util.Random;
 
 public class FateBallWorker extends Worker {
 
+    private ArrayList<Key> keys = new ArrayList<Key>;
     private final static int MODE_GENERAL = 0;
     private final static int MODE_LUCK = 1;
     private final static int MODE_UNRECOGNIZED = 2;
     private ArrayList<String> predictionList = new ArrayList<String>();
 
-    public FateBallWorker(Activity activity) { super(activity); }
+    public FateBallWorker(Activity activity) {
+        super(activity);
+        keys.add(new Key(activity.getString(R.string.fateballkeyword0)));
+        keys.add(new Key(activity.getString(R.string.fateballkeyword1)));
+    }
 
     public ArrayList<Key> getKeys() {
-        ArrayList<Key> result = new ArrayList<Key>();
-        result.add(new Key(activity.getString(R.string.fateballkeyword)));
-        return result;
+        return keys;
     }
     
     @Override
