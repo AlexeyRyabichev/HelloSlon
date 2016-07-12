@@ -38,7 +38,7 @@ public class SMSSendWorker extends Worker {
         if (arguments.toString().isEmpty()) {
             return new Response(activity.getString(R.string.smssend_unrecognized_string0),finishSession);
         }
-        //TODO Get permissions (SEND_SMS, CONTACT_LIST)
+        //TODO Get permissions (Already got?)
 
         //TODO How to call Intents???
         Intent intent = new Intent();
