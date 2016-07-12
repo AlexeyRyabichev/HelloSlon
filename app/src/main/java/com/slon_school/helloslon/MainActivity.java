@@ -113,7 +113,12 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
 
         question = recognition.getBestResultText();
+        Toast.makeText(this, question, Toast.LENGTH_LONG).show();
         answer = core.request(question);
+
+        questionPair = Pair.create("Slon", question);
+        dialogList.add(questionPair);
+        adapter.notifyDataSetChanged();
 
         vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
         vocalizer.start();
@@ -121,9 +126,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         Toast.makeText(this, answer, Toast.LENGTH_LONG).show();
 
         answerPair = Pair.create("User", answer);
-        questionPair = Pair.create("Slon", question);
 
-        dialogList.add(questionPair);
         dialogList.add(answerPair);
 
         adapter.notifyDataSetChanged();

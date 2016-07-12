@@ -3,6 +3,7 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.slon_school.helloslon.core.Key;
+import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
@@ -41,8 +42,8 @@ public class    TestWorker extends Worker {
     }
 
     @Override
-    public String doWork(ArrayList<Key> keys, Key arguments) {
-        String helloWorld = "Привет";
+    public Response doWork(ArrayList<Key> keys, Key arguments) {
+        Response helloWorld = new Response("Тестовый worker" , false);
         return helloWorld;
     }
 }
