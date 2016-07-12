@@ -10,7 +10,11 @@ public abstract  class Worker {
 		this.activity = activity;
 	}
 	public abstract ArrayList<Key> getKeys();
+<<<<<<< HEAD
 	//TODO Delete isContinue ?
 	public abstract boolean isContinue();
+=======
+	public abstract boolean isLoop();
+>>>>>>> develop
 	public abstract Response doWork(ArrayList<Key> keys, Key arguments);
 }

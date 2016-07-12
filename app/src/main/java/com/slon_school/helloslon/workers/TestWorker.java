@@ -37,7 +37,7 @@ public class    TestWorker extends Worker {
     }
 
     @Override
-    public boolean isContinue() {
+    public boolean isLoop() {
         return isContinue;
     }
 

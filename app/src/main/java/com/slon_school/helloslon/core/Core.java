@@ -3,10 +3,15 @@ package com.slon_school.helloslon.core;
 import android.app.Activity;
 import android.widget.Toast;
 
+import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
+<<<<<<< HEAD
 import com.slon_school.helloslon.workers.SMSSendWorker;
+=======
+>>>>>>> develop
 import com.slon_school.helloslon.workers.TestWorker;
+import com.slon_school.helloslon.workers.TownWorker;
 
 import java.util.ArrayList;
 
@@ -29,12 +34,18 @@ public class Core {
 		workers.add(testWorker);
 		workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
+<<<<<<< HEAD
 		workers.add(new SMSSendWorker(activity));
+=======
+		workers.add(new AlarmWorker(activity));
+		workers.add(new TownWorker(activity));
+>>>>>>> develop
 
 		currentWorker = idNone;
 	}
 	
 	public String request(String request) {
+		Toast.makeText(activity, request,Toast.LENGTH_LONG).show();
 		request = request.toLowerCase();
 		Response response = new Response(defaultString, false);
 
@@ -52,13 +63,13 @@ public class Core {
 							request = request.replaceAll(word, "");
 					}
 				}
-
+//we
 				if (access) {
 					Key other = new Key(request);
 
 					response = workers.get(i).doWork(eq, other);
 
-					if (response.getIsEnd()) {
+					if (!response.getIsEnd()) {
 						currentWorker = idNone;
 					} else {
 						currentWorker = i;

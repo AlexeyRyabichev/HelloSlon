@@ -38,7 +38,7 @@ public class FateBallWorker extends Worker {
 
     //TODO delete THIS shit
     @Override
-    public boolean isContinue() {
+    public boolean isLoop() {
         return false;
     }
 
