@@ -52,7 +52,7 @@ public class AlarmWorker extends Worker {
 
     @Override
     public boolean isLoop() {
-        return false;
+        return true;
     }
 
     @Override

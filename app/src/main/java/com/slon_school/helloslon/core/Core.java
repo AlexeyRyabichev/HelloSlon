@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
+import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
 
@@ -32,7 +33,7 @@ public class Core {
 		workers.add(new FateBallWorker(activity));
 		workers.add(new AlarmWorker(activity));
 		workers.add(new TownWorker(activity));
-
+		workers.add(new SMSWorker(activity));
 		currentWorker = idNone;
 	}
 	
