@@ -2,13 +2,16 @@ package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Resources;
 import android.widget.Toast;
 
+import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -173,6 +176,35 @@ public class TownWorker extends Worker {
         if(used_towns.get(String.valueOf(town.toLowerCase().charAt(0))).contains(str.toLowerCase())) return 1;
         return 2;
     }
+
+    private String  getStringFromRawFile(Activity activity) {
+        Resources r = activity.getResources();
+        InputStream is = r.openRawResource( R.raw.test);
+        String myText = null;
+        try {
+            myText = convertStreamToString(is);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return  myText;
+    }
+
+    private String  convertStreamToString(InputStream is) throws IOException {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        int i = is.read();
+        while( i != -1)
+        {
+            baos.write(i);
+            i = is.read();
+        }
+        return  baos.toString();
+    }
+
 
     String helper1(char c, Context context) {
         String line = "123456";
