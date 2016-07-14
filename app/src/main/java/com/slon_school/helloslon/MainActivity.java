@@ -17,6 +17,9 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.ldoublem.loadingviewlib.LVCircularCD;
+import com.ldoublem.loadingviewlib.LVCircularJump;
+import com.ldoublem.loadingviewlib.LVLineWithText;
+import com.lusfold.spinnerloading.SpinnerLoading;
 import com.slon_school.helloslon.core.Core;
 
 import java.util.ArrayList;
@@ -40,8 +43,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, String>> dialogList;
     private RecyclerViewAdapter adapter;
-//    private ProgressBar progressBar;
     private LVCircularCD progressBar;
+    private SpinnerLoading waitingForResponse;
 
 
     @Override
@@ -49,6 +52,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         SpeechKit.getInstance().configure(getApplicationContext(), getString(R.string.api_key));
+
+        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
+        waitingForResponse.setVisibility(View.GONE);
+        waitingForResponse.setCircleRadius(10);
+        waitingForResponse.setPaintMode(0);
 
         progressBar = (LVCircularCD) findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
@@ -94,7 +102,9 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingDone(Recognizer recognizer) {
-
+        progressBar.stopAnim();
+        progressBar.setVisibility(View.GONE);
+        waitingForResponse.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -115,8 +125,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
 
-        progressBar.stopAnim();
-        progressBar.setVisibility(View.GONE);
+        waitingForResponse.setVisibility(View.GONE);
 
         String question = recognition.getBestResultText();
 //        Toast.makeText(this, question, Toast.LENGTH_LONG).show();
