@@ -3,6 +3,7 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
-    <color name="userBackground">#FF669C</color>
-    <color name="slonBackground">#FFEF14</color>
+    <color name="background">#9ACEEB</color>
+    <color name="slonBackground">#FFECB9</color>
+    <color name="userBackground">#FFD7CC</color>
 </resources>
