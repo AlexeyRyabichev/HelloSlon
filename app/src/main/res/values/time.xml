@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name = "h1">один</string>
+    <string name = "h2">два</string>
+    <string name = "h3">три</string>
+    <string name = "h4">четыре</string>
+    <string name = "h5">пять</string>
+    <string name = "h6">шесть</string>
+    <string name = "h7">семь</string>
+    <string name = "h8">восемь</string>
+    <string name = "h9">девять</string>
+    <string name = "h10">десять</string>
+    <string name = "h11">одиннадцать</string>
+    <string name = "h12">двенадцать</string>
+    <string name = "h13">тринадцать</string>
+    <string name = "h14">четырнадцать</string>
+    <string name = "h15">пятнадцать</string>
+    <string name = "h16">шестнадцать</string>
+    <string name = "h17">семнадцать</string>
+    <string name = "h18">восемнадцать</string>
+    <string name = "h19">девятнадцать</string>
+    <string name = "h20">двадцать</string>
+    <string name = "h21">двадцать один</string>
+    <string name = "h22">двадцать два</string>
+    <string name = "h23">двадцать три</string>
+    <string name = "h24">двадцать четыре</string>
+
+</resources>

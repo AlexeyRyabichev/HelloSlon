@@ -41,6 +41,7 @@ public class Core {
 		request = request.toLowerCase();
 		Response response = new Response(defaultString, false);
 
+		Toast.makeText(activity, currentWorker + "", Toast.LENGTH_LONG).show();
 
 		if (currentWorker == idNone) {
 			for (int i = 0; i < workers.size(); i++) {
@@ -55,7 +56,7 @@ public class Core {
 							request = request.replaceAll(word, "");
 					}
 				}
-//we
+
 				if (access) {
 					Key other = new Key(request);
 
@@ -71,6 +72,9 @@ public class Core {
 				}
 			}
 		} else {
+
+			//Toast.makeText(activity, "I was here", Toast.LENGTH_LONG).show();
+
             ArrayList<Key> eq = new ArrayList<Key>();
 			for (Key key : workers.get(currentWorker).getKeys()) {
 				if (subKey(key, request)) {
@@ -83,11 +87,14 @@ public class Core {
 			Key arguments = new Key(request);
 			response = workers.get(currentWorker).doWork(eq,arguments);
 
-			if (response.getIsEnd()) {
+			if (!response.getIsEnd()) {
 				currentWorker = idNone;
 			}
 		}
 
+
+
+		Toast.makeText(activity, currentWorker + "", Toast.LENGTH_LONG).show();
 		return response.getResponse();
 }
 
