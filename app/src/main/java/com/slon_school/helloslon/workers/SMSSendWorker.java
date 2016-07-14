@@ -3,12 +3,13 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
+
 import java.util.ArrayList;
 
 /**
@@ -23,6 +24,9 @@ public class SMSSendWorker extends Worker {
         keys.add(new Key(activity.getString(R.string.smssend_keyword0)));
         keys.add(new Key(activity.getString(R.string.smssend_keyword1)));
         keys.add(new Key(activity.getString(R.string.smssend_keyword2)));
+        keys.add(new Key(activity.getString(R.string.smssend_keyword3)));
+        keys.add(new Key(activity.getString(R.string.smssend_keyword4)));
+        keys.add(new Key(activity.getString(R.string.smssend_keyword5)));
     }
 
     @Override
@@ -31,28 +35,26 @@ public class SMSSendWorker extends Worker {
     }
 
     @Override
-    public boolean isLoop() {
-        return false;
-    }
+    public boolean isLoop() { return false; }
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.get().size() == 0) {
             return new Response(activity.getString(R.string.smssend_unrecognized_string0),finishSession);
         }
-        /*
-         * Just Log
-         */
-        for (String string : arguments.get()) {
-            Toast.makeText(activity,string,Toast.LENGTH_LONG).show();
+        String phoneNumber = arguments.toString();
+        //TODO Add contacts recognition
+        if (Helper.isValidMobilePhoneNumber(phoneNumber)) {
+            startActivity(phoneNumber);
+            return new Response(activity.getString(R.string.smssend_sending) + " " + phoneNumber, finishSession);
+        } else {
+            return new Response(activity.getString(R.string.smssend_unknown) + " " + phoneNumber + "?", finishSession);
         }
-            /*
-             * Calling an intent
-             */
-        Intent intent = new Intent(Intent.ACTION_SENDTO,Uri.parse("smsto:8(904)201-91-23" + ""));
-        intent.putExtra("sms_body", arguments.get().get(0)); //For debug needs
-        activity.startActivity(intent);
+    }
 
-        return new Response(activity.getString(R.string.smssend_sending) + " " + "8(904)201-91-23", finishSession);
+    private void startActivity(final String phoneNumber) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(activity.getString(R.string.smssend_smsto) + phoneNumber));
+        intent.putExtra("sms_body", phoneNumber); //TODO delete it, debug needs only
+        activity.startActivity(intent);
     }
 }

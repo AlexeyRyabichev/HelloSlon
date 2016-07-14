@@ -33,7 +33,23 @@
     <string name="smssend_keyword0">смс</string>
     <string name="smssend_keyword1">отправить смс</string>
     <string name="smssend_keyword2">послать смс</string>
+    <string name="smssend_keyword3">смска</string>
+    <string name="smssend_keyword4">отправить смску</string>
+    <string name="smssend_keyword5">послать смску</string>
     <string name="smssend_sending">отправляю СМС</string>
+    <string name="smssend_unknown">А что это за номер такой -</string>
     <string name="smssend_unrecognized_string0">Не понял, кому отправить?</string>
+    <string name="smssend_smsto">smsto:</string>
 
+    <string name="bashorg_keyword0">башорг</string>
+    <string name="bashorg_keyword1">цитатка с башорга</string>
+    <string name="bashorg_keyword2">цитата с башорга</string>
+    <string name="bashorg_get_quote">Получай свою цитатку!</string>
+    <string name="bashorg_cp1251">windows-1251</string>
+    <string name="bashorg_url">http://bash.im/random</string>
+    <string name="bashorg_cannot_access_quote">Упс, не получилось загрузить цитатку</string>
+
+    <string name="help_keyword0">help</string>
+    <string name="help_keyword1">слон help</string>
+    <string name="help_get_all">null</string>
 </resources>
