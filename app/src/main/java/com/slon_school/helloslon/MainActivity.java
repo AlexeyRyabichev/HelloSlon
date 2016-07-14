@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             resetRecognizer();
             // To create a new recognizer, specify the language, the model - a scope of recognition to get the most appropriate results,
             // set the listener to handle the recognition events.
-            recognizer = Recognizer.create(Recognizer.Language.RUSSIAN, Recognizer.Model.NOTES, this);
+            recognizer = Recognizer.create(Recognizer.Language.RUSSIAN, Recognizer.Model.QUERIES, this);
             // Don't forget to call start on the created object.
             recognizer.start();
            }

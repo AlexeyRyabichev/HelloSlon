@@ -20,7 +20,7 @@ public class Key {
         String[] keys =  toParse.split(" ");
         for(String key : keys) {
             if (!key.equals("")) {
-                key = key.replaceAll("[-+.^:,]","");
+                key = key.replaceAll("[-+.^,]","");
                 newKeys.add(key.toLowerCase());
             }
         }
