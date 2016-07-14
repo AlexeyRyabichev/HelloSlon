@@ -1,6 +1,7 @@
 package com.slon_school.helloslon;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
@@ -12,8 +13,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.ldoublem.loadingviewlib.LVCircularCD;
+import com.ldoublem.loadingviewlib.LVCircularJump;
+import com.ldoublem.loadingviewlib.LVLineWithText;
+import com.lusfold.spinnerloading.SpinnerLoading;
 import com.slon_school.helloslon.core.Core;
 
 import java.util.ArrayList;
@@ -34,15 +40,12 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
 
     private Recognizer recognizer;
-    private Vocalizer vocalizer;
-    private String answer;
-    private String question;
     private Core core;
-    private RecyclerView dialogWindow;
     private ArrayList<Pair<String, String>> dialogList;
     private RecyclerViewAdapter adapter;
-    private Pair<String, String> answerPair;
-    private Pair<String, String> questionPair;
+    private LVCircularCD progressBar;
+    private SpinnerLoading waitingForResponse;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,9 +53,17 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         setContentView(R.layout.activity_main);
         SpeechKit.getInstance().configure(getApplicationContext(), getString(R.string.api_key));
 
+        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
+        waitingForResponse.setVisibility(View.GONE);
+        waitingForResponse.setCircleRadius(10);
+        waitingForResponse.setPaintMode(0);
+
+        progressBar = (LVCircularCD) findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
+
         Button recording_button = (Button) findViewById(R.id.recording_button);
         core = new Core(this);
-        dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
+        RecyclerView dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
@@ -75,7 +86,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
-
+        progressBar.startAnim();
+        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -90,7 +102,9 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingDone(Recognizer recognizer) {
-
+        progressBar.stopAnim();
+        progressBar.setVisibility(View.GONE);
+        waitingForResponse.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -111,21 +125,19 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
 
+        waitingForResponse.setVisibility(View.GONE);
 
-        question = recognition.getBestResultText();
-        Toast.makeText(this, question, Toast.LENGTH_LONG).show();
-        answer = core.request(question);
+        String question = recognition.getBestResultText();
+        String answer = core.request(question);
 
-        questionPair = Pair.create("Slon", question);
+        Pair<String, String> questionPair = Pair.create("Slon", question);
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
-        vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
+        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
         vocalizer.start();
 
-        Toast.makeText(this, answer, Toast.LENGTH_LONG).show();
-
-        answerPair = Pair.create("User", answer);
+        Pair<String, String> answerPair = Pair.create("User", answer);
 
         dialogList.add(answerPair);
 
