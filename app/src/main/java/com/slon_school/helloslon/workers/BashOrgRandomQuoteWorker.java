@@ -17,13 +17,13 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by Noob_upgraded on 14.07.2016.
  */
-public class BashOrgRandomQuote extends Worker {
+public class BashOrgRandomQuoteWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
     private static final boolean finishSession = false;
     private String quote;
     private boolean isQuoteGot;
 
-    public BashOrgRandomQuote(Activity activity) {
+    public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));
         keys.add(new Key(activity.getString(R.string.bashorg_keyword1)));
