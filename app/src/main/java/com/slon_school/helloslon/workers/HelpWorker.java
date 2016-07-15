@@ -14,12 +14,15 @@ import java.util.ArrayList;
  */
 public class HelpWorker extends Worker{
     final static boolean finishSession = false;
-    private ArrayList<Key> keys;
+    private ArrayList<Key> keys = new ArrayList<Key>();
 
     public HelpWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.help_keyword0)));
         keys.add(new Key(activity.getString(R.string.help_keyword1)));
+        keys.add(new Key(activity.getString(R.string.help_keyword2)));
+        keys.add(new Key(activity.getString(R.string.help_keyword3)));
+        keys.add(new Key(activity.getString(R.string.help_keyword4)));
     }
 
     @Override
@@ -35,6 +38,19 @@ public class HelpWorker extends Worker{
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
 
-        return new Response(activity.getString(R.string.help_get_all),finishSession);
+        return new Response(
+                activity.getString(R.string.help_get_all0) + "\n" +
+                activity.getString(R.string.help_get_all1) + "\n" +
+                activity.getString(R.string.help_browser) + "\n" +
+                activity.getString(R.string.help_get_all2) + "\n",
+                finishSession);
     }
+    /* TODO:
+     * BrowserWorker ++
+     * FateBallWorker +
+     * EmailWorker -
+     * AlarmWorker ?
+     * TownWorker -
+     * BashOrgRandomQuote +
+     */
 }
