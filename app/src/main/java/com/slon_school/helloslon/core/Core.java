@@ -3,13 +3,8 @@ package com.slon_school.helloslon.core;
 import android.app.Activity;
 
 import com.slon_school.helloslon.workers.AlarmWorker;
-<<<<<<< HEAD
 import com.slon_school.helloslon.workers.BashOrgRandomQuote;
-import com.slon_school.helloslon.workers.BrowserWorker;
-=======
->>>>>>> Asgar
 import com.slon_school.helloslon.workers.FateBallWorker;
-import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.SMSSendWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
@@ -43,11 +38,9 @@ public class Core {
 		workers.add(new BashOrgRandomQuote(activity));
 //		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
-<<<<<<< HEAD
-
-=======
 		workers.add(new WeatherWorker(activity));
->>>>>>> Asgar
+
+		
 		currentWorker = idNone;
 	}
 	
