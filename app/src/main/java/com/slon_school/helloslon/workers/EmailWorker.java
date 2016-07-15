@@ -15,18 +15,15 @@ import java.util.ArrayList;
 /**
  * Created by I. Dmitry on 12.07.2016.
  */
-public class SMSSendWorker extends Worker {
+public class EmailWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
     private final static boolean finishSession = false;
 
-    public SMSSendWorker(Activity activity) {
+    public EmailWorker(Activity activity) {
         super(activity);
-        keys.add(new Key(activity.getString(R.string.smssend_keyword0)));
-        keys.add(new Key(activity.getString(R.string.smssend_keyword1)));
-        keys.add(new Key(activity.getString(R.string.smssend_keyword2)));
-        keys.add(new Key(activity.getString(R.string.smssend_keyword3)));
-        keys.add(new Key(activity.getString(R.string.smssend_keyword4)));
-        keys.add(new Key(activity.getString(R.string.smssend_keyword5)));
+        keys.add(new Key(activity.getString(R.string.email_keyword0)));
+        keys.add(new Key(activity.getString(R.string.email_keyword1)));
+        keys.add(new Key(activity.getString(R.string.email_keyword2)));
     }
 
     @Override
