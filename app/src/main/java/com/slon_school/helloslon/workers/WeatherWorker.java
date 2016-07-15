@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.CountDownLatch;
 
 
 /**
@@ -27,7 +28,7 @@ import java.util.List;
 public class WeatherWorker extends Worker {
 
     final private String keyApi= "trnsl.1.1.20160715T075701Z.a4d46525907a4a9b.a79bfd0a0d08f77d8e7b35baea67c228bd9df37f";
-
+    private String vivod;
     private ArrayList<Key> keys;
 
 
@@ -56,36 +57,61 @@ public class WeatherWorker extends Worker {
 
 
     private Response post() {
-        String vivod = "";
 
-        HttpClient client = new DefaultHttpClient();
-        HttpPost post = new HttpPost("https://translate.yandex.net/api/v1.5/tr.json/translate");// ? \n" +
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+
+
+                HttpClient client = new DefaultHttpClient();
+                HttpPost post = new HttpPost("https://translate.yandex.net/api/v1.5/tr.json/translate");// ? \n" +
                 //"key=" + keyApi + "\n" +
                 //" & text=Привет\n" +
                 //" & lang=ru-en\n");
 
-        try {
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-            nameValuePairs.add(new BasicNameValuePair("key",
-                    keyApi));
-            nameValuePairs.add(new BasicNameValuePair("text",
-                    "Привет"));
-            nameValuePairs.add(new BasicNameValuePair("lang",
-                    "ru-en"));
-            post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+                try {
+                    String cash = "";
+                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+                    nameValuePairs.add(new BasicNameValuePair("key",
+                            keyApi));
+                    nameValuePairs.add(new BasicNameValuePair("text",
+                            "Привет"));
+                    nameValuePairs.add(new BasicNameValuePair("lang",
+                            "ru-en"));
+                    post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
-            HttpResponse response = client.execute(post);
+                    HttpResponse response = client.execute(post);
 
-            BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-            String line = "";
-            while ((line = rd.readLine()) != null) {
-                vivod += line;
+                    BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                    String line = "";
+                    while ((line = rd.readLine()) != null) {
+                        cash += line;
+                    }
+
+                    vivod = cash;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                countDownLatch.countDown();
+
             }
+        };
 
-        } catch (IOException e) {
+        thread.start();
+
+
+
+
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
         return new Response(vivod, false);
     }
