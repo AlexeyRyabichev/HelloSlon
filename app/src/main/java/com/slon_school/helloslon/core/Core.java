@@ -1,17 +1,20 @@
 package com.slon_school.helloslon.core;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 import com.slon_school.helloslon.workers.AlarmWorker;
+<<<<<<< HEAD
 import com.slon_school.helloslon.workers.BashOrgRandomQuote;
 import com.slon_school.helloslon.workers.BrowserWorker;
+=======
+>>>>>>> Asgar
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.SMSSendWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
+import com.slon_school.helloslon.workers.WeatherWorker;
 
 import java.util.ArrayList;
 
@@ -32,7 +35,7 @@ public class Core {
 		//TODO add all workers
 		testWorker = new TestWorker(activity);
 		workers.add(testWorker);
-		workers.add(new BrowserWorker(activity));
+		//workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
 		workers.add(new SMSSendWorker(activity));
 		workers.add(new AlarmWorker(activity));
@@ -40,16 +43,19 @@ public class Core {
 		workers.add(new BashOrgRandomQuote(activity));
 //		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
+<<<<<<< HEAD
 
+=======
+		workers.add(new WeatherWorker(activity));
+>>>>>>> Asgar
 		currentWorker = idNone;
 	}
 	
-	public String request(String request) {
-		Toast.makeText(activity, request,Toast.LENGTH_LONG).show();
-		request = request.toLowerCase();
+	public Response request(Response request) {
+		//Toast.makeText(activity, request,Toast.LENGTH_LONG).show();
+		String r = request.getResponse().toLowerCase();
 		Response response = new Response(defaultString, false);
-
-		Toast.makeText(activity, currentWorker + "", Toast.LENGTH_LONG).show();
+		//Toast.makeText(activity, currentWorker + "", Toast.LENGTH_LONG).show();
 
 		if (currentWorker == idNone) {
 			for (int i = 0; i < workers.size(); i++) {
@@ -57,16 +63,16 @@ public class Core {
 				ArrayList<Key> eq = new ArrayList<Key>();
 
 				for (Key key : workers.get(i).getKeys()) {
-					if (subKey(key, request)) {
+					if (subKey(key, r)) {
 						access = true;
 						eq.add(key);
 						for (String word : key.get())
-							request = request.replaceAll(word, "");
+							r = r.replaceAll(word, "");
 					}
 				}
 
 				if (access) {
-					Key other = new Key(request);
+					Key other = new Key(r);
 
 					response = workers.get(i).doWork(eq, other);
 
@@ -82,17 +88,16 @@ public class Core {
 		} else {
 
 			//Toast.makeText(activity, "I was here", Toast.LENGTH_LONG).show();
-
             ArrayList<Key> eq = new ArrayList<Key>();
 			for (Key key : workers.get(currentWorker).getKeys()) {
-				if (subKey(key, request)) {
+				if (subKey(key, r)) {
 					eq.add(key);
 					for (String word : key.get())
-						request = request.replaceAll(word, "");
+						r = r.replaceAll(word, "");
 				}
 			}
 
-			Key arguments = new Key(request);
+			Key arguments = new Key(r);
 			response = workers.get(currentWorker).doWork(eq,arguments);
 
 			if (!response.getIsEnd()) {
@@ -100,10 +105,8 @@ public class Core {
 			}
 		}
 
-
-
-		Toast.makeText(activity, currentWorker + "", Toast.LENGTH_LONG).show();
-		return response.getResponse();
+		//Toast.makeText(activity, currentWorker + "", Toast.LENGTH_LONG).show();
+		return response;
 }
 
 
