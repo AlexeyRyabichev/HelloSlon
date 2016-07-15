@@ -40,7 +40,7 @@ public class Core {
 		workers.add(new SMSWorker(activity));
 		workers.add(new WeatherWorker(activity));
 
-			
+
 		currentWorker = idNone;
 	}
 	
