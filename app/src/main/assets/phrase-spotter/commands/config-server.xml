@@ -1,0 +1,13 @@
+<config>
+    <serverconfig>
+        <ip>0.0.0.0</ip>
+        <port>3457</port>
+        <maxconnection>32</maxconnection>
+        <chunkedtimeout>7</chunkedtimeout>
+        <accesslog></accesslog>
+        <syslog>yaldi-ru-a556c5ca-4a64-11e6-817a-155b48e03414</syslog>
+        <pidfilename>/var/run/yandex/yaldi/ru-a556c5ca-4a64-11e6-817a-155b48e03414.pid</pidfilename>
+        <loglevel>INFO</loglevel>
+        <lingware>/opt/data-store/Lingware/Yaldi-0.1/ru-RU-a556c5ca-4a64-11e6-817a-155b48e03414/ru-RU-a556c5ca-4a64-11e6-817a-155b48e03414-0.6.5</lingware>
+    </serverconfig>
+</config>
