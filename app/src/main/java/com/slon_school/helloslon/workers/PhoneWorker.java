@@ -18,20 +18,47 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 
 /**
- * Created by I. Dmitry on 12.07.2016.
+ * Created by Mike on 16.07.2016.
+ */
+import android.app.Activity;
+import android.database.Cursor;
+import android.provider.ContactsContract;
+import android.telecom.Call;
+
+import com.slon_school.helloslon.core.Key;
+import com.slon_school.helloslon.core.Response;
+import com.slon_school.helloslon.core.Worker;
+
+import java.util.ArrayList;
+
+/**
+ * Created by 1 on 14.07.2016.
  */
 public class PhoneWorker extends Worker {
-    private ArrayList<Key> keys = new ArrayList<Key>();
-    private final static boolean finishSession = false;
+
+    private ArrayList<Key> keys;
+    private enum State {Start, PhoneNumber, Call}
+    private State state;
+    private Call callPhone;
+
+    private String phoneNumber;
+    private String Call;
 
     public PhoneWorker(Activity activity) {
         super(activity);
-        keys.add(new Key("позвони"));
-        keys.add(new Key("позвонить"));
-        keys.add(new Key("дозвнись"));
+        keys = new ArrayList<Key>();
         keys.add(new Key("набери"));
         keys.add(new Key("набрать"));
+        keys.add(new Key("позвони"));
+        keys.add(new Key("позвонить"));
+        keys.add(new Key("дозвонись"));
         keys.add(new Key("звонок"));
+        keys.add(new Key("звони"));
+        keys.add(new Key("звонить"));
+
+        state = State.Start;
+
+        callPhone = Call.getDefault();
     }
 
     @Override
@@ -41,38 +68,39 @@ public class PhoneWorker extends Worker {
 
     @Override
     public boolean isLoop() {
-        return false;
+        return true;
     }
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if (arguments.get().size() == 0) {
-            return new Response("Повтори номер, пожалуйста.", finishSession);
-        }
-        String phoneNumber = arguments.toString();
+        Key error = new Key("ошибка");
+        Key exit = new Key("отмена");
 
-        if (Helper.isValidMobilePhoneNumber(phoneNumber)) {
-            startActivity(phoneNumber);
-            return new Response("Выполняю звонок наномер" + " " + phoneNumber, finishSession);
-        } else {
-            return new Response("Не могу найти такой номер" + " " + phoneNumber + "?", finishSession);
+        if (arguments.get().size() == 0 && state == State.Start) {
+            return start(arguments);
+        } else if (state == State.PhoneNumber) {
+            if (arguments.contains(exit)) {
+                return exit();
+            } else {
+                return writePhoneNumber(arguments);
+            }
+        } else if (state == State.Writing) {
+            if (arguments.contains(error)) {
+                return start(arguments);
+            } else if (arguments.contains(exit)){
+                return exit();
+            }
+            return writeText(arguments);
         }
+
+        return new Response("Повтори ещё раз, пожалуйста", true);
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
-    private void startActivity(final String phoneNumber) {
-        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
-        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            activity.requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PackageManager.PERMISSION_GRANTED);
-            return;
-        }
-        activity.startActivity(intent);
+
+
+    private Response start(Key arguments) {
+        state = State.PhoneNumber;
+        return new Response("Скажи мне номер телефона, на который ты хочешь позвонить", true);
     }
-}
+
+    }
