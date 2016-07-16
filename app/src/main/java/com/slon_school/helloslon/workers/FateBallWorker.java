@@ -2,13 +2,12 @@ package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
 import android.util.Log;
-import android.widget.Toast;
 
+import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -21,22 +20,28 @@ public class FateBallWorker extends Worker {
     private final static int MODE_GENERAL = 0;
     private final static int MODE_LUCK = 1;
     private final static int MODE_UNRECOGNIZED = 2;
+    private final static boolean finishSession = false;
     private ArrayList<String> predictionList = new ArrayList<String>();
+    private ArrayList<Key> keys = new ArrayList<Key>();
+    private ArrayList<Key> luckKeys = new ArrayList<Key>();
+    private ArrayList<Key> generalKeys = new ArrayList<Key>();
 
-    public FateBallWorker(Activity activity) { super(activity); }
+    public FateBallWorker(Activity activity) {
+        super(activity);
+        keys.add(new Key(activity.getString(R.string.fateball_keyword0)));
+        keys.add(new Key(activity.getString(R.string.fateball_keyword1)));
+    }
 
     public ArrayList<Key> getKeys() {
-        ArrayList<Key> result = new ArrayList<Key>();
-        result.add(new Key("шар судьбы"));
-        return result;
+        return keys;
     }
-    
+
     @Override
     public boolean isLoop() {
         return false;
     }
 
-    private boolean hasKeys(ArrayList<Key> list, Key key) {
+    private boolean hasNeededKeys(ArrayList<Key> list, Key key) {
         for (int i = 0; i < list.size(); ++i) {
             if (list.get(i).contains(key)) return true;
         } return false;
@@ -44,73 +49,79 @@ public class FateBallWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        /* Generate keywords
-         * Add them to @args
-         */
-        String keywords = "";
-        for (String word : arguments.get()) {
-            keywords += word;
-            keywords += " ";
+        Random randomIndex = new Random();
+        if (arguments.toString().isEmpty()) {
+            initList(MODE_UNRECOGNIZED);
+            return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
         }
-        Key args = new Key(keywords);
-        /* Create keys:
-         * @generalKeys & @luckKeys
-         */
-        ArrayList<Key> generalKeys = new ArrayList<Key>(3);
-        generalKeys.add(new Key("предскажи судьбу"));
-        generalKeys.add(new Key("что меня сегодня ждёт"));
-        generalKeys.add(new Key("debug"));
 
-        ArrayList<Key> luckKeys = new ArrayList<Key>();
-        luckKeys.add(new Key("сегодня удачный день"));
-        luckKeys.add(new Key("удача"));
-        luckKeys.add(new Key("колбаса"));
-        /* Just log,
-         * Safe delete
-         */
-        for (String word : arguments.get()) {
-            Log.d("abracadabra", word);
-        }
-        /* Check keywords
-         * According to them fill @predictionList by pattern
-         */
-        if (hasKeys(generalKeys,args)) {
+        initKeys(MODE_GENERAL);
+        initKeys(MODE_LUCK);
+
+        if (hasNeededKeys(generalKeys,arguments)) {
             initList(MODE_GENERAL);
-        } else if(hasKeys(luckKeys,args)) {
+        } else if(hasNeededKeys(luckKeys,arguments)) {
             initList(MODE_LUCK);
         } else {
             initList(MODE_UNRECOGNIZED);
         }
-        /* Choose random word from @predictionList
-         * And return it
-         */
-        Random randomIndex = new Random();
-        return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),false);
+
+        return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
     }
-    private void initList(int mode) {
+
+    private void initKeys(final int mode) {
+        switch(mode) {
+            case MODE_GENERAL: {
+                generalKeys.add(new Key(activity.getString(R.string.fateball_general_key0)));
+                generalKeys.add(new Key(activity.getString(R.string.fateball_general_key1)));
+                generalKeys.add(new Key(activity.getString(R.string.fateball_general_key2)));
+            }
+            break;
+            case MODE_LUCK: {
+                luckKeys.add(new Key(activity.getString(R.string.fateball_luck_key0)));
+                luckKeys.add(new Key(activity.getString(R.string.fateball_luck_key1)));
+            }
+            break;
+            default: {
+                Log.e("Unknown variable value:","FateBallWorker.initKeys.mode == " + mode);
+            }
+        }
+    }
+
+    private void initList(final int mode) {
         predictionList.clear();
-        if (mode == MODE_GENERAL) {
-            predictionList.add("Сегодня тебя ждёт отличный день");
-            predictionList.add("А, Что ты говоришь");
-            predictionList.add("Не думай о плохом, и всё будек Ок");
-            predictionList.add("Пойди, погуляй, может быть, встретишь хороших знакомых");
-            predictionList.add("Всё очень туманно, спроси позже");
-            predictionList.add("Сегодня твой день");
-            predictionList.add("Пока что не могу тебе сказать, извини");
-            predictionList.add("По моим источникам Фортуна сегодня тебе благоволит");
-            predictionList.add("Не стоит сегодня слишком рисковать");
-            predictionList.add("Предсказания звёзд весьма туманны, спроси попозже");
-        } else if (mode == MODE_LUCK) {
-            predictionList.add("Да");
-            predictionList.add("Нет");
-            predictionList.add("Не знаю");
-            predictionList.add("Возможно");
-            predictionList.add("Не очень");
-            predictionList.add("Я устал");
-        } else if (mode == MODE_UNRECOGNIZED) {
-            predictionList.add("Повтори ещё раз, пожалуйста");
-            predictionList.add("Не понял тебя, повтори ещё раз");
-            predictionList.add("Эээ...что?");
+        switch(mode) {
+            case MODE_GENERAL: {
+                predictionList.add(activity.getString(R.string.fateball_general_string0));
+                predictionList.add(activity.getString(R.string.fateball_general_string1));
+                predictionList.add(activity.getString(R.string.fateball_general_string2));
+                predictionList.add(activity.getString(R.string.fateball_general_string3));
+                predictionList.add(activity.getString(R.string.fateball_general_string4));
+                predictionList.add(activity.getString(R.string.fateball_general_string5));
+                predictionList.add(activity.getString(R.string.fateball_general_string6));
+                predictionList.add(activity.getString(R.string.fateball_general_string7));
+                predictionList.add(activity.getString(R.string.fateball_general_string8));
+                predictionList.add(activity.getString(R.string.fateball_general_string9));
+            }
+            break;
+            case MODE_LUCK: {
+                predictionList.add(activity.getString(R.string.fateball_luck_string0));
+                predictionList.add(activity.getString(R.string.fateball_luck_string1));
+                predictionList.add(activity.getString(R.string.fateball_luck_string2));
+                predictionList.add(activity.getString(R.string.fateball_luck_string3));
+                predictionList.add(activity.getString(R.string.fateball_luck_string4));
+                predictionList.add(activity.getString(R.string.fateball_luck_string5));
+            }
+            break;
+            case MODE_UNRECOGNIZED: {
+                predictionList.add(activity.getString(R.string.fateball_unrecognized_string0));
+                predictionList.add(activity.getString(R.string.fateball_unrecognized_string1));
+                predictionList.add(activity.getString(R.string.fateball_unrecognized_string2));
+            }
+            break;
+            default: {
+                Log.e("Unknown variable value:","FateBallWorker.initList.mode == " + mode);
+            }
         }
     }
 }
