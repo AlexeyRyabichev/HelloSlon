@@ -11,6 +11,8 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 import java.util.Random;
 
+import static com.slon_school.helloslon.core.Helper.BTS;
+
 /**
  * Created by I. Dmitry on 10.07.2016.
  */
@@ -83,6 +85,7 @@ public class FateBallWorker extends Worker {
             }
             break;
             default: {
+                BTS(7);
                 Log.e("Unknown variable value:","FateBallWorker.initKeys.mode == " + mode);
             }
         }
@@ -120,6 +123,7 @@ public class FateBallWorker extends Worker {
             }
             break;
             default: {
+                BTS(8);
                 Log.e("Unknown variable value:","FateBallWorker.initList.mode == " + mode);
             }
         }

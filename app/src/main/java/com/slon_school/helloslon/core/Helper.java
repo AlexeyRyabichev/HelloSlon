@@ -1,5 +1,8 @@
 package com.slon_school.helloslon.core;
 
+import android.app.Activity;
+import android.widget.Toast;
+
 /**
  * Created by I. Dmitry on 14.07.2016.
  */
@@ -16,5 +19,9 @@ public class Helper {
     private static String deleteUnwantedCharacters(String regex, String string) {
         string = string.replaceAll(regex,"");
         return string;
+    }
+
+    public static void BTS(Integer id) {
+        Toast.makeText(new Activity(), "Упс, ошибочка №" + id.toString() + ". Пожалуйста, сообщи о ней разрабу", Toast.LENGTH_LONG).show();
     }
 }
