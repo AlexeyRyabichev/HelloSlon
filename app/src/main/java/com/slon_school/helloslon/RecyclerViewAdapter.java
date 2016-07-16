@@ -1,6 +1,7 @@
 package com.slon_school.helloslon;
 
 import android.content.Context;
+import android.net.Uri;
 import android.support.v4.util.Pair;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -10,6 +11,11 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.facebook.drawee.backends.pipeline.Fresco;
+import com.facebook.drawee.view.DraweeView;
+import com.facebook.drawee.view.SimpleDraweeView;
+import com.slon_school.helloslon.core.Response;
+
 import java.util.ArrayList;
 
 
@@ -18,11 +24,12 @@ import java.util.ArrayList;
  */
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder> {
 
-    ArrayList<Pair<String, String>> items;
+    ArrayList<Pair<String, Response>> items;
 
-    public RecyclerViewAdapter(ArrayList<Pair<String, String>> items) {
+    public RecyclerViewAdapter(ArrayList<Pair<String, Response>> items) {
         this.items = items;
     }
+    public ArrayList<String> linkArray = new ArrayList<>();
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -34,12 +41,17 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(ItemViewHolder holder, int position) {
         if (items.get(position).first.equals("Slon")) {
 
-            holder.textViewSlon.setText(items.get(position).second);
+            holder.textViewSlon.setText(items.get(position).second.getResponse());
+            if(items.get(position).second.isHaveImages() == true){
+                linkArray = items.get(position).second.getImages();
+//                for(int i = 0; )
+                holder.slonImage.setImageURI(Uri.parse(linkArray.get(0)));
+            }
             holder.slonCard.setVisibility(View.VISIBLE);
             holder.userCard.setVisibility(View.GONE);
         }
         else{
-            holder.textViewUser.setText(items.get(position).second);
+            holder.textViewUser.setText(items.get(position).second.getResponse());
             holder.userCard.setVisibility(View.VISIBLE);
             holder.slonCard.setVisibility(View.GONE);
         }
@@ -57,6 +69,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView textViewSlon;
         public View slonCard;
         public View userCard;
+        public SimpleDraweeView userImage;
+        public SimpleDraweeView slonImage;
 
             public ItemViewHolder(View itemView) {
                 super(itemView);
@@ -64,6 +78,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 userCard = itemView.findViewById(R.id.userCard);
                 textViewUser = (TextView) itemView.findViewById(R.id.userText);
                 textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
+                userImage = (SimpleDraweeView) itemView.findViewById(R.id.userImage);
+                slonImage = (SimpleDraweeView) itemView.findViewById(R.id.slonImage);
             }
     }
 }
