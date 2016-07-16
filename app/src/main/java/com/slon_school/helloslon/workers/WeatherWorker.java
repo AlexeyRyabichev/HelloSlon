@@ -6,13 +6,7 @@ import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,8 +18,8 @@ import java.util.List;
 /**
  * Created by 1 on 15.07.2016.
  */
-public class WeatherWorker extends Worker {
-
+public class WeatherWorker {//extends Worker {
+/*
     final private String keyApi= "trnsl.1.1.20160715T075701Z.a4d46525907a4a9b.a79bfd0a0d08f77d8e7b35baea67c228bd9df37f";
 
     private ArrayList<Key> keys;
@@ -90,5 +84,5 @@ public class WeatherWorker extends Worker {
         return new Response(vivod, false);
     }
 
-
+*/
 }

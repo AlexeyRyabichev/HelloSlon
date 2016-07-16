@@ -11,9 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.facebook.drawee.backends.pipeline.Fresco;
-import com.facebook.drawee.view.DraweeView;
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.slon_school.helloslon.core.Response;
 
 import java.util.ArrayList;
@@ -45,7 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             if(items.get(position).second.isHaveImages() == true){
                 linkArray = items.get(position).second.getImages();
 //                for(int i = 0; )
-                holder.slonImage.setImageURI(Uri.parse(linkArray.get(0)));
+                //holder.slonImage.setImageURI(Uri.parse(linkArray.get(0)));
             }
             holder.slonCard.setVisibility(View.VISIBLE);
             holder.userCard.setVisibility(View.GONE);
@@ -69,8 +66,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView textViewSlon;
         public View slonCard;
         public View userCard;
-        public SimpleDraweeView userImage;
-        public SimpleDraweeView slonImage;
+       // public SimpleDraweeView userImage;
+       // public SimpleDraweeView slonImage;
 
             public ItemViewHolder(View itemView) {
                 super(itemView);
@@ -78,8 +75,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 userCard = itemView.findViewById(R.id.userCard);
                 textViewUser = (TextView) itemView.findViewById(R.id.userText);
                 textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
-                userImage = (SimpleDraweeView) itemView.findViewById(R.id.userImage);
-                slonImage = (SimpleDraweeView) itemView.findViewById(R.id.slonImage);
+                //userImage = (SimpleDraweeView) itemView.findViewById(R.id.userImage);
+               // slonImage = (SimpleDraweeView) itemView.findViewById(R.id.slonImage);
             }
     }
 }
