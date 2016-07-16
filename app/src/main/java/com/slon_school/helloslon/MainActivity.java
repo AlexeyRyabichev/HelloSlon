@@ -164,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         String question = recognition.getBestResultText();
         String answer = core.request(question);
 
+
         Pair<String, String> questionPair = Pair.create("Slon", question);
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();

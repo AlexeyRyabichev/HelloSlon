@@ -33,10 +33,10 @@
     <string name="email_keyword0">смс</string>
     <string name="email_keyword1">отправить смс</string>
     <string name="email_keyword2">послать смс</string>
-    <string name="smssend_sending">отправляю Email</string>
-    <string name="smssend_unknown">А что это за email такой -</string>
-    <string name="smssend_unrecognized_string0">Не понял, кому отправить?</string>
-    <string name="smssend_smsto">smsto:</string>
+    <string name="email_sending">отправляю Email</string>
+    <string name="email_unknown">А что это за email такой -</string>
+    <string name="email_unrecognized_string0">Не понял, кому отправить?</string>
+    <string name="email_smsto">smsto:</string>
 
     <string name="bashorg_keyword0">башорг</string>
     <string name="bashorg_keyword1">цитатка с башорга</string>
@@ -54,7 +54,13 @@
     <string name="help_keyword4">hell</string>
     <string name="help_get_all0">Какой именно help тебе нужен?</string>
     <string name="help_get_all1">Доступные голосовые команды:</string>
-    <string name="help_browser">браузер</string>
-    <string name="help_bashorg_random_quote">bashorg</string>
     <string name="help_get_all2">скажи: help/помоги [номер команды]</string>
+    <string name="help_failed_response">Извини, но такого раздела нет:</string>
+    <string name="help_key_browser">Браузер</string>
+    <string name="help_browser">Браузер</string>
+    <string name="help_key_bashorg">Bashorg</string>
+    <string name="help_bashorg0">Просто скажи:</string>
+    <string name="help_bashorg1">И получай свою цитатку</string>
+    <string name="help_key_fateball">Шар судьбы</string>
+    <string name="help_fateball">Шар судьбы</string>
 </resources>

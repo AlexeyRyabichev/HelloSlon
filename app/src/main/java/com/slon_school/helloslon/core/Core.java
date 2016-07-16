@@ -30,8 +30,7 @@ public class Core {
 		this.activity = activity;
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
-		testWorker = new TestWorker(activity);
-		workers.add(testWorker);
+		workers.add(new TestWorker(activity));
 		workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
 		workers.add(new EmailWorker(activity));
