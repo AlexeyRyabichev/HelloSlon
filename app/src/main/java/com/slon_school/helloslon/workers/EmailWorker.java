@@ -36,21 +36,21 @@ public class EmailWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if (arguments.get().size() == 0) {
-            return new Response(activity.getString(R.string.smssend_unrecognized_string0),finishSession);
+        if (arguments.toString().isEmpty()) {
+            return new Response(activity.getString(R.string.email_unrecognized_string0),finishSession);
         }
         String phoneNumber = arguments.toString();
-        //TODO Add contacts recognition
+        //TODO something with this
         if (Helper.isValidMobilePhoneNumber(phoneNumber)) {
             startActivity(phoneNumber);
-            return new Response(activity.getString(R.string.smssend_sending) + " " + phoneNumber, finishSession);
+            return new Response(activity.getString(R.string.email_sending) + " " + phoneNumber, finishSession);
         } else {
-            return new Response(activity.getString(R.string.smssend_unknown) + " " + phoneNumber + "?", finishSession);
+            return new Response(activity.getString(R.string.email_unknown) + " " + phoneNumber + "?", finishSession);
         }
     }
 
     private void startActivity(final String phoneNumber) {
-        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(activity.getString(R.string.smssend_smsto) + phoneNumber));
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.parse(activity.getString(R.string.email_smsto) + phoneNumber));
         intent.putExtra("sms_body", phoneNumber); //TODO delete it, debug needs only
         activity.startActivity(intent);
     }
