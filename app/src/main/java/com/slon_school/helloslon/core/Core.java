@@ -3,9 +3,14 @@ package com.slon_school.helloslon.core;
 import android.app.Activity;
 
 import com.slon_school.helloslon.workers.AlarmWorker;
+<<<<<<< HEAD
 import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.EmailWorker;
+=======
+import com.slon_school.helloslon.workers.BashOrgRandomQuote;
+import com.slon_school.helloslon.workers.BrowserWorker;
+>>>>>>> develop
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
@@ -34,13 +39,17 @@ public class Core {
 		workers.add(testWorker);
 		workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
+<<<<<<< HEAD
 		workers.add(new EmailWorker(activity));
+=======
+//		workers.add(new SMSSendWorker(activity));
+>>>>>>> develop
 		workers.add(new AlarmWorker(activity));
 		workers.add(new TownWorker(activity));
 		workers.add(new BashOrgRandomQuoteWorker(activity));
 		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
-		workers.add(new WeatherWorker(activity));
+//		workers.add(new WeatherWorker(activity));
 
 		currentWorker = idNone;
 	}
