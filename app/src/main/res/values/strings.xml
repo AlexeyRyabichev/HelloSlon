@@ -2,6 +2,7 @@
     <string name="app_name">HelloSlon</string>
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
     <string name="button_text">Talk to me</string>
+    <string name="cp1251">windows-1251</string>
 
     <string name="fateball_keyword0">шар судьбы</string>
     <string name="fateball_keyword1">шар</string>
@@ -43,7 +44,6 @@
     <string name="bashorg_keyword2">цитата с башорга</string>
     <string name="bashorg_keyword3">мне скучно</string>
     <string name="bashorg_get_quote">Получай свою цитатку!</string>
-    <string name="bashorg_cp1251">windows-1251</string>
     <string name="bashorg_url">http://bash.im/random</string>
     <string name="bashorg_cannot_access_quote">Упс, не получилось загрузить цитатку</string>
 
