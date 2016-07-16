@@ -2,6 +2,7 @@
     <string name="app_name">HelloSlon</string>
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
     <string name="button_text">Talk to me</string>
+    <string name="cp1251">windows-1251</string>
 
     <string name="fateball_keyword0">шар судьбы</string>
     <string name="fateball_keyword1">шар</string>
@@ -30,26 +31,41 @@
     <string name="fateball_luck_key0">сегодня удачный день</string>
     <string name="fateball_luck_key1">мне повезет</string>
 
-    <string name="smssend_keyword0">смс</string>
-    <string name="smssend_keyword1">отправить смс</string>
-    <string name="smssend_keyword2">послать смс</string>
-    <string name="smssend_keyword3">смска</string>
-    <string name="smssend_keyword4">отправить смску</string>
-    <string name="smssend_keyword5">послать смску</string>
-    <string name="smssend_sending">отправляю СМС</string>
-    <string name="smssend_unknown">А что это за номер такой -</string>
-    <string name="smssend_unrecognized_string0">Не понял, кому отправить?</string>
-    <string name="smssend_smsto">smsto:</string>
+    <string name="email_keyword0">смс</string>
+    <string name="email_keyword1">отправить смс</string>
+    <string name="email_keyword2">послать смс</string>
+    <string name="email_sending">отправляю Email</string>
+    <string name="email_unknown">А что это за email такой -</string>
+    <string name="email_unrecognized_string0">Не понял, кому отправить?</string>
+    <string name="email_smsto">smsto:</string>
 
     <string name="bashorg_keyword0">башорг</string>
     <string name="bashorg_keyword1">цитатка с башорга</string>
     <string name="bashorg_keyword2">цитата с башорга</string>
+    <string name="bashorg_keyword3">мне скучно</string>
     <string name="bashorg_get_quote">Получай свою цитатку!</string>
-    <string name="bashorg_cp1251">windows-1251</string>
     <string name="bashorg_url">http://bash.im/random</string>
     <string name="bashorg_cannot_access_quote">Упс, не получилось загрузить цитатку</string>
 
     <string name="help_keyword0">help</string>
-    <string name="help_keyword1">слон help</string>
-    <string name="help_get_all">null</string>
+    <string name="help_keyword1">хелп</string>
+    <string name="help_keyword2">помоги</string>
+    <string name="help_keyword3">хелл</string>
+    <string name="help_keyword4">hell</string>
+    <string name="help_get_all0">Какой именно help тебе нужен?</string>
+    <string name="help_get_all1">Доступные голосовые команды:</string>
+    <string name="help_get_all2">скажи: help/помоги [номер команды]</string>
+    <string name="help_failed_response">Извини, но такого раздела нет:</string>
+    <string name="help_key_browser">Браузер</string>
+    <string name="help_browser">Браузер</string>
+    <string name="help_key_bashorg">Bashorg</string>
+    <string name="help_bashorg0">Просто скажи:</string>
+    <string name="help_bashorg1">И получай свою цитатку</string>
+    <string name="help_key_fateball">Шар судьбы</string>
+    <string name="help_fateball">Шар судьбы</string>
+
+    <string name="xkcd_keyword0">комикс</string>
+    <string name="xkcd_keyword1">комиксы</string>
+    <string name="xkcd_keyword2">хочу комикс</string>
+    <string name="xkcd_keyword3">хочу комиксы</string>
 </resources>
