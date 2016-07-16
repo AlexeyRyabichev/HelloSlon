@@ -4,6 +4,7 @@ import android.app.Activity;
 
 import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BashOrgRandomQuote;
+import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.SMSSendWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
@@ -30,15 +31,15 @@ public class Core {
 		//TODO add all workers
 		testWorker = new TestWorker(activity);
 		workers.add(testWorker);
-		//workers.add(new BrowserWorker(activity));
+		workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
-		workers.add(new SMSSendWorker(activity));
+//		workers.add(new SMSSendWorker(activity));
 		workers.add(new AlarmWorker(activity));
 		workers.add(new TownWorker(activity));
 		workers.add(new BashOrgRandomQuote(activity));
 //		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
-		workers.add(new WeatherWorker(activity));
+//		workers.add(new WeatherWorker(activity));
 
 
 		currentWorker = idNone;
