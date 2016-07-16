@@ -8,9 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.slon_school.helloslon.core.Response;
 
 import java.util.ArrayList;
@@ -22,9 +26,12 @@ import java.util.ArrayList;
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ItemViewHolder> {
 
     ArrayList<Pair<String, Response>> items;
+    ImageLoader imageLoader;
 
     public RecyclerViewAdapter(ArrayList<Pair<String, Response>> items) {
         this.items = items;
+        imageLoader = ImageLoader.getInstance();
+     //   DisplayImageOptions options = new DisplayImageOptions.Builder().build();
     }
     public ArrayList<String> linkArray = new ArrayList<>();
 
@@ -39,11 +46,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (items.get(position).first.equals("Slon")) {
 
             holder.textViewSlon.setText(items.get(position).second.getResponse());
-            if(items.get(position).second.isHaveImages() == true){
-                linkArray = items.get(position).second.getImages();
-//                for(int i = 0; )
-                //holder.slonImage.setImageURI(Uri.parse(linkArray.get(0)));
-            }
+            if (items.get(position).second.isHaveImages())
+                imageLoader.displayImage(items.get(position).second.getImages().get(0), holder.slonImage);
+            else
+                holder.slonImage.setVisibility(View.GONE);
             holder.slonCard.setVisibility(View.VISIBLE);
             holder.userCard.setVisibility(View.GONE);
         }
@@ -66,8 +72,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView textViewSlon;
         public View slonCard;
         public View userCard;
-       // public SimpleDraweeView userImage;
-       // public SimpleDraweeView slonImage;
+//        public SimpleDraweeView userImage;
+        public ImageView slonImage;
 
             public ItemViewHolder(View itemView) {
                 super(itemView);
@@ -76,7 +82,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 textViewUser = (TextView) itemView.findViewById(R.id.userText);
                 textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
                 //userImage = (SimpleDraweeView) itemView.findViewById(R.id.userImage);
-               // slonImage = (SimpleDraweeView) itemView.findViewById(R.id.slonImage);
+                slonImage = (ImageView) itemView.findViewById(R.id.slonImage);
             }
     }
 }

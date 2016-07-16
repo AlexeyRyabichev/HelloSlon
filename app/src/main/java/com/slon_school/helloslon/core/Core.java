@@ -3,14 +3,14 @@ package com.slon_school.helloslon.core;
 import android.app.Activity;
 
 import com.slon_school.helloslon.workers.AlarmWorker;
-import com.slon_school.helloslon.workers.BashOrgRandomQuote;
+import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
+import com.slon_school.helloslon.workers.EmailWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
-import com.slon_school.helloslon.workers.SMSSendWorker;
+import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
-import com.slon_school.helloslon.workers.WeatherWorker;
 
 import java.util.ArrayList;
 
@@ -29,18 +29,17 @@ public class Core {
 		this.activity = activity;
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
-		testWorker = new TestWorker(activity);
-		workers.add(testWorker);
+		workers.add(new TestWorker(activity));
 		workers.add(new BrowserWorker(activity));
 		workers.add(new FateBallWorker(activity));
-//		workers.add(new SMSSendWorker(activity));
+		workers.add(new EmailWorker(activity));
 		workers.add(new AlarmWorker(activity));
 		workers.add(new TownWorker(activity));
-		workers.add(new BashOrgRandomQuote(activity));
-//		workers.add(new HelpWorker(activity));
+		workers.add(new BashOrgRandomQuoteWorker(activity));
+		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
-//		workers.add(new WeatherWorker(activity));
-
+ 		//workers.add(new WeatherWorker(activity));
+		//workers.add(new XKCDRandomComicWorker(activity));
 
 		currentWorker = idNone;
 	}

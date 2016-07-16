@@ -19,6 +19,7 @@ public class Response {
         this.response = response;
         this.isEnd = isEnd;
         isHaveImage = true;
+        this.images = new ArrayList<String>();
         this.images = linksToImages;
     }
 

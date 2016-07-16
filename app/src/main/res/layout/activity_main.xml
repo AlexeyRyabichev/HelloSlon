@@ -10,17 +10,18 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.slon_school.helloslon.MainActivity">
 
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/dialog_window"/>
-
     <Button
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/button_text"
         android:id="@+id/recording_button"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/dialog_window"
+        android:layout_above="@id/recording_button"/>
 
     <com.ldoublem.loadingviewlib.LVCircularCD
         android:layout_width="100dp"
