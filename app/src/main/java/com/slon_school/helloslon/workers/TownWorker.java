@@ -65,7 +65,12 @@ public class TownWorker extends Worker {
             lastChar = 'о';
             return new Response( "Пущино", true );
         }
-        String str = arguments.get().get( 0 ).toLowerCase().trim();
+
+        String str = "";
+        for(int i = 0; i < arguments.get().size(); i++) {
+            str += arguments.get().get( i ).toLowerCase().trim() + "-";
+        }
+        str = str.substring(0,  str.length()-1);
 
         // основное правило
         if ( just_started || ( str.charAt( 0 ) == lastChar ) )
