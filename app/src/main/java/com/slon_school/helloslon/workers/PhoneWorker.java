@@ -1,7 +1,13 @@
 package com.slon_school.helloslon.workers;
+
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Helper;
@@ -18,7 +24,7 @@ public class PhoneWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
     private final static boolean finishSession = false;
 
-    public PhoneWorker (Activity activity) {
+    public PhoneWorker(Activity activity) {
         super(activity);
         keys.add(new Key("позвони"));
         keys.add(new Key("позвонить"));
@@ -34,12 +40,14 @@ public class PhoneWorker extends Worker {
     }
 
     @Override
-    public boolean isLoop() { return false; }
+    public boolean isLoop() {
+        return false;
+    }
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.get().size() == 0) {
-            return new Response("Повтори номер, пожалуйста.",finishSession);
+            return new Response("Повтори номер, пожалуйста.", finishSession);
         }
         String phoneNumber = arguments.toString();
 
@@ -51,8 +59,20 @@ public class PhoneWorker extends Worker {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     private void startActivity(final String phoneNumber) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + phoneNumber));
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            activity.requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PackageManager.PERMISSION_GRANTED);
+            return;
+        }
         activity.startActivity(intent);
     }
 }
