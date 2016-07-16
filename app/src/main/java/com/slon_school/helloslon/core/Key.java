@@ -1,7 +1,5 @@
 package com.slon_school.helloslon.core;
 
-import android.os.Build;
-
 import java.util.ArrayList;
 
 import static java.lang.Long.compare;
@@ -20,7 +18,7 @@ public class Key {
         String[] keys =  toParse.split(" ");
         for(String key : keys) {
             if (!key.equals("")) {
-                key = key.replaceAll("[-+.^,]","");
+                key = key.replaceAll("[+.^,]","");
                 newKeys.add(key.toLowerCase());
             }
         }

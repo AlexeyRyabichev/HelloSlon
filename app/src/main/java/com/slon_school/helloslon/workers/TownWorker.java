@@ -3,7 +3,6 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
-import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
@@ -31,14 +30,17 @@ public class TownWorker extends Worker {
 
     public TownWorker( Activity activity ) {
         super( activity );
+        Init();
+    }
+
+    private void Init() {
         eog = false;
         keys = new ArrayList<Key>();
         used_towns = new HashMap<String, ArrayList<String>>();
         just_started = true;
         lastChar = '0';
 
-
-        fillKeys( keys );
+        fillKeys( keys, activity );
         usedInit();
     }
 
@@ -54,47 +56,42 @@ public class TownWorker extends Worker {
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
-        //Toast.makeText( activity, "here", Toast.LENGTH_LONG ).show();
-        //for ( char c = 'а'; c <= 'я'; c++ ) {
-        //   Toast.makeText( activity, getTown( c, activity ), Toast.LENGTH_SHORT ).show();
-        //}
+        if(eog || (arguments.get().size() == 0))
+            Init();
 
-        if ( arguments.get().size() == 0 ) {
-            used_towns.get( "п" ).add( "пущино" );
-            return new Response( "Пущино", true );//
+        if ( just_started ) {
+            used_towns.get( "п" ).add("пущино" );
+            just_started = false;
+            lastChar = 'о';
+            return new Response( "Пущино", true );
         }
         String str = arguments.get().get( 0 ).toLowerCase().trim();
-
 
         // основное правило
         if ( just_started || ( str.charAt( 0 ) == lastChar ) )
             just_started = false;
         else
-            return new Response( "не та буква", false );
+            return new Response( "Не та буква, ты проиграл", false );
 
         //проверка города и выбор
         String c = String.valueOf( str.charAt( 0 ) );
-        switch (/* checkTown(str, activity)*/ 2 ) {
+        switch ( checkTown(str, activity) ) {
             case 0:
                 eog = true;
-                return new Response( "нет такого города", !eog ); //break;
+                return new Response( "Нет такого города, ты проиграл", !eog ); //break;
             case 1:
                 eog = true;
-                return new Response( "такой город уже был", !eog ); //break;
+                return new Response( "Ты проиграл, такой город уже был", !eog ); //break;
             case 2:
                 char _bufChar = ( str.charAt( str.length() - 1 ) );
-                //_bufChar++;
-                //_bufChar++;
+
                 String _bufTown = getTown( _bufChar, activity ).trim();
-                //Toast.makeText(activity, "here", Toast.LENGTH_LONG).show();
-                // add used towns
+
                 used_towns.get( c ).add( str );
                 used_towns.get( String.valueOf( _bufChar ) ).add( _bufTown.toLowerCase() );
 
-                lastChar = _bufTown.charAt( _bufTown.trim().length() - 1 );
+                lastChar = _bufTown.charAt( _bufTown.length() - 1 );
 
-                Toast.makeText( activity, lastChar + "", Toast.LENGTH_LONG ).show();
-                //lastChar--;
                 return new Response( _bufTown, !eog ); //break;
         }
         return new Response( "123error", false );
@@ -107,103 +104,88 @@ public class TownWorker extends Worker {
         }
     }
 
-    private void fillKeys( ArrayList<Key> keys/*, Context context*/ ) {
-        /*String str = "";
-        try {
-            // открываем поток для чтения
-            BufferedReader br = new BufferedReader(new InputStreamReader(context.openFileInput("raw/keysTownGame")));
-            // читаем содержимое
-            while (((str = br.readLine().toLowerCase()) != null))
-                keys.add(new Key(str));
-
-            br.close();//--------------------------------------------------------------------------------------------------------
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
-
+    private void fillKeys( ArrayList<Key> keys, Context context) {
         keys.add( new Key( "игра города" ) );
         keys.add( new Key( "поиграем города" ) );
         keys.add( new Key( "поиграй города" ) );
         keys.add( new Key( "поиграешь города" ) );
         keys.add( new Key( "играть города" ) );
         keys.add( new Key( "города" ) );
-        //comment
     }
 
     private String getTown( char c, Context context ) {
-        /*rawFileHelper f1 = new rawFileHelper(activity, 'а');
-        String res = f1.getStringFromRawFile();
-        res = f1.getStringFromRawFile();
-        f1.dispose();
-        return new Response(res, false );*/
         Random r = new Random();
         String str = "";
         boolean flag = false;
 
-        // открываем поток для чтения
-        //Toast.makeText( activity, c+"", Toast.LENGTH_SHORT ).show();
+
         RawFileHelper f1 = new RawFileHelper( activity, c );
-        // читаем содержимое
+
         while ( !flag ) {
-            while ( ( ( str = f1.readln() ) != null ) /*&& ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) )*/ && !flag )
+            while ( ( ( str = f1.readln() ) != null ) && !flag || ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) ))
                 if ( r.nextInt( 99 ) + 1 < 15 ) {
                     flag = true;
                 }
             if ( !flag ) {
-                f1.dispose();//--------------------------------------------------------------------------------------------------------
+                f1.dispose();
                 f1 = new RawFileHelper( activity, c );
             }
         }
-        f1.dispose();//--------------------------------------------------------------------------------------------------------
+        f1.dispose();
 
         return str;
     }
 
     private short checkTown( String town, Context context ) {
-        String str = "";
-        char c = town.toLowerCase().charAt( 0 );
-        RawFileHelper f1 = new RawFileHelper( activity, town.charAt( 0 ) );
-        // открываем поток для чтения
+        town = town.toLowerCase();
+        if ( used_towns.get( String.valueOf( town.charAt( 0 ) ) ).contains( town) )
+            return 1;
 
-        // читаем содержимое
-        while ( ( ( str = f1.readln() ) != null ) && ( !str.toLowerCase().equals( town ) ) ) ;
+
+        RawFileHelper f1 = new RawFileHelper(activity, town.charAt( 0 ));
+        String str = "";
+        while(!(str = f1.readln()).equals( "" )) {
+            if(str.toLowerCase().trim().equalsIgnoreCase( town.trim() )) {
+                f1.dispose();
+                return 2;
+            }
+        }
 
         f1.dispose();
-
-        if ( str == null ) return 0;
-        if ( used_towns.get( String.valueOf( town.toLowerCase().charAt( 0 ) ) ).contains( str.toLowerCase() ) )
-            return 1;
-        return 2;
+        return 0;
     }
 
-
+//********************************************************************** Helpers ************************************************************************
     public static class RawFileHelper {
         Resources r;
         InputStream is;
-        int currentFileID;
         Activity activity;
+        final char[] chArr = new char[] {'а', 'б', 'в', 'г', 'д', 'е', 'ё', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я'};
         final int[] rawTownResourceIds = new int[] {
-                R.raw.town0, R.raw.town1, R.raw.town2,
-                R.raw.town3, R.raw.town4, R.raw.town5,
-                R.raw.town6, R.raw.town7, R.raw.town8,
-                R.raw.town9, R.raw.town10, R.raw.town11,
-                R.raw.town12, R.raw.town13, R.raw.town14,
-                R.raw.town15, R.raw.town16, R.raw.town17,
-                R.raw.town18, R.raw.town19, R.raw.town20,
-                R.raw.town21, R.raw.town22, R.raw.town23,
-                R.raw.town24, R.raw.town25, R.raw.town26,
-                R.raw.town27, R.raw.town28, R.raw.town29,
-                R.raw.town30, R.raw.town31, R.raw.town32 };
+                R.raw.town0_new, R.raw.town1_new, R.raw.town2_new,
+                R.raw.town3_new, R.raw.town4_new, R.raw.town5_new,
+                R.raw.town6_new, R.raw.town7_new, R.raw.town8_new,
+                R.raw.town9_new, R.raw.town10_new, R.raw.town11_new,
+                R.raw.town12_new, R.raw.town13_new, R.raw.town14_new,
+                R.raw.town15_new, R.raw.town16_new, R.raw.town17_new,
+                R.raw.town18_new, R.raw.town19_new, R.raw.town20_new,
+                R.raw.town21_new, R.raw.town22_new, R.raw.town23_new,
+                R.raw.town24_new, R.raw.town25_new, R.raw.town26_new,
+                R.raw.town27_new, R.raw.town28_new, R.raw.town29_new,
+                R.raw.town30_new, R.raw.town31_new, R.raw.town32_new};
 
 
         public RawFileHelper( Activity activity, char c ) {
             this.activity = activity;
             r = activity.getResources();
-            is = r.openRawResource( rawTownResourceIds[ ( int ) c - ( int ) 'а' ] );
+            is = r.openRawResource( getFileID(c) );
         }
 
+    private int getFileID(char c) {
+        int i;
+        for(i = 0; (chArr[i] != c) && (i < 33); i++);
+        return rawTownResourceIds[i];
+    }
 
         public String readln() {
             String myText = null;
@@ -218,7 +200,7 @@ public class TownWorker extends Worker {
         private String convertStreamToString( InputStream is ) throws IOException {
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             int i;
-            while ( ( i = is.read() ) != ( int ) '\n' )
+            while ((( i = is.read() ) != ( int ) '\n')    &&    (i != -1))
                 baos.write( i );
             return baos.toString();
         }
