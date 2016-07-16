@@ -2,6 +2,7 @@ package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
 
+import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -43,9 +44,7 @@ public class TestWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        ArrayList<String> tmp = new ArrayList<>();
-        tmp.add("https://yandex.ru/images/today?size=1920x1080");
-        Response helloWorld = new Response("Привет" , false, tmp);
+        Response helloWorld = new Response("Привет" , false);
         return helloWorld;
     }
 }
