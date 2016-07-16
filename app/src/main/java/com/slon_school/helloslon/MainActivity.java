@@ -1,29 +1,22 @@
 package com.slon_school.helloslon;
 
-import android.Manifest;
 import android.annotation.TargetApi;
-import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
+import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ldoublem.loadingviewlib.LVCircularCD;
-import com.ldoublem.loadingviewlib.LVCircularJump;
-import com.ldoublem.loadingviewlib.LVLineWithText;
 import com.lusfold.spinnerloading.SpinnerLoading;
 import com.slon_school.helloslon.core.Core;
 import com.slon_school.helloslon.core.Response;
@@ -164,13 +157,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         Response question = new Response(recognition.getBestResultText(), false);
         Response answer = core.request(question);
-
-<<<<<<< HEAD
-
-        Pair<String, String> questionPair = Pair.create("Slon", question);
-=======
         Pair<String, Response> questionPair = Pair.create("Slon", question);
->>>>>>> develop
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
