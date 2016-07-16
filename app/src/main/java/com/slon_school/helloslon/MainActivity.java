@@ -26,6 +26,7 @@ import com.ldoublem.loadingviewlib.LVCircularJump;
 import com.ldoublem.loadingviewlib.LVLineWithText;
 import com.lusfold.spinnerloading.SpinnerLoading;
 import com.slon_school.helloslon.core.Core;
+import com.slon_school.helloslon.core.Response;
 
 import java.util.ArrayList;
 
@@ -48,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     private Recognizer recognizer;
     private Core core;
-    private ArrayList<Pair<String, String>> dialogList;
+    private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
     private LVCircularCD progressBar;
     private SpinnerLoading waitingForResponse;
@@ -67,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         RecyclerView dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
-        dialogList = new ArrayList<>();
+        dialogList = new ArrayList<Pair<String, Response>>();
         adapter = new RecyclerViewAdapter(dialogList);
         waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
         progressBar = (LVCircularCD) findViewById(R.id.progressBar);
@@ -161,17 +162,21 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         waitingForResponse.setVisibility(View.GONE);
 
-        String question = recognition.getBestResultText();
-        String answer = core.request(question);
+        Response question = new Response(recognition.getBestResultText(), false);
+        Response answer = core.request(question);
 
-        Pair<String, String> questionPair = Pair.create("Slon", question);
+        Pair<String, Response> questionPair = Pair.create("Slon", question);
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
-        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer, true, Vocalizer.Voice.JANE);
+        if(answer.isHaveImages() == true){
+
+        }
+
+        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.JANE);
         vocalizer.start();
 
-        Pair<String, String> answerPair = Pair.create("User", answer);
+        Pair<String, Response> answerPair = Pair.create("User", answer);
 
         dialogList.add(answerPair);
 
