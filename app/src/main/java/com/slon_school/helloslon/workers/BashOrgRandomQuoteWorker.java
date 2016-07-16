@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 /**
- * Created by Noob_upgraded on 14.07.2016.
+ * Created by I. Dmitry on 14.07.2016.
  */
 public class BashOrgRandomQuoteWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
@@ -35,7 +35,7 @@ public class BashOrgRandomQuoteWorker extends Worker {
         String line;
         URL url = new URL(activity.getString(R.string.bashorg_url));
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
-                activity.getString(R.string.bashorg_cp1251)));
+                activity.getString(R.string.cp1251)));
         while (true) {
             line = reader.readLine();
             if (line == null) {
