@@ -18,6 +18,9 @@ import android.widget.Toast;
 
 import com.ldoublem.loadingviewlib.LVCircularCD;
 import com.lusfold.spinnerloading.SpinnerLoading;
+import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.slon_school.helloslon.core.Core;
 import com.slon_school.helloslon.core.Response;
 
@@ -91,6 +94,14 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             }
         });
 
+        //Universal Image Loader init
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
+                .memoryCacheSize(2 * 1024 * 1024)
+                .writeDebugLogs()
+                .build();
+        ImageLoader.getInstance().init(config);
+
         //Phrase spotter declaration
         if (loadResult.getCode() != Error.ERROR_OK) {
             updateCurrentStatus("Error occurred during model loading: " + loadResult.getString());
@@ -157,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         Response question = new Response(recognition.getBestResultText(), false);
         Response answer = core.request(question);
-        Pair<String, Response> questionPair = Pair.create("Slon", question);
+        Pair<String, Response> questionPair = Pair.create("User", question);
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
@@ -168,7 +179,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.JANE);
         vocalizer.start();
 
-        Pair<String, Response> answerPair = Pair.create("User", answer);
+        Pair<String, Response> answerPair = Pair.create("Slon", answer);
 
         dialogList.add(answerPair);
 
