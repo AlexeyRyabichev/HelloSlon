@@ -69,4 +69,5 @@
     <string name="xkcd_keyword2">хочу комикс</string>
     <string name="xkcd_keyword3">хочу комиксы</string>
     <string name="xkcd_url">http://xkcd.ru/random</string>
+    <string name="xkcd_failed_image_load">Извини, не удалось загрузить комикс</string>
 </resources>
