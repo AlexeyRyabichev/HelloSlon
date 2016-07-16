@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 
 //делай свой воркер по образу и подобию этого
-public class    TestWorker extends Worker {
+public class TestWorker extends Worker {
 
     private ArrayList<Key> keys;
     private boolean isContinue;
@@ -43,7 +43,9 @@ public class    TestWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        Response helloWorld = new Response("Тестовый worker" , false);
+        ArrayList<String> tmp = new ArrayList<>();
+        tmp.add("https://yandex.ru/images/today?size=1920x1080");
+        Response helloWorld = new Response("Привет" , false, tmp);
         return helloWorld;
     }
 }
