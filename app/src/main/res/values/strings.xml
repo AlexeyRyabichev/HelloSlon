@@ -63,4 +63,9 @@
     <string name="help_bashorg1">И получай свою цитатку</string>
     <string name="help_key_fateball">Шар судьбы</string>
     <string name="help_fateball">Шар судьбы</string>
+
+    <string name="xkcd_keyword0">комикс</string>
+    <string name="xkcd_keyword1">комиксы</string>
+    <string name="xkcd_keyword2">хочу комикс</string>
+    <string name="xkcd_keyword3">хочу комиксы</string>
 </resources>

@@ -11,7 +11,7 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 
 /**
- * Created by Noob_upgraded on 14.07.2016.
+ * Created by I. Dmitry on 14.07.2016.
  */
 public class HelpWorker extends Worker{
     private final static boolean finishSession = false;
@@ -115,7 +115,8 @@ public class HelpWorker extends Worker{
 
     private int defineHelpCommand(String args) {
         for (int i = 0; i < helpKeysList.size(); ++i) {
-            if (args.contains(helpKeysList.get(i))) return i + 1;
+            Integer tmp = i + 1;
+            if (args.contains(tmp.toString())) return tmp;
         }
         return FAILED_HELP_RESPONSE;
     }
