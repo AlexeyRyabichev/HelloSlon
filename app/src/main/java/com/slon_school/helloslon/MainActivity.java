@@ -168,12 +168,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         Response question = new Response(recognition.getBestResultText(), false);
         Response answer = core.request(question);
-<<<<<<< Updated upstream
-        Pair<String, Response> questionPair = Pair.create("Slon", question);
-=======
-
         Pair<String, Response> questionPair = Pair.create("User", question);
->>>>>>> Stashed changes
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
