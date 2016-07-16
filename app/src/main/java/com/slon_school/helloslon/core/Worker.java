@@ -4,12 +4,14 @@ package com.slon_school.helloslon.core;
 
 		import java.util.ArrayList;
 
-public abstract  class Worker {
+public abstract class Worker {
 	protected Activity activity;
 	public Worker (Activity activity) {
 		this.activity = activity;
 	}
 	public abstract ArrayList<Key> getKeys();
+
 	public abstract boolean isLoop();
+
 	public abstract Response doWork(ArrayList<Key> keys, Key arguments);
 }

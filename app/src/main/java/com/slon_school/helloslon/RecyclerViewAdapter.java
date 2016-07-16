@@ -55,13 +55,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         public TextView textViewUser;
         public TextView textViewSlon;
-        public CardView slonCard;
-        public CardView userCard;
+        public View slonCard;
+        public View userCard;
 
             public ItemViewHolder(View itemView) {
                 super(itemView);
-                slonCard = (CardView) itemView.findViewById(R.id.slonCard);
-                userCard = (CardView) itemView.findViewById(R.id.userCard);
+                slonCard = itemView.findViewById(R.id.slonCard);
+                userCard = itemView.findViewById(R.id.userCard);
                 textViewUser = (TextView) itemView.findViewById(R.id.userText);
                 textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
             }
