@@ -21,18 +21,14 @@ public class HelpWorker extends Worker{
     private int helpBrowser = FAILED_HELP_RESPONSE;
     private int helpFateBall = FAILED_HELP_RESPONSE;
     private int helpBashOrg = FAILED_HELP_RESPONSE;
+    private int helpID;
 
-    private ArrayList<Key> keys = new ArrayList<Key>();
-    private ArrayList<String> helpKeysList = new ArrayList<String>();
+    private ArrayList<Key> keys = new ArrayList<>();
+    private ArrayList<String> helpKeysList = new ArrayList<>();
     private String helpCommand = "";
 
     public HelpWorker(Activity activity) {
         super(activity);
-        keys.add(new Key(activity.getString(R.string.help_keyword0)));
-        keys.add(new Key(activity.getString(R.string.help_keyword1)));
-        keys.add(new Key(activity.getString(R.string.help_keyword2)));
-        keys.add(new Key(activity.getString(R.string.help_keyword3)));
-        keys.add(new Key(activity.getString(R.string.help_keyword4)));
     }
 
     @Override
@@ -45,22 +41,7 @@ public class HelpWorker extends Worker{
         return false;
     }
 
-    @Override
-    public Response doWork(ArrayList<Key> keys, Key arguments) {
-        initHelpKeysList();
-        String args = arguments.toString();
-        if (args.isEmpty()) {
-            return new Response(getHelpKeysList(), finishSession);
-        } else {
-            int hid = defineHelpCommand(args);
-            if (hid == FAILED_HELP_RESPONSE) {
-                return new Response(activity.getString(R.string.help_failed_response) + " " + args,finishSession);
-            } else {
-                initHelpCommand(hid);
-                return new Response(helpCommand,finishSession);
-            }
-        }
-    }
+    public Response doWork(ArrayList<Key> keys, Key arguments) { return new Response(getHelpKeysList(), finishSession); }
 
     private void initHelpCommand(final int hid) {
         if (hid == helpBrowser) {

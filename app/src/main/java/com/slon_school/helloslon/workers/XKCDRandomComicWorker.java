@@ -20,7 +20,6 @@ import static com.slon_school.helloslon.core.Helper.BTS;
  */
 public class XKCDRandomComicWorker extends Worker{
     final static boolean finishSession = false;
-    //TODO Deprecated
     private ArrayList<Key> keys = new ArrayList<Key>();
     private String linkToImage = "";
     private boolean hasImage = false;
@@ -88,7 +87,7 @@ public class XKCDRandomComicWorker extends Worker{
         if (hasImage) {
             ArrayList<String> links = new ArrayList<>();
             links.add(linkToImage);
-            return new Response(linkToImage, finishSession,links);
+            return new Response("",finishSession,links);
         } else {
             return new Response(activity.getString(R.string.xkcd_failed_image_load), finishSession);
         }

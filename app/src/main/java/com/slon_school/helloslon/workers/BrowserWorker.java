@@ -3,12 +3,8 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Bundle;
-import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.Toast;
 
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -47,8 +43,11 @@ public class BrowserWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> result, Key arguments) {
         //String request = arguments.get(0);
-        Key google = this.keys.get(5);
+        if (arguments.contains(new Key("help")) || arguments.contains(new Key("helper"))) {
+            HelpMan helpMan = new HelpMan("BrowserWorker");
+        }
 
+        Key google = this.keys.get(5);
 
         if(result.contains(this.keys.get(5))){
             Intent intent = new Intent();

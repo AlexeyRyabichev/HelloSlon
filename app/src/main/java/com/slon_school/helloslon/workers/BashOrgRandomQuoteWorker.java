@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -15,7 +16,6 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 import static com.slon_school.helloslon.core.Helper.BTS;
-
 /**
  * Created by I. Dmitry on 14.07.2016.
  */
@@ -59,6 +59,10 @@ public class BashOrgRandomQuoteWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+        if (arguments.contains(new Key("help"))) {
+            HelpMan help = new HelpMan("BashOrgRandomQuoteWorker");
+            return help.getHelp();
+        }
         final CountDownLatch countDownLatch = new CountDownLatch(1);
             Thread thread = new Thread() {
                 @Override
