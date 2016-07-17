@@ -11,6 +11,7 @@ import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
+import com.slon_school.helloslon.workers.WeatherWorker;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class Core {
 		workers.add(new BashOrgRandomQuoteWorker(activity));
 		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
- 		//workers.add(new WeatherWorker(activity));
+ 		workers.add(new WeatherWorker(activity));
 		//workers.add(new XKCDRandomComicWorker(activity));
 
 		currentWorker = idNone;

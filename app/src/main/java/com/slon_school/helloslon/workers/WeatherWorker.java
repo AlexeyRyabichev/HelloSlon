@@ -1,36 +1,40 @@
 package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
+import android.widget.Toast;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
-
-
+import com.slon_school.helloslon.handlers.YaLanguage;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.CountDownLatch;
-
 
 /**
  * Created by 1 on 15.07.2016.
  */
-public class WeatherWorker {//extends Worker {
-/*
-    final private String keyApi= "trnsl.1.1.20160715T075701Z.a4d46525907a4a9b.a79bfd0a0d08f77d8e7b35baea67c228bd9df37f";
-    private String vivod;
+public class WeatherWorker extends Worker {
+
+    final private String keyApi= "trnsl.1.1.20160716T141038Z.ded22c490fd9378b.4f9423484132be0cf2a3d5a6d1b94c112bc7fa6e";
+    private String output;
     private ArrayList<Key> keys;
+    boolean isQuoteGot;
+
+    private String langFrom;
+    private String langTo;
 
 
     public WeatherWorker(Activity activity) {
         super(activity);
         keys = new ArrayList<Key>();
-        keys.add(new Key("яндекс переводчик"));
-
+        keys.add(new Key("переводчик"));
+        keys.add(new Key("переведи"));
     }
 
     @Override
@@ -45,61 +49,35 @@ public class WeatherWorker {//extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        return post();
+        return post(arguments.toString());
     }
 
 
 
-    private Response post() {
+    private Response post(final String request) {
+        output = "";
+        isQuoteGot = false;
+
+
+
 
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
-
         Thread thread = new Thread() {
             @Override
             public void run() {
                 super.run();
-
-
-                HttpClient client = new DefaultHttpClient();
-                HttpPost post = new HttpPost("https://translate.yandex.net/api/v1.5/tr.json/translate");// ? \n" +
-                //"key=" + keyApi + "\n" +
-                //" & text=Привет\n" +
-                //" & lang=ru-en\n");
-
                 try {
-                    String cash = "";
-                    List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-                    nameValuePairs.add(new BasicNameValuePair("key",
-                            keyApi));
-                    nameValuePairs.add(new BasicNameValuePair("text",
-                            "Привет"));
-                    nameValuePairs.add(new BasicNameValuePair("lang",
-                            "ru-en"));
-                    post.setEntity(new UrlEncodedFormEntity(nameValuePairs));
-
-                    HttpResponse response = client.execute(post);
-
-                    BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
-                    String line = "";
-                    while ((line = rd.readLine()) != null) {
-                        cash += line;
-                    }
-
-                    vivod = cash;
-                } catch (IOException e) {
+                    isQuoteGot = getLang(request); //getTranslate(request, "", "");
+                    countDownLatch.countDown();
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
-
-                countDownLatch.countDown();
-
             }
         };
 
+
         thread.start();
-
-
-
 
         try {
             countDownLatch.await();
@@ -107,8 +85,76 @@ public class WeatherWorker {//extends Worker {
             e.printStackTrace();
         }
 
-        return new Response(vivod, false);
+        if (isQuoteGot) {
+            return new Response(output, false);
+        } else {
+            Toast.makeText(activity, "bad", Toast.LENGTH_LONG).show();
+            return new Response("bad", false);
+        }
+
+
     }
 
-*/
+
+
+    public boolean getLang(String request) throws Exception {
+        String line;
+        String get = "";
+
+        URL url = new URL("https://translate.yandex.net/api/v1.5/tr.json/detect?key=" + keyApi + "&text="+ URLEncoder.encode(request,"UTF-8"));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
+                "UTF-8"));
+        while (true) {
+            line = reader.readLine();
+            if (line == null) {
+                break;
+            }
+            get += line;
+        }
+
+
+        if (!get.equals("")) {
+
+
+            ObjectMapper mapper = new ObjectMapper();
+            YaLanguage language = mapper.readValue(get, YaLanguage.class);
+            output = language.lang;
+
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
+
+
+    public boolean getTranslate(String request, String from, String to) throws Exception {
+        String line;
+        output = "";
+
+        URL url = new URL("https://translate.yandex.net/api/v1.5/tr.json/translate?key=" + keyApi + "&text="+ URLEncoder.encode(request,"UTF-8") +
+                "&lang=" + from + "-" + to);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
+                "UTF-8"));
+        while (true) {
+            line = reader.readLine();
+            if (line == null) {
+                break;
+            }
+            output += line;
+
+        }
+
+        return !output.equals("");
+    }
+
+
+
+    public class YaLanguageText {
+        public int code;
+        public String lang;
+        public ArrayList<String> text;
+    }
+
 }
