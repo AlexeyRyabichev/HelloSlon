@@ -1,13 +1,13 @@
 package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
-import android.widget.Toast;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 import com.slon_school.helloslon.handlers.YaLanguage;
+import com.slon_school.helloslon.handlers.YaLanguageText;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -61,15 +61,15 @@ public class TranslateWorker extends Worker {
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (state == State.Translate) {
             state = State.FirstTime;
-            Toast.makeText(activity,arguments.toString(),Toast.LENGTH_LONG).show();
-            return new Response("test",false);
-           // return post(arguments.toString());
+
+            return post(arguments.toString());
         } else {
             if (arguments.get().size() == 0) {
                 state = State.Translate;
                 return new Response("Скажи мне текст, который ты хочешь перевести", true);
             } else {
                 state = State.FirstTime;
+
                 return post(arguments.toString());
             }
         }
@@ -81,7 +81,7 @@ public class TranslateWorker extends Worker {
         output = "";
         isQuoteGot = false;
 
-
+        this.request = request;
 
 
 
@@ -202,6 +202,10 @@ public class TranslateWorker extends Worker {
 
         thread.start();
 
+
+
+
+
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -227,7 +231,20 @@ public class TranslateWorker extends Worker {
 
         }
 
-        return !output.equals("");
+        if (!output.equals("")) {
+            ObjectMapper mapper = new ObjectMapper();
+            YaLanguageText text = mapper.readValue(output, YaLanguageText.class);
+            output = "";
+
+            for (String word : text.text)
+               output += word;
+
+            return true;
+        } else {
+            return false;
+        }
+
+
     }
 
 
