@@ -7,7 +7,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Build;
-import android.support.v4.app.ActivityCompat;
+
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Helper;
@@ -23,7 +23,9 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.database.Cursor;
 import android.provider.ContactsContract;
+import android.support.v4.app.ActivityCompat;
 import android.telecom.Call;
+
 
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
@@ -32,17 +34,13 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 
 /**
- * Created by 1 on 14.07.2016.
+ * Created by Mike on 14.07.2016.
  */
 public class PhoneWorker extends Worker {
 
     private ArrayList<Key> keys;
-    private enum State {Start, PhoneNumber, Call}
-    private State state;
-    private Call callPhone;
+    private boolean isContinue;
 
-    private String phoneNumber;
-    private String Call;
 
     public PhoneWorker(Activity activity) {
         super(activity);
@@ -56,9 +54,7 @@ public class PhoneWorker extends Worker {
         keys.add(new Key("звони"));
         keys.add(new Key("звонить"));
 
-        state = State.Start;
 
-        callPhone = Call.getDefault();
     }
 
     @Override
@@ -73,34 +69,18 @@ public class PhoneWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        Key error = new Key("ошибка");
-        Key exit = new Key("отмена");
-
-        if (arguments.get().size() == 0 && state == State.Start) {
-            return start(arguments);
-        } else if (state == State.PhoneNumber) {
-            if (arguments.contains(exit)) {
-                return exit();
-            } else {
-                return writePhoneNumber(arguments);
-            }
-        } else if (state == State.Writing) {
-            if (arguments.contains(error)) {
-                return start(arguments);
-            } else if (arguments.contains(exit)){
-                return exit();
-            }
-            return writeText(arguments);
+        Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + arguments.toString()));
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return null;
         }
-
-        return new Response("Повтори ещё раз, пожалуйста", true);
+        activity.startActivity(intent);
+        return new Response("", false);
     }
-
-
-
-    private Response start(Key arguments) {
-        state = State.PhoneNumber;
-        return new Response("Скажи мне номер телефона, на который ты хочешь позвонить", true);
-    }
-
     }
