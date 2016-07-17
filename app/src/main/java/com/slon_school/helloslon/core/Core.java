@@ -8,6 +8,7 @@ import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.EmailWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
+import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
@@ -38,6 +39,7 @@ public class Core {
 		workers.add(new BashOrgRandomQuoteWorker(activity));
 		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
+		workers.add(new PhoneWorker(activity));
  		//workers.add(new WeatherWorker(activity));
 		//workers.add(new XKCDRandomComicWorker(activity));
 
