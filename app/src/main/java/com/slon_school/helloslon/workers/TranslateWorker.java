@@ -19,22 +19,32 @@ import java.util.concurrent.CountDownLatch;
 /**
  * Created by 1 on 15.07.2016.
  */
-public class WeatherWorker extends Worker {
+public class TranslateWorker extends Worker {
 
     final private String keyApi= "trnsl.1.1.20160716T141038Z.ded22c490fd9378b.4f9423484132be0cf2a3d5a6d1b94c112bc7fa6e";
     private String output;
     private ArrayList<Key> keys;
-    boolean isQuoteGot;
+
+
+    private boolean isQuoteGot;
 
     private String langFrom;
     private String langTo;
+    private String request;
 
 
-    public WeatherWorker(Activity activity) {
+    private enum State {FirstTime, Translate};
+    private State state;
+
+
+    public TranslateWorker(Activity activity) {
         super(activity);
         keys = new ArrayList<Key>();
         keys.add(new Key("переводчик"));
         keys.add(new Key("переведи"));
+        keys.add(new Key("перевод"));
+
+        state = State.FirstTime;
     }
 
     @Override
@@ -49,18 +59,60 @@ public class WeatherWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        return post(arguments.toString());
+        if (state == State.Translate) {
+            state = State.FirstTime;
+            Toast.makeText(activity,arguments.toString(),Toast.LENGTH_LONG).show();
+            return new Response("test",false);
+           // return post(arguments.toString());
+        } else {
+            if (arguments.get().size() == 0) {
+                state = State.Translate;
+                return new Response("Скажи мне текст, который ты хочешь перевести", true);
+            } else {
+                state = State.FirstTime;
+                return post(arguments.toString());
+            }
+        }
     }
 
 
 
-    private Response post(final String request) {
+    private Response post(String request) {
         output = "";
         isQuoteGot = false;
 
 
 
 
+
+        sendRequestLang();
+        if (isQuoteGot) {
+
+            sendTranslate();
+            if (isQuoteGot) {
+                return new Response("Перевод с " + langFrom +
+                        " на " + langTo + ": " + request + " - " + output + "\nЯндекс.Переводчик", false);
+            } else {
+                return new Response("Не удалось перевести", false);
+            }
+
+
+
+        } else {
+            return new Response("Не удалось определить язык", false);
+        }
+
+
+
+
+
+    }
+
+
+
+
+    private void sendRequestLang() {
+        isQuoteGot = false;
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         Thread thread = new Thread() {
@@ -85,21 +137,16 @@ public class WeatherWorker extends Worker {
             e.printStackTrace();
         }
 
-        if (isQuoteGot) {
-            return new Response(output, false);
-        } else {
-            Toast.makeText(activity, "bad", Toast.LENGTH_LONG).show();
-            return new Response("bad", false);
-        }
-
-
     }
+
+
 
 
 
     public boolean getLang(String request) throws Exception {
         String line;
         String get = "";
+
 
         URL url = new URL("https://translate.yandex.net/api/v1.5/tr.json/detect?key=" + keyApi + "&text="+ URLEncoder.encode(request,"UTF-8"));
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
@@ -115,10 +162,15 @@ public class WeatherWorker extends Worker {
 
         if (!get.equals("")) {
 
-
             ObjectMapper mapper = new ObjectMapper();
             YaLanguage language = mapper.readValue(get, YaLanguage.class);
-            output = language.lang;
+
+            langFrom = language.lang;
+            if (!langFrom.equals("ru")) {
+                langTo = "ru";
+            } else {
+                langTo = "en";
+            }
 
             return true;
         } else {
@@ -128,6 +180,35 @@ public class WeatherWorker extends Worker {
 
     }
 
+
+
+    private void sendTranslate() {
+        isQuoteGot = false;
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    isQuoteGot = getTranslate(request, langFrom, langTo); //getTranslate(request, "", "");
+                    countDownLatch.countDown();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+
+        thread.start();
+
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
 
     public boolean getTranslate(String request, String from, String to) throws Exception {
         String line;
@@ -151,10 +232,6 @@ public class WeatherWorker extends Worker {
 
 
 
-    public class YaLanguageText {
-        public int code;
-        public String lang;
-        public ArrayList<String> text;
-    }
+
 
 }
