@@ -89,6 +89,11 @@ public class TownWorker extends Worker {
                 return new Response( "Ты проиграл, такой город уже был", !eog ); //break;
             case 2:
                 char _bufChar = ( str.charAt( str.length() - 1 ) );
+                if((_bufChar == 'ь') || (_bufChar == 'ъ'))
+                    _bufChar = ( str.charAt( str.length() - 2) );
+                if((_bufChar == 'ё'))
+                    _bufChar = 'е';
+                
 
                 String _bufTown = getTown( _bufChar, activity ).trim();
 
