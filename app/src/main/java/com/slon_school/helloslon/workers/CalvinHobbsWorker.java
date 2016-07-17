@@ -68,7 +68,6 @@ public class CalvinHobbsWorker extends Worker{
     }
 
 
-
     public boolean getQuote() throws Exception {
         String line;
         Random random = new Random();
