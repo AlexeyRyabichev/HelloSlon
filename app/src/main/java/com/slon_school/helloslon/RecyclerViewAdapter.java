@@ -46,13 +46,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         if (items.get(position).first.equals("Slon")) {
 
             holder.textViewSlon.setText(items.get(position).second.getResponse());
-//            if(items.get(position).second.isHaveImages() == true){
-                Toast.makeText(holder.textViewSlon.getContext(), "I'm here", Toast.LENGTH_LONG).show();
-                linkArray = items.get(position).second.getImages();
-                imageLoader.displayImage(linkArray.get(0), holder.slonImage);
-//                for(int i = 0; )
-                //holder.slonImage.setImageURI(Uri.parse(linkArray.get(0)));
-//            }
+            if (items.get(position).second.isHaveImages())
+                imageLoader.displayImage(items.get(position).second.getImages().get(0), holder.slonImage);
+            else
+                holder.slonImage.setVisibility(View.GONE);
             holder.slonCard.setVisibility(View.VISIBLE);
             holder.userCard.setVisibility(View.GONE);
         }

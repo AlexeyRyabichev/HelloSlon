@@ -44,9 +44,7 @@ public class TestWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        ArrayList<String> tmp = new ArrayList<>();
-            tmp.add("drawable://" + R.drawable.message);
-        Response helloWorld = new Response("Привет" , false, tmp);
+        Response helloWorld = new Response("Привет" , false);
         return helloWorld;
     }
 }
