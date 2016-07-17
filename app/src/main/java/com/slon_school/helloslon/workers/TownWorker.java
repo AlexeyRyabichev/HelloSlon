@@ -101,6 +101,12 @@ public class TownWorker extends Worker {
                 used_towns.get( String.valueOf( _bufChar ) ).add( _bufTown.toLowerCase() );
 
                 lastChar = _bufTown.charAt( _bufTown.length() - 1 );
+                if((lastChar == 'ь') || (lastChar == 'ъ'))
+                    lastChar = ( _bufTown.charAt( _bufTown.length() - 2) );
+                if((lastChar == 'ё')) {
+                    lastChar = 'е';
+                    _bufTown+= ", тебе на Е";
+                }
 
                 return new Response( _bufTown, !eog ); //break;
         }
