@@ -59,9 +59,9 @@ public class CalvinHobbsWorker extends Worker{
             e.printStackTrace();
         }
         if (isQuoteGot) {
-            //ArrayList<String> images = new ArrayList<String>();
-            //images.add( quote );
-            return new Response( quote, false);
+            ArrayList<String> images = new ArrayList<String>();
+            images.add( quote );
+            return new Response( "", false, images);
         } else {
             return new Response("Не удалось загрузить картинку", false);
         }
@@ -92,6 +92,7 @@ public class CalvinHobbsWorker extends Worker{
     private String washQuote( String line ) {
         line = line.replace("  <p><img src=\"","");
         line = line.replaceAll("\"(.)*","");
+        line = "http://calvin-hobbs.ilost.ru/" + line;
         return line;
     }
 }
