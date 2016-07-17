@@ -5,6 +5,11 @@ import android.app.Activity;
 import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
+<<<<<<< HEAD
+=======
+import com.slon_school.helloslon.workers.CalvinHobbsWorker;
+import com.slon_school.helloslon.workers.EmailWorker;
+>>>>>>> develop
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
@@ -47,6 +52,7 @@ public class Core {
  		//workers.add(new WeatherWorker(activity));
 
 		//workers.add(new XKCDRandomComicWorker(activity));
+		workers.add(new CalvinHobbsWorker(activity));
 
 		currentWorker = idNone;
 	}
