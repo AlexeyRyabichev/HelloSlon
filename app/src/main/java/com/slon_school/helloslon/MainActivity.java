@@ -16,13 +16,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ldoublem.loadingviewlib.LVCircularCD;
-import com.lusfold.spinnerloading.SpinnerLoading;
+import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiskCache;
+import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.slon_school.helloslon.core.Core;
 import com.slon_school.helloslon.core.Response;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -47,8 +48,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
-    private LVCircularCD progressBar;
-    private SpinnerLoading waitingForResponse;
+    private AVLoadingIndicatorView progressBar;
+    private AVLoadingIndicatorView waitingForResponse;
     private TextView currentStatus;
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -65,16 +66,14 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         dialogList = new ArrayList<Pair<String, Response>>();
-        adapter = new RecyclerViewAdapter(dialogList);
-        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
-        progressBar = (LVCircularCD) findViewById(R.id.progressBar);
+        adapter = new RecyclerViewAdapter(dialogList, this);
+        waitingForResponse = (AVLoadingIndicatorView) findViewById(R.id.waitingForResponse);
+        progressBar = (AVLoadingIndicatorView) findViewById(R.id.progressBar);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
 
         //"Waiting response from core" animation declaration
         waitingForResponse.setVisibility(View.GONE);
-        waitingForResponse.setCircleRadius(10);
-        waitingForResponse.setPaintMode(0);
 
         //"We're listening you" animation declaration
         progressBar.setVisibility(View.GONE);
@@ -98,6 +97,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
                 .memoryCacheSize(2 * 1024 * 1024)
+                .diskCacheSize(2 * 1024 * 1024)
+                .diskCacheFileCount(20)
                 .writeDebugLogs()
                 .build();
         ImageLoader.getInstance().init(config);
@@ -125,7 +126,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
-        progressBar.startAnim();
         progressBar.setVisibility(View.VISIBLE);
     }
 
@@ -141,7 +141,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingDone(Recognizer recognizer) {
-        progressBar.stopAnim();
         progressBar.setVisibility(View.GONE);
         waitingForResponse.setVisibility(View.VISIBLE);
     }
@@ -172,10 +171,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
-        if(answer.isHaveImages() == true){
-
-        }
-
         Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.JANE);
         vocalizer.start();
 
@@ -184,6 +179,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         dialogList.add(answerPair);
 
         adapter.notifyDataSetChanged();
+
+        waitingForResponse.setVisibility(View.GONE);
     }
 
     @Override

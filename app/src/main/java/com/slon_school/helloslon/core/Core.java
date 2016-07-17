@@ -5,12 +5,21 @@ import android.app.Activity;
 import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
+<<<<<<< HEAD
+=======
+import com.slon_school.helloslon.workers.CalvinHobbsWorker;
+>>>>>>> develop
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
+import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
+<<<<<<< HEAD
 import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
+=======
+import com.slon_school.helloslon.workers.TranslateWorker;
+>>>>>>> develop
 
 import java.util.ArrayList;
 
@@ -29,8 +38,10 @@ public class Core {
 		this.activity = activity;
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
-		workers.add(new TestWorker(activity));
+
+		workers.add(new TranslateWorker(activity));
 		workers.add(new BrowserWorker(activity));
+		workers.add(new TestWorker(activity));
 		workers.add(new FateBallWorker(activity));
 		//workers.add(new EmailWorker(activity));
 		workers.add(new AlarmWorker(activity));
@@ -38,8 +49,17 @@ public class Core {
 		workers.add(new BashOrgRandomQuoteWorker(activity));
 		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
+
+		workers.add(new PhoneWorker(activity));
+
  		//workers.add(new WeatherWorker(activity));
+<<<<<<< HEAD
 		workers.add(new XKCDRandomComicWorker(activity));
+=======
+
+		//workers.add(new XKCDRandomComicWorker(activity));
+		workers.add(new CalvinHobbsWorker(activity));
+>>>>>>> develop
 
 		currentWorker = idNone;
 	}
