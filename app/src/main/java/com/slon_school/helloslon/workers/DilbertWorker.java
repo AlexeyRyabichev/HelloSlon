@@ -15,7 +15,8 @@ public class DilbertWorker extends Worker
 {
     private String link1;
     private String link2;
-    private boolean isLinkGot;
+    private boolean isLink1Got;
+    private boolean isLink2Got;
     private ArrayList<Key> keys = new ArrayList<Key>();
     private int PicPointer;
 
@@ -62,6 +63,82 @@ public class DilbertWorker extends Worker
                 return new Response("Ну ладно", false);
             }
         }
-        return null;
+        return new Response("DilbertWorkerError", false);
+    }
+
+
+
+
+
+/*
+
+    private String getPic() {
+        boolean isLinkGot;
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    isLinkGot = getLink();
+                    countDownLatch.countDown();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        if (isLinkGot) {
+            return quote;
+        } else {
+            return "Не удалось загрузить картинку";
+        }
+    }
+
+
+    public boolean getLink(boolean level, String URLStr) throws Exception {
+        String line;
+        /*Random random = new Random();
+        Integer tmp = random.nextInt(551);
+
+        URL url = new URL(URLStr);
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
+                activity.getString( R.string.cp1251)));
+        while (true) {
+            line = reader.readLine();
+            if (line == null) {
+                break;
+            }
+            if (line.contains("  <p><img src=")) {
+                if(level) {
+                    quote = washLink1( line );
+                }
+                else {
+                    quote = washLink2(line);
+                }
+
+                return true;
+            }
+        }
+        return false;
+    }
+*/
+    private String washLink1( String line ) {
+        line = line.replace("  <p><img src=\"","");
+        line = line.replaceAll("\"(.)*","");
+        line = "http://calvin-hobbs.ilost.ru/" + line;
+        return line;
+    }
+
+    private String washLink2( String line ) {
+        line = line.replace("  <p><img src=\"","");
+        line = line.replaceAll("\"(.)*","");
+        line = "http://calvin-hobbs.ilost.ru/" + line;
+        return line;
     }
 }
