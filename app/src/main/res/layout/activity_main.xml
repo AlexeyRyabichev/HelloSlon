@@ -39,6 +39,7 @@
         android:layout_height="wrap_content"
         app:indicator="BallTrianglePath"
         app:indicator_color="@android:color/white"
-        android:id="@+id/waitingForResponse"/>
+        android:id="@+id/waitingForResponse"
+        android:visibility="gone"/>
 
 </RelativeLayout>

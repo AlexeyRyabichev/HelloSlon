@@ -16,8 +16,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nostra13.universalimageloader.cache.disc.impl.ext.LruDiskCache;
-import com.nostra13.universalimageloader.cache.disc.naming.FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -157,12 +155,12 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
-
+        waitingForResponse.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-
+        waitingForResponse = (AVLoadingIndicatorView) findViewById(R.id.waitingForResponse);
         waitingForResponse.setVisibility(View.GONE);
 
         Response question = new Response(recognition.getBestResultText(), false);
@@ -180,16 +178,16 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         adapter.notifyDataSetChanged();
 
-        waitingForResponse.setVisibility(View.GONE);
     }
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-
+        waitingForResponse.setVisibility(View.GONE);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void createAndStartRecognizer() {
+        waitingForResponse.setVisibility(View.GONE);
         final Context context = getApplicationContext();
         if (context == null) {
             return;

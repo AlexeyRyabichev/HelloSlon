@@ -5,15 +5,12 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v4.util.Pair;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,7 +19,6 @@ import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
 import com.slon_school.helloslon.core.Response;
 import com.wang.avi.AVLoadingIndicatorView;
 
-import java.io.File;
 import java.util.ArrayList;
 
 
@@ -74,6 +70,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
                         holder.loadingImage.setVisibility(View.GONE);
                         holder.slonImage.setTag(imageUri);
+                        holder.slonImage.setImageBitmap( loadedImage );
                     }
 
                     @Override
