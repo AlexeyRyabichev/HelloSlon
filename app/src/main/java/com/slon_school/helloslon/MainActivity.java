@@ -21,7 +21,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.slon_school.helloslon.core.Core;
 import com.slon_school.helloslon.core.Response;
-import com.wang.avi.AVLoadingIndicatorView;
+//import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -46,8 +46,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
-    private AVLoadingIndicatorView progressBar;
-    private AVLoadingIndicatorView waitingForResponse;
+//    private AVLoadingIndicatorView progressBar;
+//    private AVLoadingIndicatorView waitingForResponse;
     private TextView currentStatus;
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -65,16 +65,16 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
         dialogList = new ArrayList<Pair<String, Response>>();
         adapter = new RecyclerViewAdapter(dialogList, this);
-        waitingForResponse = (AVLoadingIndicatorView) findViewById(R.id.waitingForResponse);
-        progressBar = (AVLoadingIndicatorView) findViewById(R.id.progressBar);
+//        waitingForResponse = (AVLoadingIndicatorView) findViewById(R.id.waitingForResponse);
+//        progressBar = (AVLoadingIndicatorView) findViewById(R.id.progressBar);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
 
         //"Waiting response from core" animation declaration
-        waitingForResponse.setVisibility(View.GONE);
+//        waitingForResponse.setVisibility(View.GONE);
 
         //"We're listening you" animation declaration
-        progressBar.setVisibility(View.GONE);
+//        progressBar.setVisibility(View.GONE);
 
         //"Dialog window" declaration
         assert dialogWindow != null;
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
-        progressBar.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -139,8 +139,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingDone(Recognizer recognizer) {
-        progressBar.setVisibility(View.GONE);
-        waitingForResponse.setVisibility(View.VISIBLE);
+//        progressBar.setVisibility(View.GONE);
+//        waitingForResponse.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -155,13 +155,13 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
-        waitingForResponse.setVisibility(View.INVISIBLE);
+//        waitingForResponse.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-        waitingForResponse = (AVLoadingIndicatorView) findViewById(R.id.waitingForResponse);
-        waitingForResponse.setVisibility(View.GONE);
+//        waitingForResponse = (AVLoadingIndicatorView) findViewById(R.id.waitingForResponse);
+//        waitingForResponse.setVisibility(View.GONE);
 
         Response question = new Response(recognition.getBestResultText(), false);
         Response answer = core.request(question);
@@ -182,12 +182,12 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-        waitingForResponse.setVisibility(View.GONE);
+//        waitingForResponse.setVisibility(View.GONE);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void createAndStartRecognizer() {
-        waitingForResponse.setVisibility(View.GONE);
+//        waitingForResponse.setVisibility(View.GONE);
         final Context context = getApplicationContext();
         if (context == null) {
             return;
