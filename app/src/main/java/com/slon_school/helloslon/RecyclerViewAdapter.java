@@ -16,8 +16,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.pnikosis.materialishprogress.ProgressWheel;
 import com.slon_school.helloslon.core.Response;
-//import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -50,7 +50,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(final ItemViewHolder holder, int position) {
-//        holder.loadingImage.setVisibility(View.GONE);
+        holder.loadingImage.setVisibility(View.GONE);
         if (items.get(position).first.equals("Slon")) {
 
             holder.textViewSlon.setText(items.get(position).second.getResponse());
@@ -58,24 +58,24 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 imageLoader.displayImage(items.get(position).second.getImages().get(0), holder.slonImage, options, new ImageLoadingListener() {
                     @Override
                     public void onLoadingStarted(String imageUri, View view) {
-//                        holder.loadingImage.setVisibility(View.VISIBLE);
+                        holder.loadingImage.setVisibility(View.VISIBLE);
                     }
 
                     @Override
                     public void onLoadingFailed(String imageUri, View view, FailReason failReason) {
-//                        holder.loadingImage.setVisibility(View.GONE);
+                        holder.loadingImage.setVisibility(View.GONE);
                     }
 
                     @Override
                     public void onLoadingComplete(String imageUri, View view, Bitmap loadedImage) {
-//                        holder.loadingImage.setVisibility(View.GONE);
+                        holder.loadingImage.setVisibility(View.GONE);
                         holder.slonImage.setTag(imageUri);
                         holder.slonImage.setImageBitmap( loadedImage );
                     }
 
                     @Override
                     public void onLoadingCancelled(String imageUri, View view) {
-//                        holder.loadingImage.setVisibility(View.GONE);
+                        holder.loadingImage.setVisibility(View.GONE);
                     }
                 });
             else
@@ -103,7 +103,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public View userCard;
         public ImageView slonImage;
         public View.OnClickListener imageListener;
-//        AVLoadingIndicatorView loadingImage;
+        ProgressWheel loadingImage;
 
             public ItemViewHolder(View itemView, final ImageLoader imageLoader, final MainActivity mainActivity) {
                 super(itemView);
@@ -112,7 +112,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 textViewUser = (TextView) itemView.findViewById(R.id.userText);
                 textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
                 slonImage = (ImageView) itemView.findViewById(R.id.slonImage);
-//                loadingImage = (AVLoadingIndicatorView) itemView.findViewById(R.id.loadingImage);
+                loadingImage = (ProgressWheel) itemView.findViewById(R.id.loadingImage);
                 imageListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

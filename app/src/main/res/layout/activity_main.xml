@@ -18,28 +18,25 @@
         android:text="@string/button_text"
         android:id="@+id/recording_button"/>
 
+    <com.romainpiel.shimmer.ShimmerTextView
+        android:id="@+id/progressBar"
+        android:text="@string/shimmer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#444"
+        android:textSize="25sp"/>
+
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/dialog_window"
         android:layout_above="@id/recording_button"/>
 
-    <!--<com.wang.avi.AVLoadingIndicatorView-->
-        <!--app:indicator="LineScalePulseOutRapid"-->
-        <!--app:indicator_color="@android:color/white"-->
-        <!--android:layout_width="100dp"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:id="@+id/progressBar"/>-->
-
-    <!--<com.wang.avi.AVLoadingIndicatorView-->
-        <!--android:background="@android:color/transparent"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_centerInParent="true"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:indicator="BallTrianglePath"-->
-        <!--app:indicator_color="@android:color/white"-->
-        <!--android:id="@+id/waitingForResponse"-->
-        <!--android:visibility="gone"/>-->
+    <com.lusfold.spinnerloading.SpinnerLoading
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"
+        android:id="@+id/waitingForResponse"/>
 
 </RelativeLayout>
