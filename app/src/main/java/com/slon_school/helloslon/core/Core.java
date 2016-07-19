@@ -7,16 +7,12 @@ import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.CalvinHobbsWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
-<<<<<<< HEAD
-=======
-import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
->>>>>>> develop
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
-import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
 import com.slon_school.helloslon.workers.TranslateWorker;
+import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
 
 import java.util.ArrayList;
 
@@ -45,11 +41,8 @@ public class Core {
 		workers.add(new TownWorker(activity));
 		workers.add(new BashOrgRandomQuoteWorker(activity));
 		workers.add(new SMSWorker(activity));
-<<<<<<< HEAD
-=======
 		workers.add(new PhoneWorker(activity));
  		//workers.add(new WeatherWorker(activity));
->>>>>>> develop
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
 
