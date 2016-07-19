@@ -19,8 +19,7 @@ import static com.slon_school.helloslon.core.Helper.BTS;
  * Created by I. Dmitry on 16.07.2016.
  */
 public class XKCDRandomComicWorker extends Worker{
-    final static boolean finishSession = false;
-    //TODO Deprecated
+    private final static boolean finishSession = false;
     private ArrayList<Key> keys = new ArrayList<Key>();
     private String linkToImage = "";
     private boolean hasImage = false;
@@ -29,8 +28,6 @@ public class XKCDRandomComicWorker extends Worker{
         super(activity);
         keys.add(new Key(activity.getString(R.string.xkcd_keyword0)));
         keys.add(new Key(activity.getString(R.string.xkcd_keyword1)));
-        keys.add(new Key(activity.getString(R.string.xkcd_keyword2)));
-        keys.add(new Key(activity.getString(R.string.xkcd_keyword3)));
     }
 
     public boolean getImage() throws Exception {
@@ -88,7 +85,7 @@ public class XKCDRandomComicWorker extends Worker{
         if (hasImage) {
             ArrayList<String> links = new ArrayList<>();
             links.add(linkToImage);
-            return new Response(linkToImage, finishSession,links);
+            return new Response("",finishSession,links);
         } else {
             return new Response(activity.getString(R.string.xkcd_failed_image_load), finishSession);
         }

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -19,6 +20,7 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 /**
  * Created by I. Dmitry on 14.07.2016.
  */
+
 public class BashOrgRandomQuoteWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
     private static final boolean finishSession = false;
@@ -28,9 +30,6 @@ public class BashOrgRandomQuoteWorker extends Worker {
     public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));
-        keys.add(new Key(activity.getString(R.string.bashorg_keyword1)));
-        keys.add(new Key(activity.getString(R.string.bashorg_keyword2)));
-        keys.add(new Key(activity.getString(R.string.bashorg_keyword3)));
     }
 
     public boolean getQuote() throws Exception {
@@ -59,6 +58,10 @@ public class BashOrgRandomQuoteWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+        if (arguments.contains(new Key("help"))) {
+            return new HelpMan("BashOrgRandomQuoteWorker").getHelp(activity);
+        }
+
         final CountDownLatch countDownLatch = new CountDownLatch(1);
             Thread thread = new Thread() {
                 @Override

@@ -31,7 +31,6 @@ public class FateBallWorker extends Worker {
     public FateBallWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.fateball_keyword0)));
-        keys.add(new Key(activity.getString(R.string.fateball_keyword1)));
     }
 
     public ArrayList<Key> getKeys() {
@@ -51,10 +50,9 @@ public class FateBallWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        Random randomIndex = new Random();
         if (arguments.toString().isEmpty()) {
             initList(MODE_UNRECOGNIZED);
-            return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
+            return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),finishSession);
         }
 
         initKeys(MODE_GENERAL);
@@ -68,7 +66,7 @@ public class FateBallWorker extends Worker {
             initList(MODE_UNRECOGNIZED);
         }
 
-        return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
+        return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),finishSession);
     }
 
     private void initKeys(final int mode) {
@@ -76,7 +74,6 @@ public class FateBallWorker extends Worker {
             case MODE_GENERAL: {
                 generalKeys.add(new Key(activity.getString(R.string.fateball_general_key0)));
                 generalKeys.add(new Key(activity.getString(R.string.fateball_general_key1)));
-                generalKeys.add(new Key(activity.getString(R.string.fateball_general_key2)));
             }
             break;
             case MODE_LUCK: {
@@ -105,6 +102,8 @@ public class FateBallWorker extends Worker {
                 predictionList.add(activity.getString(R.string.fateball_general_string7));
                 predictionList.add(activity.getString(R.string.fateball_general_string8));
                 predictionList.add(activity.getString(R.string.fateball_general_string9));
+                predictionList.add(activity.getString(R.string.fateball_general_string10));
+                predictionList.add(activity.getString(R.string.fateball_general_string11));
             }
             break;
             case MODE_LUCK: {
@@ -114,12 +113,15 @@ public class FateBallWorker extends Worker {
                 predictionList.add(activity.getString(R.string.fateball_luck_string3));
                 predictionList.add(activity.getString(R.string.fateball_luck_string4));
                 predictionList.add(activity.getString(R.string.fateball_luck_string5));
+                predictionList.add(activity.getString(R.string.fateball_luck_string6));
             }
             break;
             case MODE_UNRECOGNIZED: {
                 predictionList.add(activity.getString(R.string.fateball_unrecognized_string0));
                 predictionList.add(activity.getString(R.string.fateball_unrecognized_string1));
                 predictionList.add(activity.getString(R.string.fateball_unrecognized_string2));
+                predictionList.add(activity.getString(R.string.fateball_unrecognized_string3));
+                predictionList.add(activity.getString(R.string.fateball_unrecognized_string4));
             }
             break;
             default: {
