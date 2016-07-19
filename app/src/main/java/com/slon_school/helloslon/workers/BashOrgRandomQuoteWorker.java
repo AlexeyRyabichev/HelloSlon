@@ -16,9 +16,11 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 import static com.slon_school.helloslon.core.Helper.BTS;
+
 /**
  * Created by I. Dmitry on 14.07.2016.
  */
+
 public class BashOrgRandomQuoteWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
     private static final boolean finishSession = false;
@@ -28,8 +30,6 @@ public class BashOrgRandomQuoteWorker extends Worker {
     public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));
-        keys.add(new Key(activity.getString(R.string.bashorg_keyword1)));
-        keys.add(new Key(activity.getString(R.string.bashorg_keyword2)));
     }
 
     public boolean getQuote() throws Exception {
@@ -61,6 +61,7 @@ public class BashOrgRandomQuoteWorker extends Worker {
         if (arguments.contains(new Key("help"))) {
             return new HelpMan("BashOrgRandomQuoteWorker").getHelp(activity);
         }
+
         final CountDownLatch countDownLatch = new CountDownLatch(1);
             Thread thread = new Thread() {
                 @Override

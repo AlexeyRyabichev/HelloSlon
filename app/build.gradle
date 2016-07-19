@@ -34,4 +34,5 @@ dependencies {
     compile 'com.ldoublem.loadingview:loadingviewlib:0.0.1'
     compile 'com.lusfold.spinnerloading:library:1.0.0'
     compile 'com.romainpiel.shimmer:library:1.4.0@aar'
+    testCompile 'junit:junit:4.12'
 }
