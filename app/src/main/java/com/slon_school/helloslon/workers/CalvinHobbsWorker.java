@@ -71,7 +71,7 @@ public class CalvinHobbsWorker extends Worker{
     public boolean getQuote() throws Exception {
         String line;
         Random random = new Random();
-        Integer tmp = random.nextInt(551);
+        Integer tmp = Math.abs(random.nextInt(551));
         URL url = new URL("http://calvin-hobbs.ilost.ru/comix.php?num=" + tmp.toString());
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
                 activity.getString(R.string.cp1251)));
