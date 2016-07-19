@@ -21,6 +21,8 @@ import com.lusfold.spinnerloading.SpinnerLoading;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.romainpiel.shimmer.Shimmer;
+import com.romainpiel.shimmer.ShimmerTextView;
 import com.slon_school.helloslon.core.Core;
 import com.slon_school.helloslon.core.Response;
 
@@ -47,9 +49,9 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
-    private LVCircularCD progressBar;
     private SpinnerLoading waitingForResponse;
-    private TextView currentStatus;
+    private Shimmer shimmer;
+    private ShimmerTextView shimmerTextView;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -64,20 +66,24 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         RecyclerView dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
-        dialogList = new ArrayList<Pair<String, Response>>();
-        adapter = new RecyclerViewAdapter(dialogList);
+        dialogList = new ArrayList<>();
+        adapter = new RecyclerViewAdapter(dialogList, this);
         waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
-        progressBar = (LVCircularCD) findViewById(R.id.progressBar);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
 
         //"Waiting response from core" animation declaration
+        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
+        assert waitingForResponse != null;
         waitingForResponse.setVisibility(View.GONE);
         waitingForResponse.setCircleRadius(10);
         waitingForResponse.setPaintMode(0);
 
         //"We're listening you" animation declaration
-        progressBar.setVisibility(View.GONE);
+        shimmerTextView = (ShimmerTextView) findViewById(R.id.progressBar);
+        shimmer = new Shimmer();
+        shimmer.start(shimmerTextView);
+        shimmerTextView.setVisibility(View.GONE);
 
         //"Dialog window" declaration
         assert dialogWindow != null;
@@ -98,6 +104,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
                 .memoryCache(new LruMemoryCache(2 * 1024 * 1024))
                 .memoryCacheSize(2 * 1024 * 1024)
+                .diskCacheSize(2 * 1024 * 1024)
+                .diskCacheFileCount(20)
                 .writeDebugLogs()
                 .build();
         ImageLoader.getInstance().init(config);
@@ -112,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             Error setModelResult = PhraseSpotter.setModel(model);
             handleError(setModelResult);
         }
-        
+
         if ( ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
             requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
         } else {
@@ -125,8 +133,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
-        progressBar.startAnim();
-        progressBar.setVisibility(View.VISIBLE);
+        shimmerTextView.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -141,8 +148,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onRecordingDone(Recognizer recognizer) {
-        progressBar.stopAnim();
-        progressBar.setVisibility(View.GONE);
+        shimmerTextView.setVisibility(View.GONE);
         waitingForResponse.setVisibility(View.VISIBLE);
     }
 
@@ -158,13 +164,13 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
-
+        waitingForResponse.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-
         waitingForResponse.setVisibility(View.GONE);
+        shimmerTextView.setVisibility(View.GONE);
 
         Response question = new Response(recognition.getBestResultText(), false);
         Response answer = core.request(question);
@@ -172,11 +178,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
-        if(answer.isHaveImages() == true){
-
-        }
-
-        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.JANE);
+        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.ZAHAR);
         vocalizer.start();
 
         Pair<String, Response> answerPair = Pair.create("Slon", answer);
@@ -184,11 +186,12 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         dialogList.add(answerPair);
 
         adapter.notifyDataSetChanged();
+
     }
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-
+        waitingForResponse.setVisibility(View.GONE);
     }
 
     @TargetApi(Build.VERSION_CODES.M)
