@@ -16,8 +16,8 @@ import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.assist.FailReason;
 import com.nostra13.universalimageloader.core.listener.ImageLoadingListener;
+import com.pnikosis.materialishprogress.ProgressWheel;
 import com.slon_school.helloslon.core.Response;
-import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.ArrayList;
 
@@ -103,7 +103,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public View userCard;
         public ImageView slonImage;
         public View.OnClickListener imageListener;
-        AVLoadingIndicatorView loadingImage;
+        ProgressWheel loadingImage;
 
             public ItemViewHolder(View itemView, final ImageLoader imageLoader, final MainActivity mainActivity) {
                 super(itemView);
@@ -112,7 +112,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 textViewUser = (TextView) itemView.findViewById(R.id.userText);
                 textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
                 slonImage = (ImageView) itemView.findViewById(R.id.slonImage);
-                loadingImage = (AVLoadingIndicatorView) itemView.findViewById(R.id.loadingImage);
+                loadingImage = (ProgressWheel) itemView.findViewById(R.id.loadingImage);
                 imageListener = new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
