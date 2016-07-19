@@ -49,7 +49,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
-    private LVCircularCD progressBar;
     private SpinnerLoading waitingForResponse;
     private Shimmer shimmer;
     private ShimmerTextView shimmerTextView;
@@ -67,15 +66,15 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         RecyclerView dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
-        dialogList = new ArrayList<Pair<String, Response>>();
+        dialogList = new ArrayList<>();
         adapter = new RecyclerViewAdapter(dialogList, this);
         waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
 
         //"Waiting response from core" animation declaration
-        waitingForResponse.setVisibility(View.GONE);
         waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
+        assert waitingForResponse != null;
         waitingForResponse.setVisibility(View.GONE);
         waitingForResponse.setCircleRadius(10);
         waitingForResponse.setPaintMode(0);
@@ -171,7 +170,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
         waitingForResponse.setVisibility(View.GONE);
-        shimmer.cancel();
+        shimmerTextView.setVisibility(View.GONE);
 
         Response question = new Response(recognition.getBestResultText(), false);
         Response answer = core.request(question);
@@ -179,7 +178,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         dialogList.add(questionPair);
         adapter.notifyDataSetChanged();
 
-        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.JANE);
+        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.ZAHAR);
         vocalizer.start();
 
         Pair<String, Response> answerPair = Pair.create("Slon", answer);
