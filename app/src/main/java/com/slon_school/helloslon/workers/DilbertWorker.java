@@ -1,7 +1,6 @@
 package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
-import android.util.TypedValue;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
@@ -12,7 +11,6 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.ArrayList;
-import java.util.Random;
 import java.util.concurrent.CountDownLatch;
 
 /**
@@ -20,12 +18,15 @@ import java.util.concurrent.CountDownLatch;
  */
 public class DilbertWorker extends Worker
 {
-    private String link1;
-    private String link2;
-    private boolean isLink1Got;
-    private boolean isLink2Got;
-    private ArrayList<Key> keys = new ArrayList<Key>();
+    private boolean isLinkGot;
     private int picPointer;
+    private ArrayList<Key> keys = new ArrayList<Key>();
+
+    CountDownLatch countDownLatch;
+
+    Thread thread;
+
+    volatile ArrayList<String> picLinks = new ArrayList<String>();
 
 
     ArrayList<String> linkArr;
@@ -34,6 +35,7 @@ public class DilbertWorker extends Worker
         super( activity );
         keys.add(new Key("дилберт"));
         keys.add(new Key("гилберт"));
+        fillPicLinks();
         picPointer = 0;
     }
 
@@ -49,53 +51,41 @@ public class DilbertWorker extends Worker
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
-        if(keys.size() != 0) {
+        if ( keys.size() != 0 ) {
             // начать сканировать сайт
-            //http://dilbertru.blogspot.ru/search/label/%D0%94%D0%B8%D0%BB%D0%B1%D0%B5%D1%80%D1%82
+            //http://dilbertru.blogspot.ru/search/label/%D0%94%D0%B8%D0%BB%D0%B1%D0%B5%D1%80%D1%82?updated-max=2016-06-17T08:00:00%2B01:00&max-results=500&start=0&by-date=false
             //<li><a href='http://dilbertru.blogspot.ru
 
-            if(keys.get(0).toString().equals("гилберт")) {
-                return new Response("Ты хочешь сказать \"Дилберт\"?", true);
+            if ( keys.get( 0 ).toString().trim().equals( "гилберт" ) ) {
+                picPointer = 0;
+                return new Response( "Ты хочешь сказать \"Дилберт\"?", true );
+            } else {
+                picPointer = 0;
+                return new Response( "", true, takePicLink());
             }
-            else {
-                picPointer = 1;
+        } else if ( arguments.get().size() != 0 ) {
+            picPointer++;
+            String comand = arguments.get().get( 0 );
+            if ( comand.equals( "следующий" ) || comand.equals( "еще" ) || comand.equals( "да" ) ) {
+                if(picPointer == 500) return new Response( "Хватит уже", false );
+                if( takePicLink().get(0).equals("Error")) return new Response( "Error", false );
+                return new Response( "", true, takePicLink());
             }
-        }
-
-
-        if(arguments.get().size() != 0){
-            // работать с картинками
-            //view-source:http://dilbertru.blogspot.ru/2016/07/20160716.html
-            //<img src="http://assets.amuniversal.com
-
-            String comand = arguments.get().get(0);
-            if(comand.equals("следующий") || comand.equals("еще") || comand.equals("да")) {
-
-                picPointer++;
-                return null;
-            }
-            if(comand.equals("хватит")) {
-                return new Response("Действительно хватит", false);
-            }
-            if(comand.equals("нет")) {
-                return new Response("Ну ладно", false);
+            if ( comand.equals( "хватит" ) ) {
+                return new Response( "Действительно хватит", false );
             }
         }
-        return new Response("DilbertWorkerError", false);
+        return new Response( "Ничего не понял.", true);
     }
 
-
-    private ArrayList<String> fillLinks() {
-        ArrayList<String> res = new ArrayList<String>();
-
-        boolean isLinkGot;
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        Thread thread = new Thread() {
+    private void fillPicLinks(){
+        countDownLatch = new CountDownLatch(1);
+        thread = new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
-                    isLinkGot = getLink("http://dilbertru.blogspot.ru/search/label/%D0%94%D0%B8%D0%BB%D0%B1%D0%B5%D1%80%D1%82", res);//----------------------------------
+                    isLinkGot = getLinks();
                     countDownLatch.countDown();
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -105,81 +95,42 @@ public class DilbertWorker extends Worker
         thread.start();
         try {
             countDownLatch.await();
+            return;
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (isLinkGot) {
-            return res;
-        } else {
-            //--------------------------------------------------------------------------------
-            return null;
-        }
+    }
 
+    private  ArrayList<String> takePicLink() {
+        ArrayList<String> _buf = new ArrayList<String>();
+        if (isLinkGot) {
+            _buf.add(picLinks.get(picPointer));
+        } else {
+            _buf.add("Error");
+        }
+        return _buf;
+    }
+
+    public boolean getLinks() throws Exception {
+        boolean res = false;
+
+        String line;
+        URL url = new URL("http://dilbertru.blogspot.ru/search/label/%D0%94%D0%B8%D0%BB%D0%B1%D0%B5%D1%80%D1%82?updated-max=2016-06-17T08:00:00%2B01:00&max-results=500&start=0&by-date=false");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
+                activity.getString(R.string.cp1251)));
+        while ((line = reader.readLine()) != null) {
+            if (line.contains("<img src=\"http://assets.amuniversal.com/")) {
+                picLinks.add(washQuote(line));
+                res = true;
+            }
+        }
         return res;
     }
 
-
-/*
-
-    private String getPic() {
-        boolean isLinkGot;
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
-        Thread thread = new Thread() {
-            @Override
-            public void run() {
-                super.run();
-                try {
-                    isLinkGot = getLink();
-                    countDownLatch.countDown();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        };
-        thread.start();
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        if (isLinkGot) {
-            return quote;
-        } else {
-            return "Не удалось загрузить картинку";
-        }
-    }
-
-
-
-*/
-public boolean getLink(String URLStr, ArrayList<String> res) throws Exception {//----------------------------------------------------------------
-    String line;
-        Random random = new Random();
-        Integer tmp = random.nextInt(551);
-
-        URL url = new URL(URLStr);
-    BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
-            activity.getString( R.string.cp1251)));
-        while ((line = reader.readLine()) != null) {
-            if (line.contains("<li><a href='http://dilbertru.blogspot.ru")) {
-                    res.add(washLink1( line ));
-                }
-            }
-        return true;
-        }
-        return false;
-    }
-    private String washLink1( String line ) {
-        line = line.replace("  <p><img src=\"","");
+    private String washQuote( String line ) {
+        line = line.replace("<img src=\"","");
         line = line.replaceAll("\"(.)*","");
-        line = "http://calvin-hobbs.ilost.ru/" + line;
-        return line;
-    }
-
-    private String washLink2( String line ) {
-        line = line.replace("  <p><img src=\"","");
-        line = line.replaceAll("\"(.)*","");
-        line = "http://calvin-hobbs.ilost.ru/" + line;
+        //line = "http://assets.amuniversal.com/" + line;
         return line;
     }
 }

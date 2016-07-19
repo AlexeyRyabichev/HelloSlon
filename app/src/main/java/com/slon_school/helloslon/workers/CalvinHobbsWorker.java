@@ -25,6 +25,7 @@ public class CalvinHobbsWorker extends Worker{
     public CalvinHobbsWorker( Activity activity ) {
         super( activity );
         keys.add(new Key("кельвин и хоббс"));
+        keys.add(new Key("келвин и хоббс"));
     }
 
     @Override

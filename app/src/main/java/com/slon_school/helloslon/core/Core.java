@@ -6,14 +6,15 @@ import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.CalvinHobbsWorker;
+import com.slon_school.helloslon.workers.DilbertWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
-import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
 import com.slon_school.helloslon.workers.TranslateWorker;
+import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
 
 import java.util.ArrayList;
 
@@ -47,6 +48,7 @@ public class Core {
  		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
+		workers.add(new DilbertWorker(activity));
 
 		currentWorker = idNone;
 	}
