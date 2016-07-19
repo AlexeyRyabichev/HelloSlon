@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:wheel="http://schemas.android.com/tools"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/userBackground"
+        app:cardPreventCornerOverlap="true"
+        android:id="@+id/userCard"
+        android:layout_alignParentRight="true"
+        app:cardElevation="@dimen/elevationForMessage">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/paddingForMessage"
+            android:id="@+id/userText"/>
+
+    </android.support.v7.widget.CardView>
+
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/slonCard"
+        app:cardBackgroundColor="@color/slonBackground"
+        android:layout_alignParentLeft="true"
+        app:cardPreventCornerOverlap="true"
+        app:cardElevation="@dimen/elevationForMessage">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/slonText"
+                android:padding="@dimen/paddingForMessage"/>
+
+            <ImageView
+                android:layout_below="@id/slonText"
+                android:id="@+id/slonImage"
+                android:layout_margin="8dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"/>
+
+            <com.pnikosis.materialishprogress.ProgressWheel
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/loadingImage"
+                app:matProg_progressIndeterminate="true"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+
+</RelativeLayout>
