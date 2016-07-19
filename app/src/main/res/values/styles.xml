@@ -8,6 +8,10 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="transparentTheme" parent="Theme.AppCompat">
+        <item name="android:background">@android:color/transparent</item>
+    </style>
+
     <style name="progressDialog" parent="Base.V7.Theme.AppCompat.Light.Dialog">
         <item name="colorPrimary">@color/slonBackground</item>
         <item name="android:background">@android:color/transparent</item>
