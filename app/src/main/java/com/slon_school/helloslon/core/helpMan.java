@@ -1,13 +1,21 @@
 package com.slon_school.helloslon.core;
 
+import android.app.Activity;
+
 import com.slon_school.helloslon.R;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+
+import static com.slon_school.helloslon.core.Helper.BTS;
 
 /**
  * Created by I. Dmitry on 17.07.2016.
  */
 public class HelpMan {
     private boolean finishSession = false;
-    private int hid = -1;
+    private int hid;
     public HelpMan(String helpID) {
         switch(helpID) {
             case "BashOrgRandomQuoteWorker": {
@@ -19,29 +27,55 @@ public class HelpMan {
             case "BrowserWorker": {
                 hid = 2;
             } break;
+            case "PhoneWorker": {
+                hid = 3;
+            } break;
             default: {
                 hid = -1;
             }
         }
     }
 
-    public Response getHelp() {
+    public Response getHelp(Activity activity) {
         String command = "";
+        boolean isFound = true;
+        InputStream inputStream = null;
         switch(hid) {
             case 0: {
-                command += R.raw.bashorg_random_quote_help;
-                return new Response(command,finishSession);
-            }
+                inputStream = activity.getResources().openRawResource(R.raw.bashorg_random_quote_help);
+            } break;
             case 1: {
-                return new Response(command,finishSession);
-            }
+                inputStream = activity.getResources().openRawResource(R.raw.browser_help);
+            } break;
             case 2: {
-                command += R.raw.browser_help;
-                return new Response(command,finishSession);
-            }
+                inputStream = activity.getResources().openRawResource(R.raw.browser_help);
+            } break;
+            case 3: {
+                inputStream = activity.getResources().openRawResource(R.raw.phone_help);
+            } break;
             default: {
-                return new Response("Manual not found",finishSession);
+                isFound = false;
             }
         }
+        if (isFound) {
+            try {
+                command = stream2StringConverter(inputStream);
+            } catch (IOException e) {
+                BTS(12);
+                e.printStackTrace();
+            }
+        } else {
+            command = activity.getString(R.string.help_not_found);
+        }
+        return new Response(command, finishSession);
+    }
+
+
+
+    private String stream2StringConverter(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        Integer i;
+        while ((i = inputStream.read()) != -1) byteArrayOutputStream.write(i);
+        return byteArrayOutputStream.toString();
     }
 }

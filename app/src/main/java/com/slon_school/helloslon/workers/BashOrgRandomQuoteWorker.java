@@ -30,7 +30,6 @@ public class BashOrgRandomQuoteWorker extends Worker {
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));
         keys.add(new Key(activity.getString(R.string.bashorg_keyword1)));
         keys.add(new Key(activity.getString(R.string.bashorg_keyword2)));
-        keys.add(new Key(activity.getString(R.string.bashorg_keyword3)));
     }
 
     public boolean getQuote() throws Exception {
@@ -60,8 +59,7 @@ public class BashOrgRandomQuoteWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.contains(new Key("help"))) {
-            HelpMan help = new HelpMan("BashOrgRandomQuoteWorker");
-            return help.getHelp();
+            return new HelpMan("BashOrgRandomQuoteWorker").getHelp(activity);
         }
         final CountDownLatch countDownLatch = new CountDownLatch(1);
             Thread thread = new Thread() {

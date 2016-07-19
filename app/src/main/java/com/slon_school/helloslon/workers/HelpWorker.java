@@ -82,8 +82,6 @@ public class HelpWorker extends Worker{
             result += activity.getString(R.string.bashorg_keyword1);
             result += "/";
             result += activity.getString(R.string.bashorg_keyword2);
-            result += "/";
-            result += activity.getString(R.string.bashorg_keyword3);
             result += "\n";
         } else if (hid == helpFateBall) {
             result += activity.getString(R.string.fateball_keyword0);
@@ -105,15 +103,6 @@ public class HelpWorker extends Worker{
         }
         BTS(11);
         return FAILED_HELP_RESPONSE;
-    }
-
-    private void initHelpKeysList() {
-        helpKeysList.add(activity.getString(R.string.help_key_browser));
-        helpBrowser = helpKeysList.size();
-        helpKeysList.add(activity.getString(R.string.help_key_bashorg));
-        helpBashOrg = helpKeysList.size();
-        helpKeysList.add(activity.getString(R.string.help_key_fateball));
-        helpFateBall = helpKeysList.size();
     }
 
     private String getHelpKeysList() {

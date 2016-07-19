@@ -36,7 +36,6 @@ public class Core {
 		workers.add(new TownWorker(activity));
 		workers.add(new BashOrgRandomQuoteWorker(activity));
 		workers.add(new SMSWorker(activity));
- 		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 
 		currentWorker = idNone;

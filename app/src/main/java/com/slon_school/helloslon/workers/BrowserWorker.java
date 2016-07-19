@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
@@ -13,12 +14,10 @@ import java.util.ArrayList;
 
 public class BrowserWorker extends Worker {
     private ArrayList<Key> keys;
-    private boolean isContinue;
 
     public BrowserWorker(Activity activity) {
         super(activity);
 
-        isContinue = false;
         keys = new ArrayList<Key>();
         keys.add(new Key("найди"));
         keys.add(new Key("поиск"));
@@ -42,14 +41,13 @@ public class BrowserWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> result, Key arguments) {
-        //String request = arguments.get(0);
-        if (arguments.contains(new Key("help")) || arguments.contains(new Key("helper"))) {
-            HelpMan helpMan = new HelpMan("BrowserWorker");
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return new HelpMan("BrowserWorker").getHelp(activity);
         }
 
         Key google = this.keys.get(5);
 
-        if(result.contains(this.keys.get(5))){
+        if(result.contains(google)){
             Intent intent = new Intent();
             intent.setAction(Intent.ACTION_VIEW);
             intent.setData(Uri.parse("https://www.google.ru/search?q=" + arguments.toString()));
@@ -63,8 +61,6 @@ public class BrowserWorker extends Worker {
             activity.startActivity(intent);
             return new Response("", false);
         }
-
-
     }
 
 }

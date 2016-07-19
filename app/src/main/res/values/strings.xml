@@ -3,6 +3,9 @@
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
     <string name="button_text">Talk to me</string>
     <string name="cp1251">windows-1251</string>
+    <string name="help0">help</string>
+    <string name="help1">помощь</string>
+    <string name="help_not_found">Мануал не найден</string>
 
     <string name="fateball_keyword0">шар судьбы</string>
     <string name="fateball_keyword1">шар</string>
@@ -28,13 +31,14 @@
     <string name="fateball_general_key0">предскажи судьбу</string>
     <string name="fateball_general_key1">хочу предсказание</string>
     <string name="fateball_general_key2">хочу предсказания</string>
+    <string name="fateball_general_key3">хочу предсказаний</string>
     <string name="fateball_luck_key0">сегодня удачный день</string>
     <string name="fateball_luck_key1">мне повезет</string>
 
-    <string name="email_keyword0">смс</string>
-    <string name="email_keyword1">отправить смс</string>
-    <string name="email_keyword2">послать смс</string>
-    <string name="email_sending">отправляю Email</string>
+    <string name="email_keyword0">email</string>
+    <string name="email_keyword1">отправить email</string>
+    <string name="email_keyword2">послать email</string>
+    <string name="email_sending">отправляю E-mail</string>
     <string name="email_unknown">А что это за email такой -</string>
     <string name="email_unrecognized_string0">Не понял, кому отправить?</string>
     <string name="email_smsto">smsto:</string>
@@ -42,7 +46,6 @@
     <string name="bashorg_keyword0">башорг</string>
     <string name="bashorg_keyword1">цитатка с башорга</string>
     <string name="bashorg_keyword2">цитата с башорга</string>
-    <string name="bashorg_keyword3">мне скучно</string>
     <string name="bashorg_get_quote">Получай свою цитатку!</string>
     <string name="bashorg_url">http://bash.im/random</string>
     <string name="bashorg_cannot_access_quote">Упс, не получилось загрузить цитатку</string>

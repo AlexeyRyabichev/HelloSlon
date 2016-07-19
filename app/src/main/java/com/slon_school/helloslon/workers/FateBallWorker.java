@@ -51,10 +51,9 @@ public class FateBallWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        Random randomIndex = new Random();
         if (arguments.toString().isEmpty()) {
             initList(MODE_UNRECOGNIZED);
-            return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
+            return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),finishSession);
         }
 
         initKeys(MODE_GENERAL);
@@ -68,7 +67,7 @@ public class FateBallWorker extends Worker {
             initList(MODE_UNRECOGNIZED);
         }
 
-        return new Response(predictionList.get(randomIndex.nextInt(predictionList.size())),finishSession);
+        return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),finishSession);
     }
 
     private void initKeys(final int mode) {
@@ -77,6 +76,7 @@ public class FateBallWorker extends Worker {
                 generalKeys.add(new Key(activity.getString(R.string.fateball_general_key0)));
                 generalKeys.add(new Key(activity.getString(R.string.fateball_general_key1)));
                 generalKeys.add(new Key(activity.getString(R.string.fateball_general_key2)));
+                generalKeys.add(new Key(activity.getString(R.string.fateball_general_key3)));
             }
             break;
             case MODE_LUCK: {
