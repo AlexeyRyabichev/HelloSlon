@@ -44,6 +44,9 @@ public class TestWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+//        ArrayList<String> tmp;
+//        tmp = new ArrayList<>();
+//        tmp.add("https://im3-tub-ru.yandex.net/i?id=be1f6bd3ed95ee13fc4c810ea32f8cdd&n=33&h=215&w=296");
         Response helloWorld = new Response("Привет" , false);
         return helloWorld;
     }
