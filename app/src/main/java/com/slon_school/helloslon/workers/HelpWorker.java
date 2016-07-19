@@ -10,6 +10,8 @@ import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
 
+import static com.slon_school.helloslon.core.Helper.BTS;
+
 /**
  * Created by I. Dmitry on 14.07.2016.
  */
@@ -82,6 +84,7 @@ public class HelpWorker extends Worker{
             helpCommand += "";
             helpCommand += "\n";
         } else {
+            BTS(9);
             Log.e("initHelpCommand:","variable hid is equal " + hid);
         }
     }
@@ -108,6 +111,7 @@ public class HelpWorker extends Worker{
             result += "/";
             result += "\n";
         } else {
+            BTS(10);
             Log.e("getKeywords","variable hid is equal " + hid);
         }
         return result;
@@ -118,6 +122,7 @@ public class HelpWorker extends Worker{
             Integer tmp = i + 1;
             if (args.contains(tmp.toString())) return tmp;
         }
+        BTS(11);
         return FAILED_HELP_RESPONSE;
     }
 
@@ -152,7 +157,10 @@ public class HelpWorker extends Worker{
      * FateBallWorker ++
      * EmailWorker -
      * AlarmWorker ?
-     * TownWorker -
-     @ BashOrgRandomQuote +++
+     * TownWorker +
+     @ BashOrgRandomQuote
+     * WeatherWorker ?
+     * XKCDRandomComicWorker +
+     * SMSWorker ?
      */
 }

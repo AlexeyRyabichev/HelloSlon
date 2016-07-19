@@ -3,6 +3,7 @@
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
     <string name="button_text">Talk to me</string>
     <string name="cp1251">windows-1251</string>
+    <string name="shimmer">I\'m listening you</string>
 
     <string name="fateball_keyword0">шар судьбы</string>
     <string name="fateball_keyword1">шар</string>
@@ -68,4 +69,6 @@
     <string name="xkcd_keyword1">комиксы</string>
     <string name="xkcd_keyword2">хочу комикс</string>
     <string name="xkcd_keyword3">хочу комиксы</string>
+    <string name="xkcd_url">http://xkcd.ru/random</string>
+    <string name="xkcd_failed_image_load">Извини, не удалось загрузить комикс</string>
 </resources>

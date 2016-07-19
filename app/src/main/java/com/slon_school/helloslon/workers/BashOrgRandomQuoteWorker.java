@@ -14,6 +14,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
+import static com.slon_school.helloslon.core.Helper.BTS;
+
 /**
  * Created by I. Dmitry on 14.07.2016.
  */
@@ -21,7 +23,7 @@ public class BashOrgRandomQuoteWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
     private static final boolean finishSession = false;
     private String quote;
-    private boolean isQuoteGot;
+    private boolean hasQuote;
 
     public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
@@ -34,11 +36,11 @@ public class BashOrgRandomQuoteWorker extends Worker {
     public boolean getQuote() throws Exception {
         String line;
         URL url = new URL(activity.getString(R.string.bashorg_url));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
-                activity.getString(R.string.cp1251)));
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), activity.getString(R.string.cp1251)));
         while (true) {
             line = reader.readLine();
             if (line == null) {
+                BTS(4);
                 break;
             }
             if (line.contains("<div class=\"text\">")) {
@@ -63,9 +65,10 @@ public class BashOrgRandomQuoteWorker extends Worker {
                 public void run() {
                     super.run();
                     try {
-                        isQuoteGot = getQuote();
+                        hasQuote = getQuote();
                         countDownLatch.countDown();
                     } catch (Exception e) {
+                        BTS(5);
                         e.printStackTrace();
                     }
                 }
@@ -74,20 +77,16 @@ public class BashOrgRandomQuoteWorker extends Worker {
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
+            BTS(6);
             e.printStackTrace();
         }
-        if (isQuoteGot) {
+        if (hasQuote) {
             washQuote();
-            censorQuote();
         } else {
             Toast.makeText(activity,quote, Toast.LENGTH_LONG).show();
             quote = activity.getString(R.string.bashorg_cannot_access_quote);
         }
         return new Response(quote,finishSession);
-    }
-
-    private void censorQuote() {
-        //TODO Do we need it?
     }
 
     private void washQuote() {
