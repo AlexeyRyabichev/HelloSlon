@@ -3,6 +3,10 @@
     package="com.slon_school.helloslon">
 
 
+<<<<<<< HEAD
+=======
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+>>>>>>> develop
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -29,6 +33,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ImageOpenerActivity"
+            android:theme="@style/transparentTheme"/>
     </application>
 
 </manifest>
