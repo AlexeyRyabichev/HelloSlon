@@ -16,18 +16,18 @@ import java.util.HashMap;
 public class GallowsWorker extends Worker {
 
 
-    private HashMap<Integer, Integer> picsInR;
+    private HashMap<Integer, String> picsInR;
 
     private ArrayList<Key> keys;
     private ArrayList<Key> close;
 
-    private enum State {StartGame, InGame, End};
+    private enum State {StartGame, InGame};
     private State state;
 
     private String word;
     private int lives;
     private ArrayList<Boolean> haveLet;
-
+    private int countOfCorrect;
 
     public GallowsWorker(Activity activity) {
         super(activity);
@@ -44,10 +44,23 @@ public class GallowsWorker extends Worker {
         word = "";
         lives = 0;
         haveLet = new ArrayList<Boolean>();
+        countOfCorrect = 0;
+
+        picsInR = new HashMap<Integer, String>();
+        picsInR.put(1,"drawable://" + String.valueOf(R.drawable.gallow1));
+        picsInR.put(2,"drawable://" + String.valueOf(R.drawable.gallow2));
+        picsInR.put(3,"drawable://" + String.valueOf(R.drawable.gallow3));
+        picsInR.put(4,"drawable://" + String.valueOf(R.drawable.gallow4));
+        picsInR.put(5,"drawable://" + String.valueOf(R.drawable.gallow5));
+        picsInR.put(6,"drawable://" + String.valueOf(R.drawable.gallow6));
+        picsInR.put(7,"drawable://" + String.valueOf(R.drawable.gallow7));
+        picsInR.put(8,"drawable://" + String.valueOf(R.drawable.gallow8));
+        picsInR.put(9,"drawable://" + String.valueOf(R.drawable.gallow9));
+        picsInR.put(10,"drawable://" + String.valueOf(R.drawable.gallow10));
+        picsInR.put(11,"drawable://" + String.valueOf(R.drawable.gallow11));
 
 
-        picsInR = new HashMap<Integer, Integer>();
-
+        String path = "drawable://" + String.valueOf(R.drawable.gallow1);
         state = State.StartGame;
     }
 
@@ -67,6 +80,7 @@ public class GallowsWorker extends Worker {
         if (state == State.StartGame) {
             state = State.InGame;
             word = getWord();
+            countOfCorrect = 0;
             return new Response("Хорошо, давай сыграем, вот твоё слово: \n" + outputWord(), true);
         } else if (state == State.InGame){
             if (isClose(arguments)){
@@ -97,16 +111,25 @@ public class GallowsWorker extends Worker {
     private Response correct(String let) {
             for (int i = 0; i < haveLet.size(); i++) {
                 if (let.equals(word.substring(i,i+1))) {
-                    haveLet.add(i, true);
+                    haveLet.set(i, true);
+                    countOfCorrect++;
                 }
             }
+
+        if (countOfCorrect == word.length()) {
+            state = State.StartGame;
+            return new Response("Молодец, ты угадал это слово! Ты победил! :3", false);
+        } else {
             return new Response("Отлично, есть такая буква! \n" + outputWord(), true);
+        }
     }
+
 
 
     private Response wrong() {
         lives++;
         if (lives == 11) {
+            state = State.StartGame;
             return new Response("К сожалению, ты проиграл :( \nЭто слово было: " + word, false, getPicture());
         } else {
             ArrayList<String> pic = getPicture();
@@ -119,20 +142,14 @@ public class GallowsWorker extends Worker {
     }
 
 
-
-
     private ArrayList<String> getPicture() {
-
         if (lives == 0) {
             return new ArrayList<String>();
         } else {
-
-            String path = "drawable://" + String.valueOf(R.drawable.gallow1; // from drawables (non-9patch images)
-            //TODO normal get Pic
-            return new ArrayList<String>();
+            ArrayList<String> pic = new ArrayList<String>();
+            pic.add(picsInR.get(lives));
+            return pic;
         }
-
-
     }
 
 
@@ -164,7 +181,8 @@ public class GallowsWorker extends Worker {
                 haveLet.add(true);
             }
         }
-        return "привет";
+
+        return toReturn;
     }
 
 
