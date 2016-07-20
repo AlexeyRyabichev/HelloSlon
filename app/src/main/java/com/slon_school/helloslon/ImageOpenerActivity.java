@@ -24,9 +24,13 @@ public class ImageOpenerActivity extends AppCompatActivity implements View.OnTou
 
     ImageLoader imageLoader;
     DisplayImageOptions options;
+<<<<<<< HEAD
     ImageView imageView;
     RelativeLayout relativeLayout;
 
+=======
+    TouchImageView imageView;
+>>>>>>> develop
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,16 +39,17 @@ public class ImageOpenerActivity extends AppCompatActivity implements View.OnTou
         imageLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true)
-
                 .cacheInMemory(true)
                 .build();
 
-
-
         String url = getIntent().getStringExtra(TAG);
+<<<<<<< HEAD
         //imageView = (ImageView) findViewById(R.id.image);
         imageView = (ImageView) findViewById(R.id.image);
         assert imageView != null;
+=======
+        imageView = (TouchImageView) findViewById(R.id.image);
+>>>>>>> develop
         imageLoader.displayImage(url, imageView);
         relativeLayout = (RelativeLayout) findViewById(R.id.relaytiveLayout);
         assert relativeLayout != null;
