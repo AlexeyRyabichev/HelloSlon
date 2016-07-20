@@ -17,7 +17,7 @@ public class HelpMan {
     private boolean finishSession = false;
     private int hid;
     private Activity activity;
-    public HelpMan(String helpID,Activity activity) {
+    public HelpMan(String helpID, Activity activity) {
         this.activity = activity;
         switch(helpID) {
             case "BashOrgRandomQuoteWorker": {
