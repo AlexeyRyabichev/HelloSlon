@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.util.Log;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -53,6 +54,8 @@ public class FateBallWorker extends Worker {
         if (arguments.toString().isEmpty()) {
             initList(MODE_UNRECOGNIZED);
             return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),finishSession);
+        } else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return new HelpMan("FateBallWorker",activity).getHelp();
         }
 
         initKeys(MODE_GENERAL);

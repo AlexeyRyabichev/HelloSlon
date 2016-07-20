@@ -55,10 +55,12 @@
     <string name="flashlight_keyword1">фонарик</string>
     <string name="flashlight_on">включи</string>
     <string name="flashlight_off">выключи</string>
-    <string name="flashlight_unaccessible_camera">Не удалось получить доступ к камере</string>
 
     <string name="commit_keyword0">commitment</string>
     <string name="commit_keyword1">commit</string>
     <string name="commit_url">http://whatthecommit.com/index.txt</string>
     <string name="commit_cannot_access">Не удалось получить коммит</string>
+
+    <string name="launch_keyword0">запуск</string>
+    <string name="launch_keyword1">запустить</string>
 </resources>

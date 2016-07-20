@@ -16,7 +16,9 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 public class HelpMan {
     private boolean finishSession = false;
     private int hid;
-    public HelpMan(String helpID) {
+    private Activity activity;
+    public HelpMan(String helpID,Activity activity) {
+        this.activity = activity;
         switch(helpID) {
             case "BashOrgRandomQuoteWorker": {
                 hid = 0;
@@ -35,8 +37,8 @@ public class HelpMan {
             }
         }
     }
-
-    public Response getHelp(Activity activity) {
+    //
+    public Response getHelp() {
         String command = "";
         boolean isFound = true;
         InputStream inputStream = null;
@@ -45,7 +47,7 @@ public class HelpMan {
                 inputStream = activity.getResources().openRawResource(R.raw.bashorg_random_quote_help);
             } break;
             case 1: {
-                inputStream = activity.getResources().openRawResource(R.raw.browser_help);
+                inputStream = activity.getResources().openRawResource(R.raw.fateball_help);
             } break;
             case 2: {
                 inputStream = activity.getResources().openRawResource(R.raw.browser_help);
