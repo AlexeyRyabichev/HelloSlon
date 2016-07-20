@@ -50,12 +50,9 @@ public class Core {
 		workers.add(new CalvinHobbsWorker(activity));
 		workers.add(new FlashlightWorker(activity));
 		workers.add(new CommitWorker(activity));
-<<<<<<< HEAD
-=======
 		workers.add(new GallowsWorker(activity));
 		workers.add(new DilbertWorker(activity));
 
->>>>>>> develop
 		currentWorker = idNone;
 	}
 	
