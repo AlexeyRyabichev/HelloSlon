@@ -15,25 +15,44 @@ import java.util.Random;
  */
 public class TamagotchiWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<Key>();
-    Date date = new Date(0);
+    private ArrayList<String> picArr = new ArrayList<String>();
 
-    int Hunger =   100;
-    int Energy =   100;
-    int Hygiene =  100;
-    int Fun =      100;
-    int Healthy =  100;
-    boolean EOG =  false;
-    boolean Ill =  false;
+    private int Hunger =   100;
+    private int Energy =   100;
+    private int Hygiene =  100;
+    private int Fun =      100;
+    private int Healthy =  100;
+    private boolean EOG =  false;
+    private boolean Ill =  false;
+    private boolean Sleep = false;
 
-    Date lastFeed = new Date();
-    Date lastSleep = new Date();
-    Date lastWash = new Date();
-    Date lastPlay = new Date();
-    Date lastVaccination = new Date();
+    private Date lastFeed = new Date();
+    private Date lastSleep = new Date();
+    private Date lastWash = new Date();
+    private Date lastPlay = new Date();
+    private Date lastVaccination = new Date();
+
+    private void Init() {
+        Hunger =   100;
+        Energy =   100;
+        Hygiene =  100;
+        Fun =      100;
+        Healthy =  100;
+        EOG =  false;
+        Ill =  false;
+        Sleep = false;
+
+        lastFeed = new Date();
+        lastSleep = new Date();
+        lastWash = new Date();
+        lastPlay = new Date();
+        lastVaccination = new Date();
+    }
 
     public TamagotchiWorker( Activity activity ) {
         super( activity );
         keys.add(new Key("тамагочи"));
+        InitPicArr();
     }
 
     @Override
@@ -48,86 +67,143 @@ public class TamagotchiWorker extends Worker {
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
+        String str = new String();
+        str = "";
         timers();
         EOG = checkEOG();
-        printPet();
+        if(EOG) {
+            EOG = false;
+            String _buf = printPet();
+            Init();
+            return new Response(_buf + "\nЗаводим нового слона", true);
+        }
         if ( arguments.get().size() != 0 ) {
-            if (cmdFeed(arguments)) {
+            if (cmdFeed(arguments) && !Sleep) {
                 Hunger += 30;
                 if(Hunger > 100) Hunger = 100;
             }
+
+            boolean _buf = Sleep;
             if (cmdSleep(arguments)) {
-                Energy += 30;
-                if(Energy > 100) Energy = 100;
+                if(_buf != Sleep)
+                    lastSleep = new Date();
             }
-            if (cmdWash(arguments)) {
+            if (cmdWash(arguments) && !Sleep) {
                 Hygiene += 30;
                 if(Hygiene > 100) Hygiene = 100;
             }
-            if (cmdPlay(arguments)) {
+            if (cmdPlay(arguments) && !Sleep) {
                 Fun += 30;
                 if(Fun > 100) Fun = 100;
             }
             if (cmdVaccination(arguments)) {
                 Healthy = 100;
-           }
+                Ill = false;
+            }
+            if(arguments.get().get(0).equals("хватит")) {
+                return new Response("Действительно хватит", true);
+            }
+            if(arguments.get().get(0).equals("рисуй")) {
+                return new Response(printPet(), true);
+            }
+            return new Response(printPet(), true);
         }
-        return new Response( "Ничего не понял.", true);
+        return new Response( "Приветствие", true);
     }
 
     private void timers() {
         Date Now = new Date();
 
-        Hunger -= (int)((Now.getTime() - lastFeed.getTime()) / 1000 / 60 / 5);
+        Hunger -= (int)((Now.getTime() - lastFeed.getTime()) / 1000 / 60 / 3);
         if(Hunger < 0) Hunger = 0;
 
-        Energy -= (int)((Now.getTime() - lastSleep.getTime()) / 1000 / 60 / 3);
-        if(Energy < 0) Energy = 0;
+        if(Sleep) {
+            Energy += (int)((Now.getTime() - lastSleep.getTime()) / 1000 / 60 / 5);
+            if(Energy > 100) Energy = 100;
+        }
+        else {
+            Energy -= (int)((Now.getTime() - lastSleep.getTime()) / 1000 / 60 / 3);
+            if(Energy < 0) Energy = 0;
+        }
 
-        Hygiene -= (int)((Now.getTime() - lastWash.getTime()) / 1000 / 60 / 3);
+        Hygiene -= (int)((Now.getTime() - lastWash.getTime()) / 1000 / 60 / 4);
         if(Hygiene < 0) Hygiene = 0;
 
-        Fun -= (int)((Now.getTime() - lastPlay.getTime()) / 1000 / 60 / 4);
+        Fun -= (int)((Now.getTime() - lastPlay.getTime()) / 1000 / 60 / 3);
         if(Fun < 0) Fun = 0;
 
         if(Hygiene < 40) {
             Random r = new Random();
             Ill = true;
-            lastVaccination.setTime(Now.getTime() - (r.nextInt(Hygiene) + 1)*1000);
+            lastVaccination.setTime(Now.getTime() - (r.nextInt(40) + 1)*1000);
         }
 
         if(Ill) {
-            Healthy -= (int)((Now.getTime() - lastVaccination.getTime()) / 1000 / 60 / 3);
+            Healthy -= (int)((Now.getTime() - lastVaccination.getTime()) / 1000 / 60 / 2);
             if(Healthy < 0) Healthy = 0;
         }
     }
 
-    private void printPet() {
-        if()
+    private String printPet() {
+        String res = new String();
+        res = "";
+        if((Energy == 0) || (Hunger == 0) || (Hygiene == 0) || (Fun == 0) || (Healthy == 0)) {
+            res += picArr.get(2) + "ты малёк запустил питомца, игра окончена\n";
+        }
+        else if(Sleep) res += picArr.get(3);
+        else if(Energy < 30) res += picArr.get(1);
+        else res += picArr.get(0);
+
+        res += "Hunger = " + String.valueOf( Hunger ) + "\n";
+        res += "Energy = " + String.valueOf( Energy ) + "\n";
+        res += "Hygiene = " + String.valueOf( Hygiene ) + "\n";
+        res += "Fun = " + String.valueOf( Fun ) + "\n";
+        res += "Healthy = " + String.valueOf( Healthy ) + "\n";
+        return res;
     }
 
     private boolean cmdFeed(Key arguments) {
         lastFeed = new Date();
         if(arguments.get().get( 0 ).equals("корми"))
             return true;
+        if(arguments.get().get( 0 ).equals("кормить"))
+            return true;
         return false;
     }
 
     private boolean cmdSleep(Key arguments) {
-        lastSleep = new Date();
-        if(arguments.get().get( 0 ).equals("спи"))
+        if(arguments.get().get( 0 ).equals("спи")) {
+            Sleep = true;
             return true;
-        if(arguments.get().get( 0 ).equals("сон"))
+        }
+
+        if(arguments.get().get( 0 ).equals("сон")) {
+            Sleep = true;
             return true;
-        if(arguments.get().get( 0 ).equals("спать"))
+        }
+
+        if(arguments.get().get( 0 ).equals("спать")) {
+            Sleep = true;
             return true;
+        }
+
+        if(arguments.get().get( 0 ).equals("проснись")) {
+            Sleep = false;
+            return true;
+        }
+
+        if(arguments.get().get( 0 ).equals("вставай")) {
+            Sleep = false;
+            return true;
+        }
         return false;
     }
 
     private boolean cmdWash(Key arguments) {
         lastWash = new Date();
-        if(arguments.get().get( 0 ).equals("помойся"))
+        if(arguments.get().get( 0 ).equals("ванна")) {
             return true;
+        }
         return false;
     }
 
@@ -153,6 +229,64 @@ public class TamagotchiWorker extends Worker {
         if(Fun == 0)      return true;
         if(Healthy == 0)  return true;
         return false;
+    }
+
+    private void InitPicArr() {
+        picArr.add("       ___      ___\n" +
+                "      /   \\____/   \\\n" +
+                "     /    / __ \\    \\\n" +
+                "    /    |  ..  |    \\\n" +
+                "    \\___/|      |\\___/\\\n" +
+                "       | |_|  |_|      \\\n" +
+                "       | |/|__|\\|       \\\n" +
+                "       |   |__|         |\\\n" +
+                "       |   |__|   |_/  /  \\\n" +
+                "       | @ |__| @ || @ |   '\n" +
+                "       |   |__|   ||   |\n" +
+                "       |   |~~|   ||   |\n" +
+                "       'ooo'  'ooo''ooo'\n");
+
+        picArr.add("   ___      ___\n" +
+                "  /   \\____/   \\\n" +
+                " /    / __ \\    \\\n" +
+                "/    |  00  |    \\\n" +
+                "\\___/|      |\\___/\\\n" +
+                "   | |_|  |_|      \\\n" +
+                "   | |/|__|\\|       \\\n" +
+                "   |   |__|         |\\\n" +
+                "   |   |__|   |_/  /  \\\n" +
+                "   | @ |__| @ || @ |   '\n" +
+                "   |   |__|   ||   |\n" +
+                "   |   |~~|   ||   |\n" +
+                "   'ooo'  'ooo''ooo'\n");
+
+        picArr.add("   ___      ___\n" +
+                "  /   \\____/   \\\n" +
+                " /    / __ \\    \\\n" +
+                "/    |  ХХ  |    \\\n" +
+                "\\___/|      |\\___/\\\n" +
+                "   | |_|  |_|      \\\n" +
+                "   | |/|__|\\|       \\\n" +
+                "   |   |__|         |\\\n" +
+                "   |   |__|   |_/  /  \\\n" +
+                "   | @ |__| @ || @ |   '\n" +
+                "   |   |__|   ||   |\n" +
+                "   |   |~~|   ||   |\n" +
+                "   'ooo'  'ooo''ooo'\n");
+
+        picArr.add("   ___      ___\n" +
+                "  /   \\____/   \\\n" +
+                " /    / __ \\    \\\n" +
+                "/    |  --  |    \\\n" +
+                "\\___/|      |\\___/\\\n" +
+                "   | |_|  |_|      \\\n" +
+                "   | |/|__|\\|       \\\n" +
+                "   |   |__|         |\\\n" +
+                "   |   |__|   |_/  /  \\\n" +
+                "   | @ |__| @ || @ |   '\n" +
+                "   |   |__|   ||   |\n" +
+                "   |   |~~|   ||   |\n" +
+                "   'ooo'  'ooo''ooo'\n");
     }
 }
 
