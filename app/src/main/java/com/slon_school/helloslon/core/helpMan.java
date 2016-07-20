@@ -59,7 +59,7 @@ public class HelpMan {
                 inputStream = activity.getResources().openRawResource(R.raw.phone_help);
             } break;
             case 4: {
-                inputStream = activity.getResources().openRawResource(R.raw.sms_send_help);
+                inputStream = activity.getResources().openRawResource(R.raw.sms_help);
             }
             default: {
                 isFound = false;
