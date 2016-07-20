@@ -6,7 +6,9 @@ import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.CalvinHobbsWorker;
+import com.slon_school.helloslon.workers.DilbertWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
+import com.slon_school.helloslon.workers.GallowsWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
@@ -47,6 +49,8 @@ public class Core {
  		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
+		workers.add(new GallowsWorker(activity));
+		workers.add(new DilbertWorker(activity));
 
 		currentWorker = idNone;
 	}

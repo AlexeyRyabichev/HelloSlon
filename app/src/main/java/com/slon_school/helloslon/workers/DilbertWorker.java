@@ -74,7 +74,7 @@ public class DilbertWorker extends Worker
 
     private String getPic() {
         boolean isLinkGot;
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        final CountDownLatch countDownLatch = new CountDownLatch(gallow1);
         Thread thread = new Thread() {
             @Override
             public void run() {

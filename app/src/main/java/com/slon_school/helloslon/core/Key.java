@@ -44,8 +44,13 @@ public class Key {
     @Override
     public String toString() {
         String toString = "";
-        for (String word : words)
-            toString += word + " ";
+        for (int i = 0; i < words.size(); i++) {
+            if (i != words.size() - 1) {
+                toString += words.get(i) + " ";
+            } else {
+                toString += words.get(i);
+            }
+        }
         return toString;
     }
 
