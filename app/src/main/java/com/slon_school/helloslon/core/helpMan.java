@@ -10,9 +10,6 @@ import java.io.InputStream;
 
 import static com.slon_school.helloslon.core.Helper.BTS;
 
-/**
- * Created by I. Dmitry on 17.07.2016.
- */
 public class HelpMan implements Helper.additionalInterface {
     private int hid;
     private Activity activity;
