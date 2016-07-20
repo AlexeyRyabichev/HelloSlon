@@ -34,7 +34,7 @@ public class Helper {
     }
 
     public interface additionalInterface {
-        boolean finishSession = false;
+        boolean FINISH_SESSION = false;
         ArrayList<Key> keys = new ArrayList<>();
     }
 }

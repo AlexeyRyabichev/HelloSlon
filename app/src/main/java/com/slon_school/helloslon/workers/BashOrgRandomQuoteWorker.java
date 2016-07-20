@@ -23,8 +23,6 @@ import static com.slon_school.helloslon.core.Helper.BTS;
  */
 
 public class BashOrgRandomQuoteWorker extends Worker implements Helper.additionalInterface {
-    //private ArrayList<Key> keys = new ArrayList<Key>();
-    //private static final boolean finishSession = false;
     private String quote;
     private boolean hasQuote;
     //TODO Check it
@@ -90,7 +88,7 @@ public class BashOrgRandomQuoteWorker extends Worker implements Helper.additiona
             Toast.makeText(activity,quote, Toast.LENGTH_LONG).show();
             quote = activity.getString(R.string.bashorg_cannot_access_quote);
         }
-        return new Response(quote,finishSession);
+        return new Response(quote,FINISH_SESSION);
     }
 
     private void washQuote() {
