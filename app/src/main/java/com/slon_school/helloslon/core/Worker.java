@@ -9,6 +9,7 @@ public abstract class Worker {
 	public Worker (Activity activity) {
 		this.activity = activity;
 	}
+
 	public abstract ArrayList<Key> getKeys();
 
 	public abstract boolean isLoop();
