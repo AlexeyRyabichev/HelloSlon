@@ -6,12 +6,12 @@
 
 
 
-    <com.slon_school.helloslon.ScaleImageView
+    <com.slon_school.helloslon.TouchImageView
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:scaleType="fitCenter"
+        android:scaleType="center"
         android:id="@+id/image"
         android:transitionName="@string/imageTransitionName"/>
 
