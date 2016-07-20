@@ -16,8 +16,7 @@ public class ImageOpenerActivity extends AppCompatActivity{
 
     ImageLoader imageLoader;
     DisplayImageOptions options;
-    ScaleImageView imageView;
-
+    TouchImageView imageView;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,15 +25,11 @@ public class ImageOpenerActivity extends AppCompatActivity{
         imageLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true)
-
                 .cacheInMemory(true)
                 .build();
 
-
-
         String url = getIntent().getStringExtra(TAG);
-        //imageView = (ImageView) findViewById(R.id.image);
-        imageView = (ScaleImageView) findViewById(R.id.image);
+        imageView = (TouchImageView) findViewById(R.id.image);
         imageLoader.displayImage(url, imageView);
     }
 }
