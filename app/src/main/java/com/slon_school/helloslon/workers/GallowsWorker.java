@@ -94,13 +94,29 @@ public class GallowsWorker extends Worker {
                 return close();
             } else {
 
+                ArrayList<Key> special = new ArrayList<Key>();
+                special.add(new Key("мягкий знак"));
+                special.add(new Key("твёрдый знак"));
+
                 if (arguments.size() == 0) {
                     return notUnderstand();
                 } else {
                     if (word.contains(arguments.get().get(0)) && (arguments.get().get(0).length() == 1)) {
                         return correct(arguments.get().get(0));
                     } else if (arguments.get().get(0).length() != 1) {
-                        if (word.contains(arguments.get().get(0).substring(0,1))) {
+                        if (arguments.contains(special.get(0))) {
+                            if (word.contains("ь")) {
+                                return correct("ь");
+                            } else {
+                                return wrong();
+                            }
+                        } else if (arguments.contains(special.get(1))) {
+                            if (word.contains("ъ")) {
+                                return correct("ъ");
+                            } else {
+                                return wrong();
+                            }
+                        } else if (word.contains(arguments.get().get(0).substring(0,1))) {
                             return correct(arguments.get().get(0).substring(0,1));
                         } else {
                            return wrong();
