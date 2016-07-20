@@ -58,8 +58,8 @@ public class BashOrgRandomQuoteWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if (arguments.contains(new Key("help"))) {
-            return new HelpMan("BashOrgRandomQuoteWorker").getHelp(activity);
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return new HelpMan("BashOrgRandomQuoteWorker",activity).getHelp();
         }
 
         final CountDownLatch countDownLatch = new CountDownLatch(1);

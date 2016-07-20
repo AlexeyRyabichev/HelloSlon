@@ -3,7 +3,6 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
-import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
@@ -11,6 +10,9 @@ import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
+import java.util.concurrent.CountDownLatch;
+
+import static com.slon_school.helloslon.core.Helper.BTS;
 
 /**
  * Created by Noob_upgraded on 19.07.2016.
@@ -33,23 +35,33 @@ public class FlashlightWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        boolean badReturn = false;
-        Camera camera = Camera.open();
+        final Camera camera = Camera.open();
         Parameters parameters = camera.getParameters();
-        Toast.makeText(activity, parameters.getFlashMode(), Toast.LENGTH_LONG).show();
-        if (arguments.contains(new Key(activity.getString(R.string.flashlight_on)))) {
-            Toast.makeText(activity, "IF", Toast.LENGTH_LONG).show();
-            parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
-            camera.setParameters(parameters);
-            camera.startPreview();
-        } else if (arguments.contains(new Key(activity.getString(R.string.flashlight_off)))) {
-            Toast.makeText(activity, "ELSE", Toast.LENGTH_LONG).show();
-            parameters.setFlashMode(Parameters.FLASH_MODE_OFF);
-            camera.setParameters(parameters);
-            camera.stopPreview();
-        } else {
-            badReturn = true;
+        parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
+        camera.setParameters(parameters);
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    camera.startPreview();
+                    //sleep(3000);
+                    //camera.stopPreview();
+                    countDownLatch.countDown();
+                } catch (Exception e) {
+                    BTS(5);
+                    e.printStackTrace();
+                }
+            }
+        };
+        thread.start();
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            BTS(6);
+            e.printStackTrace();
         }
-        return new Response(badReturn ? activity.getString(R.string.flashlight_unaccessible_camera) : "", finishSession);
+        return new Response("", finishSession);
     }
 }

@@ -42,7 +42,7 @@ public class BrowserWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> result, Key arguments) {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan("BrowserWorker").getHelp(activity);
+            return new HelpMan("BrowserWorker",activity).getHelp();
         }
 
         Key google = this.keys.get(5);

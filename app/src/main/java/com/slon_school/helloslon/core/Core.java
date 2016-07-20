@@ -48,7 +48,6 @@ public class Core {
 		workers.add(new CalvinHobbsWorker(activity));
 		workers.add(new FlashlightWorker(activity));
 		workers.add(new CommitWorker(activity));
-		//workers.add(new LaunchWorker(activity));
 		currentWorker = idNone;
 	}
 	
