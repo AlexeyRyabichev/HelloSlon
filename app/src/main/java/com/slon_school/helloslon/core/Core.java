@@ -6,22 +6,34 @@ import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.CalvinHobbsWorker;
+<<<<<<< HEAD
 
 import com.slon_school.helloslon.workers.EmailSendWorker;
 
+=======
+import com.slon_school.helloslon.workers.CommitWorker;
+>>>>>>> develop
 import com.slon_school.helloslon.workers.DilbertWorker;
 
 import com.slon_school.helloslon.workers.FateBallWorker;
+import com.slon_school.helloslon.workers.FlashlightWorker;
 import com.slon_school.helloslon.workers.GallowsWorker;
+<<<<<<< HEAD
 import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.NotesWorker;
+=======
+>>>>>>> develop
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
+<<<<<<< HEAD
 import com.slon_school.helloslon.workers.VkpostWorker;
 import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
+=======
+>>>>>>> develop
 import com.slon_school.helloslon.workers.TranslateWorker;
+import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
 
 import java.util.ArrayList;
 
@@ -46,19 +58,22 @@ public class Core {
 		workers.add(new BrowserWorker(activity));
 		workers.add(new TestWorker(activity));
 		workers.add(new FateBallWorker(activity));
-		//workers.add(new EmailWorker(activity));
 		workers.add(new AlarmWorker(activity));
 		workers.add(new TownWorker(activity));
 		workers.add(new BashOrgRandomQuoteWorker(activity));
-		workers.add(new HelpWorker(activity));
 		workers.add(new SMSWorker(activity));
 		workers.add(new PhoneWorker(activity));
  		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
+<<<<<<< HEAD
 
 		workers.add(new EmailSendWorker(activity));
 
+=======
+		workers.add(new FlashlightWorker(activity));
+		workers.add(new CommitWorker(activity));
+>>>>>>> develop
 		workers.add(new GallowsWorker(activity));
 		workers.add(new DilbertWorker(activity));
 
