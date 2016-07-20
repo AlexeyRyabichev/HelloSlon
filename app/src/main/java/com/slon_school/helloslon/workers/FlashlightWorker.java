@@ -35,26 +35,26 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        final long multiple = 1000;
-        final String defaultTime = "60";
+        final long MULTIPLE = 1000;
+        final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();
         if (isDecimalNumber(sTime)) {
-            time = string2long(sTime) * multiple;
+            time = string2long(sTime) * MULTIPLE;
         } else {
-            time = string2long(defaultTime) * multiple;
+            time = DEFAULT_TIME * MULTIPLE;
         }
-        final Camera camera = Camera.open();
-        Parameters parameters = camera.getParameters();
+        final Camera CAMERA = Camera.open();
+        Parameters parameters = CAMERA.getParameters();
         parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
-        camera.setParameters(parameters);
+        CAMERA.setParameters(parameters);
         Thread thread = new Thread() {
 
             public void run() {
                 super.run();
                 try {
-                    camera.startPreview();
+                    CAMERA.startPreview();
                     sleep(time);
-                    camera.stopPreview();
+                    CAMERA.stopPreview();
                 } catch (Exception e) {
                     BTS(16);
                     e.printStackTrace();
@@ -62,6 +62,6 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
             }
         };
         thread.start();
-        return new Response("", finishSession);
+        return new Response("", FINISH_SESSION);
     }
 }

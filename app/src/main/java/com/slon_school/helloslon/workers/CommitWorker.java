@@ -57,7 +57,7 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
             e.printStackTrace();
         }
         commit = hasCommit ? commit : activity.getString(R.string.commit_cannot_access);
-        return new Response(commit,finishSession);
+        return new Response(commit,FINISH_SESSION);
     }
 
     public boolean getCommit() throws Exception {

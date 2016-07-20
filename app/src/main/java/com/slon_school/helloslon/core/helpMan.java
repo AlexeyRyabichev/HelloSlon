@@ -74,7 +74,7 @@ public class HelpMan implements Helper.additionalInterface {
         } else {
             command = activity.getString(R.string.help_not_found);
         }
-        return new Response(command, finishSession);
+        return new Response(command, FINISH_SESSION);
     }
 
 

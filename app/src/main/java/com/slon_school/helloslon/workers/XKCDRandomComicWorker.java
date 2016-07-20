@@ -83,9 +83,9 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
         if (hasImage) {
             ArrayList<String> links = new ArrayList<>();
             links.add(linkToImage);
-            return new Response("",finishSession,links);
+            return new Response("",FINISH_SESSION,links);
         } else {
-            return new Response(activity.getString(R.string.xkcd_failed_image_load), finishSession);
+            return new Response(activity.getString(R.string.xkcd_failed_image_load), FINISH_SESSION);
         }
     }
 }
