@@ -100,7 +100,11 @@ public class GallowsWorker extends Worker {
                     if (word.contains(arguments.get().get(0)) && (arguments.get().get(0).length() == 1)) {
                         return correct(arguments.get().get(0));
                     } else if (arguments.get().get(0).length() != 1) {
-                        return notUnderstand();
+                        if (word.contains(arguments.get().get(0).substring(0,1))) {
+                            return correct(arguments.get().get(0).substring(0,1));
+                        } else {
+                           return wrong();
+                        }
                     }  else {
                         return wrong();
                     }
