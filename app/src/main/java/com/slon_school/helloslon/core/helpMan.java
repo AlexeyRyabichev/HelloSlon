@@ -32,6 +32,9 @@ public class HelpMan {
             case "PhoneWorker": {
                 hid = 3;
             } break;
+            case "SMSWorker": {
+                hid = 4;
+            }
             default: {
                 hid = -1;
             }
@@ -55,6 +58,9 @@ public class HelpMan {
             case 3: {
                 inputStream = activity.getResources().openRawResource(R.raw.phone_help);
             } break;
+            case 4: {
+                inputStream = activity.getResources().openRawResource(R.raw.sms_send_help);
+            }
             default: {
                 isFound = false;
             }
