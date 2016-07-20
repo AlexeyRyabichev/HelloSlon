@@ -76,6 +76,7 @@ public class TownWorker extends Worker {
         if ( just_started || ( str.charAt( 0 ) == lastChar ) )
             just_started = false;
         else
+
             return new Response( "Не та буква, ты проиграл", false );
 
         //проверка города и выбор
