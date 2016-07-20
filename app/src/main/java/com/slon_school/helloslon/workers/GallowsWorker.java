@@ -7,8 +7,12 @@ import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.CountDownLatch;
 
 /**
  * Created by gallow1 on 19.07.2016.
@@ -29,10 +33,15 @@ public class GallowsWorker extends Worker {
     private ArrayList<Boolean> haveLet;
     private int countOfCorrect;
 
+    private String output;
+    private boolean isQuoteGot;
+
     public GallowsWorker(Activity activity) {
         super(activity);
         keys = new ArrayList<Key>();
         keys.add(new Key("Виселица"));
+        keys.add(new Key("Виселицу"));
+
 
         close = new ArrayList<Key>();
         close.add(new Key("закончить"));
@@ -59,8 +68,6 @@ public class GallowsWorker extends Worker {
         picsInR.put(10,"drawable://" + String.valueOf(R.drawable.gallow10));
         picsInR.put(11,"drawable://" + String.valueOf(R.drawable.gallow11));
 
-
-        String path = "drawable://" + String.valueOf(R.drawable.gallow1);
         state = State.StartGame;
     }
 
@@ -92,9 +99,9 @@ public class GallowsWorker extends Worker {
                 } else {
                     if (word.contains(arguments.get().get(0)) && (arguments.get().get(0).length() == 1)) {
                         return correct(arguments.get().get(0));
-                    } else if (word.contains(arguments.get().get(0)) && (arguments.get().get(0).length() != 1)) {
+                    } else if (arguments.get().get(0).length() != 1) {
                         return notUnderstand();
-                    } else {
+                    }  else {
                         return wrong();
                     }
                 }
@@ -168,22 +175,89 @@ public class GallowsWorker extends Worker {
 
 
     private String getWord() {
-        //TODO норм получение слова здесь нужно
+
         String toReturn = "привет";
-
-
+        getRandomWordForGame();
+        if (isQuoteGot) {
+            toReturn = output;
+        }
 
         haveLet.clear();
         for (int i = 0; i < toReturn.length(); i++) {
-            if ((i != 0) && (i != toReturn.length() - 1)) {
-                haveLet.add(false);
-            } else {
+            if (toReturn.substring(i,i+1).equals(toReturn.substring(0,1)) || toReturn.substring(i,i+1).equals(toReturn.substring(toReturn.length() - 1,toReturn.length()))) {
                 haveLet.add(true);
+            } else {
+                haveLet.add(false);
             }
         }
 
         return toReturn;
     }
+
+
+    private void getRandomWordForGame() {
+        isQuoteGot = false;
+
+        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        Thread thread = new Thread() {
+            @Override
+            public void run() {
+                super.run();
+                try {
+                    isQuoteGot = getRWord(); //getTranslate(request, "", "");
+                    countDownLatch.countDown();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+
+
+        thread.start();
+
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public boolean getRWord() throws Exception {
+        String line;
+        String get = "";
+
+
+        URL url = new URL("http://dalvi.ru/Random.php");
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
+                "windows-1251"));
+        while (true) {
+            line = reader.readLine();
+            if (line == null) {
+                break;
+            }
+            get += line;
+        }
+
+
+        if (!get.equals("")) {
+
+
+
+
+            get = get.substring(get.indexOf("<title>") + 7,get.indexOf("</title>"));
+            get = get.substring(0, get.indexOf(" ") - 1);
+            Key k = new Key(get);
+            output = k.get().get(0);
+            return true;
+        } else {
+            return false;
+        }
+
+
+    }
+
+
 
 
 
