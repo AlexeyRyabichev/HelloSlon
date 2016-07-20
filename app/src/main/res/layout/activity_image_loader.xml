@@ -6,18 +6,12 @@
     android:layout_height="match_parent"
     android:id="@+id/relaytiveLayout">
 
-
-
-<<<<<<< HEAD
-    <ImageView
-=======
     <com.slon_school.helloslon.TouchImageView
->>>>>>> develop
         android:layout_centerInParent="true"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:adjustViewBounds="true"
-        android:scaleType="center"
+        android:scaleType="centerInside"
         android:id="@+id/image"
         android:transitionName="@string/imageTransitionName"/>
 

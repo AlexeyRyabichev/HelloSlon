@@ -22,15 +22,12 @@ public class ImageOpenerActivity extends AppCompatActivity implements View.OnTou
 
     public static final String TAG = "imageURL";
 
+    float first_y = 0;
+    float second_y = 0;
     ImageLoader imageLoader;
     DisplayImageOptions options;
-<<<<<<< HEAD
-    ImageView imageView;
     RelativeLayout relativeLayout;
-
-=======
     TouchImageView imageView;
->>>>>>> develop
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +40,8 @@ public class ImageOpenerActivity extends AppCompatActivity implements View.OnTou
                 .build();
 
         String url = getIntent().getStringExtra(TAG);
-<<<<<<< HEAD
-        //imageView = (ImageView) findViewById(R.id.image);
-        imageView = (ImageView) findViewById(R.id.image);
-        assert imageView != null;
-=======
         imageView = (TouchImageView) findViewById(R.id.image);
->>>>>>> develop
+        assert imageView != null;
         imageLoader.displayImage(url, imageView);
         relativeLayout = (RelativeLayout) findViewById(R.id.relaytiveLayout);
         assert relativeLayout != null;
@@ -59,8 +51,18 @@ public class ImageOpenerActivity extends AppCompatActivity implements View.OnTou
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
-        List<>
-        
+        switch(motionEvent.getAction()){
+            case MotionEvent.ACTION_DOWN:
+                first_y = motionEvent.getY();
+                break;
+            case MotionEvent.ACTION_UP:
+                second_y = motionEvent.getX();
+                break;
+        }
+
+        if(Math.abs(second_y - first_y) >= 30)
+            onBackPressed();
         return true;
+
     }
 }
