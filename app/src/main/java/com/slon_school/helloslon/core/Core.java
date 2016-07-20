@@ -6,14 +6,20 @@ import com.slon_school.helloslon.workers.AlarmWorker;
 import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.CalvinHobbsWorker;
+
+import com.slon_school.helloslon.workers.EmailSendWorker;
+
 import com.slon_school.helloslon.workers.DilbertWorker;
+
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.GallowsWorker;
 import com.slon_school.helloslon.workers.HelpWorker;
+import com.slon_school.helloslon.workers.NotesWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
+import com.slon_school.helloslon.workers.VkpostWorker;
 import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
 import com.slon_school.helloslon.workers.TranslateWorker;
 
@@ -34,7 +40,8 @@ public class Core {
 		this.activity = activity;
 		workers = new ArrayList<Worker>();
 		//TODO add all workers
-
+		workers.add(new VkpostWorker(activity));
+		workers.add(new NotesWorker(activity));
 		workers.add(new TranslateWorker(activity));
 		workers.add(new BrowserWorker(activity));
 		workers.add(new TestWorker(activity));
@@ -49,8 +56,12 @@ public class Core {
  		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
+
+		workers.add(new EmailSendWorker(activity));
+
 		workers.add(new GallowsWorker(activity));
 		workers.add(new DilbertWorker(activity));
+
 
 		currentWorker = idNone;
 	}
