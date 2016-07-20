@@ -78,9 +78,22 @@ public class DilbertWorker extends Worker
         return new Response( "Ничего не понял.", true);
     }
 
+<<<<<<< HEAD
     private void fillPicLinks(){
         countDownLatch = new CountDownLatch(1);
         thread = new Thread() {
+=======
+
+
+
+
+/*
+
+    private String getPic() {
+        boolean isLinkGot;
+        final CountDownLatch countDownLatch = new CountDownLatch(gallow1);
+        Thread thread = new Thread() {
+>>>>>>> develop
             @Override
             public void run() {
                 super.run();
