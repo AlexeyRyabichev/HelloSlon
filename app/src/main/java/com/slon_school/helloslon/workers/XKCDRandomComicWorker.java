@@ -16,16 +16,13 @@ import java.util.concurrent.CountDownLatch;
 
 import static com.slon_school.helloslon.core.Helper.BTS;
 
-/**
- * Created by I. Dmitry on 16.07.2016.
- */
 public class XKCDRandomComicWorker extends Worker implements Helper.additionalInterface {
     private String linkToImage = "";
     private boolean hasImage = false;
 
     public XKCDRandomComicWorker(Activity activity) {
         super(activity);
-        keys.add(new Key(activity.getString(R.string.xkcd_keyword0))); //TODO know how Yandex recognize XKCD
+        keys.add(new Key(activity.getString(R.string.xkcd_keyword0))); //TODO know how Yandex recognize "XKCD" and change string constant according to this info
     }
 
     public boolean getImage() throws Exception {
@@ -37,8 +34,8 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
             if (line == null) {
                 break;
             }
-            if (line.contains("<img border=0 src=")) {
-                linkToImage = washLink(line);
+            if (line.contains(activity.getString(R.string.xkcd_indicator))) { //TODO check this new stuff
+                linkToImage = washLink(line); //TODO implement Helper.isHttpLink method to this link
                 return true;
             }
         }
@@ -59,14 +56,14 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
         Thread thread = new Thread() {
             @Override
             public void run() {
                 super.run();
                 try {
                     hasImage = getImage();
-                    countDownLatch.countDown();
+                    COUNT_DOWN_LATCH.countDown();
                 } catch (Exception e) {
                     BTS(2);
                     e.printStackTrace();
@@ -75,7 +72,7 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
         };
         thread.start();
         try {
-            countDownLatch.await();
+            COUNT_DOWN_LATCH.await();
         } catch (InterruptedException e) {
             BTS(1);
             e.printStackTrace();

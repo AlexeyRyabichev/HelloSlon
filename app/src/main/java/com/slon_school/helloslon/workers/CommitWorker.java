@@ -16,9 +16,6 @@ import java.util.concurrent.CountDownLatch;
 
 import static com.slon_school.helloslon.core.Helper.BTS;
 
-/**
- * Created by Noob_upgraded on 19.07.2016.
- */
 public class CommitWorker extends Worker implements Helper.additionalInterface {
     private String commit;
     private boolean hasCommit;
@@ -36,13 +33,13 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
         Thread thread = new Thread() {
             public void run() {
                 super.run();
                 try {
                     hasCommit = getCommit();
-                    countDownLatch.countDown();
+                    COUNT_DOWN_LATCH.countDown();
                 } catch (Exception e) {
                     BTS(15);
                     e.printStackTrace();
@@ -51,7 +48,7 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         };
         thread.start();
         try {
-            countDownLatch.await();
+            COUNT_DOWN_LATCH.await();
         } catch (InterruptedException e) {
             BTS(14);
             e.printStackTrace();

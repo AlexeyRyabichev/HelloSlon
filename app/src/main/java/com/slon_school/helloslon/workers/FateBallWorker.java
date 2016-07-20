@@ -15,10 +15,6 @@ import java.util.Random;
 
 import static com.slon_school.helloslon.core.Helper.BTS;
 
-/**
- * Created by I. Dmitry on 10.07.2016.
- */
-
 public class FateBallWorker extends Worker implements Helper.additionalInterface {
 
     private final static int MODE_GENERAL = 0;

@@ -5,12 +5,13 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-/**
- * Created by I. Dmitry on 14.07.2016.
- */
 public class Helper {
     public static void BTS(Integer id) {
         Toast.makeText(new Activity(), "Упс, ошибочка №" + id.toString() + ". Пожалуйста, сообщи о ней разрабу HelloSlom", Toast.LENGTH_LONG).show();
+    }
+
+    public static boolean isHttpLink(final String string) { //TODO use it
+        return string.matches("http://([a-zA-z0-9-])+\\.([a-zA-Z])+(/|)");
     }
 
     public static boolean isDecimalNumber(final String string) {

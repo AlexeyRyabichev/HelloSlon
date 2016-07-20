@@ -16,9 +16,6 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 import static com.slon_school.helloslon.core.Helper.isDecimalNumber;
 import static com.slon_school.helloslon.core.Helper.string2long;
 
-/**
- * Created by I. Dmitry on 19.07.2016.
- */
 public class FlashlightWorker extends Worker implements Helper.additionalInterface{
     private long time;
     public FlashlightWorker(Activity activity) {
