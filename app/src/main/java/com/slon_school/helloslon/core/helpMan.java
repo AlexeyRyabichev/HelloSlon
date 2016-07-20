@@ -37,7 +37,7 @@ public class HelpMan {
             }
         }
     }
-
+    //
     public Response getHelp() {
         String command = "";
         boolean isFound = true;
