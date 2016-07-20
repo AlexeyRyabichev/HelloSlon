@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
-    private SpinnerLoading waitingForResponse;
+    //private SpinnerLoading waitingForResponse;
     private ShimmerTextView shimmerTextView;
     final int Network_Error= 7;
 
@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         RecyclerView.ItemAnimator itemAnimator = new SlideInUpAnimator();
         dialogList = new ArrayList<>();
         adapter = new RecyclerViewAdapter(dialogList, this);
-        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
+//        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
 
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.VISIBLE);
-        waitingForResponse.setVisibility(View.GONE);
+        //waitingForResponse.setVisibility(View.GONE);
     }
 
     @Override
@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecordingDone(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.GONE);
-        waitingForResponse.setVisibility(View.VISIBLE);
+//        waitingForResponse.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -163,12 +163,12 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
-        waitingForResponse.setVisibility(View.INVISIBLE);
+//        waitingForResponse.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-        waitingForResponse.setVisibility(View.GONE);
+//        waitingForResponse.setVisibility(View.GONE);
         shimmerTextView.setVisibility(View.GONE);
 
         Response question = new Response(recognition.getBestResultText(), false);
@@ -191,7 +191,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-        waitingForResponse.setVisibility(View.GONE);
+//        waitingForResponse.setVisibility(View.GONE);
         if (error.getCode() == Network_Error)
             Toast.makeText(MainActivity.this, getString(R.string.no_connetion), Toast.LENGTH_LONG).show();
     }
