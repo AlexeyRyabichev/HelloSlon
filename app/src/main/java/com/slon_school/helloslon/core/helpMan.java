@@ -13,8 +13,7 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 /**
  * Created by I. Dmitry on 17.07.2016.
  */
-public class HelpMan {
-    private boolean finishSession = false;
+public class HelpMan implements Helper.additionalInterface {
     private int hid;
     private Activity activity;
     public HelpMan(String helpID, Activity activity) {
