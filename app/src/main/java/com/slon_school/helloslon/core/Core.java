@@ -7,8 +7,10 @@ import com.slon_school.helloslon.workers.BashOrgRandomQuoteWorker;
 import com.slon_school.helloslon.workers.BrowserWorker;
 import com.slon_school.helloslon.workers.CalvinHobbsWorker;
 import com.slon_school.helloslon.workers.CommitWorker;
+import com.slon_school.helloslon.workers.DilbertWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.FlashlightWorker;
+import com.slon_school.helloslon.workers.GallowsWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TestWorker;
@@ -48,6 +50,12 @@ public class Core {
 		workers.add(new CalvinHobbsWorker(activity));
 		workers.add(new FlashlightWorker(activity));
 		workers.add(new CommitWorker(activity));
+<<<<<<< HEAD
+=======
+		workers.add(new GallowsWorker(activity));
+		workers.add(new DilbertWorker(activity));
+
+>>>>>>> develop
 		currentWorker = idNone;
 	}
 	
