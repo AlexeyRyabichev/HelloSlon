@@ -3,6 +3,7 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -18,16 +19,13 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 /**
  * Created by I. Dmitry on 16.07.2016.
  */
-public class XKCDRandomComicWorker extends Worker{
-    private final static boolean finishSession = false;
-    private ArrayList<Key> keys = new ArrayList<Key>();
+public class XKCDRandomComicWorker extends Worker implements Helper.additionalInterface {
     private String linkToImage = "";
     private boolean hasImage = false;
 
     public XKCDRandomComicWorker(Activity activity) {
         super(activity);
-        keys.add(new Key(activity.getString(R.string.xkcd_keyword0)));
-        keys.add(new Key(activity.getString(R.string.xkcd_keyword1)));
+        keys.add(new Key(activity.getString(R.string.xkcd_keyword0))); //TODO know how Yandex recognize XKCD
     }
 
     public boolean getImage() throws Exception {

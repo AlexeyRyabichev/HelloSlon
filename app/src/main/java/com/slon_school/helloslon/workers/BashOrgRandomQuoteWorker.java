@@ -5,6 +5,7 @@ import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -21,12 +22,12 @@ import static com.slon_school.helloslon.core.Helper.BTS;
  * Created by I. Dmitry on 14.07.2016.
  */
 
-public class BashOrgRandomQuoteWorker extends Worker {
-    private ArrayList<Key> keys = new ArrayList<Key>();
-    private static final boolean finishSession = false;
+public class BashOrgRandomQuoteWorker extends Worker implements Helper.additionalInterface {
+    //private ArrayList<Key> keys = new ArrayList<Key>();
+    //private static final boolean finishSession = false;
     private String quote;
     private boolean hasQuote;
-
+    //TODO Check it
     public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));

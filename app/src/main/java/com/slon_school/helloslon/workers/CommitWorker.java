@@ -3,6 +3,7 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -18,16 +19,13 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 /**
  * Created by Noob_upgraded on 19.07.2016.
  */
-public class CommitWorker extends Worker {
-    private ArrayList<Key> keys = new ArrayList<>();
-    private final static boolean finishSession = false;
+public class CommitWorker extends Worker implements Helper.additionalInterface {
     private String commit;
     private boolean hasCommit;
 
     public CommitWorker(Activity activity) {
         super(activity);
-        keys.add(new Key(activity.getString(R.string.commit_keyword0))); //TODO delete this key
-        keys.add(new Key(activity.getString(R.string.commit_keyword1)));
+        keys.add(new Key(activity.getString(R.string.commit_keyword0)));
     }
 
     @Override
