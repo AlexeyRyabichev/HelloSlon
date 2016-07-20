@@ -1,6 +1,6 @@
 package com.slon_school.helloslon;
 
-import org.junit.Test;
+import org.junit    .Test;
 
 import static junit.framework.Assert.assertEquals;
 
