@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -18,14 +19,12 @@ import static com.slon_school.helloslon.core.Helper.BTS;
  * Created by I. Dmitry on 10.07.2016.
  */
 
-public class FateBallWorker extends Worker {
+public class FateBallWorker extends Worker implements Helper.additionalInterface {
 
     private final static int MODE_GENERAL = 0;
     private final static int MODE_LUCK = 1;
     private final static int MODE_UNRECOGNIZED = 2;
-    private final static boolean finishSession = false;
     private ArrayList<String> predictionList = new ArrayList<String>();
-    private ArrayList<Key> keys = new ArrayList<Key>();
     private ArrayList<Key> luckKeys = new ArrayList<Key>();
     private ArrayList<Key> generalKeys = new ArrayList<Key>();
 

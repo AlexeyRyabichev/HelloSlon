@@ -5,6 +5,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -16,12 +17,10 @@ import static com.slon_school.helloslon.core.Helper.isDecimalNumber;
 import static com.slon_school.helloslon.core.Helper.string2long;
 
 /**
- * Created by Noob_upgraded on 19.07.2016.
+ * Created by I. Dmitry on 19.07.2016.
  */
-public class FlashlightWorker extends Worker {
-    private ArrayList<Key> keys = new ArrayList<>();
-    private final static boolean finishSession = false;
-    private long time = 20000;
+public class FlashlightWorker extends Worker implements Helper.additionalInterface{
+    private long time;
     public FlashlightWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.flashlight_keyword0)));
@@ -36,9 +35,13 @@ public class FlashlightWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+        final long multiple = 1000;
+        final String defaultTime = "60";
         String sTime = arguments.toString();
         if (isDecimalNumber(sTime)) {
-            time = string2long(sTime) * 1000;
+            time = string2long(sTime) * multiple;
+        } else {
+            time = string2long(defaultTime) * multiple;
         }
         final Camera camera = Camera.open();
         Parameters parameters = camera.getParameters();
