@@ -25,6 +25,7 @@ public class BashOrgRandomQuoteWorker extends Worker implements Helper.additiona
     public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));
+        keys.add(new Key("цитата из башорг"));
     }
 
     public boolean getQuote() throws Exception { //TODO move this to Helper (Experimental!!!)
