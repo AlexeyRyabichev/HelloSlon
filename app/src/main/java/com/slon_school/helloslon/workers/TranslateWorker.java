@@ -3,6 +3,8 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -59,7 +61,9 @@ public class TranslateWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if (state == State.Translate) {
+        if ((state == State.FirstTime) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
+            return new HelpMan(R.raw.translate_help, activity).getHelp();
+        } else if (state == State.Translate) {
             state = State.FirstTime;
 
             return post(arguments.toString());

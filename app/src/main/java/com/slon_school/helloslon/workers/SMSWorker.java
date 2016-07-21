@@ -53,7 +53,7 @@ public class SMSWorker extends Worker {
         Key exit = new Key("отмена");
 
         if ((arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) && (state == State.Start) ){
-            return new HelpMan("SMSWorker",activity).getHelp();
+            return new HelpMan(R.raw.sms_help,activity).getHelp();
         } else if (arguments.get().size() == 0 && state == State.Start) {
               return start(arguments);
         } else if (state == State.PhoneNumber) {
