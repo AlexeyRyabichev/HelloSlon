@@ -3,12 +3,15 @@
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
     <string name="button_text">Talk to me</string>
     <string name="cp1251">windows-1251</string>
-    <string name="no_connetion">Пожалуйста, включите Wi-Fi</string>
+    <string name="no_connection">Пожалуйста, включите Wi-Fi</string>
     <string name="shimmer">I\'m listening you</string>
     <string name="imageTransitionName">SlonImage</string>
 
     <string name="fateball_keyword0">шар судьбы</string>
-    <string name="fateball_keyword1">шар</string>
+    <string name="fateball_general_key0">предскажи судьбу</string>
+    <string name="fateball_general_key1">хочу предсказани</string>
+    <string name="fateball_luck_key0">сегодня удачный день</string>
+    <string name="fateball_luck_key1">мне повезет</string>
     <string name="fateball_general_string0">сегодня тебя ждет отличный день!</string>
     <string name="fateball_general_string1">а! что ты говоришь?</string>
     <string name="fateball_general_string2">не думай о плохом, и все будек ок</string>
@@ -19,58 +22,56 @@
     <string name="fateball_general_string7">по моим источникам, фортуна тебе сегодня благоволит</string>
     <string name="fateball_general_string8">не стоит сегодня слишком рисковать</string>
     <string name="fateball_general_string9">предсказания звезд весьма туманны, спроси попозже</string>
+    <string name="fateball_general_string10">тебе лучше этого не знать, правда</string>
+    <string name="fateball_general_string11">лучше бы тебе этого не знать</string>
     <string name="fateball_luck_string0">да</string>
     <string name="fateball_luck_string1">нет</string>
     <string name="fateball_luck_string2">не знаю</string>
     <string name="fateball_luck_string3">возможно</string>
-    <string name="fateball_luck_string4">не очень</string>
-    <string name="fateball_luck_string5">я устал, отстань!</string>
+    <string name="fateball_luck_string4">маловероятно</string>
+    <string name="fateball_luck_string5">да, тебя ждёт удачный день</string>
+    <string name="fateball_luck_string6">нет, сегодня явно не твой день</string>
     <string name="fateball_unrecognized_string0">повтори еще раз, пожалуйста</string>
     <string name="fateball_unrecognized_string1">не понял тебя, повтори еще раз</string>
     <string name="fateball_unrecognized_string2">что?</string>
-    <string name="fateball_general_key0">предскажи судьбу</string>
-    <string name="fateball_general_key1">хочу предсказание</string>
-    <string name="fateball_general_key2">хочу предсказания</string>
-    <string name="fateball_luck_key0">сегодня удачный день</string>
-    <string name="fateball_luck_key1">мне повезет</string>
+    <string name="fateball_unrecognized_string3">А?</string>
+    <string name="fateball_unrecognized_string4">Не понимаю тебя. Возможно, дело в Yandex Speech Kit?</string>
 
-    <string name="email_keyword0">смс</string>
-    <string name="email_keyword1">отправить смс</string>
-    <string name="email_keyword2">послать смс</string>
-    <string name="email_sending">отправляю Email</string>
-    <string name="email_unknown">А что это за email такой -</string>
-    <string name="email_unrecognized_string0">Не понял, кому отправить?</string>
-    <string name="email_smsto">smsto:</string>
+    <string name="help0">help</string>
+    <string name="help1">помощь</string>
+    <string name="help_not_found">Мануал не найден</string>
 
     <string name="bashorg_keyword0">башорг</string>
-    <string name="bashorg_keyword1">цитатка с башорга</string>
-    <string name="bashorg_keyword2">цитата с башорга</string>
-    <string name="bashorg_keyword3">мне скучно</string>
     <string name="bashorg_get_quote">Получай свою цитатку!</string>
     <string name="bashorg_url">http://bash.im/random</string>
+    <string name="bashorg_indicator">div class="text"</string>
     <string name="bashorg_cannot_access_quote">Упс, не получилось загрузить цитатку</string>
 
-    <string name="help_keyword0">help</string>
-    <string name="help_keyword1">хелп</string>
-    <string name="help_keyword2">помоги</string>
-    <string name="help_keyword3">хелл</string>
-    <string name="help_keyword4">hell</string>
-    <string name="help_get_all0">Какой именно help тебе нужен?</string>
-    <string name="help_get_all1">Доступные голосовые команды:</string>
-    <string name="help_get_all2">скажи: help/помоги [номер команды]</string>
-    <string name="help_failed_response">Извини, но такого раздела нет:</string>
-    <string name="help_key_browser">Браузер</string>
-    <string name="help_browser">Браузер</string>
-    <string name="help_key_bashorg">Bashorg</string>
-    <string name="help_bashorg0">Просто скажи:</string>
-    <string name="help_bashorg1">И получай свою цитатку</string>
-    <string name="help_key_fateball">Шар судьбы</string>
-    <string name="help_fateball">Шар судьбы</string>
-
     <string name="xkcd_keyword0">комикс</string>
-    <string name="xkcd_keyword1">комиксы</string>
-    <string name="xkcd_keyword2">хочу комикс</string>
-    <string name="xkcd_keyword3">хочу комиксы</string>
+    <string name="xkcd_indicator">img border=0 src=</string>
     <string name="xkcd_url">http://xkcd.ru/random</string>
     <string name="xkcd_failed_image_load">Извини, не удалось загрузить комикс</string>
+
+    <string name="flashlight_keyword0">фонарь</string>
+    <string name="flashlight_keyword1">фонарик</string>
+    <string name="flashlight_on">включи</string>
+    <string name="flashlight_off">выключи</string>
+
+    <string name="commit_keyword0">commit</string>
+    <string name="commit_url">http://whatthecommit.com/index.txt</string>
+    <string name="commit_cannot_access">Не удалось получить коммит</string>
+
+    <string name="launch_keyword0">запуск</string>
+    <string name="launch_keyword1">запустить</string>
+
+    <string name="browser_keyword0">найди</string>
+    <string name="browser_keyword1">поиск</string>
+    <string name="browser_keyword2">интернет</string>
+    <string name="browser_keyword3">браузер</string>
+    <string name="browser_keyword4">яндекс</string>
+    <string name="browser_keyword5">искать</string>
+    <string name="browser_keyword6">найти</string>
+    <string name="browser_keyword_google">google</string>
+    <string name="browser_google">https://www.google.ru/search?q=</string>
+    <string name="browser_yandex">http://www.yandex.ru?q=</string>
 </resources>

@@ -192,7 +192,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     public void onError(Recognizer recognizer, Error error) {
 //        waitingForResponse.setVisibility(View.GONE);
         if (error.getCode() == Network_Error)
-            Toast.makeText(MainActivity.this, getString(R.string.no_connetion), Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.this, getString(R.string.no_connection), Toast.LENGTH_LONG).show();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
