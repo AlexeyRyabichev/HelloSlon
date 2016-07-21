@@ -45,7 +45,7 @@ public class TestWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         ArrayList<String> tmp;
-        Response helloWorld = new Response("Слушаю" , false);
+        Response helloWorld = new Response("Привет" , false);
         return helloWorld;
     }
 }
