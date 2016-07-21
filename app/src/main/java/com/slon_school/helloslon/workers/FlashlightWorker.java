@@ -5,6 +5,7 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
@@ -33,6 +34,10 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return new HelpMan(R.raw.flashlight_help,activity).getHelp();
+        }
+
         final long MULTIPLE = 1000;
         final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();
