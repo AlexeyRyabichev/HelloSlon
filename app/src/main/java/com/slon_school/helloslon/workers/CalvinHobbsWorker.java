@@ -25,6 +25,7 @@ public class CalvinHobbsWorker extends Worker{
     public CalvinHobbsWorker( Activity activity ) {
         super( activity );
         keys.add(new Key("кельвин и хоббс"));
+        keys.add(new Key("келвин и хоббс"));
     }
 
     @Override
@@ -71,7 +72,7 @@ public class CalvinHobbsWorker extends Worker{
     public boolean getQuote() throws Exception {
         String line;
         Random random = new Random();
-        Integer tmp = random.nextInt(551);
+        Integer tmp = Math.abs(random.nextInt(551));
         URL url = new URL("http://calvin-hobbs.ilost.ru/comix.php?num=" + tmp.toString());
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
                 activity.getString(R.string.cp1251)));
