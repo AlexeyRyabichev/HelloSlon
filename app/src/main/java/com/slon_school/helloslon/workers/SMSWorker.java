@@ -26,7 +26,7 @@ public class SMSWorker extends Worker {
 
     public SMSWorker(Activity activity) {
         super(activity);
-        keys = new ArrayList<Key>();
+        keys = new ArrayList<>();
         keys.add(new Key("отправь смс"));
         keys.add(new Key("написать смс"));
         keys.add(new Key("отправить смс"));
