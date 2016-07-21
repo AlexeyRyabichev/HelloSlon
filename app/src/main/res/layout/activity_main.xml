@@ -24,13 +24,6 @@
         android:id="@+id/dialog_window"
         android:layout_above="@id/recording_button"/>
 
-    <com.lusfold.spinnerloading.SpinnerLoading
-        android:background="@android:color/transparent"
-        android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_height="wrap_content"
-        android:id="@+id/waitingForResponse"/>
-
     <com.romainpiel.shimmer.ShimmerTextView
         android:id="@+id/progressBar"
         android:text="@string/shimmer"

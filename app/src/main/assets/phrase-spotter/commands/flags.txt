@@ -1,32 +1,9 @@
-# FEATURE EXTRACTION OPTIONS:
---sample-frequency=16000
---dither=0.1
-# CMN OPTIONS:
---cmn_window=600
---cmn_latency=50
-# RTF OPTIONS:
---update_interval=3
---beam_update=0.01
---max_beam_update=0.05
---rt_min=0.5
---rt_max=0.9
-# DICTATION OPTIONS:
---allow-multi-utt=true
---inter_utt_sil=120
-# MFCC OPTIONS:
---use-energy=false   # only non-default option.
---vtln-low=0
-# DECODER OPTIONS:
---beam=13
---lattice_beam=2.5
---max_active=7000
-# DELTA OPTIONS:
-# WORD BOUNDARY OPTIONS:
-# RNNLM OPTIONS:
-# YALDI OPTIONS:
---silence-phones=1:2:3:4:5:6:7:8:9:10:11:12:13:14:15
---splice-frames=-10:-9:-8:-7:-6:-5:-4:-3:-2:-1:0:1:2:3:4:5:6:7:8:9:10
---acoustic-scale=0.1
---topn-count=5
---lda-left-context=3
---lda-right-context=3
+sample-rate 16000
+feat-pipeline cmn:lda:splice
+beam-update 0.01
+max-beam-update 0.25
+beam 11
+beam-delta 0.5
+splice-frames -10:-9:-8:-7:-6:-5:-4:-3:-2:-1:0:1:2:3:4:5:6:7:8:9:10
+acoustic-scale 0.0909091
+commands 6:8:9
