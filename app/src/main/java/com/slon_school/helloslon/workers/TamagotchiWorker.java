@@ -108,11 +108,11 @@ public class TamagotchiWorker extends Worker {
             if(arguments.get().get(0).equals("рисуй")) {
                 ArrayList<String> _buf1 = new ArrayList<String>();
                 _buf1.add(printPet());
-                return new Response("", true, _buf1);
+                return new Response(printText(), true, _buf1);
             }
             ArrayList<String> _buf2 = new ArrayList<String>();
             _buf2.add(printPet());
-            return new Response("", true, _buf2);
+            return new Response(printText(), true, _buf2);
         }
         return new Response( "Приветствие", true);
     }
@@ -159,7 +159,11 @@ public class TamagotchiWorker extends Worker {
         else if(Sleep) res += picArr.get(3);
         else if(Energy < 30) res += picArr.get(1);
         else res += picArr.get(0);
-
+        return res;
+    }
+    private String printText(){
+        String res = new String();
+        res = "";
         res += "Hunger = " + String.valueOf( Hunger ) + "\n";
         res += "Energy = " + String.valueOf( Energy ) + "\n";
         res += "Hygiene = " + String.valueOf( Hygiene ) + "\n";
