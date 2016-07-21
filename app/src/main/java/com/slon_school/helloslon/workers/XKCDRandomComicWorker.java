@@ -18,6 +18,7 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 
 public class XKCDRandomComicWorker extends Worker implements Helper.additionalInterface {
     private String linkToImage = "";
+    ArrayList<Key> keys = new ArrayList<>();
     private boolean hasImage = false;
 
     public XKCDRandomComicWorker(Activity activity) {

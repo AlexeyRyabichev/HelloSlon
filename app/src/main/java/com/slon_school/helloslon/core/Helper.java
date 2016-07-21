@@ -3,8 +3,6 @@ package com.slon_school.helloslon.core;
 import android.app.Activity;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 public class Helper {
     public static void BTS(Integer id) {
         Toast.makeText(new Activity(), "Упс, ошибочка №" + id.toString() + ". Пожалуйста, сообщи о ней разрабу HelloSlom", Toast.LENGTH_LONG).show();
@@ -36,6 +34,5 @@ public class Helper {
 
     public interface additionalInterface {
         boolean FINISH_SESSION = false;
-        ArrayList<Key> keys = new ArrayList<>();
     }
 }

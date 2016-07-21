@@ -20,6 +20,7 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 
 public class BashOrgRandomQuoteWorker extends Worker implements Helper.additionalInterface {
     private String quote;
+    ArrayList<Key> keys = new ArrayList<>();
     private boolean hasQuote;
     public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
@@ -53,7 +54,7 @@ public class BashOrgRandomQuoteWorker extends Worker implements Helper.additiona
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan("BashOrgRandomQuoteWorker",activity).getHelp();
+            return new HelpMan(R.raw.bashorg_random_quote_help,activity).getHelp();
         }
 
         final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
