@@ -3,6 +3,8 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -59,7 +61,9 @@ public class TranslateWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if (state == State.Translate) {
+        if ((state == State.FirstTime) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
+            return new HelpMan(R.raw.translate_help, activity).getHelp();
+        } else if (state == State.Translate) {
             state = State.FirstTime;
 
             return post(arguments.toString());
@@ -75,15 +79,11 @@ public class TranslateWorker extends Worker {
         }
     }
 
-
-
     private Response post(String request) {
         output = "";
         isQuoteGot = false;
 
         this.request = request;
-
-
 
         sendRequestLang();
         if (isQuoteGot) {
@@ -96,20 +96,10 @@ public class TranslateWorker extends Worker {
                 return new Response("Не удалось перевести", false);
             }
 
-
-
         } else {
             return new Response("Не удалось определить язык", false);
         }
-
-
-
-
-
     }
-
-
-
 
     private void sendRequestLang() {
         isQuoteGot = false;
@@ -138,10 +128,6 @@ public class TranslateWorker extends Worker {
         }
 
     }
-
-
-
-
 
     public boolean getLang(String request) throws Exception {
         String line;
@@ -176,11 +162,7 @@ public class TranslateWorker extends Worker {
         } else {
             return false;
         }
-
-
     }
-
-
 
     private void sendTranslate() {
         isQuoteGot = false;
@@ -199,12 +181,7 @@ public class TranslateWorker extends Worker {
             }
         };
 
-
         thread.start();
-
-
-
-
 
         try {
             countDownLatch.await();
@@ -243,12 +220,5 @@ public class TranslateWorker extends Worker {
         } else {
             return false;
         }
-
-
     }
-
-
-
-
-
 }
