@@ -34,8 +34,7 @@ public class Core {
 
 	public Core (Activity activity) {
 		this.activity = activity;
-		workers = new ArrayList<Worker>();
-		//TODO add all workers
+		workers = new ArrayList<>();
 
 		workers.add(new TranslateWorker(activity));
 		workers.add(new BrowserWorker(activity));

@@ -10,11 +10,7 @@ import java.io.InputStream;
 
 import static com.slon_school.helloslon.core.Helper.BTS;
 
-/**
- * Created by I. Dmitry on 17.07.2016.
- */
-public class HelpMan {
-    private boolean finishSession = false;
+public class HelpMan implements Helper.additionalInterface {
     private int hid;
     private Activity activity;
     public HelpMan(String helpID, Activity activity) {
@@ -32,6 +28,9 @@ public class HelpMan {
             case "PhoneWorker": {
                 hid = 3;
             } break;
+            case "SMSWorker": {
+                hid = 4;
+            }
             default: {
                 hid = -1;
             }
@@ -55,6 +54,9 @@ public class HelpMan {
             case 3: {
                 inputStream = activity.getResources().openRawResource(R.raw.phone_help);
             } break;
+            case 4: {
+                inputStream = activity.getResources().openRawResource(R.raw.sms_help);
+            }
             default: {
                 isFound = false;
             }
@@ -69,7 +71,7 @@ public class HelpMan {
         } else {
             command = activity.getString(R.string.help_not_found);
         }
-        return new Response(command, finishSession);
+        return new Response(command, FINISH_SESSION);
     }
 
 
