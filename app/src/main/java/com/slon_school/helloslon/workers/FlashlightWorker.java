@@ -5,23 +5,20 @@ import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
 import static com.slon_school.helloslon.core.Helper.isDecimalNumber;
 import static com.slon_school.helloslon.core.Helper.string2long;
 
-/**
- * Created by Noob_upgraded on 19.07.2016.
- */
-public class FlashlightWorker extends Worker {
-    private ArrayList<Key> keys = new ArrayList<>();
-    private final static boolean finishSession = false;
-    private long time = 20000;
+public class FlashlightWorker extends Worker implements Helper.additionalInterface{
+    private long time;
+    ArrayList<Key> keys = new ArrayList<>();
     public FlashlightWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.flashlight_keyword0)));
@@ -36,29 +33,36 @@ public class FlashlightWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return new HelpMan(R.raw.flashlight_help,activity).getHelp();
+        }
+
+        final long MULTIPLE = 1000;
+        final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();
         if (isDecimalNumber(sTime)) {
-            time = string2long(sTime) * 1000;
+            time = string2long(sTime) * MULTIPLE;
+        } else {
+            time = DEFAULT_TIME * MULTIPLE;
         }
-        final Camera camera = Camera.open();
-        Parameters parameters = camera.getParameters();
+        final Camera CAMERA = Camera.open();
+        Parameters parameters = CAMERA.getParameters();
         parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
-        camera.setParameters(parameters);
+        CAMERA.setParameters(parameters);
         Thread thread = new Thread() {
 
             public void run() {
                 super.run();
                 try {
-                    camera.startPreview();
+                    CAMERA.startPreview();
                     sleep(time);
-                    camera.stopPreview();
+                    CAMERA.stopPreview();
                 } catch (Exception e) {
-                    BTS(16);
                     e.printStackTrace();
                 }
             }
         };
         thread.start();
-        return new Response("", finishSession);
+        return new Response("", FINISH_SESSION);
     }
 }

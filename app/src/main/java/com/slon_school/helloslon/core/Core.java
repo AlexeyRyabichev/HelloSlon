@@ -25,6 +25,7 @@ import com.slon_school.helloslon.workers.NotesWorker;
 >>>>>>> develop
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
+import com.slon_school.helloslon.workers.TamagotchiWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
 <<<<<<< HEAD
@@ -50,10 +51,8 @@ public class Core {
 
 	public Core (Activity activity) {
 		this.activity = activity;
-		workers = new ArrayList<Worker>();
-		//TODO add all workers
-		workers.add(new VkpostWorker(activity));
-		workers.add(new NotesWorker(activity));
+		workers = new ArrayList<>();
+
 		workers.add(new TranslateWorker(activity));
 		workers.add(new BrowserWorker(activity));
 		workers.add(new TestWorker(activity));
@@ -66,11 +65,8 @@ public class Core {
  		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
-<<<<<<< HEAD
-
-		workers.add(new EmailSendWorker(activity));
-
-=======
+		workers.add(new DilbertWorker(activity));
+		workers.add(new TamagotchiWorker(activity));
 		workers.add(new FlashlightWorker(activity));
 		workers.add(new CommitWorker(activity));
 >>>>>>> develop

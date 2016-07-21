@@ -1,53 +1,29 @@
 package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
+import android.util.Pair;
 import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
+import static com.slon_school.helloslon.core.Helper.getStringFromWeb;
 
-/**
- * Created by I. Dmitry on 14.07.2016.
- */
-
-public class BashOrgRandomQuoteWorker extends Worker {
-    private ArrayList<Key> keys = new ArrayList<Key>();
-    private static final boolean finishSession = false;
+public class BashOrgRandomQuoteWorker extends Worker implements Helper.additionalInterface {
     private String quote;
-    private boolean hasQuote;
+    Pair<String,Boolean> pair;
+    ArrayList<Key> keys = new ArrayList<>();
 
     public BashOrgRandomQuoteWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));
-    }
-
-    public boolean getQuote() throws Exception {
-        String line;
-        URL url = new URL(activity.getString(R.string.bashorg_url));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), activity.getString(R.string.cp1251)));
-        while (true) {
-            line = reader.readLine();
-            if (line == null) {
-                BTS(4);
-                break;
-            }
-            if (line.contains("<div class=\"text\">")) {
-                quote = line;
-                return true;
-            }
-        }
-        return false;
     }
 
     @Override
@@ -59,37 +35,37 @@ public class BashOrgRandomQuoteWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan("BashOrgRandomQuoteWorker",activity).getHelp();
+            return new HelpMan(R.raw.bashorg_random_quote_help,activity).getHelp();
         }
 
-        final CountDownLatch countDownLatch = new CountDownLatch(1);
+        final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
             Thread thread = new Thread() {
                 @Override
                 public void run() {
                     super.run();
                     try {
-                        hasQuote = getQuote();
-                        countDownLatch.countDown();
+                        pair = getStringFromWeb(activity.getString(R.string.bashorg_url), "div class=\"text", activity.getString(R.string.cp1251));
+                        COUNT_DOWN_LATCH.countDown();
                     } catch (Exception e) {
-                        BTS(5);
                         e.printStackTrace();
                     }
                 }
             };
             thread.start();
         try {
-            countDownLatch.await();
+            COUNT_DOWN_LATCH.await();
         } catch (InterruptedException e) {
-            BTS(6);
             e.printStackTrace();
         }
+        boolean hasQuote = pair.second;
+        quote = pair.first;
         if (hasQuote) {
             washQuote();
         } else {
             Toast.makeText(activity,quote, Toast.LENGTH_LONG).show();
             quote = activity.getString(R.string.bashorg_cannot_access_quote);
         }
-        return new Response(quote,finishSession);
+        return new Response(quote,FINISH_SESSION);
     }
 
     private void washQuote() {
