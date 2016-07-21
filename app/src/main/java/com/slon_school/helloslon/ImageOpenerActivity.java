@@ -45,22 +45,28 @@ public class ImageOpenerActivity extends AppCompatActivity implements View.OnTou
         imageLoader.displayImage(url, imageView);
         relativeLayout = (RelativeLayout) findViewById(R.id.relaytiveLayout);
         assert relativeLayout != null;
-        relativeLayout.setOnTouchListener(this);
+        imageView.setOnTouchListener(this);
     }
 
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
 
+        if( imageView.getCurrentZoom() > 1)
+            return true;
+
         switch(motionEvent.getAction()){
             case MotionEvent.ACTION_DOWN:
                 first_y = motionEvent.getY();
+                second_y = first_y;
+                Log.d("DOWN", "" + motionEvent.getY());
                 break;
             case MotionEvent.ACTION_UP:
-                second_y = motionEvent.getX();
+                second_y = motionEvent.getY();
+                Log.d("UP", "" + motionEvent.getY());
                 break;
         }
 
-        if(Math.abs(second_y - first_y) >= 30)
+        if(Math.abs(second_y - first_y) >= 200)
             onBackPressed();
         return true;
 

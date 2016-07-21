@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
@@ -14,7 +15,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import com.lusfold.spinnerloading.SpinnerLoading;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -24,6 +24,7 @@ import com.slon_school.helloslon.core.Core;
 import com.slon_school.helloslon.core.Response;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import ru.yandex.speechkit.Error;
@@ -47,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
-    //private SpinnerLoading waitingForResponse;
     private ShimmerTextView shimmerTextView;
     final int Network_Error= 7;
 
@@ -66,16 +66,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         RecyclerView.ItemAnimator itemAnimator = new SlideInUpAnimator();
         dialogList = new ArrayList<>();
         adapter = new RecyclerViewAdapter(dialogList, this);
-//        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
-
-        //"Waiting response from core" animation declaration
-//        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
-//        assert waitingForResponse != null;
-//        waitingForResponse.setVisibility(View.GONE);
-//        waitingForResponse.setCircleRadius(10);
-//        waitingForResponse.setPaintMode(0);
 
         //"We're listening you" animation declaration
         shimmerTextView = (ShimmerTextView) findViewById(R.id.progressBar);
@@ -122,7 +114,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
             requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
         } else {
-//            PhraseSpotter.start();
+            PhraseSpotter.start();
         }
     }
 
@@ -147,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecordingDone(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.GONE);
-//        waitingForResponse.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -162,12 +153,10 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
-//        waitingForResponse.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-//        waitingForResponse.setVisibility(View.GONE);
         shimmerTextView.setVisibility(View.GONE);
 
         Response question = new Response(recognition.getBestResultText(), false);
@@ -190,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-//        waitingForResponse.setVisibility(View.GONE);
         if (error.getCode() == Network_Error)
             Toast.makeText(MainActivity.this, getString(R.string.no_connection), Toast.LENGTH_LONG).show();
     }
@@ -222,12 +210,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPhraseSpotted(String s, int i) {
-        Toast.makeText(this, "I can hear you2" + s, Toast.LENGTH_LONG).show();
+        createAndStartRecognizer();
     }
 
     @Override
     public void onPhraseSpotterStarted() {
-        Toast.makeText(this, "I can hear you", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -259,9 +246,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @TargetApi(Build.VERSION_CODES.M)
     private void startPhraseSpotter() {
         final Context context = this;
-        if (context == null) {
-            return;
-        }
 
         if (ContextCompat.checkSelfPermission(context, RECORD_AUDIO) != PERMISSION_GRANTED) {
             requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
@@ -271,6 +255,14 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         }
     }
 
-
-
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for (String permission: permissions) {
+            Log.d("" + permission, "" + requestCode);
+            if(Objects.equals(permission, RECORD_AUDIO) && requestCode ==  REQUEST_PERMISSION_CODE)
+                startPhraseSpotter();
+        }
+    }
 }

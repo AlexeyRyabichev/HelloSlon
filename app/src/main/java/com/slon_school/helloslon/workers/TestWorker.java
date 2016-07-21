@@ -45,11 +45,7 @@ public class TestWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         ArrayList<String> tmp;
-        tmp = new ArrayList<>();
-        tmp.add("https://im3-tub-ru.yandex.net/i?id=be1f6bd3ed95ee13fc4c810ea32f8cdd&n=33&h=215&w=296");
-        tmp.add("https://im3-tub-ru.yandex.net/i?id=4bb42352757affaaed28d9bf3c8631ef&n=33&h=215&w=382");
-        tmp.add("https://im1-tub-ru.yandex.net/i?id=95ce2a93943065f927324254195bbba5-16-16f-16161&n=33&h=215&w=382");
-        Response helloWorld = new Response("Привет" , false, tmp);
+        Response helloWorld = new Response("Привет" , false);
         return helloWorld;
     }
 }
