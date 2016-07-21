@@ -13,6 +13,7 @@ import com.slon_school.helloslon.workers.FlashlightWorker;
 import com.slon_school.helloslon.workers.GallowsWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
+import com.slon_school.helloslon.workers.TamagotchiWorker;
 import com.slon_school.helloslon.workers.TestWorker;
 import com.slon_school.helloslon.workers.TownWorker;
 import com.slon_school.helloslon.workers.TranslateWorker;
@@ -47,6 +48,8 @@ public class Core {
  		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
+		workers.add(new DilbertWorker(activity));
+		workers.add(new TamagotchiWorker(activity));
 		workers.add(new FlashlightWorker(activity));
 		workers.add(new CommitWorker(activity));
 		workers.add(new GallowsWorker(activity));

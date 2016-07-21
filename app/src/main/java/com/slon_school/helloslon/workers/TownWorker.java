@@ -25,6 +25,7 @@ public class TownWorker extends Worker {
     boolean eog;
     private ArrayList<Key> keys;
     Map<String, ArrayList<String>> used_towns;
+    Map<String, ArrayList<String>>  special_towns;
     boolean just_started;
     char lastChar;
 
@@ -37,11 +38,22 @@ public class TownWorker extends Worker {
         eog = false;
         keys = new ArrayList<>();
         used_towns = new HashMap<String, ArrayList<String>>();
+        special_towns = new HashMap<String, ArrayList<String>>();
         just_started = true;
         lastChar = '0';
 
         fillKeys( keys, activity );
         usedInit();
+
+        special_towns.clear();
+        for ( char c = 'а'; c <= 'я'; c++ ) {
+            special_towns.put( String.valueOf( c ), new ArrayList<String>() );
+        }
+        special_towns.get("н").add("новый уренгой");
+        special_towns.get("н").add("нижний новгрорд");
+        special_towns.get("в").add("великий новгород");
+        special_towns.get("н").add("новый орлеан");
+        special_towns.get("н").add("нижний тагил");
     }
 
     @Override
@@ -158,10 +170,13 @@ public class TownWorker extends Worker {
         if ( used_towns.get( String.valueOf( town.charAt( 0 ) ) ).contains( town) )
             return 1;
 
+        if(special_towns.get( String.valueOf( town.charAt( 0 ) ) ).contains( town) )
+            return 1;
 
         RawFileHelper f1 = new RawFileHelper(activity, town.charAt( 0 ));
         String str = "";
         while(!(str = f1.readln()).equals( "" )) {
+            str = str.replaceAll( "ё", "е" );
             if(str.toLowerCase().trim().equalsIgnoreCase( town.trim() )) {
                 f1.dispose();
                 return 2;

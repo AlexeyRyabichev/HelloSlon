@@ -1,37 +1,36 @@
-Executing command: /tmp/modelcreator/kaldi/egs/yndx/s5/ext/model_creator/model_creator.sh --text /tmp/tmp1RjV1h/text.txt --path_to_model /tmp/tmp1RjV1h --model_name a556c5ca-4a64-11e6-817a-155b48e03414 --trap_noise false --equiprob false --unk_role normal --lang ru --spotter falseTreating /tmp/tmp1RjV1h/text.txt as a training corpus
-Dictionary preparation succeeded
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/silence_phones.txt ...
---> reading /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/silence_phones.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/silence_phones.txt is OK
+Executing command: /tmp/modelcreator/kaldi/egs/yndx/s5/ext/model_creator/model_creator.sh --text /tmp/tmp1YKGtp/phrases.txt --path_to_model /tmp/tmp1YKGtp --model_name 71f7a730-4e9c-11e6-817a-2910e25e93c5 --trap_noise false --equiprob false --unk_role normal --lang ru --spotter true --commands_mode true --embedded trueDictionary preparation succeeded
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/silence_phones.txt ...
+--> reading /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/silence_phones.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/silence_phones.txt is OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/optional_silence.txt ...
---> reading /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/optional_silence.txt is OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/optional_silence.txt ...
+--> reading /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/optional_silence.txt is OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/nonsilence_phones.txt ...
---> reading /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/nonsilence_phones.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/nonsilence_phones.txt is OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/nonsilence_phones.txt ...
+--> reading /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/nonsilence_phones.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/nonsilence_phones.txt is OK
 
 Checking disjoint: silence_phones.txt, nonsilence_phones.txt
 --> disjoint property is OK.
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/lexicon.txt
---> reading /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/lexicon.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/lexicon.txt is OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/lexicon.txt
+--> reading /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/lexicon.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/lexicon.txt is OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/extra_questions.txt ...
---> reading /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/extra_questions.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/extra_questions.txt is OK
---> SUCCESS [validating dictionary directory /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict]
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/extra_questions.txt ...
+--> reading /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/extra_questions.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/extra_questions.txt is OK
+--> SUCCESS [validating dictionary directory /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict]
 
-**Creating /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/lexiconp.txt from /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict/lexicon.txt
+**Creating /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/lexiconp.txt from /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict/lexicon.txt
 prepare_lang.sh: validating output directory
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones.txt ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones.txt is OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones.txt ...
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones.txt is OK
 
 Checking words.txt: #0 ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/words.txt has "#0"
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/words.txt is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/words.txt has "#0"
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/words.txt is OK
 
 Checking disjoint: silence.txt, nonsilence.txt, disambig.txt ...
 --> silence.txt and nonsilence.txt are disjoint
@@ -42,202 +41,205 @@ Checking disjoint: silence.txt, nonsilence.txt, disambig.txt ...
 Checking sumation: silence.txt, nonsilence.txt, disambig.txt ...
 --> summation property is OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/context_indep.{txt, int, csl} ...
---> 15 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/context_indep.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/context_indep.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/context_indep.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/context_indep.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/context_indep.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/context_indep.{txt, int, csl} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/context_indep.{txt, int, csl} ...
+--> 15 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/context_indep.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/context_indep.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/context_indep.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/context_indep.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/context_indep.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/context_indep.{txt, int, csl} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.{txt, int, csl} ...
---> 4 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.{txt, int, csl} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.{txt, int, csl} ...
+--> 4 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.{txt, int, csl} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/nonsilence.{txt, int, csl} ...
---> 192 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/nonsilence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/nonsilence.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/nonsilence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/nonsilence.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/nonsilence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/nonsilence.{txt, int, csl} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/nonsilence.{txt, int, csl} ...
+--> 192 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/nonsilence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/nonsilence.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/nonsilence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/nonsilence.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/nonsilence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/nonsilence.{txt, int, csl} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/silence.{txt, int, csl} ...
---> 15 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/silence.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/silence.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/silence.{txt, int, csl} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/silence.{txt, int, csl} ...
+--> 15 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/silence.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/silence.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/silence.{txt, int, csl} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.{txt, int, csl} ...
---> 1 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.{txt, int, csl} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.{txt, int, csl} ...
+--> 1 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.{txt, int, csl} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/roots.{txt, int} ...
---> 51 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/roots.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/roots.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/roots.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/roots.{txt, int} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/roots.{txt, int} ...
+--> 51 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/roots.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/roots.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/roots.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/roots.{txt, int} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/sets.{txt, int} ...
---> 51 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/sets.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/sets.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/sets.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/sets.{txt, int} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/sets.{txt, int} ...
+--> 51 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/sets.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/sets.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/sets.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/sets.{txt, int} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/extra_questions.{txt, int} ...
---> 10 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/extra_questions.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/extra_questions.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/extra_questions.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/extra_questions.{txt, int} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/extra_questions.{txt, int} ...
+--> 10 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/extra_questions.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/extra_questions.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/extra_questions.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/extra_questions.{txt, int} are OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.{txt, int} ...
---> 207 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.{txt, int} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.{txt, int} ...
+--> 207 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.{txt, int} are OK
 
 Checking optional_silence.txt ...
---> reading /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/optional_silence.txt is OK
+--> reading /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/optional_silence.txt is OK
 
 Checking disambiguation symbols: #0 and #1
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.txt has "#0" and "#1"
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/disambig.txt is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.txt has "#0" and "#1"
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/disambig.txt is OK
 
 Checking topo ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/topo's nonsilence section is OK
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/topo's silence section is OK
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/topo is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/topo's nonsilence section is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/topo's silence section is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/topo is OK
 
 Checking word_boundary.txt: silence.txt, nonsilence.txt, disambig.txt ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.txt doesn't include disambiguation symbols
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.txt is the union of nonsilence.txt and silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones/word_boundary.txt is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.txt doesn't include disambiguation symbols
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.txt is the union of nonsilence.txt and silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones/word_boundary.txt is OK
 
 Checking word_boundary.int and disambig.int
---> generating a 7 word sequence
+--> generating a 33 word sequence
 --> resulting phone sequence from L.fst corresponds to the word sequence
 --> L.fst is OK
---> generating a 23 word sequence
---> resulting phone sequence from L_disambig.fst corresponds to the word sequence
---> L_disambig.fst is OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/oov.{txt, int} ...
---> 1 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/oov.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/oov.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/oov.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/oov.{txt, int} are OK
-
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/L.fst is olabel sorted
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/L_disambig.fst is olabel sorted
---> SUCCESS [validating lang directory /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang]
-Preparing language models for test
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones.txt ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones.txt is OK
-
-Checking words.txt: #0 ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/words.txt has "#0"
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/words.txt is OK
-
-Checking disjoint: silence.txt, nonsilence.txt, disambig.txt ...
---> silence.txt and nonsilence.txt are disjoint
---> silence.txt and disambig.txt are disjoint
---> disambig.txt and nonsilence.txt are disjoint
---> disjoint property is OK
-
-Checking sumation: silence.txt, nonsilence.txt, disambig.txt ...
---> summation property is OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/context_indep.{txt, int, csl} ...
---> 15 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/context_indep.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/context_indep.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/context_indep.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/context_indep.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/context_indep.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/context_indep.{txt, int, csl} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.{txt, int, csl} ...
---> 4 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.{txt, int, csl} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/nonsilence.{txt, int, csl} ...
---> 192 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/nonsilence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/nonsilence.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/nonsilence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/nonsilence.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/nonsilence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/nonsilence.{txt, int, csl} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/silence.{txt, int, csl} ...
---> 15 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/silence.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/silence.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/silence.{txt, int, csl} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.{txt, int, csl} ...
---> 1 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.csl corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.{txt, int, csl} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/roots.{txt, int} ...
---> 51 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/roots.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/roots.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/roots.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/roots.{txt, int} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/sets.{txt, int} ...
---> 51 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/sets.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/sets.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/sets.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/sets.{txt, int} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/extra_questions.{txt, int} ...
---> 10 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/extra_questions.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/extra_questions.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/extra_questions.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/extra_questions.{txt, int} are OK
-
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.{txt, int} ...
---> 207 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.{txt, int} are OK
-
-Checking optional_silence.txt ...
---> reading /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/optional_silence.txt is OK
-
-Checking disambiguation symbols: #0 and #1
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.txt has "#0" and "#1"
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.txt is OK
-
-Checking topo ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/topo's nonsilence section is OK
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/topo's silence section is OK
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/topo is OK
-
-Checking word_boundary.txt: silence.txt, nonsilence.txt, disambig.txt ...
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.txt doesn't include disambiguation symbols
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.txt is the union of nonsilence.txt and silence.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/word_boundary.txt is OK
-
-Checking word_boundary.int and disambig.int
 --> generating a 48 word sequence
---> resulting phone sequence from L.fst corresponds to the word sequence
---> L.fst is OK
---> generating a 57 word sequence
 --> resulting phone sequence from L_disambig.fst corresponds to the word sequence
 --> L_disambig.fst is OK
 
-Checking /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/oov.{txt, int} ...
---> 1 entry/entries in /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/oov.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/oov.int corresponds to /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/oov.txt
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/oov.{txt, int} are OK
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/oov.{txt, int} ...
+--> 1 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/oov.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/oov.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/oov.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/oov.{txt, int} are OK
 
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/L.fst is olabel sorted
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/L_disambig.fst is olabel sorted
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/G.fst is ilabel sorted
---> /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/G.fst has 8 states
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/L.fst is olabel sorted
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/L_disambig.fst is olabel sorted
+--> SUCCESS [validating lang directory /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang]
+Preparing language models for test
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones.txt ...
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones.txt is OK
+
+Checking words.txt: #0 ...
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/words.txt has "#0"
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/words.txt is OK
+
+Checking disjoint: silence.txt, nonsilence.txt, disambig.txt ...
+--> silence.txt and nonsilence.txt are disjoint
+--> silence.txt and disambig.txt are disjoint
+--> disambig.txt and nonsilence.txt are disjoint
+--> disjoint property is OK
+
+Checking sumation: silence.txt, nonsilence.txt, disambig.txt ...
+--> summation property is OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/context_indep.{txt, int, csl} ...
+--> 15 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/context_indep.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/context_indep.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/context_indep.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/context_indep.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/context_indep.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/context_indep.{txt, int, csl} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.{txt, int, csl} ...
+--> 4 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.{txt, int, csl} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/nonsilence.{txt, int, csl} ...
+--> 192 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/nonsilence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/nonsilence.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/nonsilence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/nonsilence.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/nonsilence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/nonsilence.{txt, int, csl} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/silence.{txt, int, csl} ...
+--> 15 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/silence.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/silence.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/silence.{txt, int, csl} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.{txt, int, csl} ...
+--> 1 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.csl corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.{txt, int, csl} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/roots.{txt, int} ...
+--> 51 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/roots.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/roots.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/roots.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/roots.{txt, int} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/sets.{txt, int} ...
+--> 51 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/sets.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/sets.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/sets.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/sets.{txt, int} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/extra_questions.{txt, int} ...
+--> 10 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/extra_questions.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/extra_questions.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/extra_questions.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/extra_questions.{txt, int} are OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.{txt, int} ...
+--> 207 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.{txt, int} are OK
+
+Checking optional_silence.txt ...
+--> reading /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/optional_silence.txt is OK
+
+Checking disambiguation symbols: #0 and #1
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.txt has "#0" and "#1"
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.txt is OK
+
+Checking topo ...
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/topo's nonsilence section is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/topo's silence section is OK
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/topo is OK
+
+Checking word_boundary.txt: silence.txt, nonsilence.txt, disambig.txt ...
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.txt doesn't include disambiguation symbols
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.txt is the union of nonsilence.txt and silence.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/word_boundary.txt is OK
+
+Checking word_boundary.int and disambig.int
+--> generating a 80 word sequence
+--> resulting phone sequence from L.fst corresponds to the word sequence
+--> L.fst is OK
+--> generating a 100 word sequence
+--> resulting phone sequence from L_disambig.fst corresponds to the word sequence
+--> L_disambig.fst is OK
+
+Checking /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/oov.{txt, int} ...
+--> 1 entry/entries in /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/oov.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/oov.int corresponds to /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/oov.txt
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/oov.{txt, int} are OK
+
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/L.fst is olabel sorted
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/L_disambig.fst is olabel sorted
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/G.fst is ilabel sorted
+--> /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/G.fst has 4 states
 --> G.fst did not contain cycles with only disambig symbols or epsilon on the input, and did not contain
 the forbidden symbols <s> or </s> (if present in vocab) on the input or output.
---> SUCCESS [validating lang directory /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg]
+--> SUCCESS [validating lang directory /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg]
 Succeeded in formatting data.
-0.000409037 -0.200834
+0.000212193 -0.0603713
 [info]: LG not stochastic.
-0.000409037 -0.200834
+0.000212193 -0.0603714
 [info]: CLG not stochastic.
-0.0006212 -0.201262
+0.000378832 -0.0666709
 HCLGa is not stochastic
+read
+relabeled
+removed epsilons
 + commands_mode=false
 + equiprob=false
 + lexicon=
@@ -254,19 +256,19 @@ HCLGa is not stochastic
 ++ '[' --path_to_model == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' /tmp/tmp1RjV1h == --config ']'
+++ '[' /tmp/tmp1YKGtp == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --text == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' /tmp/tmp1RjV1h/text.txt == --config ']'
+++ '[' /tmp/tmp1YKGtp/phrases.txt == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --model_name == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' a556c5ca-4a64-11e6-817a-155b48e03414 == --config ']'
+++ '[' 71f7a730-4e9c-11e6-817a-2910e25e93c5 == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --lang == --config ']'
@@ -302,7 +304,7 @@ HCLGa is not stochastic
 ++ '[' --commands_mode == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' false == --config ']'
+++ '[' true == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --equiprob == --config ']'
@@ -323,8 +325,8 @@ HCLGa is not stochastic
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'path_to_model="/tmp/tmp1RjV1h"'
-+++ path_to_model=/tmp/tmp1RjV1h
+++ eval 'path_to_model="/tmp/tmp1YKGtp"'
++++ path_to_model=/tmp/tmp1YKGtp
 ++ false
 ++ shift 2
 ++ true
@@ -342,8 +344,8 @@ HCLGa is not stochastic
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'text="/tmp/tmp1RjV1h/text.txt"'
-+++ text=/tmp/tmp1RjV1h/text.txt
+++ eval 'text="/tmp/tmp1YKGtp/phrases.txt"'
++++ text=/tmp/tmp1YKGtp/phrases.txt
 ++ false
 ++ shift 2
 ++ true
@@ -361,8 +363,8 @@ HCLGa is not stochastic
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'model_name="a556c5ca-4a64-11e6-817a-155b48e03414"'
-+++ model_name=a556c5ca-4a64-11e6-817a-155b48e03414
+++ eval 'model_name="71f7a730-4e9c-11e6-817a-2910e25e93c5"'
++++ model_name=71f7a730-4e9c-11e6-817a-2910e25e93c5
 ++ false
 ++ shift 2
 ++ true
@@ -466,9 +468,9 @@ HCLGa is not stochastic
 ++ true
 ++ '[' -z --commands_mode ']'
 ++ case "$1" in
-+++ echo --commands_mode
 +++ sed 's/^--//'
 +++ sed s/-/_/g
++++ echo --commands_mode
 ++ name=commands_mode
 ++ eval '[ -z "${commands_mode+xxx}" ]'
 +++ '[' -z xxx ']'
@@ -478,11 +480,10 @@ HCLGa is not stochastic
 ++ '[' false == true ']'
 ++ '[' false == false ']'
 ++ was_bool=true
-++ eval 'commands_mode="false"'
-+++ commands_mode=false
+++ eval 'commands_mode="true"'
++++ commands_mode=true
 ++ true
-++ [[ false != \t\r\u\e ]]
-++ [[ false != \f\a\l\s\e ]]
+++ [[ true != \t\r\u\e ]]
 ++ shift 2
 ++ true
 ++ '[' -z --equiprob ']'
@@ -511,14 +512,14 @@ HCLGa is not stochastic
 ++ '[' '!' -z '' ']'
 ++ true
 + help_message='USE: ext/model_creator/build_custom_graphs.sh --path_to_model --text --model_name  <--lang [ru|en|tr|uk] --lexicon --commands_mode [true|false] --equiprob [true|false]  --has_probs [true|false] --trap_noise [true|false]> --unk_role [normal|low|high|none] '
-+ '[' /tmp/tmp1RjV1h/text.txt == '' ']'
-+ '[' '!' -f /tmp/tmp1RjV1h/text.txt ']'
-+ '[' a556c5ca-4a64-11e6-817a-155b48e03414 == '' ']'
-+ '[' /tmp/tmp1RjV1h == '' ']'
-+ lmdir=/tmp/tmp1RjV1h/lm
-+ mkdir -p /tmp/tmp1RjV1h/lm
-+ opts='--text /tmp/tmp1RjV1h/text.txt --lmdir /tmp/tmp1RjV1h/lm --model_name a556c5ca-4a64-11e6-817a-155b48e03414 --lexicon false --commands_mode false --has_probs false --equiprob false --lang ru --trap_noise false --unk_role normal'
-+ ./ext/model_creator/make_lm_and_lexicon.sh --text /tmp/tmp1RjV1h/text.txt --lmdir /tmp/tmp1RjV1h/lm --model_name a556c5ca-4a64-11e6-817a-155b48e03414 --lexicon false --commands_mode false --has_probs false --equiprob false --lang ru --trap_noise false --unk_role normal
++ '[' /tmp/tmp1YKGtp/phrases.txt == '' ']'
++ '[' '!' -f /tmp/tmp1YKGtp/phrases.txt ']'
++ '[' 71f7a730-4e9c-11e6-817a-2910e25e93c5 == '' ']'
++ '[' /tmp/tmp1YKGtp == '' ']'
++ lmdir=/tmp/tmp1YKGtp/lm
++ mkdir -p /tmp/tmp1YKGtp/lm
++ opts='--text /tmp/tmp1YKGtp/phrases.txt --lmdir /tmp/tmp1YKGtp/lm --model_name 71f7a730-4e9c-11e6-817a-2910e25e93c5 --lexicon false --commands_mode true --has_probs false --equiprob false --lang ru --trap_noise false --unk_role normal'
++ ./ext/model_creator/make_lm_and_lexicon.sh --text /tmp/tmp1YKGtp/phrases.txt --lmdir /tmp/tmp1YKGtp/lm --model_name 71f7a730-4e9c-11e6-817a-2910e25e93c5 --lexicon false --commands_mode true --has_probs false --equiprob false --lang ru --trap_noise false --unk_role normal
 + text=
 + lmdir=
 + commands_mode=false
@@ -536,19 +537,19 @@ HCLGa is not stochastic
 ++ '[' --text == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' /tmp/tmp1RjV1h/text.txt == --config ']'
+++ '[' /tmp/tmp1YKGtp/phrases.txt == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --lmdir == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' /tmp/tmp1RjV1h/lm == --config ']'
+++ '[' /tmp/tmp1YKGtp/lm == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --model_name == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' a556c5ca-4a64-11e6-817a-155b48e03414 == --config ']'
+++ '[' 71f7a730-4e9c-11e6-817a-2910e25e93c5 == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --lexicon == --config ']'
@@ -560,7 +561,7 @@ HCLGa is not stochastic
 ++ '[' --commands_mode == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
-++ '[' false == --config ']'
+++ '[' true == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<20 ))
 ++ '[' --has_probs == --config ']'
@@ -605,8 +606,8 @@ HCLGa is not stochastic
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'text="/tmp/tmp1RjV1h/text.txt"'
-+++ text=/tmp/tmp1RjV1h/text.txt
+++ eval 'text="/tmp/tmp1YKGtp/phrases.txt"'
++++ text=/tmp/tmp1YKGtp/phrases.txt
 ++ false
 ++ shift 2
 ++ true
@@ -624,8 +625,8 @@ HCLGa is not stochastic
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'lmdir="/tmp/tmp1RjV1h/lm"'
-+++ lmdir=/tmp/tmp1RjV1h/lm
+++ eval 'lmdir="/tmp/tmp1YKGtp/lm"'
++++ lmdir=/tmp/tmp1YKGtp/lm
 ++ false
 ++ shift 2
 ++ true
@@ -643,8 +644,8 @@ HCLGa is not stochastic
 ++ '[' custom == true ']'
 ++ '[' custom == false ']'
 ++ was_bool=false
-++ eval 'model_name="a556c5ca-4a64-11e6-817a-155b48e03414"'
-+++ model_name=a556c5ca-4a64-11e6-817a-155b48e03414
+++ eval 'model_name="71f7a730-4e9c-11e6-817a-2910e25e93c5"'
++++ model_name=71f7a730-4e9c-11e6-817a-2910e25e93c5
 ++ false
 ++ shift 2
 ++ true
@@ -681,11 +682,10 @@ HCLGa is not stochastic
 ++ '[' false == true ']'
 ++ '[' false == false ']'
 ++ was_bool=true
-++ eval 'commands_mode="false"'
-+++ commands_mode=false
+++ eval 'commands_mode="true"'
++++ commands_mode=true
 ++ true
-++ [[ false != \t\r\u\e ]]
-++ [[ false != \f\a\l\s\e ]]
+++ [[ true != \t\r\u\e ]]
 ++ shift 2
 ++ true
 ++ '[' -z --has_probs ']'
@@ -733,8 +733,8 @@ HCLGa is not stochastic
 ++ '[' -z --lang ']'
 ++ case "$1" in
 +++ echo --lang
-+++ sed 's/^--//'
 +++ sed s/-/_/g
++++ sed 's/^--//'
 ++ name=lang
 ++ eval '[ -z "${lang+xxx}" ]'
 +++ '[' -z xxx ']'
@@ -792,32 +792,27 @@ HCLGa is not stochastic
 ++ break
 ++ '[' '!' -z '' ']'
 ++ true
-+ '[' /tmp/tmp1RjV1h/text.txt = ''
++ '[' /tmp/tmp1YKGtp/phrases.txt = ''
 ./ext/model_creator/make_lm_and_lexicon.sh: line 21: [: missing `]'
-+ /tmp/tmp1RjV1h/lm = '' ']'
-./ext/model_creator/make_lm_and_lexicon.sh: line 21: /tmp/tmp1RjV1h/lm: is a directory
++ /tmp/tmp1YKGtp/lm = '' ']'
+./ext/model_creator/make_lm_and_lexicon.sh: line 21: /tmp/tmp1YKGtp/lm: is a directory
 + '[' '!' 'normal high low none' '=~' normal ']'
 ./ext/model_creator/make_lm_and_lexicon.sh: line 27: [: =~: binary operator expected
-+ lmdir=/tmp/tmp1RjV1h/lm
-+ mkdir -p /tmp/tmp1RjV1h/lm
++ lmdir=/tmp/tmp1YKGtp/lm
++ mkdir -p /tmp/tmp1YKGtp/lm
 ++ mktemp -d
-+ tmpdir=/tmp/tmp.WISOisgBlC
-+ trap 'rm -r /tmp/tmp.WISOisgBlC' EXIT
++ tmpdir=/tmp/tmp.4C5wu4GxjW
++ trap 'rm -r /tmp/tmp.4C5wu4GxjW' EXIT
 + KALDI_ROOT=../../../
++ '[' true == true ']'
 + '[' false == true ']'
-+ echo 'Treating /tmp/tmp1RjV1h/text.txt as a training corpus'
-+ ../../../tools/srilm/bin/ngram-count -text /tmp/tmp1RjV1h/text.txt -order 1 -sort -lm /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm
-warning: count of count 2 is zero -- lowering maxcount
-GT discounting disabled
-+ sed -n '/1-grams:/,/^$/p' /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm
-+ tail -n +2
-+ head -n -1
-+ grep -vP '<.+>'
-+ cut -f2
++ touch /tmp/tmp.4C5wu4GxjW/user_probs
++ cp /tmp/tmp1YKGtp/phrases.txt /tmp/tmp.4C5wu4GxjW/commands
++ sed 's, ,-,g' /tmp/tmp.4C5wu4GxjW/commands -i
 ++ pwd
-+ curdir=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5
++ curdir=/tmp/tmp.90qLcmjnLo/egs/yndx/s5
 + cd ../../..//tools/tts/yandextts/g2pcpp/src
-+ ./asr-g2p ru ../../lib/config-proto/ru/g2p /tmp/tmp1RjV1h/lm/vocab 16
++ ./asr-g2p ru ../../lib/config-proto/ru/g2p /tmp/tmp.4C5wu4GxjW/commands 16
 + grep -v pau
 All unit tests passed
 Reading input
@@ -825,15 +820,22 @@ Spawning threads
 Thread 0 created normally
 Thread 0 joined
 Main is exiting
-+ cd /tmp/tmp.EsUeQhqyjw/egs/yndx/s5
-+ rm -r /tmp/tmp.WISOisgBlC
-+ TTS=/tmp/tmp.EsUeQhqyjw/tools/tts/
-++ find /tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/ -name '*.phone'
++ cd /tmp/tmp.90qLcmjnLo/egs/yndx/s5
++ cp /tmp/tmp.4C5wu4GxjW/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.tmp.lexicon
++ '[' '!' false == false ']'
++ '[' false == false ']'
++ cp /tmp/tmp.4C5wu4GxjW/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon
++ ext/model_creator/commands2arpa.py --equiprob false --has_probs false --unk_role normal
++ cut -f2 --complement /dev/fd/63
+++ paste /tmp/tmp.4C5wu4GxjW/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon /tmp/tmp.4C5wu4GxjW/user_probs
++ rm -r /tmp/tmp.4C5wu4GxjW
++ TTS=/tmp/tmp.90qLcmjnLo/tools/tts/
+++ find /tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/ -name '*.phone'
 ++ head
-+ phoneset=/tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone
-+ lm=/tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm
-+ lexicon=/tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lexicon
-+ ./ext/yndx_make_lftst.sh --lm /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm --lexicon /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lexicon --phoneset /tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone --model a556c5ca-4a64-11e6-817a-155b48e03414
++ phoneset=/tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone
++ lm=/tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lm
++ lexicon=/tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon
++ ./ext/yndx_make_lftst.sh --lm /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lm --lexicon /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon --phoneset /tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone --model 71f7a730-4e9c-11e6-817a-2910e25e93c5
 + . ./cmd.sh
 ++ export train_cmd=run.pl
 ++ train_cmd=run.pl
@@ -845,7 +847,7 @@ Main is exiting
 ++ mkgraph_cmd=run.pl
 + model=
 ++ pwd
-+ workdir=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5
++ workdir=/tmp/tmp.90qLcmjnLo/egs/yndx/s5
 + lexicon=
 + phoneset=
 + lm=
@@ -853,16 +855,16 @@ Main is exiting
 Workdir is assumed to contain data/ (data_model/, if model is specified) and exp/ dirs'
 + . ./path.sh
 +++ pwd
-++ curdir=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5
+++ curdir=/tmp/tmp.90qLcmjnLo/egs/yndx/s5
 ++ cd ../../../
 +++ pwd
-++ export KALDI_ROOT=/tmp/tmp.EsUeQhqyjw
-++ KALDI_ROOT=/tmp/tmp.EsUeQhqyjw
-++ export TTS_ROOT=/tmp/tmp.EsUeQhqyjw/tools/tts
-++ TTS_ROOT=/tmp/tmp.EsUeQhqyjw/tools/tts
-++ cd /tmp/tmp.EsUeQhqyjw/egs/yndx/s5
-++ export PATH=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts
-++ PATH=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts
+++ export KALDI_ROOT=/tmp/tmp.90qLcmjnLo
+++ KALDI_ROOT=/tmp/tmp.90qLcmjnLo
+++ export TTS_ROOT=/tmp/tmp.90qLcmjnLo/tools/tts
+++ TTS_ROOT=/tmp/tmp.90qLcmjnLo/tools/tts
+++ cd /tmp/tmp.90qLcmjnLo/egs/yndx/s5
+++ export PATH=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts
+++ PATH=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts
 ++ export LC_ALL=C
 ++ LC_ALL=C
 + . ./utils/parse_options.sh
@@ -871,19 +873,19 @@ Workdir is assumed to contain data/ (data_model/, if model is specified) and exp
 ++ '[' --lm == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<8 ))
-++ '[' /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm == --config ']'
+++ '[' /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lm == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<8 ))
 ++ '[' --lexicon == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<8 ))
-++ '[' /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lexicon == --config ']'
+++ '[' /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<8 ))
 ++ '[' --phoneset == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<8 ))
-++ '[' /tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone == --config ']'
+++ '[' /tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<8 ))
 ++ '[' --model == --config ']'
@@ -904,8 +906,8 @@ Workdir is assumed to contain data/ (data_model/, if model is specified) and exp
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'lm="/tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm"'
-+++ lm=/tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm
+++ eval 'lm="/tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lm"'
++++ lm=/tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lm
 ++ false
 ++ shift 2
 ++ true
@@ -923,8 +925,8 @@ Workdir is assumed to contain data/ (data_model/, if model is specified) and exp
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'lexicon="/tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lexicon"'
-+++ lexicon=/tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lexicon
+++ eval 'lexicon="/tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon"'
++++ lexicon=/tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon
 ++ false
 ++ shift 2
 ++ true
@@ -942,8 +944,8 @@ Workdir is assumed to contain data/ (data_model/, if model is specified) and exp
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'phoneset="/tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone"'
-+++ phoneset=/tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone
+++ eval 'phoneset="/tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone"'
++++ phoneset=/tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone
 ++ false
 ++ shift 2
 ++ true
@@ -961,8 +963,8 @@ Workdir is assumed to contain data/ (data_model/, if model is specified) and exp
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'model="a556c5ca-4a64-11e6-817a-155b48e03414"'
-+++ model=a556c5ca-4a64-11e6-817a-155b48e03414
+++ eval 'model="71f7a730-4e9c-11e6-817a-2910e25e93c5"'
++++ model=71f7a730-4e9c-11e6-817a-2910e25e93c5
 ++ false
 ++ shift 2
 ++ true
@@ -970,51 +972,51 @@ Workdir is assumed to contain data/ (data_model/, if model is specified) and exp
 ++ break
 ++ '[' '!' -z '' ']'
 ++ true
-+ '[' /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lexicon == '' ']'
-+ '[' /tmp/tmp.EsUeQhqyjw/egs/yndx/s5 == '' ']'
-+ '[' /tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone == '' ']'
-+ exp=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp
-+ '[' a556c5ca-4a64-11e6-817a-155b48e03414 == '' ']'
-+ data=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414
-+ graph=graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414
-+ rm -rf /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local
-+ mkdir -p /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/lm
-+ gzip -c /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lm
-+ ext/yndx_prepare_dict.sh /tmp/tmp.EsUeQhqyjw/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone /tmp/tmp1RjV1h/lm/a556c5ca-4a64-11e6-817a-155b48e03414.lexicon /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414
-+ utils/prepare_lang.sh /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/dict '<SPOKEN_NOISE>' /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/local/lang_tmp /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang
-fstaddselfloops 'echo 208 |' 'echo 12 |' 
-+ ext/yndx_format_data.sh /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414
++ '[' /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon == '' ']'
++ '[' /tmp/tmp.90qLcmjnLo/egs/yndx/s5 == '' ']'
++ '[' /tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone == '' ']'
++ exp=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp
++ '[' 71f7a730-4e9c-11e6-817a-2910e25e93c5 == '' ']'
++ data=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5
++ graph=graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5
++ rm -rf /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local
++ mkdir -p /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/lm
++ gzip -c /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lm
++ ext/yndx_prepare_dict.sh /tmp/tmp.90qLcmjnLo/tools/tts//yandextts/lib/config-proto/ru/g2p/RU.phone /tmp/tmp1YKGtp/lm/71f7a730-4e9c-11e6-817a-2910e25e93c5.lexicon /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5
++ utils/prepare_lang.sh /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/dict '<SPOKEN_NOISE>' /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/local/lang_tmp /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang
+fstaddselfloops 'echo 208 |' 'echo 7 |' 
++ ext/yndx_format_data.sh /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5
 arpa2fst - 
 Processing 1-grams
 Connected 0 states without outgoing arcs.
 remove_oovs.pl: removed 0 lines.
-+ utils/mkgraph.sh /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2 /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414
-fsttablecompose /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/L_disambig.fst /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/G.fst 
++ utils/mkgraph.sh /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2 /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5
+fsttablecompose /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/L_disambig.fst /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/G.fst 
 fstdeterminizestar --use-log=true 
 fstminimizeencoded 
-fstisstochastic /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/tmp/LG.fst 
-fstcomposecontext --context-size=3 --central-position=1 --read-disambig-syms=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/phones/disambig.int --write-disambig-syms=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/tmp/disambig_ilabels_3_1.int /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/tmp/ilabels_3_1 
-fstisstochastic /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/tmp/CLG_3_1.fst 
-make-h-transducer --disambig-syms-out=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414/disambig_tid.int --transition-scale=1.0 /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/tmp/ilabels_3_1 /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/tree /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/final.mdl 
-fsttablecompose /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414/Ha.fst /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/data_a556c5ca-4a64-11e6-817a-155b48e03414/lang_test_tg/tmp/CLG_3_1.fst 
+fstisstochastic /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/tmp/LG.fst 
+fstcomposecontext --context-size=3 --central-position=1 --read-disambig-syms=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/phones/disambig.int --write-disambig-syms=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/tmp/disambig_ilabels_3_1.int /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/tmp/ilabels_3_1 
+fstisstochastic /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/tmp/CLG_3_1.fst 
+make-h-transducer --disambig-syms-out=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5/disambig_tid.int --transition-scale=1.0 /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/tmp/ilabels_3_1 /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/tree /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/final.mdl 
+fsttablecompose /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5/Ha.fst /tmp/tmp.90qLcmjnLo/egs/yndx/s5/data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang_test_tg/tmp/CLG_3_1.fst 
 fstdeterminizestar --use-log=true 
-fstrmsymbols /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414/disambig_tid.int 
+fstrmsymbols /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5/disambig_tid.int 
 fstrmepslocal 
 fstminimizeencoded 
-fstisstochastic /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414/HCLGa.fst 
-add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx/s5/exp/tri2/final.mdl 
+fstisstochastic /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5/HCLGa.fst 
+add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.90qLcmjnLo/egs/yndx/s5/exp/tri2/final.mdl 
 + . ./path.sh
 +++ pwd
-++ curdir=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5
+++ curdir=/tmp/tmp.90qLcmjnLo/egs/yndx/s5
 ++ cd ../../../
 +++ pwd
-++ export KALDI_ROOT=/tmp/tmp.EsUeQhqyjw
-++ KALDI_ROOT=/tmp/tmp.EsUeQhqyjw
-++ export TTS_ROOT=/tmp/tmp.EsUeQhqyjw/tools/tts
-++ TTS_ROOT=/tmp/tmp.EsUeQhqyjw/tools/tts
-++ cd /tmp/tmp.EsUeQhqyjw/egs/yndx/s5
-++ export PATH=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts
-++ PATH=/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5/utils/:/tmp/tmp.EsUeQhqyjw/src/model-convert:/tmp/tmp.EsUeQhqyjw/src/fstbin:/tmp/tmp.EsUeQhqyjw/src/bin:/tmp/tmp.EsUeQhqyjw/tools/openfst/bin:/tmp/tmp.EsUeQhqyjw/src/fstbin/:/tmp/tmp.EsUeQhqyjw/src/gmmbin/:/tmp/tmp.EsUeQhqyjw/src/featbin/:/tmp/tmp.EsUeQhqyjw/src/lm/:/tmp/tmp.EsUeQhqyjw/src/sgmmbin/:/tmp/tmp.EsUeQhqyjw/src/sgmm2bin/:/tmp/tmp.EsUeQhqyjw/src/fgmmbin/:/tmp/tmp.EsUeQhqyjw/src/latbin/:/tmp/tmp.EsUeQhqyjw/src/nnetbin:/tmp/tmp.EsUeQhqyjw/src/nnet2bin/:/tmp/tmp.EsUeQhqyjw/src/kwsbin:/tmp/tmp.EsUeQhqyjw/src/ivectorbin:/tmp/tmp.EsUeQhqyjw/tools/sclite-py/bin:/tmp/tmp.EsUeQhqyjw/tools/srilm/bin:/tmp/tmp.EsUeQhqyjw/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts:/tmp/tmp.EsUeQhqyjw/tools/embedded/programs/:/tmp/tmp.EsUeQhqyjw/tools/embedded/scripts
+++ export KALDI_ROOT=/tmp/tmp.90qLcmjnLo
+++ KALDI_ROOT=/tmp/tmp.90qLcmjnLo
+++ export TTS_ROOT=/tmp/tmp.90qLcmjnLo/tools/tts
+++ TTS_ROOT=/tmp/tmp.90qLcmjnLo/tools/tts
+++ cd /tmp/tmp.90qLcmjnLo/egs/yndx/s5
+++ export PATH=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts
+++ PATH=/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/tmp/tmp.90qLcmjnLo/egs/yndx/s5/utils/:/tmp/tmp.90qLcmjnLo/src/model-convert:/tmp/tmp.90qLcmjnLo/src/fstbin:/tmp/tmp.90qLcmjnLo/src/bin:/tmp/tmp.90qLcmjnLo/tools/openfst/bin:/tmp/tmp.90qLcmjnLo/src/fstbin/:/tmp/tmp.90qLcmjnLo/src/gmmbin/:/tmp/tmp.90qLcmjnLo/src/featbin/:/tmp/tmp.90qLcmjnLo/src/lm/:/tmp/tmp.90qLcmjnLo/src/sgmmbin/:/tmp/tmp.90qLcmjnLo/src/sgmm2bin/:/tmp/tmp.90qLcmjnLo/src/fgmmbin/:/tmp/tmp.90qLcmjnLo/src/latbin/:/tmp/tmp.90qLcmjnLo/src/nnetbin:/tmp/tmp.90qLcmjnLo/src/nnet2bin/:/tmp/tmp.90qLcmjnLo/src/kwsbin:/tmp/tmp.90qLcmjnLo/src/ivectorbin:/tmp/tmp.90qLcmjnLo/tools/sclite-py/bin:/tmp/tmp.90qLcmjnLo/tools/srilm/bin:/tmp/tmp.90qLcmjnLo/egs/yndx/s5:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts:/tmp/tmp.90qLcmjnLo/tools/embedded/programs/:/tmp/tmp.90qLcmjnLo/tools/embedded/scripts
 ++ export LC_ALL=C
 ++ LC_ALL=C
 + set -e
@@ -1036,13 +1038,13 @@ add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx
 ++ '[' --embedded == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<12 ))
-++ '[' false == --config ']'
+++ '[' true == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<12 ))
 ++ '[' --spotter == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<12 ))
-++ '[' false == --config ']'
+++ '[' true == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<12 ))
 ++ '[' --nn-dir == --config ']'
@@ -1060,7 +1062,7 @@ add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx
 ++ '[' --model == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<12 ))
-++ '[' a556c5ca-4a64-11e6-817a-155b48e03414 == --config ']'
+++ '[' 71f7a730-4e9c-11e6-817a-2910e25e93c5 == --config ']'
 ++ (( argpos++ ))
 ++ (( argpos<12 ))
 ++ '[' --target_dir == --config ']'
@@ -1081,11 +1083,10 @@ add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx
 ++ '[' false == true ']'
 ++ '[' false == false ']'
 ++ was_bool=true
-++ eval 'embedded="false"'
-+++ embedded=false
+++ eval 'embedded="true"'
++++ embedded=true
 ++ true
-++ [[ false != \t\r\u\e ]]
-++ [[ false != \f\a\l\s\e ]]
+++ [[ true != \t\r\u\e ]]
 ++ shift 2
 ++ true
 ++ '[' -z --spotter ']'
@@ -1102,11 +1103,10 @@ add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx
 ++ '[' false == true ']'
 ++ '[' false == false ']'
 ++ was_bool=true
-++ eval 'spotter="false"'
-+++ spotter=false
+++ eval 'spotter="true"'
++++ spotter=true
 ++ true
-++ [[ false != \t\r\u\e ]]
-++ [[ false != \f\a\l\s\e ]]
+++ [[ true != \t\r\u\e ]]
 ++ shift 2
 ++ true
 ++ '[' -z --nn-dir ']'
@@ -1161,8 +1161,8 @@ add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx
 ++ '[' mapsyari == true ']'
 ++ '[' mapsyari == false ']'
 ++ was_bool=false
-++ eval 'model="a556c5ca-4a64-11e6-817a-155b48e03414"'
-+++ model=a556c5ca-4a64-11e6-817a-155b48e03414
+++ eval 'model="71f7a730-4e9c-11e6-817a-2910e25e93c5"'
++++ model=71f7a730-4e9c-11e6-817a-2910e25e93c5
 ++ false
 ++ shift 2
 ++ true
@@ -1180,8 +1180,8 @@ add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx
 ++ '[' '' == true ']'
 ++ '[' '' == false ']'
 ++ was_bool=false
-++ eval 'target_dir="/tmp/tmp1RjV1h/"'
-+++ target_dir=/tmp/tmp1RjV1h/
+++ eval 'target_dir="/tmp/tmp1YKGtp/"'
++++ target_dir=/tmp/tmp1YKGtp/
 ++ false
 ++ shift 2
 ++ true
@@ -1190,43 +1190,85 @@ add-self-loops --self-loop-scale=0.1 --reorder=true /tmp/tmp.EsUeQhqyjw/egs/yndx
 ++ '[' '!' -z '' ']'
 ++ true
 + '[' -z ']'
-+ target_model=a556c5ca-4a64-11e6-817a-155b48e03414
-+ '[' '!' /tmp/tmp1RjV1h/ == '' ']'
-+ target=/tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414
++ target_model=71f7a730-4e9c-11e6-817a-2910e25e93c5
++ '[' '!' /tmp/tmp1YKGtp/ == '' ']'
++ target=/tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5
 + '[' false == false ']'
 + src=exp/dnn
 + gmm_model=exp/tri2
-+ '[' a556c5ca-4a64-11e6-817a-155b48e03414 == '' ']'
-+ data=data_a556c5ca-4a64-11e6-817a-155b48e03414
-+ graph=exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414
++ '[' 71f7a730-4e9c-11e6-817a-2910e25e93c5 == '' ']'
++ data=data_71f7a730-4e9c-11e6-817a-2910e25e93c5
++ graph=exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5
 + '[' false == true ']'
-+ rm -rf /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414
-+ mkdir -p /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414
++ rm -rf /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5
++ mkdir -p /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5
 + '[' false == false ']'
-+ fstconvert --fst_align=true --fst_type=const exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414/HCLG.fst /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/HCLG.fst
-+ python ext/confidence/py-scripts/phones2wb.py data_a556c5ca-4a64-11e6-817a-155b48e03414/lang/phones.txt /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/word_boundaries.txt
-+ cp exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414/words.txt /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/words.txt
++ fstconvert --fst_align=true --fst_type=const exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5/HCLG.fst /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/HCLG.fst
++ python ext/confidence/py-scripts/phones2wb.py data_71f7a730-4e9c-11e6-817a-2910e25e93c5/lang/phones.txt /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/word_boundaries.txt
++ cp exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5/words.txt /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/words.txt
++ cp exp/tri2/graph_tg_71f7a730-4e9c-11e6-817a-2910e25e93c5/../final.mat /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/lda.mat
 + '[' -f exp/dnn/ali_train_pdf.counts ']'
-+ copy-transition-model --binary=true exp/dnn/final.mdl /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/transition_model.mdl
-+ cp exp/tri2/graph_tg_a556c5ca-4a64-11e6-817a-155b48e03414/../final.mat /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/lda.mat
-+ cp exp/dnn/prior_counts /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/ali_train_pdf.counts
++ copy-transition-model --binary=true exp/dnn/final.mdl /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/transition_model.mdl
++ cp exp/dnn/prior_counts /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/ali_train_pdf.counts
 + cat
 + nnet-concat exp/dnn/final.feature_transform exp/dnn/final.nnet -
-+ nnet-copy --remove-first-layers=1 --remove-last-layers=1 - /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/acoustic_model.nnet
-copy-transition-model --binary=true exp/dnn/final.mdl /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/transition_model.mdl 
++ nnet-copy --remove-first-layers=1 --remove-last-layers=1 - /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/acoustic_model.nnet
+copy-transition-model --binary=true exp/dnn/final.mdl /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/transition_model.mdl 
 + '[' false == true ']'
 + wait
-LOG (copy-transition-model:main():copy-transition-model.cc:62) Copied transition model.
 nnet-concat exp/dnn/final.feature_transform exp/dnn/final.nnet - 
-nnet-copy --remove-first-layers=1 --remove-last-layers=1 - /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/acoustic_model.nnet 
+LOG (copy-transition-model:main():copy-transition-model.cc:62) Copied transition model.
 LOG (nnet-concat:main():nnet-concat.cc:53) Reading exp/dnn/final.feature_transform
+nnet-copy --remove-first-layers=1 --remove-last-layers=1 - /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/acoustic_model.nnet 
 LOG (nnet-concat:main():nnet-concat.cc:65) Concatenating exp/dnn/final.nnet
 LOG (nnet-concat:main():nnet-concat.cc:82) Written model to -
-LOG (nnet-copy:main():nnet-copy.cc:86) Written model to /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/acoustic_model.nnet
+LOG (nnet-copy:main():nnet-copy.cc:86) Written model to /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/acoustic_model.nnet
 + '[' false == true ']'
-+ '[' false == true ']'
-+ '[' false == true ']'
-+ ext/flags-params-config/make_flags.sh --use-rnnlm false data_a556c5ca-4a64-11e6-817a-155b48e03414 exp/dnn exp/tri2 exp/dnn/decode_a556c5ca-4a64-11e6-817a-155b48e03414_test /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/flags.txt
-+ ext/flags-params-config/make_params.sh --lang ru-RU --topic a556c5ca-4a64-11e6-817a-155b48e03414 /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/params.txt
-+ '[' -z ']'
-+ ext/flags-params-config/make_xml.sh --lang ru-RU --topic a556c5ca-4a64-11e6-817a-155b48e03414 /tmp/tmp1RjV1h//a556c5ca-4a64-11e6-817a-155b48e03414/config-server.xml
++ '[' true == true ']'
+++ mktemp -d
++ tmpdir=/tmp/tmp.bxBEKwK9C5
++ trap 'rm -rf /tmp/tmp.bxBEKwK9C5' EXIT
++ embedded_dir=/tmp/tmp.90qLcmjnLo/tools/embedded
++ /tmp/tmp.90qLcmjnLo/tools/embedded/scripts/convert-model.sh -t /tmp/tmp.bxBEKwK9C5 -k /tmp/tmp.90qLcmjnLo -e /tmp/tmp.90qLcmjnLo/tools/embedded -s true /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5
++ tmp=/tmp
++ kaldi=/src/kaldi
++ embedded=/src/embedded
++ spotter=false
++ getopts t:k:e:s: opt
++ case $opt in
++ tmp=/tmp/tmp.bxBEKwK9C5
++ getopts t:k:e:s: opt
++ case $opt in
++ kaldi=/tmp/tmp.90qLcmjnLo
++ getopts t:k:e:s: opt
++ case $opt in
++ embedded=/tmp/tmp.90qLcmjnLo/tools/embedded
++ getopts t:k:e:s: opt
++ case $opt in
++ spotter=true
++ getopts t:k:e:s: opt
++ shift 8
++ '[' 1 '!=' 1 ']'
++ dir=/tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5
++ mkdir /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted
++ /tmp/tmp.90qLcmjnLo/src/nnetbin/nnet-copy /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/acoustic_model.nnet /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/acoustic_model.nnet
+/tmp/tmp.90qLcmjnLo/src/nnetbin/nnet-copy /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/acoustic_model.nnet /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/acoustic_model.nnet 
+LOG (nnet-copy:main():nnet-copy.cc:86) Written model to /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/acoustic_model.nnet
++ '[' -f /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/prior_counts ']'
++ '[' -f /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/ali_train_pdf.counts ']'
++ /tmp/tmp.90qLcmjnLo/src/bin/copy-vector /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/ali_train_pdf.counts /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/ali_train_pdf.counts
+/tmp/tmp.90qLcmjnLo/src/bin/copy-vector /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/ali_train_pdf.counts /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/ali_train_pdf.counts 
+LOG (copy-vector:main():copy-vector.cc:77) Copied vector to /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/ali_train_pdf.counts
++ /tmp/tmp.90qLcmjnLo/src/model-convert/fst-convert-nnet --remove_epsilons=true --determinize=false --minimize=false --arcsort=false /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/transition_model.mdl /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/HCLG.fst /tmp/tmp.bxBEKwK9C5/HCLG.fst
+/tmp/tmp.90qLcmjnLo/src/model-convert/fst-convert-nnet --remove_epsilons=true --determinize=false --minimize=false --arcsort=false /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/transition_model.mdl /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/HCLG.fst /tmp/tmp.bxBEKwK9C5/HCLG.fst 
++ /tmp/tmp.90qLcmjnLo/tools/embedded/programs/wfst2cwfst /tmp/tmp.bxBEKwK9C5/HCLG.fst /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/HCLG.cfst
++ '[' true == true ']'
++ cp /tmp/tmp.bxBEKwK9C5/HCLG.fst /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/
++ cp /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/lda.mat /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/
++ '[' -f /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/lm_tg.arpa ']'
++ cp /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/words.txt /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/
++ mv /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/HCLG.cfst /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/HCLG.fst /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/acoustic_model.nnet /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/ali_train_pdf.counts /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/lda.mat /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/words.txt /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5
++ rm -r /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/converted/
++ '[' true == true ']'
++ ext/flags-params-config/make_flags_embedded.sh data_71f7a730-4e9c-11e6-817a-2910e25e93c5 exp/dnn exp/dnn/decode_71f7a730-4e9c-11e6-817a-2910e25e93c5_test /tmp/tmp1YKGtp//71f7a730-4e9c-11e6-817a-2910e25e93c5/flags.txt
++ rm -rf /tmp/tmp.bxBEKwK9C5
