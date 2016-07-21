@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.provider.AlarmClock;
 
+import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -51,30 +53,17 @@ public class AlarmWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         Response response = new Response("Я не понял, что ты имеешь ввиду, скажи поточнее", true);
-
-        if (state == State.FirstTime) {
-            ArrayList<Key> argumentsToOnAlarm = new ArrayList<Key>();
-            argumentsToOnAlarm.add(new Key("поставь"));
-            argumentsToOnAlarm.add(new Key("установи"));
-            argumentsToOnAlarm.add(new Key("установить"));
-
-
-            for (Key key : argumentsToOnAlarm) {
-                if (arguments.contains(key)) {
-                    state = State.SetTime;
-                    deleteAlarm = false;
-                    return new Response("Установи время", true);
-                }
-            }
-
-            return new Response("Я не понял, что ты имеешь ввиду, скажи поточнее", true);
-
+        if ((state == State.FirstTime) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
+            return new HelpMan(R.raw.alarm_help, activity).getHelp();
+        } else if (state == State.FirstTime) {
+            state = State.SetTime;
+            deleteAlarm = false;
+            return new Response("Установи время", true);
         } else if (state == State.SetTime) {
-                state = State.FirstTime;
-                deleteAlarm = false;
-                setOneTimeAlarm(timeNow);
-                return new Response("Установлен одноразовый будильник на " + timeNow.hour + ":" + timeNow.minutes, false);
-
+            state = State.FirstTime;
+            deleteAlarm = false;
+            setOneTimeAlarm(timeNow);
+            return new Response("Установлен одноразовый будильник на " + timeNow.hour + ":" + timeNow.minutes, false);
         }
         return response;
     }

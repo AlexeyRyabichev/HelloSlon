@@ -3,6 +3,7 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -84,7 +85,10 @@ public class GallowsWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
 
-        if (state == State.StartGame) {
+
+        if ((state == State.StartGame) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
+            return new HelpMan(R.raw.gallow_help, activity).getHelp();
+        } else if (state == State.StartGame) {
             state = State.InGame;
             word = getWord();
             countOfCorrect = 0;
@@ -92,7 +96,7 @@ public class GallowsWorker extends Worker {
         } else if (state == State.InGame){
             if (isClose(arguments)){
                 return close();
-            } else {
+        } else {
 
                 ArrayList<Key> special = new ArrayList<Key>();
                 special.add(new Key("мягкий знак"));

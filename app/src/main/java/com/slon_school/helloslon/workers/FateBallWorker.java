@@ -23,6 +23,7 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
     private ArrayList<String> predictionList = new ArrayList<>();
     private ArrayList<Key> luckKeys = new ArrayList<>();
     private ArrayList<Key> generalKeys = new ArrayList<>();
+    ArrayList<Key> keys = new ArrayList<>();
 
     public FateBallWorker(Activity activity) {
         super(activity);
@@ -50,7 +51,7 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
             initList(MODE_UNRECOGNIZED);
             return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),FINISH_SESSION);
         } else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan("FateBallWorker",activity).getHelp();
+            return new HelpMan(R.raw.fateball_help,activity).getHelp();
         }
 
         initKeys(MODE_GENERAL);

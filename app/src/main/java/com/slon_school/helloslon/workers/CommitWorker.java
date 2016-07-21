@@ -19,6 +19,7 @@ import static com.slon_school.helloslon.core.Helper.BTS;
 public class CommitWorker extends Worker implements Helper.additionalInterface {
     private String commit;
     private boolean hasCommit;
+    ArrayList<Key> keys = new ArrayList<>();
 
     public CommitWorker(Activity activity) {
         super(activity);
