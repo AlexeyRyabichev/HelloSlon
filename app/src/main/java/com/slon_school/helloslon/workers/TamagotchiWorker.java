@@ -2,6 +2,7 @@ package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
 
+import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -73,9 +74,10 @@ public class TamagotchiWorker extends Worker {
         EOG = checkEOG();
         if(EOG) {
             EOG = false;
-            String _buf = printPet();
+            ArrayList<String> _buf = new ArrayList<String>();
+            _buf.add(printPet());
             Init();
-            return new Response(_buf + "\nЗаводим нового слона", true);
+            return new Response("\nЗаводим нового слона", true);
         }
         if ( arguments.get().size() != 0 ) {
             if (cmdFeed(arguments) && !Sleep) {
@@ -104,9 +106,13 @@ public class TamagotchiWorker extends Worker {
                 return new Response("Действительно хватит", true);
             }
             if(arguments.get().get(0).equals("рисуй")) {
-                return new Response(printPet(), true);
+                ArrayList<String> _buf1 = new ArrayList<String>();
+                _buf1.add(printPet());
+                return new Response("", true, _buf1);
             }
-            return new Response(printPet(), true);
+            ArrayList<String> _buf2 = new ArrayList<String>();
+            _buf2.add(printPet());
+            return new Response("", true, _buf2);
         }
         return new Response( "Приветствие", true);
     }
@@ -232,61 +238,10 @@ public class TamagotchiWorker extends Worker {
     }
 
     private void InitPicArr() {
-        picArr.add("       ___      ___\n" +
-                "      /   \\____/   \\\n" +
-                "     /    / __ \\    \\\n" +
-                "    /    |  ..  |    \\\n" +
-                "    \\___/|      |\\___/\\\n" +
-                "       | |_|  |_|      \\\n" +
-                "       | |/|__|\\|       \\\n" +
-                "       |   |__|         |\\\n" +
-                "       |   |__|   |_/  /  \\\n" +
-                "       | @ |__| @ || @ |   '\n" +
-                "       |   |__|   ||   |\n" +
-                "       |   |~~|   ||   |\n" +
-                "       'ooo'  'ooo''ooo'\n");
-
-        picArr.add("   ___      ___\n" +
-                "  /   \\____/   \\\n" +
-                " /    / __ \\    \\\n" +
-                "/    |  00  |    \\\n" +
-                "\\___/|      |\\___/\\\n" +
-                "   | |_|  |_|      \\\n" +
-                "   | |/|__|\\|       \\\n" +
-                "   |   |__|         |\\\n" +
-                "   |   |__|   |_/  /  \\\n" +
-                "   | @ |__| @ || @ |   '\n" +
-                "   |   |__|   ||   |\n" +
-                "   |   |~~|   ||   |\n" +
-                "   'ooo'  'ooo''ooo'\n");
-
-        picArr.add("   ___      ___\n" +
-                "  /   \\____/   \\\n" +
-                " /    / __ \\    \\\n" +
-                "/    |  ХХ  |    \\\n" +
-                "\\___/|      |\\___/\\\n" +
-                "   | |_|  |_|      \\\n" +
-                "   | |/|__|\\|       \\\n" +
-                "   |   |__|         |\\\n" +
-                "   |   |__|   |_/  /  \\\n" +
-                "   | @ |__| @ || @ |   '\n" +
-                "   |   |__|   ||   |\n" +
-                "   |   |~~|   ||   |\n" +
-                "   'ooo'  'ooo''ooo'\n");
-
-        picArr.add("   ___      ___\n" +
-                "  /   \\____/   \\\n" +
-                " /    / __ \\    \\\n" +
-                "/    |  --  |    \\\n" +
-                "\\___/|      |\\___/\\\n" +
-                "   | |_|  |_|      \\\n" +
-                "   | |/|__|\\|       \\\n" +
-                "   |   |__|         |\\\n" +
-                "   |   |__|   |_/  /  \\\n" +
-                "   | @ |__| @ || @ |   '\n" +
-                "   |   |__|   ||   |\n" +
-                "   |   |~~|   ||   |\n" +
-                "   'ooo'  'ooo''ooo'\n");
+        picArr.add(String.valueOf(R.drawable.slon0));
+        picArr.add(String.valueOf(R.drawable.slon1));
+        picArr.add(String.valueOf(R.drawable.slon2));
+        picArr.add(String.valueOf(R.drawable.slon3));
     }
 }
 
