@@ -35,7 +35,7 @@ public class TownWorker extends Worker {
 
     private void Init() {
         eog = false;
-        keys = new ArrayList<Key>();
+        keys = new ArrayList<>();
         used_towns = new HashMap<String, ArrayList<String>>();
         just_started = true;
         lastChar = '0';

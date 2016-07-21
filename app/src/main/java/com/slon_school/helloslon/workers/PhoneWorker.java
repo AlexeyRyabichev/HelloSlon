@@ -14,10 +14,6 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 
 /**
- * Created by Mike on 16.07.2016.
- */
-
-/**
  * Created by Mike on 14.07.2016.
  */
 public class PhoneWorker extends Worker {

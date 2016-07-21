@@ -13,8 +13,6 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
-
 public class FateBallWorker extends Worker implements Helper.additionalInterface {
 
     private final static int MODE_GENERAL = 0;
@@ -81,7 +79,6 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
             }
             break;
             default: {
-                BTS(7);
                 Log.e("Unknown variable value:","FateBallWorker.initKeys.mode == " + MODE);
             }
         }
@@ -124,7 +121,6 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
             }
             break;
             default: {
-                BTS(8);
                 Log.e("Unknown variable value:","FateBallWorker.initList.mode == " + MODE);
             }
         }
