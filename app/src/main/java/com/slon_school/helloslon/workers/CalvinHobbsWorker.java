@@ -20,7 +20,7 @@ import java.util.concurrent.CountDownLatch;
 public class CalvinHobbsWorker extends Worker{
     private String quote;
     private boolean isQuoteGot;
-    private ArrayList<Key> keys = new ArrayList<Key>();
+    private ArrayList<Key> keys = new ArrayList<>();
 
     public CalvinHobbsWorker( Activity activity ) {
         super( activity );
@@ -60,7 +60,7 @@ public class CalvinHobbsWorker extends Worker{
             e.printStackTrace();
         }
         if (isQuoteGot) {
-            ArrayList<String> images = new ArrayList<String>();
+            ArrayList<String> images = new ArrayList<>();
             images.add( quote );
             return new Response( "", false, images);
         } else {

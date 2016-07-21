@@ -13,7 +13,6 @@ import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
 import static com.slon_school.helloslon.core.Helper.isDecimalNumber;
 import static com.slon_school.helloslon.core.Helper.string2long;
 
@@ -59,7 +58,6 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
                     sleep(time);
                     CAMERA.stopPreview();
                 } catch (Exception e) {
-                    BTS(16);
                     e.printStackTrace();
                 }
             }
