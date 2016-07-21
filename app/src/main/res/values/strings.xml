@@ -74,4 +74,6 @@
     <string name="browser_keyword_google">google</string>
     <string name="browser_google">https://www.google.ru/search?q=</string>
     <string name="browser_yandex">http://www.yandex.ru?q=</string>
+
+    <string name="throw_dice_keyword0">бросить кост</string>
 </resources>
