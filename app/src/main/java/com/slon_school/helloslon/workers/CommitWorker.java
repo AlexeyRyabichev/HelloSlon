@@ -57,23 +57,4 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         String commit = pair.second ? pair.first : activity.getString(R.string.commit_cannot_access);
         return new Response(commit,FINISH_SESSION);
     }
-/*
-    public boolean getCommit() throws Exception {
-        String line;
-        URL url = new URL();
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), ));
-        while (true) {
-            line = reader.readLine();
-            if (line == null) {
-                BTS(16);
-                break;
-            }
-            if (!line.isEmpty()) {
-                commit = line;
-                return true;
-            }
-        }
-        return false;
-    }
-    */
 }

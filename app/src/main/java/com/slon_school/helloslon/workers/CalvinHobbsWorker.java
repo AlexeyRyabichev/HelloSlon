@@ -62,7 +62,7 @@ public class CalvinHobbsWorker extends Worker{
         if (isQuoteGot) {
             ArrayList<String> images = new ArrayList<>();
             images.add( quote );
-            return new Response( "", false, images);
+            return new Response("", false, images);
         } else {
             return new Response("Не удалось загрузить картинку", false);
         }

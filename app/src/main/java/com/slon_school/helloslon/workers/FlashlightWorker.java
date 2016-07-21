@@ -33,6 +33,7 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+        boolean hasAccessibleCamera; //TODO new features
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return new HelpMan(R.raw.flashlight_help,activity).getHelp();
         }
@@ -45,24 +46,29 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
         } else {
             time = DEFAULT_TIME * MULTIPLE;
         }
-        final Camera CAMERA = Camera.open();
-        Parameters parameters = CAMERA.getParameters();
-        parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
-        CAMERA.setParameters(parameters);
-        Thread thread = new Thread() {
+        if (Camera.getNumberOfCameras() > 0) {
+            final Camera CAMERA = Camera.open();
+            Parameters parameters = CAMERA.getParameters();
+            parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
+            CAMERA.setParameters(parameters);
+            Thread thread = new Thread() {
 
-            public void run() {
-                super.run();
-                try {
-                    CAMERA.startPreview();
-                    sleep(time);
-                    CAMERA.stopPreview();
-                } catch (Exception e) {
-                    e.printStackTrace();
+                public void run() {
+                    super.run();
+                    try {
+                        CAMERA.startPreview();
+                        sleep(time);
+                        CAMERA.stopPreview();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        };
-        thread.start();
-        return new Response("", FINISH_SESSION);
+            };
+            thread.start();
+            hasAccessibleCamera = true;
+        } else {
+            hasAccessibleCamera = false;
+        }
+        return new Response(hasAccessibleCamera ? "" : "Камера уже используется",FINISH_SESSION);
     }
 }
