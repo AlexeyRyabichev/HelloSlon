@@ -53,28 +53,14 @@ public class AlarmWorker extends Worker {
         Response response = new Response("Я не понял, что ты имеешь ввиду, скажи поточнее", true);
 
         if (state == State.FirstTime) {
-            ArrayList<Key> argumentsToOnAlarm = new ArrayList<Key>();
-            argumentsToOnAlarm.add(new Key("поставь"));
-            argumentsToOnAlarm.add(new Key("установи"));
-            argumentsToOnAlarm.add(new Key("установить"));
-
-
-            for (Key key : argumentsToOnAlarm) {
-                if (arguments.contains(key)) {
-                    state = State.SetTime;
-                    deleteAlarm = false;
-                    return new Response("Установи время", true);
-                }
-            }
-
-            return new Response("Я не понял, что ты имеешь ввиду, скажи поточнее", true);
-
+            state = State.SetTime;
+            deleteAlarm = false;
+            return new Response("Установи время", true);
         } else if (state == State.SetTime) {
-                state = State.FirstTime;
-                deleteAlarm = false;
-                setOneTimeAlarm(timeNow);
-                return new Response("Установлен одноразовый будильник на " + timeNow.hour + ":" + timeNow.minutes, false);
-
+            state = State.FirstTime;
+            deleteAlarm = false;
+            setOneTimeAlarm(timeNow);
+            return new Response("Установлен одноразовый будильник на " + timeNow.hour + ":" + timeNow.minutes, false);
         }
         return response;
     }

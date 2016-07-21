@@ -75,15 +75,11 @@ public class TranslateWorker extends Worker {
         }
     }
 
-
-
     private Response post(String request) {
         output = "";
         isQuoteGot = false;
 
         this.request = request;
-
-
 
         sendRequestLang();
         if (isQuoteGot) {
@@ -96,20 +92,10 @@ public class TranslateWorker extends Worker {
                 return new Response("Не удалось перевести", false);
             }
 
-
-
         } else {
             return new Response("Не удалось определить язык", false);
         }
-
-
-
-
-
     }
-
-
-
 
     private void sendRequestLang() {
         isQuoteGot = false;
@@ -138,10 +124,6 @@ public class TranslateWorker extends Worker {
         }
 
     }
-
-
-
-
 
     public boolean getLang(String request) throws Exception {
         String line;
@@ -176,11 +158,7 @@ public class TranslateWorker extends Worker {
         } else {
             return false;
         }
-
-
     }
-
-
 
     private void sendTranslate() {
         isQuoteGot = false;
@@ -199,12 +177,7 @@ public class TranslateWorker extends Worker {
             }
         };
 
-
         thread.start();
-
-
-
-
 
         try {
             countDownLatch.await();
@@ -243,12 +216,5 @@ public class TranslateWorker extends Worker {
         } else {
             return false;
         }
-
-
     }
-
-
-
-
-
 }
