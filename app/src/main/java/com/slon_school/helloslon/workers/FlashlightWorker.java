@@ -18,6 +18,7 @@ import static com.slon_school.helloslon.core.Helper.string2long;
 
 public class FlashlightWorker extends Worker implements Helper.additionalInterface{
     private long time;
+    ArrayList<Key> keys = new ArrayList<>();
     public FlashlightWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.flashlight_keyword0)));
