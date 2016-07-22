@@ -58,10 +58,6 @@ public class Core {
 		workers.add(new DilbertWorker(activity));
 		workers.add(new ThrowDiceWorker(activity));
 		workers.add(new HelpWorker(activity, this));
-<<<<<<< HEAD
-
-=======
->>>>>>> develop
 		currentWorker = idNone;
 	}
 	

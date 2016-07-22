@@ -3,7 +3,6 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
-import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
@@ -36,7 +35,6 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return getHelp();
         }
-        boolean hasAccessibleCamera; //TODO check new features
         final long MULTIPLE = 1000;
         final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();
@@ -45,8 +43,6 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
         } else {
             time = DEFAULT_TIME * MULTIPLE;
         }
-        Toast.makeText(activity,Camera.getNumberOfCameras(),Toast.LENGTH_LONG).show();
-        if (Camera.getNumberOfCameras() > 0) {
             final Camera CAMERA = Camera.open();
             Parameters parameters = CAMERA.getParameters();
             parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
@@ -65,11 +61,7 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
                 }
             };
             thread.start();
-            hasAccessibleCamera = true;
-        } else {
-            hasAccessibleCamera = false;
-        }
-        return new Response(hasAccessibleCamera ? "" : activity.getString(R.string.flashlight_unaccessible_camera),FINISH_SESSION);
+        return new Response("", FINISH_SESSION);
     }
 
     @Override
