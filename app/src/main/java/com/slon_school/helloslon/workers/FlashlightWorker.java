@@ -33,15 +33,12 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-<<<<<<< HEAD
-=======
         boolean hasAccessibleCamera; //TODO check new features
->>>>>>> develop
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return getHelp();
         }
 
-        boolean hasAccessibleCamera; //TODO check new features
+//        boolean hasAccessibleCamera; //TODO check new features
         final long MULTIPLE = 1000;
         final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();

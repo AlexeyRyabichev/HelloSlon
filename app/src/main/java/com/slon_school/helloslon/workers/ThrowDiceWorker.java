@@ -19,11 +19,7 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
     private ArrayList<Key> keys = new ArrayList<>();
 
     public ThrowDiceWorker(Activity activity) {
-<<<<<<< HEAD
         super(activity, "кости");
-=======
-        super(activity,"кости");
->>>>>>> develop
         keys.add(new Key(activity.getString(R.string.throw_dice_keyword0)));
     }
 
@@ -64,10 +60,6 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
 
     @Override
     public Response getHelp() {
-<<<<<<< HEAD
         return new HelpMan(R.raw.throw_dice_help, activity).getHelp();
-=======
-        return null;
->>>>>>> develop
     }
 }
