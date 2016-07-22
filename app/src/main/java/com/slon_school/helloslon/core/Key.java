@@ -13,7 +13,7 @@ public class Key {
     }
 
     private ArrayList<String> parse(String toParse) {
-        ArrayList<String> newKeys = new ArrayList<String>();
+        ArrayList<String> newKeys = new ArrayList<>();
 
         String[] keys =  toParse.split(" ");
         for(String key : keys) {
