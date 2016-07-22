@@ -20,7 +20,7 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
     ArrayList<Key> keys = new ArrayList<>();
 
     public CommitWorker(Activity activity) {
-        super(activity);
+        super(activity, "commit");
         keys.add(new Key(activity.getString(R.string.commit_keyword0)));
     }
 
@@ -57,6 +57,13 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         String commit = pair.second ? pair.first : activity.getString(R.string.commit_cannot_access);
         return new Response(commit,FINISH_SESSION);
     }
+<<<<<<< HEAD
+=======
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.commit_help, activity).getHelp();
+    }
 /*
     public boolean getCommit() throws Exception {
         String line;
@@ -76,4 +83,5 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         return false;
     }
     */
+>>>>>>> Asgar
 }

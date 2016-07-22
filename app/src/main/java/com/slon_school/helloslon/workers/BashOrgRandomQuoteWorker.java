@@ -22,8 +22,9 @@ public class BashOrgRandomQuoteWorker extends Worker implements Helper.additiona
     ArrayList<Key> keys = new ArrayList<>();
 
     public BashOrgRandomQuoteWorker(Activity activity) {
-        super(activity);
+        super(activity, "башорг");
         keys.add(new Key(activity.getString(R.string.bashorg_keyword0)));
+        keys.add(new Key("цитата из башорг"));
     }
 
     @Override
@@ -34,9 +35,9 @@ public class BashOrgRandomQuoteWorker extends Worker implements Helper.additiona
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+        /*if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return new HelpMan(R.raw.bashorg_random_quote_help,activity).getHelp();
-        }
+        }*/
 
         final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
             Thread thread = new Thread() {
@@ -66,6 +67,11 @@ public class BashOrgRandomQuoteWorker extends Worker implements Helper.additiona
             quote = activity.getString(R.string.bashorg_cannot_access_quote);
         }
         return new Response(quote,FINISH_SESSION);
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.bashorg_random_quote_help,activity).getHelp();
     }
 
     private void washQuote() {

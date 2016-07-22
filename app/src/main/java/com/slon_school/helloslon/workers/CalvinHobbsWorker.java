@@ -23,7 +23,7 @@ public class CalvinHobbsWorker extends Worker{
     private ArrayList<Key> keys = new ArrayList<>();
 
     public CalvinHobbsWorker( Activity activity ) {
-        super( activity );
+        super( activity , "кельвин и хоббс");
         keys.add(new Key("кельвин и хоббс"));
         keys.add(new Key("келвин и хоббс"));
     }
@@ -62,10 +62,18 @@ public class CalvinHobbsWorker extends Worker{
         if (isQuoteGot) {
             ArrayList<String> images = new ArrayList<>();
             images.add( quote );
-            return new Response( "", false, images);
+            return new Response("", false, images);
         } else {
             return new Response("Не удалось загрузить картинку", false);
         }
+    }
+
+    @Override
+    public Response getHelp() {
+       //TODO
+       //instead R.raw.browser_help - must be id of your help
+       //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
     }
 
 

@@ -1,8 +1,6 @@
 package com.slon_school.helloslon.core;
 
-import android.app.Activity;
 import android.util.Pair;
-import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

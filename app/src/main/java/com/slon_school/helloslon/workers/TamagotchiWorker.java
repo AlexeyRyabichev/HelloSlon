@@ -50,7 +50,7 @@ public class TamagotchiWorker extends Worker {
     }
 
     public TamagotchiWorker( Activity activity ) {
-        super( activity );
+        super( activity, "тамагочи" );
         keys.add(new Key("тамагочи"));
         InitPicArr();
     }
@@ -67,8 +67,7 @@ public class TamagotchiWorker extends Worker {
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
-        String str = new String();
-        str = "";
+        String str = "";
         timers();
         EOG = checkEOG();
         if(EOG) {
@@ -111,6 +110,14 @@ public class TamagotchiWorker extends Worker {
         return new Response( "Приветствие", true);
     }
 
+    @Override
+    public Response getHelp() {
+        //TODO
+        //instead R.raw.browser_help - must be id of your help
+        //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
+    }
+
     private void timers() {
         Date Now = new Date();
 
@@ -145,8 +152,7 @@ public class TamagotchiWorker extends Worker {
     }
 
     private String printPet() {
-        String res = new String();
-        res = "";
+        String res = "";
         if((Energy == 0) || (Hunger == 0) || (Hygiene == 0) || (Fun == 0) || (Healthy == 0)) {
             res += picArr.get(2) + "ты малёк запустил питомца, игра окончена\n";
         }
