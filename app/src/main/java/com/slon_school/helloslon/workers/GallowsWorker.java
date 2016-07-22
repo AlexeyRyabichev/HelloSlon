@@ -100,8 +100,8 @@ public class GallowsWorker extends Worker {
         } else {
 
                 ArrayList<Key> special = new ArrayList<>();
-                special.add(new Key("мягкий знак"));
-                special.add(new Key("твёрдый знак"));
+                special.add(new Key("мягкий"));
+                special.add(new Key("твердый"));
 
                 if (arguments.size() == 0) {
                     return notUnderstand();

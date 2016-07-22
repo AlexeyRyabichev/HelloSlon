@@ -31,6 +31,11 @@ public class SMSWorker extends Worker {
         keys.add(new Key("написать смс"));
         keys.add(new Key("отправить смс"));
         keys.add(new Key("напиши смс"));
+        keys.add(new Key("напиши sms"));
+        keys.add(new Key("отправь sms"));
+        keys.add(new Key("написать sms"));
+        keys.add(new Key("отправить sms"));
+
 
         state = State.Start;
 
