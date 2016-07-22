@@ -23,7 +23,6 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
     public FlashlightWorker(Activity activity) {
         super(activity);
         keys.add(new Key(activity.getString(R.string.flashlight_keyword0)));
-        keys.add(new Key(activity.getString(R.string.flashlight_keyword1)));
     }
 
     @Override
