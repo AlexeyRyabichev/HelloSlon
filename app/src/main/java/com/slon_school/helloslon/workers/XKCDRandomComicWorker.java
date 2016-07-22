@@ -14,14 +14,13 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 import static com.slon_school.helloslon.core.Helper.getStringFromWeb;
-import static com.slon_school.helloslon.core.Helper.isHttpLink;
 
 public class XKCDRandomComicWorker extends Worker implements Helper.additionalInterface {
     ArrayList<Key> keys = new ArrayList<>();
     private Pair<String,Boolean> pair;
     public XKCDRandomComicWorker(Activity activity) {
         super(activity, "комиксы");
-        keys.add(new Key(activity.getString(R.string.xkcd_keyword0))); //TODO know how Yandex recognize "XKCD" and change string constant according to this info
+        keys.add(new Key(activity.getString(R.string.xkcd_keyword0)));
     }
 
     private String washLink(String link) {
@@ -38,9 +37,9 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-       // if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-        //    return new HelpMan(R.raw.xkcd_help,activity).getHelp();
-        //}
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return getHelp();
+        }
 
         final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
         Thread thread = new Thread() {
@@ -63,7 +62,7 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
         }
         boolean hasImage = pair.second;
         String linkToImage = washLink(pair.first);
-        if (hasImage && isHttpLink(linkToImage)) {
+        if (hasImage) {
             ArrayList<String> links = new ArrayList<>();
             links.add(linkToImage);
             return  new Response("",FINISH_SESSION,links);

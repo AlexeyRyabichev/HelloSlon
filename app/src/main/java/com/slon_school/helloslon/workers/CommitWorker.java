@@ -33,7 +33,7 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan(R.raw.commit_help,activity).getHelp();
+            return getHelp();
         }
 
         final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
@@ -57,11 +57,15 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         String commit = pair.second ? pair.first : activity.getString(R.string.commit_cannot_access);
         return new Response(commit,FINISH_SESSION);
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> develop
     @Override
     public Response getHelp() {
         return new HelpMan(R.raw.commit_help, activity).getHelp();
     }
+<<<<<<< HEAD
 /*
     public boolean getCommit() throws Exception {
         String line;
@@ -82,4 +86,6 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
     }
     */
 
+=======
+>>>>>>> develop
 }

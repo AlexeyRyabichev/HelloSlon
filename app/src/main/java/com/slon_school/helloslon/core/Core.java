@@ -18,10 +18,22 @@ import com.slon_school.helloslon.workers.DilbertWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.FlashlightWorker;
 import com.slon_school.helloslon.workers.GallowsWorker;
+<<<<<<< HEAD
 
 import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.NotesWorker;
 
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+import com.slon_school.helloslon.workers.HelpWorker;
+import com.slon_school.helloslon.workers.NotesWorker;
+=======
+>>>>>>> develop
+=======
+import com.slon_school.helloslon.workers.HelpWorker;
+>>>>>>> develop
+>>>>>>> develop
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TamagotchiWorker;
@@ -72,8 +84,12 @@ public class Core {
 		workers.add(new GallowsWorker(activity));
 		workers.add(new DilbertWorker(activity));
 		workers.add(new ThrowDiceWorker(activity));
+<<<<<<< HEAD
 
 
+=======
+		workers.add(new HelpWorker(activity, this));
+>>>>>>> develop
 		currentWorker = idNone;
 	}
 	

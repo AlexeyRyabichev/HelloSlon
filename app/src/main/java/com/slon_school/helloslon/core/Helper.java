@@ -5,13 +5,11 @@ import android.util.Pair;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.ArrayList;
 
 public class Helper {
     public static boolean isHttpLink(final String string) {
-        return string.matches("http://([a-zA-z0-9-])+\\.([a-zA-Z])+(/|)");
+        return string.matches("http://([a-zA-z0-9-])+\\.([a-zA-Z])+(/|)"); //DO NOT USE THIS SH*T!
     }
-
     public static boolean isDecimalNumber(final String string) {
         return string.matches("(\\d)+");
     }
@@ -48,8 +46,9 @@ public class Helper {
         return new Pair<>(null,false);
     }
 
+    /*TODO downloader for multiple strings, not used yet
     public static Pair<ArrayList<String>,Boolean> getStringsFromWeb(final String URL_GET, final String FIND_PATTERN, final String CHARSET) throws Exception {
-        String line; //TODO implement this method (or not?)
+        String line;
         ArrayList<String> strings = new ArrayList<>();
         URL url = new URL(URL_GET);
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), CHARSET));
@@ -64,7 +63,7 @@ public class Helper {
         }
         return strings.size() == 0 ? new Pair<>(strings,false) : new Pair<>(strings,true);
     }
-
+    */
     public interface additionalInterface {
         boolean FINISH_SESSION = false;
     }
