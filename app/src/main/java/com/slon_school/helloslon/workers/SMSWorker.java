@@ -1,6 +1,11 @@
 package com.slon_school.helloslon.workers;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsManager;
 
 import com.slon_school.helloslon.R;
@@ -85,8 +90,12 @@ public class SMSWorker extends Worker {
         return new HelpMan(R.raw.sms_help,activity).getHelp();
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     private Response start(Key arguments) {
         state = State.PhoneNumber;
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED)
+            activity.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
+
         return new Response("Скажи мне номер телефона, на который ты хочешь отправить смс", true);
     }
 
