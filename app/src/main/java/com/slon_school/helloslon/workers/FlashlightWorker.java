@@ -36,11 +36,6 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return getHelp();
         }
-<<<<<<< HEAD
-=======
-
-//        boolean hasAccessibleCamera; //TODO check new features
->>>>>>> develop
         final long MULTIPLE = 1000;
         final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();
@@ -67,16 +62,8 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
                 }
             };
             thread.start();
-<<<<<<< HEAD
         return new Response("", FINISH_SESSION);
-=======
-            hasAccessibleCamera = true;
-        } else {
-            hasAccessibleCamera = false;
-        }
-        return new Response(hasAccessibleCamera ? "" : "Камера уже используется",FINISH_SESSION);
->>>>>>> develop
-    }
+}
 
     @Override
     public Response getHelp() {
