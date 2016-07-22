@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -68,6 +69,9 @@ public class TownWorker extends Worker {
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return getHelp();
+        }
         if(eog || (arguments.get().size() == 0))
             Init();
 
@@ -128,10 +132,7 @@ public class TownWorker extends Worker {
 
     @Override
     public Response getHelp() {
-        //TODO
-        //instead R.raw.browser_help - must be id of your help
-        //return new HelpMan(R.raw.browser_help, activity).getHelp();
-        return null;
+        return new HelpMan(R.raw.town_help, activity).getHelp();
     }
 
     private void usedInit() {

@@ -25,7 +25,7 @@ public class HelpWorker extends Worker {
     public HelpWorker(Activity activity, Core core) {
         super(activity, "helper");
 
-        keys = new ArrayList<Key>();
+        keys = new ArrayList<>();
         keys.add(new Key("помощь"));
         keys.add(new Key("help"));
         keys.add(new Key("помоги"));
@@ -33,7 +33,7 @@ public class HelpWorker extends Worker {
         keys.add(new Key("sos"));
         keys.add(new Key("сос"));
 
-        close = new ArrayList<Key>();
+        close = new ArrayList<>();
         close.add(new Key("хватит"));
         close.add(new Key("закрой"));
         close.add(new Key("закройся"));
@@ -66,7 +66,7 @@ public class HelpWorker extends Worker {
             state = State.Choose;
             return new Response("Вот всё что я умею, о чём ты хочешь спросить? \n" + listOfHelps(),true);
         } else if (state == State.Choose) {
-            state = State.NotInHelp;
+            //  state = State.NotInHelp;
             return new Response(getHelp(arguments) +"\n\nПро что ещё ты хочешь спросить? Или же мы можем закончить, если ты скажешь: " + words(close), true);
         }
 
@@ -109,7 +109,8 @@ public class HelpWorker extends Worker {
 
 
     private Response close() {
-        return new Response("Хорошо, что дальше?",false);
+        state = State.NotInHelp;
+        return new Response("Хорошо, что дальше?", false);
     }
 
     private String words(ArrayList<Key> array) {
@@ -117,7 +118,7 @@ public class HelpWorker extends Worker {
         for (int i = 0; i < array.size(); i++) {
             if (i != array.size() - 1) {
 
-                for (int j = 0; j < array.get(i).get().size(); i++) {
+                for (int j = 0; j < array.get(i).get().size(); j++) {
                     if (j != array.get(i).get().size() - 1) {
                         toReturn += array.get(i).get().get(j) + " ";
                     } else {
@@ -127,7 +128,7 @@ public class HelpWorker extends Worker {
 
                 toReturn += ", ";
             } else {
-                for (int j = 0; j < array.get(i).get().size(); i++) {
+                for (int j = 0; j < array.get(i).get().size(); j++) {
                     if (j != array.get(i).get().size() - 1) {
                         toReturn += array.get(i).get().get(j) + " ";
                     } else {

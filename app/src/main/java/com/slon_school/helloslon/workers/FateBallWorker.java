@@ -48,9 +48,9 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
         if (arguments.toString().isEmpty()) {
             initList(MODE_UNRECOGNIZED);
             return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),FINISH_SESSION);
-        } //else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-        //    return new HelpMan(R.raw.fateball_help,activity).getHelp();
-        //}
+        } else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return getHelp();
+        }
 
         initKeys(MODE_GENERAL);
         initKeys(MODE_LUCK);
