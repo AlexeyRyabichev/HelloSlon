@@ -54,7 +54,8 @@
 
     <string name="flashlight_keyword0">фонарик</string>
 
-    <string name="commit_keyword0">commit</string>
+    <string name="commit_keyword0">коммит</string>
+    <string name="commit_keyword1">commit</string>
     <string name="commit_url">http://whatthecommit.com/index.txt</string>
     <string name="commit_cannot_access">Не удалось получить коммит</string>
 

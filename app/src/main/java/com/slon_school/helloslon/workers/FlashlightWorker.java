@@ -1,8 +1,16 @@
 package com.slon_school.helloslon.workers;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.content.pm.PackageManager;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
+<<<<<<< HEAD
+=======
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+>>>>>>> develop
 import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
@@ -31,11 +39,14 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
     @Override
     public boolean isLoop() { return false; }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return getHelp();
         }
+
+//        boolean hasAccessibleCamera; //TODO check new features
         final long MULTIPLE = 1000;
         final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();
@@ -45,6 +56,12 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
         } else {
             time = DEFAULT_TIME * MULTIPLE;
         }
+        // Toast.makeText(activity,"" + Camera.getNumberOfCameras(),Toast.LENGTH_LONG).show();
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+            activity.requestPermissions(new String[]{Manifest.permission.CAMERA}, PackageManager.PERMISSION_GRANTED);
+            return new Response("Попробуйте ещё раз", false);
+        }
+        if (Camera.getNumberOfCameras() > 0) {
             final Camera CAMERA = Camera.open();
             Parameters parameters = CAMERA.getParameters();
             parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
@@ -63,8 +80,12 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
                 }
             };
             thread.start();
-        return new Response("", FINISH_SESSION);
-}
+            hasAccessibleCamera = true;
+        } else {
+            hasAccessibleCamera = false;
+        }
+        return new Response(hasAccessibleCamera ? "" : "Камера уже используется",FINISH_SESSION);
+    }
 
     @Override
     public Response getHelp() {
