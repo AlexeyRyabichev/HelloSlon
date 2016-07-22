@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
+import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -12,25 +13,18 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
-
-/**
- * Created by I. Dmitry on 10.07.2016.
- */
-
-public class FateBallWorker extends Worker {
+public class FateBallWorker extends Worker implements Helper.additionalInterface {
 
     private final static int MODE_GENERAL = 0;
     private final static int MODE_LUCK = 1;
     private final static int MODE_UNRECOGNIZED = 2;
-    private final static boolean finishSession = false;
-    private ArrayList<String> predictionList = new ArrayList<String>();
-    private ArrayList<Key> keys = new ArrayList<Key>();
-    private ArrayList<Key> luckKeys = new ArrayList<Key>();
-    private ArrayList<Key> generalKeys = new ArrayList<Key>();
+    private ArrayList<String> predictionList = new ArrayList<>();
+    private ArrayList<Key> luckKeys = new ArrayList<>();
+    private ArrayList<Key> generalKeys = new ArrayList<>();
+    ArrayList<Key> keys = new ArrayList<>();
 
     public FateBallWorker(Activity activity) {
-        super(activity);
+        super(activity, "шар судьбы");
         keys.add(new Key(activity.getString(R.string.fateball_keyword0)));
     }
 
@@ -53,10 +47,10 @@ public class FateBallWorker extends Worker {
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.toString().isEmpty()) {
             initList(MODE_UNRECOGNIZED);
-            return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),finishSession);
-        } else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan("FateBallWorker",activity).getHelp();
-        }
+            return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),FINISH_SESSION);
+        } //else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+        //    return new HelpMan(R.raw.fateball_help,activity).getHelp();
+        //}
 
         initKeys(MODE_GENERAL);
         initKeys(MODE_LUCK);
@@ -69,11 +63,16 @@ public class FateBallWorker extends Worker {
             initList(MODE_UNRECOGNIZED);
         }
 
-        return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),finishSession);
+        return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),FINISH_SESSION);
     }
 
-    private void initKeys(final int mode) {
-        switch(mode) {
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.fateball_help, activity).getHelp();
+    }
+
+    private void initKeys(final int MODE) {
+        switch(MODE) {
             case MODE_GENERAL: {
                 generalKeys.add(new Key(activity.getString(R.string.fateball_general_key0)));
                 generalKeys.add(new Key(activity.getString(R.string.fateball_general_key1)));
@@ -85,15 +84,14 @@ public class FateBallWorker extends Worker {
             }
             break;
             default: {
-                BTS(7);
-                Log.e("Unknown variable value:","FateBallWorker.initKeys.mode == " + mode);
+                Log.e("Unknown variable value:","FateBallWorker.initKeys.mode == " + MODE);
             }
         }
     }
 
-    private void initList(final int mode) {
+    private void initList(final int MODE) {
         predictionList.clear();
-        switch(mode) {
+        switch(MODE) {
             case MODE_GENERAL: {
                 predictionList.add(activity.getString(R.string.fateball_general_string0));
                 predictionList.add(activity.getString(R.string.fateball_general_string1));
@@ -128,8 +126,7 @@ public class FateBallWorker extends Worker {
             }
             break;
             default: {
-                BTS(8);
-                Log.e("Unknown variable value:","FateBallWorker.initList.mode == " + mode);
+                Log.e("Unknown variable value:","FateBallWorker.initList.mode == " + MODE);
             }
         }
     }

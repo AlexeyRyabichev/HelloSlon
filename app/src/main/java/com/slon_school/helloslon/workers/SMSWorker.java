@@ -1,10 +1,10 @@
 package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
-import android.database.Cursor;
-import android.provider.ContactsContract;
 import android.telephony.SmsManager;
 
+import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -25,8 +25,8 @@ public class SMSWorker extends Worker {
     private String message;
 
     public SMSWorker(Activity activity) {
-        super(activity);
-        keys = new ArrayList<Key>();
+        super(activity, "смс");
+        keys = new ArrayList<>();
         keys.add(new Key("отправь смс"));
         keys.add(new Key("написать смс"));
         keys.add(new Key("отправить смс"));
@@ -52,6 +52,9 @@ public class SMSWorker extends Worker {
         Key error = new Key("ошибка");
         Key exit = new Key("отмена");
 
+        //if ((arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) && (state == State.Start) ){
+         //   return new HelpMan(R.raw.sms_help,activity).getHelp();
+        //}else
         if (arguments.get().size() == 0 && state == State.Start) {
               return start(arguments);
         } else if (state == State.PhoneNumber) {
@@ -70,6 +73,11 @@ public class SMSWorker extends Worker {
         }
 
         return new Response("Повтори ещё раз, я не понял", true);
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.sms_help,activity).getHelp();
     }
 
     private Response start(Key arguments) {

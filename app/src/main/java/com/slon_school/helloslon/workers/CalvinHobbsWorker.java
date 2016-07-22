@@ -20,11 +20,12 @@ import java.util.concurrent.CountDownLatch;
 public class CalvinHobbsWorker extends Worker{
     private String quote;
     private boolean isQuoteGot;
-    private ArrayList<Key> keys = new ArrayList<Key>();
+    private ArrayList<Key> keys = new ArrayList<>();
 
     public CalvinHobbsWorker( Activity activity ) {
-        super( activity );
+        super( activity , "кельвин и хоббс");
         keys.add(new Key("кельвин и хоббс"));
+        keys.add(new Key("келвин и хоббс"));
     }
 
     @Override
@@ -59,19 +60,27 @@ public class CalvinHobbsWorker extends Worker{
             e.printStackTrace();
         }
         if (isQuoteGot) {
-            ArrayList<String> images = new ArrayList<String>();
+            ArrayList<String> images = new ArrayList<>();
             images.add( quote );
-            return new Response( "", false, images);
+            return new Response("", false, images);
         } else {
             return new Response("Не удалось загрузить картинку", false);
         }
+    }
+
+    @Override
+    public Response getHelp() {
+       //TODO
+       //instead R.raw.browser_help - must be id of your help
+       //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
     }
 
 
     public boolean getQuote() throws Exception {
         String line;
         Random random = new Random();
-        Integer tmp = random.nextInt(551);
+        Integer tmp = Math.abs(random.nextInt(551));
         URL url = new URL("http://calvin-hobbs.ilost.ru/comix.php?num=" + tmp.toString());
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
                 activity.getString(R.string.cp1251)));

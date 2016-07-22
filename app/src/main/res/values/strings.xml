@@ -3,7 +3,7 @@
     <string name="api_key">3fc8390c-44d4-4c06-8df7-b06ab7c309d6</string>
     <string name="button_text">Talk to me</string>
     <string name="cp1251">windows-1251</string>
-    <string name="no_connetion">Пожалуйста, включите Wi-Fi</string>
+    <string name="no_connection">Пожалуйста, включите Wi-Fi</string>
     <string name="shimmer">I\'m listening you</string>
     <string name="imageTransitionName">SlonImage</string>
 
@@ -44,10 +44,11 @@
     <string name="bashorg_keyword0">башорг</string>
     <string name="bashorg_get_quote">Получай свою цитатку!</string>
     <string name="bashorg_url">http://bash.im/random</string>
+    <string name="bashorg_indicator">div class=&quot;text</string>
     <string name="bashorg_cannot_access_quote">Упс, не получилось загрузить цитатку</string>
 
     <string name="xkcd_keyword0">комикс</string>
-    <string name="xkcd_keyword1">хочу комикс</string>
+    <string name="xkcd_indicator">img border=0 src=</string>
     <string name="xkcd_url">http://xkcd.ru/random</string>
     <string name="xkcd_failed_image_load">Извини, не удалось загрузить комикс</string>
 
@@ -56,11 +57,23 @@
     <string name="flashlight_on">включи</string>
     <string name="flashlight_off">выключи</string>
 
-    <string name="commit_keyword0">commitment</string>
-    <string name="commit_keyword1">commit</string>
+    <string name="commit_keyword0">commit</string>
     <string name="commit_url">http://whatthecommit.com/index.txt</string>
     <string name="commit_cannot_access">Не удалось получить коммит</string>
 
     <string name="launch_keyword0">запуск</string>
     <string name="launch_keyword1">запустить</string>
+
+    <string name="browser_keyword0">найди</string>
+    <string name="browser_keyword1">поиск</string>
+    <string name="browser_keyword2">интернет</string>
+    <string name="browser_keyword3">браузер</string>
+    <string name="browser_keyword4">яндекс</string>
+    <string name="browser_keyword5">искать</string>
+    <string name="browser_keyword6">найти</string>
+    <string name="browser_keyword_google">google</string>
+    <string name="browser_google">https://www.google.ru/search?q=</string>
+    <string name="browser_yandex">http://www.yandex.ru?q=</string>
+
+    <string name="throw_dice_keyword0">бросить кост</string>
 </resources>

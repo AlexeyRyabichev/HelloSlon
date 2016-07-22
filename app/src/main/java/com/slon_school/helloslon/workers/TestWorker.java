@@ -2,7 +2,6 @@ package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
 
-import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -21,7 +20,7 @@ public class TestWorker extends Worker {
 
 
     public TestWorker(Activity activity) {
-        super(activity);
+        super(activity, "-----");
         isContinue = false;
         keys = new ArrayList<Key>();
         keys.add(new Key("привет"));
@@ -45,11 +44,12 @@ public class TestWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         ArrayList<String> tmp;
-        tmp = new ArrayList<>();
-        tmp.add("https://im3-tub-ru.yandex.net/i?id=be1f6bd3ed95ee13fc4c810ea32f8cdd&n=33&h=215&w=296");
-        tmp.add("https://im3-tub-ru.yandex.net/i?id=4bb42352757affaaed28d9bf3c8631ef&n=33&h=215&w=382");
-        tmp.add("https://im1-tub-ru.yandex.net/i?id=95ce2a93943065f927324254195bbba5-16-16f-16161&n=33&h=215&w=382");
-        Response helloWorld = new Response("Привет" , false, tmp);
+        Response helloWorld = new Response("Слушаю" , false);
         return helloWorld;
+    }
+
+    @Override
+    public Response getHelp() {
+        return null;
     }
 }
