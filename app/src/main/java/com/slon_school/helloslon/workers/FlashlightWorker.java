@@ -70,7 +70,7 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
         } else {
             hasAccessibleCamera = false;
         }
-        return new Response(hasAccessibleCamera ? "" : "Камера уже используется",FINISH_SESSION);
+        return new Response(hasAccessibleCamera ? "" : activity.getString(R.string.flashlight_unaccessible_camera),FINISH_SESSION);
     }
 
     @Override
