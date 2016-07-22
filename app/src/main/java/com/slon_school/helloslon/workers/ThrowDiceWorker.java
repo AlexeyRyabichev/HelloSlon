@@ -19,7 +19,7 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
     private ArrayList<Key> keys = new ArrayList<>();
 
     public ThrowDiceWorker(Activity activity) {
-        super(activity);
+        super(activity, "кости");
         keys.add(new Key(activity.getString(R.string.throw_dice_keyword0)));
     }
 
@@ -36,7 +36,7 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan(R.raw.throw_dice_help,activity).getHelp();
+            return getHelp();
         }
 
         String output = "";
@@ -56,5 +56,10 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
             output += "Бросок №" + diceCount.toString() + ": " + randomThrow.toString() + " очков.";
         }
         return new Response(output,FINISH_SESSION);
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.throw_dice_help, activity).getHelp();
     }
 }
