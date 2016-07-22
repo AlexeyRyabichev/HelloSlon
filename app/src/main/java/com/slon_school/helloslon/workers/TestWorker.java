@@ -2,7 +2,6 @@ package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
 
-import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
