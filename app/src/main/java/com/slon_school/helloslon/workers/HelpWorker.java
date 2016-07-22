@@ -25,7 +25,7 @@ public class HelpWorker extends Worker {
     public HelpWorker(Activity activity, Core core) {
         super(activity, "helper");
 
-        keys = new ArrayList<Key>();
+        keys = new ArrayList<>();
         keys.add(new Key("помощь"));
         keys.add(new Key("help"));
         keys.add(new Key("помоги"));
@@ -33,7 +33,7 @@ public class HelpWorker extends Worker {
         keys.add(new Key("sos"));
         keys.add(new Key("сос"));
 
-        close = new ArrayList<Key>();
+        close = new ArrayList<>();
         close.add(new Key("хватит"));
         close.add(new Key("закрой"));
         close.add(new Key("закройся"));
