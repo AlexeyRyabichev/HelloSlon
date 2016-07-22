@@ -52,9 +52,7 @@
     <string name="xkcd_url">http://xkcd.ru/random</string>
     <string name="xkcd_failed_image_load">Извини, не удалось загрузить комикс</string>
 
-    <string name="flashlight_keyword0">фонар</string>
-    <string name="flashlight_on">включи</string>
-    <string name="flashlight_off">выключи</string>
+    <string name="flashlight_keyword0">фонарик</string>
 
     <string name="commit_keyword0">commit</string>
     <string name="commit_url">http://whatthecommit.com/index.txt</string>
@@ -74,5 +72,6 @@
     <string name="browser_google">https://www.google.ru/search?q=</string>
     <string name="browser_yandex">http://www.yandex.ru?q=</string>
 
-    <string name="throw_dice_keyword0">бросить кост</string>
+    <string name="throw_dice_keyword0">бросить кость</string>
+    <string name="throw_dice_keyword1">бросить кости</string>
 </resources>
