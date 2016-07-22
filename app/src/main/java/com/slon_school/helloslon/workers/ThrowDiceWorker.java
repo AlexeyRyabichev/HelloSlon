@@ -19,7 +19,7 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
     private ArrayList<Key> keys = new ArrayList<>();
 
     public ThrowDiceWorker(Activity activity) {
-        super(activity);
+        super(activity,"кости");
         keys.add(new Key(activity.getString(R.string.throw_dice_keyword0)));
     }
 
@@ -56,5 +56,10 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
             output += "Бросок №" + diceCount.toString() + ": " + randomThrow.toString() + " очков.";
         }
         return new Response(output,FINISH_SESSION);
+    }
+
+    @Override
+    public Response getHelp() {
+        return null;
     }
 }

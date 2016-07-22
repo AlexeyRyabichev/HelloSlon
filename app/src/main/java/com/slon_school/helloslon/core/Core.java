@@ -56,12 +56,8 @@ public class Core {
 		workers.add(new CommitWorker(activity));
 		workers.add(new GallowsWorker(activity));
 		workers.add(new DilbertWorker(activity));
-<<<<<<< HEAD
 		workers.add(new ThrowDiceWorker(activity));
-
-=======
 		workers.add(new HelpWorker(activity, this));
->>>>>>> Asgar
 		currentWorker = idNone;
 	}
 	

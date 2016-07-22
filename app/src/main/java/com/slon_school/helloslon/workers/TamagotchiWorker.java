@@ -58,12 +58,9 @@ public class TamagotchiWorker extends Worker {
     }
 
     public TamagotchiWorker( Activity activity ) {
-<<<<<<< HEAD
-        super( activity );
-        Init();
-=======
         super( activity, "тамагочи" );
->>>>>>> develop
+        Init();
+
         keys.add(new Key("тамагочи"));
         InitPicArr();
     }
@@ -80,16 +77,12 @@ public class TamagotchiWorker extends Worker {
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
-<<<<<<< HEAD
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan(R.raw.tamagotchi_help,activity).getHelp();
+            return getHelp();
         }
 
         String str = new String();
         str = "";
-=======
-        String str = "";
->>>>>>> develop
         timers();
         EOG = checkEOG();
         if(EOG) {
@@ -187,10 +180,7 @@ public class TamagotchiWorker extends Worker {
 
     @Override
     public Response getHelp() {
-        //TODO
-        //instead R.raw.browser_help - must be id of your help
-        //return new HelpMan(R.raw.browser_help, activity).getHelp();
-        return null;
+        return new HelpMan(R.raw.tamagotchi_help, activity).getHelp();
     }
 
     private void timers() {
