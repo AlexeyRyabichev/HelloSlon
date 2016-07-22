@@ -55,7 +55,6 @@
     <string name="flashlight_keyword0">фонар</string>
     <string name="flashlight_on">включи</string>
     <string name="flashlight_off">выключи</string>
-    <string name="flashlight_unaccessible_camera">Камера уже используется</string>
 
     <string name="commit_keyword0">commit</string>
     <string name="commit_url">http://whatthecommit.com/index.txt</string>
