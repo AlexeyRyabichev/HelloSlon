@@ -74,6 +74,9 @@ public class DilbertWorker extends Worker
             if ( comand.equals( "хватит" ) ) {
                 return new Response( "Действительно хватит", false );
             }
+            if ( comand.equals( "нет" ) ) {
+                return new Response( "Пока", false );
+            }
         }
         return new Response( "Ничего не понял.", true);
     }

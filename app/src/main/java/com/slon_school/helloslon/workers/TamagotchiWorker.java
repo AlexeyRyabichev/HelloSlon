@@ -90,7 +90,7 @@ public class TamagotchiWorker extends Worker {
             _buf.add(printPet());
             powerInit();
             saveAll();
-            return new Response("\nЗаводим нового слона", true);
+            return new Response("\nЗаводим нового слона", true, _buf);
         }
         if ( arguments.get().size() != 0 ) {
             if (cmdFeed(arguments) && !Sleep) {
@@ -213,6 +213,9 @@ public class TamagotchiWorker extends Worker {
     private String printPet() {
         String res = new String();
         res = "";
+        if((Energy == 0) || (Hunger == 0) || (Hygiene == 0) || (Fun == 0) || (Healthy == 0)) {
+            res += picArr.get(2);
+        }
         if(Sleep) res += picArr.get(3);
         else if(Energy < 30) res += picArr.get(1);
         else res += picArr.get(0);
@@ -222,7 +225,7 @@ public class TamagotchiWorker extends Worker {
         String res = new String();
         res = "";
         if((Energy == 0) || (Hunger == 0) || (Hygiene == 0) || (Fun == 0) || (Healthy == 0)) {
-            res += picArr.get(2) + "ты малёк запустил питомца, игра окончена\n";
+            res += "ты малёк запустил питомца, игра окончена\n";
         }
         res += "Hunger = " + String.valueOf( Hunger ) + "\n";
         res += "Energy = " + String.valueOf( Energy ) + "\n";
@@ -284,6 +287,8 @@ public class TamagotchiWorker extends Worker {
     private boolean cmdPlay(Key arguments) {
         lastPlay = new Date();
         if(arguments.get().get( 0 ).equals("играй"))
+            return true;
+        if(arguments.get().get( 0 ).equals("играть"))
             return true;
         return false;
     }
