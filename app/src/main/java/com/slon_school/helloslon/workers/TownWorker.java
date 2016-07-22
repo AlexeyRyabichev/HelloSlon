@@ -30,7 +30,7 @@ public class TownWorker extends Worker {
     char lastChar;
 
     public TownWorker( Activity activity ) {
-        super( activity );
+        super( activity , "игра города");
         Init();
     }
 
@@ -124,6 +124,14 @@ public class TownWorker extends Worker {
                 return new Response( _bufTown, !eog ); //break;
         }
         return new Response( "123error", false );
+    }
+
+    @Override
+    public Response getHelp() {
+        //TODO
+        //instead R.raw.browser_help - must be id of your help
+        //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
     }
 
     private void usedInit() {

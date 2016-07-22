@@ -38,7 +38,7 @@ public class GallowsWorker extends Worker {
     private boolean isQuoteGot;
 
     public GallowsWorker(Activity activity) {
-        super(activity);
+        super(activity, "игра виселица");
         keys = new ArrayList<>();
         keys.add(new Key("Виселица"));
         keys.add(new Key("Виселицу"));
@@ -86,9 +86,10 @@ public class GallowsWorker extends Worker {
     public Response doWork(ArrayList<Key> keys, Key arguments) {
 
 
-        if ((state == State.StartGame) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
-            return new HelpMan(R.raw.gallow_help, activity).getHelp();
-        } else if (state == State.StartGame) {
+        //if ((state == State.StartGame) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
+          //  return new HelpMan(R.raw.gallow_help, activity).getHelp();
+        //} else
+        if (state == State.StartGame) {
             state = State.InGame;
             word = getWord();
             countOfCorrect = 0;
@@ -137,6 +138,10 @@ public class GallowsWorker extends Worker {
         return null;
     }
 
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.gallow_help, activity).getHelp();
+    }
 
 
     private Response correct(String let) {

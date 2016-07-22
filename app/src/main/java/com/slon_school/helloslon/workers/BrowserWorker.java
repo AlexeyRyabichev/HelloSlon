@@ -16,7 +16,7 @@ public class BrowserWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<>();
 
     public BrowserWorker(Activity activity) {
-        super(activity);
+        super(activity, "браузер");
         keys.add(new Key(activity.getString(R.string.browser_keyword0)));
         keys.add(new Key(activity.getString(R.string.browser_keyword1)));
         keys.add(new Key(activity.getString(R.string.browser_keyword2)));
@@ -37,9 +37,9 @@ public class BrowserWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> result, Key arguments) {
-        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+        /*if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return new HelpMan(R.raw.browser_help,activity).getHelp();
-        }
+        }*/
 
         if (result.contains(new Key(activity.getString(R.string.browser_keyword_google)))){
             Intent intent = new Intent();
@@ -55,6 +55,11 @@ public class BrowserWorker extends Worker {
             activity.startActivity(intent);
             return new Response("", false);
         }
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.browser_help,activity).getHelp();
     }
 
 }

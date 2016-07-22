@@ -29,7 +29,7 @@ public class AlarmWorker extends Worker {
     private State state;
 
     public AlarmWorker(Activity activity) {
-        super(activity);
+        super(activity, "будильник");
         alarms = new HashMap<HSTime, Integer>();
 
         keys = new ArrayList<Key>();
@@ -53,9 +53,7 @@ public class AlarmWorker extends Worker {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         Response response = new Response("Я не понял, что ты имеешь ввиду, скажи поточнее", true);
-        if ((state == State.FirstTime) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
-            return new HelpMan(R.raw.alarm_help, activity).getHelp();
-        } else if (state == State.FirstTime) {
+        if (state == State.FirstTime) {
             state = State.SetTime;
             deleteAlarm = false;
             return new Response("Установи время", true);
@@ -66,6 +64,11 @@ public class AlarmWorker extends Worker {
             return new Response("Установлен одноразовый будильник на " + timeNow.hour + ":" + timeNow.minutes, false);
         }
         return response;
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.alarm_help, activity).getHelp();
     }
 
     private void setOneTimeAlarm(HSTime time) {

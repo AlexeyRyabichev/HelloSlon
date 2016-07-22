@@ -50,7 +50,7 @@ public class TamagotchiWorker extends Worker {
     }
 
     public TamagotchiWorker( Activity activity ) {
-        super( activity );
+        super( activity, "тамагочи" );
         keys.add(new Key("тамагочи"));
         InitPicArr();
     }
@@ -109,6 +109,14 @@ public class TamagotchiWorker extends Worker {
             return new Response(printPet(), true);
         }
         return new Response( "Приветствие", true);
+    }
+
+    @Override
+    public Response getHelp() {
+        //TODO
+        //instead R.raw.browser_help - must be id of your help
+        //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
     }
 
     private void timers() {
