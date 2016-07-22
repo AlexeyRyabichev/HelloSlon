@@ -93,7 +93,7 @@ public class GallowsWorker extends Worker {
             state = State.InGame;
             word = getWord();
             countOfCorrect = 0;
-            return new Response("Хорошо, давай сыграем, вот твоё слово: \n" + outputWord() + "\n\nПару условий: ь - мягкий знак, ъ - твёрдый знак, ы - мы", true);
+            return new Response("Хорошо, давай сыграем, вот твоё слово: \n" + outputWord() + "\n\nПара условий: ь - мягкий знак, ъ - твёрдый знак, ы - мы", true);
         } else if (state == State.InGame){
             if (isClose(arguments)){
                 return close();

@@ -56,7 +56,8 @@
     <string name="flashlight_on">включи</string>
     <string name="flashlight_off">выключи</string>
 
-    <string name="commit_keyword0">commit</string>
+    <string name="commit_keyword0">коммит</string>
+    <string name="commit_keyword1">commit</string>
     <string name="commit_url">http://whatthecommit.com/index.txt</string>
     <string name="commit_cannot_access">Не удалось получить коммит</string>
 
