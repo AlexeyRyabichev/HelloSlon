@@ -93,7 +93,7 @@ public class GallowsWorker extends Worker {
             state = State.InGame;
             word = getWord();
             countOfCorrect = 0;
-            return new Response("Хорошо, давай сыграем, вот твоё слово: \n" + outputWord(), true);
+            return new Response("Хорошо, давай сыграем, вот твоё слово: \n" + outputWord() + "\n\nПару условий: ь - мягкий знак, ъ - твёрдый знак, ы - мы", true);
         } else if (state == State.InGame){
             if (isClose(arguments)){
                 return close();
@@ -102,7 +102,7 @@ public class GallowsWorker extends Worker {
                 ArrayList<Key> special = new ArrayList<>();
                 special.add(new Key("мягкий"));
                 special.add(new Key("твердый"));
-
+                special.add(new Key("мы"));
                 if (arguments.size() == 0) {
                     return notUnderstand();
                 } else {
@@ -118,6 +118,12 @@ public class GallowsWorker extends Worker {
                         } else if (arguments.contains(special.get(1))) {
                             if (word.contains("ъ")) {
                                 return correct("ъ");
+                            } else {
+                                return wrong();
+                            }
+                        } else if (arguments.contains(special.get(2))) {
+                            if (word.contains("ы")) {
+                                return correct("ы");
                             } else {
                                 return wrong();
                             }
