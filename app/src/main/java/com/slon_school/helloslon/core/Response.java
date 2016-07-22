@@ -12,14 +12,14 @@ public class Response {
         this.response = response;
         this.isEnd = isEnd;
         isHaveImage = false;
-        images = new ArrayList<String>();
+        images = new ArrayList<>();
     }
 
     public Response(String response, boolean isEnd, ArrayList<String> linksToImages) {
         this.response = response;
         this.isEnd = isEnd;
         isHaveImage = true;
-        this.images = new ArrayList<String>();
+        this.images = new ArrayList<>();
         this.images = linksToImages;
     }
 
