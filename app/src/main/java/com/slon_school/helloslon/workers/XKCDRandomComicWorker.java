@@ -40,6 +40,7 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return getHelp();
         }
+
         final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
         Thread thread = new Thread() {
             @Override

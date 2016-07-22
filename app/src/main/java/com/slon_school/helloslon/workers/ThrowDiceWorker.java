@@ -38,6 +38,7 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return getHelp();
         }
+
         String output = "";
         Long diceCount;
         final long DICE_LIMIT = 50;
@@ -50,14 +51,9 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
             diceCount = DEFAULT_DICE_COUNT;
         }
         diceCount = diceCount > DICE_LIMIT ? DICE_LIMIT : diceCount;
-        for (Integer i = 1; i <= diceCount; ++i) {
-            Long randomThrow = Math.abs(new Random().nextLong() % 6 + 1);
-            output += "Бросок №";
-            output += i.toString();
-            output += ": ";
-            output += randomThrow.toString();
-            output += " очков.";
-            output += "\n";
+        for (int i = 1; i <= diceCount; ++i) {
+            Long randomThrow = new Random().nextLong() % 6 + 1;
+            output += "Бросок №" + diceCount.toString() + ": " + randomThrow.toString() + " очков.";
         }
         return new Response(output,FINISH_SESSION);
     }
