@@ -13,6 +13,8 @@ public abstract class Worker {
 		this.name = name;
 	}
 
+
+
 	public abstract ArrayList<Key> getKeys();
 
 	public abstract boolean isLoop();

@@ -57,8 +57,6 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         String commit = pair.second ? pair.first : activity.getString(R.string.commit_cannot_access);
         return new Response(commit,FINISH_SESSION);
     }
-<<<<<<< HEAD
-=======
 
     @Override
     public Response getHelp() {
@@ -83,5 +81,5 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         return false;
     }
     */
->>>>>>> Asgar
+
 }

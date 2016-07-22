@@ -13,6 +13,7 @@ package com.slon_school.helloslon.workers;
 
 
         import com.slon_school.helloslon.R;
+        import com.slon_school.helloslon.core.HelpMan;
         import com.slon_school.helloslon.core.Helper;
         import com.slon_school.helloslon.core.Key;
         import com.slon_school.helloslon.core.Response;
@@ -31,7 +32,7 @@ public class EmailSendWorker extends Worker {
     private State state;
 
     public EmailSendWorker(Activity activity) {
-        super(activity);
+        super(activity, "письмо");
         keys = new ArrayList<Key>();
         keys.add(new Key("емайл"));
         keys.add(new Key("письмо"));
@@ -66,6 +67,10 @@ public class EmailSendWorker extends Worker {
         activity.startActivity(intent);
         return new Response("", false);
     }
+
+    @Override
+    public Response getHelp() {return new HelpMan(R.raw.email_help, activity).getHelp();}
+
     private Response writeText(Key arguments){
         state = State.Start;
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
