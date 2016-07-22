@@ -1,6 +1,7 @@
 package com.slon_school.helloslon.workers;
 
 import android.app.Activity;
+import android.util.Pair;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
@@ -9,21 +10,17 @@ import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
+import static com.slon_school.helloslon.core.Helper.getStringFromWeb;
 
 public class CommitWorker extends Worker implements Helper.additionalInterface {
-    private String commit;
-    private boolean hasCommit;
+    private Pair<String,Boolean> pair;
     ArrayList<Key> keys = new ArrayList<>();
 
     public CommitWorker(Activity activity) {
-        super(activity);
+        super(activity, "commit");
         keys.add(new Key(activity.getString(R.string.commit_keyword0)));
     }
 
@@ -44,10 +41,9 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
             public void run() {
                 super.run();
                 try {
-                    hasCommit = getCommit();
+                    pair = getStringFromWeb(activity.getString(R.string.commit_url),"" ,activity.getString(R.string.cp1251));
                     COUNT_DOWN_LATCH.countDown();
                 } catch (Exception e) {
-                    BTS(15);
                     e.printStackTrace();
                 }
             }
@@ -56,17 +52,23 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         try {
             COUNT_DOWN_LATCH.await();
         } catch (InterruptedException e) {
-            BTS(14);
             e.printStackTrace();
         }
-        commit = hasCommit ? commit : activity.getString(R.string.commit_cannot_access);
+        String commit = pair.second ? pair.first : activity.getString(R.string.commit_cannot_access);
         return new Response(commit,FINISH_SESSION);
     }
+<<<<<<< HEAD
+=======
 
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.commit_help, activity).getHelp();
+    }
+/*
     public boolean getCommit() throws Exception {
         String line;
-        URL url = new URL(activity.getString(R.string.commit_url));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), activity.getString(R.string.cp1251)));
+        URL url = new URL();
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(), ));
         while (true) {
             line = reader.readLine();
             if (line == null) {
@@ -80,4 +82,6 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
         }
         return false;
     }
+    */
+>>>>>>> Asgar
 }

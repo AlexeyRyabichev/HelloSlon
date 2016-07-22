@@ -3,6 +3,7 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 import android.hardware.Camera;
 import android.hardware.Camera.Parameters;
+import android.widget.Toast;
 
 import com.slon_school.helloslon.R;
 import com.slon_school.helloslon.core.HelpMan;
@@ -13,7 +14,6 @@ import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
 import static com.slon_school.helloslon.core.Helper.isDecimalNumber;
 import static com.slon_school.helloslon.core.Helper.string2long;
 
@@ -21,7 +21,7 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
     private long time;
     ArrayList<Key> keys = new ArrayList<>();
     public FlashlightWorker(Activity activity) {
-        super(activity);
+        super(activity, "фонарик");
         keys.add(new Key(activity.getString(R.string.flashlight_keyword0)));
         keys.add(new Key(activity.getString(R.string.flashlight_keyword1)));
     }
@@ -34,9 +34,16 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
+<<<<<<< HEAD
+        boolean hasAccessibleCamera; //TODO check new features
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return new HelpMan(R.raw.flashlight_help,activity).getHelp();
         }
+=======
+        //if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+        //    return new HelpMan(R.raw.flashlight_help,activity).getHelp();
+        //}
+>>>>>>> Asgar
 
         final long MULTIPLE = 1000;
         final long DEFAULT_TIME = 60;
@@ -46,25 +53,35 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
         } else {
             time = DEFAULT_TIME * MULTIPLE;
         }
-        final Camera CAMERA = Camera.open();
-        Parameters parameters = CAMERA.getParameters();
-        parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
-        CAMERA.setParameters(parameters);
-        Thread thread = new Thread() {
+        Toast.makeText(activity,Camera.getNumberOfCameras(),Toast.LENGTH_LONG).show();
+        if (Camera.getNumberOfCameras() > 0) {
+            final Camera CAMERA = Camera.open();
+            Parameters parameters = CAMERA.getParameters();
+            parameters.setFlashMode(Parameters.FLASH_MODE_TORCH);
+            CAMERA.setParameters(parameters);
+            Thread thread = new Thread() {
 
-            public void run() {
-                super.run();
-                try {
-                    CAMERA.startPreview();
-                    sleep(time);
-                    CAMERA.stopPreview();
-                } catch (Exception e) {
-                    BTS(16);
-                    e.printStackTrace();
+                public void run() {
+                    super.run();
+                    try {
+                        CAMERA.startPreview();
+                        sleep(time);
+                        CAMERA.stopPreview();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        };
-        thread.start();
-        return new Response("", FINISH_SESSION);
+            };
+            thread.start();
+            hasAccessibleCamera = true;
+        } else {
+            hasAccessibleCamera = false;
+        }
+        return new Response(hasAccessibleCamera ? "" : "Камера уже используется",FINISH_SESSION);
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.flashlight_help, activity).getHelp();
     }
 }

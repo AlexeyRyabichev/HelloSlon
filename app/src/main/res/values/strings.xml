@@ -44,7 +44,7 @@
     <string name="bashorg_keyword0">башорг</string>
     <string name="bashorg_get_quote">Получай свою цитатку!</string>
     <string name="bashorg_url">http://bash.im/random</string>
-    <string name="bashorg_indicator">div class="text"</string>
+    <string name="bashorg_indicator">div class=&quot;text</string>
     <string name="bashorg_cannot_access_quote">Упс, не получилось загрузить цитатку</string>
 
     <string name="xkcd_keyword0">комикс</string>
@@ -74,4 +74,6 @@
     <string name="browser_keyword_google">google</string>
     <string name="browser_google">https://www.google.ru/search?q=</string>
     <string name="browser_yandex">http://www.yandex.ru?q=</string>
+
+    <string name="throw_dice_keyword0">бросить кост</string>
 </resources>

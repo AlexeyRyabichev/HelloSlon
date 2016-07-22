@@ -7,15 +7,13 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 
+import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
 
 import java.util.ArrayList;
-
-/**
- * Created by Mike on 16.07.2016.
- */
 
 /**
  * Created by Mike on 14.07.2016.
@@ -24,7 +22,7 @@ public class PhoneWorker extends Worker {
     private ArrayList<Key> keys = new ArrayList<>();
 
     public PhoneWorker(Activity activity) {
-        super(activity);
+        super(activity, "телефон");
         keys.add(new Key("набери"));
         keys.add(new Key("набрать"));
         keys.add(new Key("позвони"));
@@ -62,4 +60,9 @@ public class PhoneWorker extends Worker {
         activity.startActivity(intent);
         return new Response("", false);
     }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.phone_help, activity).getHelp();
     }
+}

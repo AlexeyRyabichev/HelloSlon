@@ -11,10 +11,12 @@ import com.slon_school.helloslon.workers.DilbertWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.FlashlightWorker;
 import com.slon_school.helloslon.workers.GallowsWorker;
+import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TamagotchiWorker;
 import com.slon_school.helloslon.workers.TestWorker;
+import com.slon_school.helloslon.workers.ThrowDiceWorker;
 import com.slon_school.helloslon.workers.TownWorker;
 import com.slon_school.helloslon.workers.TranslateWorker;
 import com.slon_school.helloslon.workers.XKCDRandomComicWorker;
@@ -54,7 +56,12 @@ public class Core {
 		workers.add(new CommitWorker(activity));
 		workers.add(new GallowsWorker(activity));
 		workers.add(new DilbertWorker(activity));
+<<<<<<< HEAD
+		workers.add(new ThrowDiceWorker(activity));
 
+=======
+		workers.add(new HelpWorker(activity, this));
+>>>>>>> Asgar
 		currentWorker = idNone;
 	}
 	
@@ -67,7 +74,7 @@ public class Core {
 		if (currentWorker == idNone) {
 			for (int i = 0; i < workers.size(); i++) {
 				boolean access = false;
-				ArrayList<Key> eq = new ArrayList<Key>();
+				ArrayList<Key> eq = new ArrayList<>();
 
 				for (Key key : workers.get(i).getKeys()) {
 					if (subKey(key, r)) {
@@ -95,7 +102,7 @@ public class Core {
 		} else {
 
 			//Toast.makeText(activity, "I was here", Toast.LENGTH_LONG).show();
-            ArrayList<Key> eq = new ArrayList<Key>();
+            ArrayList<Key> eq = new ArrayList<>();
 			for (Key key : workers.get(currentWorker).getKeys()) {
 				if (subKey(key, r)) {
 					eq.add(key);
@@ -126,5 +133,11 @@ private boolean subKey(Key key, String string) {
 		}
 		return compare(counter,key.get().size()) >= 0;
 }
+
+
+	public ArrayList<Worker> workers() {
+		return workers;
+	}
+
 
 }

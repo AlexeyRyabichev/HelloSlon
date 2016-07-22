@@ -58,8 +58,12 @@ public class TamagotchiWorker extends Worker {
     }
 
     public TamagotchiWorker( Activity activity ) {
+<<<<<<< HEAD
         super( activity );
         Init();
+=======
+        super( activity, "тамагочи" );
+>>>>>>> develop
         keys.add(new Key("тамагочи"));
         InitPicArr();
     }
@@ -76,12 +80,16 @@ public class TamagotchiWorker extends Worker {
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
+<<<<<<< HEAD
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return new HelpMan(R.raw.tamagotchi_help,activity).getHelp();
         }
 
         String str = new String();
         str = "";
+=======
+        String str = "";
+>>>>>>> develop
         timers();
         EOG = checkEOG();
         if(EOG) {
@@ -177,6 +185,14 @@ public class TamagotchiWorker extends Worker {
         ed.apply();
     }
 
+    @Override
+    public Response getHelp() {
+        //TODO
+        //instead R.raw.browser_help - must be id of your help
+        //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
+    }
+
     private void timers() {
         Date Now = new Date();
 
@@ -211,8 +227,7 @@ public class TamagotchiWorker extends Worker {
     }
 
     private String printPet() {
-        String res = new String();
-        res = "";
+        String res = "";
         if((Energy == 0) || (Hunger == 0) || (Hygiene == 0) || (Fun == 0) || (Healthy == 0)) {
             res += picArr.get(2);
         }

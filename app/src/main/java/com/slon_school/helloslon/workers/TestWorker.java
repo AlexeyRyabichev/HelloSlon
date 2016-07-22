@@ -20,7 +20,7 @@ public class TestWorker extends Worker {
 
 
     public TestWorker(Activity activity) {
-        super(activity);
+        super(activity, "-----");
         isContinue = false;
         keys = new ArrayList<Key>();
         keys.add(new Key("привет"));
@@ -46,5 +46,10 @@ public class TestWorker extends Worker {
         ArrayList<String> tmp;
         Response helloWorld = new Response("Слушаю" , false);
         return helloWorld;
+    }
+
+    @Override
+    public Response getHelp() {
+        return null;
     }
 }

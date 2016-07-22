@@ -26,7 +26,7 @@ public class GallowsWorker extends Worker {
     private ArrayList<Key> keys;
     private ArrayList<Key> close;
 
-    private enum State {StartGame, InGame};
+    private enum State {StartGame, InGame}
     private State state;
 
     private String word;
@@ -38,13 +38,13 @@ public class GallowsWorker extends Worker {
     private boolean isQuoteGot;
 
     public GallowsWorker(Activity activity) {
-        super(activity);
-        keys = new ArrayList<Key>();
+        super(activity, "игра виселица");
+        keys = new ArrayList<>();
         keys.add(new Key("Виселица"));
         keys.add(new Key("Виселицу"));
 
 
-        close = new ArrayList<Key>();
+        close = new ArrayList<>();
         close.add(new Key("закончить"));
         close.add(new Key("отмена"));
         close.add(new Key("хватит"));
@@ -53,7 +53,7 @@ public class GallowsWorker extends Worker {
 
         word = "";
         lives = 0;
-        haveLet = new ArrayList<Boolean>();
+        haveLet = new ArrayList<>();
         countOfCorrect = 0;
 
         picsInR = new HashMap<Integer, String>();
@@ -86,9 +86,10 @@ public class GallowsWorker extends Worker {
     public Response doWork(ArrayList<Key> keys, Key arguments) {
 
 
-        if ((state == State.StartGame) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
-            return new HelpMan(R.raw.gallow_help, activity).getHelp();
-        } else if (state == State.StartGame) {
+        //if ((state == State.StartGame) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
+          //  return new HelpMan(R.raw.gallow_help, activity).getHelp();
+        //} else
+        if (state == State.StartGame) {
             state = State.InGame;
             word = getWord();
             countOfCorrect = 0;
@@ -98,7 +99,7 @@ public class GallowsWorker extends Worker {
                 return close();
         } else {
 
-                ArrayList<Key> special = new ArrayList<Key>();
+                ArrayList<Key> special = new ArrayList<>();
                 special.add(new Key("мягкий знак"));
                 special.add(new Key("твёрдый знак"));
 
@@ -137,6 +138,10 @@ public class GallowsWorker extends Worker {
         return null;
     }
 
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.gallow_help, activity).getHelp();
+    }
 
 
     private Response correct(String let) {
@@ -175,9 +180,9 @@ public class GallowsWorker extends Worker {
 
     private ArrayList<String> getPicture() {
         if (lives == 0) {
-            return new ArrayList<String>();
+            return new ArrayList<>();
         } else {
-            ArrayList<String> pic = new ArrayList<String>();
+            ArrayList<String> pic = new ArrayList<>();
             pic.add(picsInR.get(lives));
             return pic;
         }

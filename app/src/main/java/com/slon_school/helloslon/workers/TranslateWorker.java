@@ -40,7 +40,7 @@ public class TranslateWorker extends Worker {
 
 
     public TranslateWorker(Activity activity) {
-        super(activity);
+        super(activity,"переводчик");
         keys = new ArrayList<Key>();
         keys.add(new Key("переводчик"));
         keys.add(new Key("переведи"));
@@ -61,9 +61,10 @@ public class TranslateWorker extends Worker {
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if ((state == State.FirstTime) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
-            return new HelpMan(R.raw.translate_help, activity).getHelp();
-        } else if (state == State.Translate) {
+        //if ((state == State.FirstTime) && (arguments.contains(new Key("помощь")) || arguments.contains(new Key("help"))) ) {
+         //   return new HelpMan(R.raw.translate_help, activity).getHelp();
+        //} else
+        if (state == State.Translate) {
             state = State.FirstTime;
 
             return post(arguments.toString());
@@ -77,6 +78,11 @@ public class TranslateWorker extends Worker {
                 return post(arguments.toString());
             }
         }
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.translate_help,activity).getHelp();
     }
 
     private Response post(String request) {

@@ -13,8 +13,6 @@ import com.slon_school.helloslon.core.Worker;
 import java.util.ArrayList;
 import java.util.Random;
 
-import static com.slon_school.helloslon.core.Helper.BTS;
-
 public class FateBallWorker extends Worker implements Helper.additionalInterface {
 
     private final static int MODE_GENERAL = 0;
@@ -26,7 +24,7 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
     ArrayList<Key> keys = new ArrayList<>();
 
     public FateBallWorker(Activity activity) {
-        super(activity);
+        super(activity, "шар судьбы");
         keys.add(new Key(activity.getString(R.string.fateball_keyword0)));
     }
 
@@ -50,9 +48,9 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
         if (arguments.toString().isEmpty()) {
             initList(MODE_UNRECOGNIZED);
             return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),FINISH_SESSION);
-        } else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan(R.raw.fateball_help,activity).getHelp();
-        }
+        } //else if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+        //    return new HelpMan(R.raw.fateball_help,activity).getHelp();
+        //}
 
         initKeys(MODE_GENERAL);
         initKeys(MODE_LUCK);
@@ -68,6 +66,11 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
         return new Response(predictionList.get(Math.abs(new Random().nextInt() % predictionList.size())),FINISH_SESSION);
     }
 
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.fateball_help, activity).getHelp();
+    }
+
     private void initKeys(final int MODE) {
         switch(MODE) {
             case MODE_GENERAL: {
@@ -81,7 +84,6 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
             }
             break;
             default: {
-                BTS(7);
                 Log.e("Unknown variable value:","FateBallWorker.initKeys.mode == " + MODE);
             }
         }
@@ -124,7 +126,6 @@ public class FateBallWorker extends Worker implements Helper.additionalInterface
             }
             break;
             default: {
-                BTS(8);
                 Log.e("Unknown variable value:","FateBallWorker.initList.mode == " + MODE);
             }
         }

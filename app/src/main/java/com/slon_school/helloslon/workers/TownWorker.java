@@ -30,13 +30,13 @@ public class TownWorker extends Worker {
     char lastChar;
 
     public TownWorker( Activity activity ) {
-        super( activity );
+        super( activity , "игра города");
         Init();
     }
 
     private void Init() {
         eog = false;
-        keys = new ArrayList<Key>();
+        keys = new ArrayList<>();
         used_towns = new HashMap<String, ArrayList<String>>();
         special_towns = new HashMap<String, ArrayList<String>>();
         just_started = true;
@@ -124,6 +124,14 @@ public class TownWorker extends Worker {
                 return new Response( _bufTown, !eog ); //break;
         }
         return new Response( "123error", false );
+    }
+
+    @Override
+    public Response getHelp() {
+        //TODO
+        //instead R.raw.browser_help - must be id of your help
+        //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
     }
 
     private void usedInit() {
