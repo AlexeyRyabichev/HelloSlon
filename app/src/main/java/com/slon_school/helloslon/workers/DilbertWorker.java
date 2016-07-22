@@ -32,7 +32,7 @@ public class DilbertWorker extends Worker
     ArrayList<String> linkArr;
 
     public DilbertWorker( Activity activity ) {
-        super( activity );
+        super( activity, "дилберт" );
         keys.add(new Key("дилберт"));
         keys.add(new Key("гилберт"));
         fillPicLinks();
@@ -76,6 +76,14 @@ public class DilbertWorker extends Worker
             }
         }
         return new Response( "Ничего не понял.", true);
+    }
+
+    @Override
+    public Response getHelp() {
+        //TODO
+        //instead R.raw.browser_help - must be id of your help
+        //return new HelpMan(R.raw.browser_help, activity).getHelp();
+        return null;
     }
 
     private void fillPicLinks(){

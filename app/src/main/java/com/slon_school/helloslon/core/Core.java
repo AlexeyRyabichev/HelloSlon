@@ -11,6 +11,7 @@ import com.slon_school.helloslon.workers.DilbertWorker;
 import com.slon_school.helloslon.workers.FateBallWorker;
 import com.slon_school.helloslon.workers.FlashlightWorker;
 import com.slon_school.helloslon.workers.GallowsWorker;
+import com.slon_school.helloslon.workers.HelpWorker;
 import com.slon_school.helloslon.workers.PhoneWorker;
 import com.slon_school.helloslon.workers.SMSWorker;
 import com.slon_school.helloslon.workers.TamagotchiWorker;
@@ -55,8 +56,12 @@ public class Core {
 		workers.add(new CommitWorker(activity));
 		workers.add(new GallowsWorker(activity));
 		workers.add(new DilbertWorker(activity));
+<<<<<<< HEAD
 		workers.add(new ThrowDiceWorker(activity));
 
+=======
+		workers.add(new HelpWorker(activity, this));
+>>>>>>> Asgar
 		currentWorker = idNone;
 	}
 	
@@ -128,5 +133,11 @@ private boolean subKey(Key key, String string) {
 		}
 		return compare(counter,key.get().size()) >= 0;
 }
+
+
+	public ArrayList<Worker> workers() {
+		return workers;
+	}
+
 
 }
