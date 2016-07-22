@@ -33,7 +33,7 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan(R.raw.commit_help,activity).getHelp();
+            return getHelp();
         }
 
         final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);

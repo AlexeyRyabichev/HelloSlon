@@ -23,7 +23,6 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
     public FlashlightWorker(Activity activity) {
         super(activity, "фонарик");
         keys.add(new Key(activity.getString(R.string.flashlight_keyword0)));
-        keys.add(new Key(activity.getString(R.string.flashlight_keyword1)));
     }
 
     @Override
@@ -36,9 +35,10 @@ public class FlashlightWorker extends Worker implements Helper.additionalInterfa
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         boolean hasAccessibleCamera; //TODO check new features
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan(R.raw.flashlight_help,activity).getHelp();
+            return getHelp();
         }
 
+//        boolean hasAccessibleCamera; //TODO check new features
         final long MULTIPLE = 1000;
         final long DEFAULT_TIME = 60;
         String sTime = arguments.toString();
