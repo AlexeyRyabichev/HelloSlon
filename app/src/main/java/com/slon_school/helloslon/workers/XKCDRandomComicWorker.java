@@ -14,14 +14,13 @@ import java.util.ArrayList;
 import java.util.concurrent.CountDownLatch;
 
 import static com.slon_school.helloslon.core.Helper.getStringFromWeb;
-import static com.slon_school.helloslon.core.Helper.isHttpLink;
 
 public class XKCDRandomComicWorker extends Worker implements Helper.additionalInterface {
     ArrayList<Key> keys = new ArrayList<>();
     private Pair<String,Boolean> pair;
     public XKCDRandomComicWorker(Activity activity) {
         super(activity, "комиксы");
-        keys.add(new Key(activity.getString(R.string.xkcd_keyword0))); //TODO know how Yandex recognize "XKCD" and change string constant according to this info
+        keys.add(new Key(activity.getString(R.string.xkcd_keyword0)));
     }
 
     private String washLink(String link) {
@@ -62,7 +61,7 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
         }
         boolean hasImage = pair.second;
         String linkToImage = washLink(pair.first);
-        if (hasImage && isHttpLink(linkToImage)) {
+        if (hasImage) {
             ArrayList<String> links = new ArrayList<>();
             links.add(linkToImage);
             return  new Response("",FINISH_SESSION,links);
