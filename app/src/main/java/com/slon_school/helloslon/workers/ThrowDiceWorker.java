@@ -18,8 +18,8 @@ import static com.slon_school.helloslon.core.Helper.string2long;
 public class ThrowDiceWorker extends Worker implements Helper.additionalInterface {
     private ArrayList<Key> keys = new ArrayList<>();
 
-    public ThrowDiceWorker(Activity activity) {
-        super(activity);
+    public ThrowDiceWorker(Activity activity, String name) {
+        super(activity, name);
         keys.add(new Key(activity.getString(R.string.throw_dice_keyword0)));
     }
 
@@ -56,5 +56,10 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
             output += "Бросок №" + diceCount.toString() + ": " + randomThrow.toString() + " очков.";
         }
         return new Response(output,FINISH_SESSION);
+    }
+
+    @Override
+    public Response getHelp() {
+        return null;
     }
 }

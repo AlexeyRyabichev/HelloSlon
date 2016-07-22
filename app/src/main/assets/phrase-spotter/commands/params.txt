@@ -1,4 +1,0 @@
-version 1.0
-lang ru
-topic a556c5ca-4a64-11e6-817a-155b48e03414
-sample_rate 16000

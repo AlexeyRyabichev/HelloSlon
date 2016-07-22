@@ -76,4 +76,6 @@
     <string name="browser_yandex">http://www.yandex.ru?q=</string>
 
     <string name="throw_dice_keyword0">бросить кост</string>
+    <string name="local_service_started">Slon is workin</string>
+    <string name="local_service_label">label of the entry</string>
 </resources>

@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -38,6 +39,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         imageLoader = ImageLoader.getInstance();
         options = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true)
+                .showImageOnLoading(R.color.slonBackground)
                 .cacheInMemory(true)
                 .build();
         this.mainActivity = mainActivity;
@@ -55,6 +57,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
             holder.textViewSlon.setText(items.get(position).second.getResponse());
             if (items.get(position).second.isHaveImages()){
+                holder.imageContainer.removeAllViews();
                 for (String url:items.get(position).second.getImages()) {
                     holder.imageContainer.addView(addingViewForImage(holder.slonCard.getContext(), url));
                 }
@@ -129,7 +132,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public TextView textViewSlon;
         public View slonCard;
         public View userCard;
-        public GridLayout imageContainer;
+        public LinearLayout imageContainer;
         public View.OnClickListener imageListener;
         ProgressWheel progressWheel;
 
@@ -139,7 +142,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 userCard = itemView.findViewById(R.id.userCard);
                 textViewUser = (TextView) itemView.findViewById(R.id.userText);
                 textViewSlon = (TextView) itemView.findViewById(R.id.slonText);
-                imageContainer = (GridLayout) itemView.findViewById(R.id.imageContainer);
+                imageContainer = (LinearLayout) itemView.findViewById(R.id.imageContainer);
                 progressWheel = (ProgressWheel) itemView.findViewById(R.id.loadingImage);
             }
     }

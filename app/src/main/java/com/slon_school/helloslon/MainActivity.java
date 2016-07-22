@@ -1,11 +1,21 @@
 package com.slon_school.helloslon;
 
 import android.annotation.TargetApi;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.os.Binder;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.IBinder;
+import android.renderscript.ScriptGroup;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.os.ResultReceiver;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -43,13 +53,14 @@ import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 public class MainActivity extends AppCompatActivity implements RecognizerListener, PhraseSpotterListener {
 
     private static final int REQUEST_PERMISSION_CODE = 1;
-
+    private SpotterService spotterService;
     private Recognizer recognizer;
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
     private ShimmerTextView shimmerTextView;
-    final int Network_Error= 7;
+    final int Network_Error = 7;
+    private boolean spotterIsBound = false;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -100,23 +111,83 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
                 .build();
         ImageLoader.getInstance().init(config);
 
-        //Phrase spotter declaration
-        if (loadResult.getCode() != Error.ERROR_OK) {
-            updateCurrentStatus("Error occurred during model loading: " + loadResult.getString());
-        } else {
-            // Set the listener.
-            PhraseSpotter.setListener(this);
-            // Set the model.
-            Error setModelResult = PhraseSpotter.setModel(model);
-            handleError(setModelResult);
+        doBindService();
+    }
+
+    private ServiceConnection serviceConnection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            spotterService = ((SpotterService.SpotterBinder)iBinder).getService();
+            spotterService.registerReceiver(resultReceiver);
+            Toast.makeText(MainActivity.this, "I'm working", Toast.LENGTH_SHORT).show();
         }
 
-        if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
-            requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
-        } else {
-            PhraseSpotter.start();
+        @Override
+        public void onServiceDisconnected(ComponentName componentName) {
+            spotterService.unregisterReceiver(resultReceiver);
+            spotterService = null;
+        }
+    };
+
+    void doBindService(){
+        bindService(new Intent(MainActivity.this,SpotterService.class), serviceConnection, Context.BIND_AUTO_CREATE);
+        spotterIsBound = true;
+        Toast.makeText(MainActivity.this, "I'm starting SpotterService", Toast.LENGTH_SHORT).show();
+    }
+
+    void doUnbindService(){
+        if (spotterIsBound){
+            unbindService(serviceConnection);
+            spotterIsBound = false;
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        doUnbindService();
+    }
+
+
+
+    ResultReceiver resultReceiver = new ResultReceiver(new Handler()) {
+        @Override
+        protected void onReceiveResult(int resultCode, Bundle resultData) {
+            super.onReceiveResult(resultCode, resultData);
+            Toast.makeText(MainActivity.this, "received result", Toast.LENGTH_SHORT).show();
+        }
+    };
+
+//    public static class SpotterResultReceiver extends ResultReceiver {
+//
+//        Receiver receiver;
+//
+//        public void setReceiver(Receiver receiver){
+//            this.receiver = receiver;
+//        }
+//
+//        /**
+//         * Create a new ResultReceive to receive results.  Your
+//         * {@link #onReceiveResult} method will be called from the thread running
+//         * <var>handler</var> if given, or from an arbitrary thread if null.
+//         *
+//         * @param handler
+//         */
+//        public SpotterResultReceiver(Handler handler) {
+//            super(handler);
+//        }
+//
+//        @Override
+//        protected void onReceiveResult(int resultCode, Bundle resultData) {
+//            super.onReceiveResult(resultCode, resultData);
+//            Toast.makeText(, "", Toast.LENGTH_SHORT).show();
+//        }
+//
+//        public interface Receiver {
+//            public void onReceiveResult(int resultCode, Bundle data);
+//        }
+//
+//    }
 
     //Methods for Recognizer
 

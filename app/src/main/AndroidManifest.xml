@@ -30,6 +30,8 @@
         </activity>
         <activity android:name=".ImageOpenerActivity"
             android:theme="@style/transparentTheme"/>
+        <service android:name=".SpotterService"/>
+        <receiver android:name=".MainActivity$MyBroadcastReceiver"/>
     </application>
 
 </manifest>
