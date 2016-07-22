@@ -3,6 +3,7 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -51,6 +52,9 @@ public class DilbertWorker extends Worker
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return getHelp();
+        }
         if ( keys.size() != 0 ) {
             // начать сканировать сайт
             //http://dilbertru.blogspot.ru/search/label/%D0%94%D0%B8%D0%BB%D0%B1%D0%B5%D1%80%D1%82?updated-max=2016-06-17T08:00:00%2B01:00&max-results=500&start=0&by-date=false
@@ -74,16 +78,16 @@ public class DilbertWorker extends Worker
             if ( comand.equals( "хватит" ) ) {
                 return new Response( "Действительно хватит", false );
             }
+            if ( comand.equals( "нет" ) ) {
+                return new Response( "Пока", false );
+            }
         }
         return new Response( "Ничего не понял.", true);
     }
 
     @Override
     public Response getHelp() {
-        //TODO
-        //instead R.raw.browser_help - must be id of your help
-        //return new HelpMan(R.raw.browser_help, activity).getHelp();
-        return null;
+        return new HelpMan(R.raw.dilbert_help, activity).getHelp();
     }
 
     private void fillPicLinks(){
