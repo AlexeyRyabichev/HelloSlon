@@ -20,7 +20,7 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
     ArrayList<Key> keys = new ArrayList<>();
     private Pair<String,Boolean> pair;
     public XKCDRandomComicWorker(Activity activity) {
-        super(activity);
+        super(activity, "комиксы");
         keys.add(new Key(activity.getString(R.string.xkcd_keyword0))); //TODO know how Yandex recognize "XKCD" and change string constant according to this info
     }
 
@@ -38,9 +38,9 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
 
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
-        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
-            return new HelpMan(R.raw.xkcd_help,activity).getHelp();
-        }
+       // if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+        //    return new HelpMan(R.raw.xkcd_help,activity).getHelp();
+        //}
 
         final CountDownLatch COUNT_DOWN_LATCH = new CountDownLatch(1);
         Thread thread = new Thread() {
@@ -70,5 +70,10 @@ public class XKCDRandomComicWorker extends Worker implements Helper.additionalIn
         } else {
             return new Response(activity.getString(R.string.xkcd_failed_image_load), FINISH_SESSION);
         }
+    }
+
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.xkcd_help, activity).getHelp();
     }
 }

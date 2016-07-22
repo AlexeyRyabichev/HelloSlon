@@ -129,4 +129,10 @@ private boolean subKey(Key key, String string) {
 		return compare(counter,key.get().size()) >= 0;
 }
 
+
+	public ArrayList<Worker> workers() {
+		return workers;
+	}
+
+
 }
