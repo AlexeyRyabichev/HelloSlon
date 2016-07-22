@@ -40,6 +40,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         options = new DisplayImageOptions.Builder()
                 .cacheOnDisk(true)
                 .cacheInMemory(true)
+                .showImageOnLoading(R.color.slonBackground)
                 .build();
         this.mainActivity = mainActivity;
     }
