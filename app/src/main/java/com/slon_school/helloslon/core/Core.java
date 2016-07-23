@@ -47,7 +47,6 @@ public class Core {
 		workers.add(new BashOrgRandomQuoteWorker(activity));
 		workers.add(new SMSWorker(activity));
 		workers.add(new PhoneWorker(activity));
- 		//workers.add(new WeatherWorker(activity));
 		workers.add(new XKCDRandomComicWorker(activity));
 		workers.add(new CalvinHobbsWorker(activity));
 		workers.add(new DilbertWorker(activity));
@@ -55,7 +54,6 @@ public class Core {
 		workers.add(new FlashlightWorker(activity));
 		workers.add(new CommitWorker(activity));
 		workers.add(new GallowsWorker(activity));
-		workers.add(new DilbertWorker(activity));
 		workers.add(new ThrowDiceWorker(activity));
 		workers.add(new HelpWorker(activity, this));
 		currentWorker = idNone;
