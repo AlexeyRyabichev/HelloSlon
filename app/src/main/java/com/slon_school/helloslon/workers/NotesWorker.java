@@ -2,18 +2,10 @@ package com.slon_school.helloslon.workers;
 
 
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
 
-
-
-import com.slon_school.helloslon.R;
-import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -31,8 +23,8 @@ public class NotesWorker extends Worker {
     private State state;
 
     public NotesWorker(Activity activity) {
-        super(activity);
-        keys = new ArrayList<Key>();
+        super(activity, "заметки");
+        keys = new ArrayList<>();
         keys.add(new Key("запомнить"));
         keys.add(new Key("заметка"));
         keys.add(new Key("напоминалка"));
@@ -65,6 +57,12 @@ public class NotesWorker extends Worker {
         activity.startActivity(intent);
         return new Response("", false);
     }
+
+    @Override
+    public Response getHelp() {
+        return null;
+    }
+
     private Response writeText(Key arguments){
         state = State.Start;
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
