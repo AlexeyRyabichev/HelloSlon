@@ -82,7 +82,11 @@ public class HelpWorker extends Worker {
     private String listOfHelps() {
         String toReturn = "";
         for (Worker w : core.workers()) {
-            toReturn += "- " + w.getName() + "\n";
+            if (w.getName().equals("илберт")) {
+                toReturn += "- Дилберт\n";
+            } else {
+                toReturn += "- " + w.getName() + "\n";
+            }
         }
         return toReturn;
     }
