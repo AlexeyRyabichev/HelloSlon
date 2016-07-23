@@ -21,6 +21,7 @@ public class ThrowDiceWorker extends Worker implements Helper.additionalInterfac
     public ThrowDiceWorker(Activity activity) {
         super(activity, "кости");
         keys.add(new Key(activity.getString(R.string.throw_dice_keyword0)));
+        keys.add(new Key(activity.getString(R.string.throw_dice_keyword1)));
     }
 
     @Override

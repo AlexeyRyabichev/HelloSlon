@@ -22,6 +22,7 @@ public class CommitWorker extends Worker implements Helper.additionalInterface {
     public CommitWorker(Activity activity) {
         super(activity, "commit");
         keys.add(new Key(activity.getString(R.string.commit_keyword0)));
+        keys.add(new Key(activity.getString(R.string.commit_keyword1)));
     }
 
     @Override

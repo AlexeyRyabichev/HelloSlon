@@ -72,10 +72,13 @@ public class TownWorker extends Worker {
         if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
             return getHelp();
         }
+
+
+
         if(eog || (arguments.get().size() == 0))
             Init();
 
-        if ( just_started ) {
+        if ( keys.size() != 0 ) {
             used_towns.get( "п" ).add("пущино" );
             just_started = false;
             lastChar = 'о';
@@ -156,12 +159,12 @@ public class TownWorker extends Worker {
         String str = "";
         boolean flag = false;
 
-
+        ArrayList<String> list = new ArrayList<String>();
         RawFileHelper f1 = new RawFileHelper( activity, c );
 
         while ( !flag ) {
-            while ( ( ( str = f1.readln() ) != null ) && !flag || ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) ))
-                if ( r.nextInt( 99 ) + 1 < 15 ) {
+            while (( !( str = f1.readln() ).equals("") ) && ( ( str = f1.readln() ) != null ) && !flag || ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) ))
+                if ( r.nextInt( 59909  ) + 1 < 15 ) {
                     flag = true;
                 }
             if ( !flag ) {

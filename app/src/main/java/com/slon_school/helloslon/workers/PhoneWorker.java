@@ -1,10 +1,12 @@
 package com.slon_school.helloslon.workers;
 
 import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.support.v4.app.ActivityCompat;
 
 import com.slon_school.helloslon.R;
@@ -45,6 +47,7 @@ public class PhoneWorker extends Worker {
         return true;
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public Response doWork(ArrayList<Key> keys, Key arguments) {
         Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:" + arguments.toString()));
@@ -55,7 +58,8 @@ public class PhoneWorker extends Worker {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            return null;
+            activity.requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, PackageManager.PERMISSION_GRANTED);
+            return new Response("",false);
         }
         activity.startActivity(intent);
         return new Response("", false);
