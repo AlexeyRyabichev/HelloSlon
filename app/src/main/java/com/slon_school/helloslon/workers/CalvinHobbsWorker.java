@@ -3,6 +3,7 @@ package com.slon_school.helloslon.workers;
 import android.app.Activity;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -20,11 +21,12 @@ import java.util.concurrent.CountDownLatch;
 public class CalvinHobbsWorker extends Worker{
     private String quote;
     private boolean isQuoteGot;
-    private ArrayList<Key> keys = new ArrayList<Key>();
+    private ArrayList<Key> keys = new ArrayList<>();
 
     public CalvinHobbsWorker( Activity activity ) {
-        super( activity );
+        super( activity , "кельвин и хоббс");
         keys.add(new Key("кельвин и хоббс"));
+        keys.add(new Key("келвин и хоббс"));
     }
 
     @Override
@@ -39,6 +41,9 @@ public class CalvinHobbsWorker extends Worker{
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return getHelp();
+        }
         final CountDownLatch countDownLatch = new CountDownLatch(1);
         Thread thread = new Thread() {
             @Override
@@ -59,19 +64,24 @@ public class CalvinHobbsWorker extends Worker{
             e.printStackTrace();
         }
         if (isQuoteGot) {
-            ArrayList<String> images = new ArrayList<String>();
+            ArrayList<String> images = new ArrayList<>();
             images.add( quote );
-            return new Response( "", false, images);
+            return new Response("", false, images);
         } else {
             return new Response("Не удалось загрузить картинку", false);
         }
+    }
+
+    @Override
+    public Response getHelp() {
+       return new HelpMan(R.raw.calvin_hobbs_help, activity).getHelp();
     }
 
 
     public boolean getQuote() throws Exception {
         String line;
         Random random = new Random();
-        Integer tmp = random.nextInt(551);
+        Integer tmp = Math.abs(random.nextInt(551));
         URL url = new URL("http://calvin-hobbs.ilost.ru/comix.php?num=" + tmp.toString());
         BufferedReader reader = new BufferedReader(new InputStreamReader(url.openConnection().getInputStream(),
                 activity.getString(R.string.cp1251)));

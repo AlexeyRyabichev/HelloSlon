@@ -1,10 +1,15 @@
 package com.slon_school.helloslon.workers;
 
+import android.Manifest;
+import android.annotation.TargetApi;
 import android.app.Activity;
-import android.database.Cursor;
-import android.provider.ContactsContract;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsManager;
 
+import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -25,12 +30,17 @@ public class SMSWorker extends Worker {
     private String message;
 
     public SMSWorker(Activity activity) {
-        super(activity);
-        keys = new ArrayList<Key>();
+        super(activity, "смс");
+        keys = new ArrayList<>();
         keys.add(new Key("отправь смс"));
         keys.add(new Key("написать смс"));
         keys.add(new Key("отправить смс"));
         keys.add(new Key("напиши смс"));
+        keys.add(new Key("напиши sms"));
+        keys.add(new Key("отправь sms"));
+        keys.add(new Key("написать sms"));
+        keys.add(new Key("отправить sms"));
+
 
         state = State.Start;
 
@@ -52,6 +62,9 @@ public class SMSWorker extends Worker {
         Key error = new Key("ошибка");
         Key exit = new Key("отмена");
 
+        //if ((arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) && (state == State.Start) ){
+         //   return new HelpMan(R.raw.sms_help,activity).getHelp();
+        //}else
         if (arguments.get().size() == 0 && state == State.Start) {
               return start(arguments);
         } else if (state == State.PhoneNumber) {
@@ -72,8 +85,17 @@ public class SMSWorker extends Worker {
         return new Response("Повтори ещё раз, я не понял", true);
     }
 
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.sms_help,activity).getHelp();
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
     private Response start(Key arguments) {
         state = State.PhoneNumber;
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.SEND_SMS) != PackageManager.PERMISSION_GRANTED)
+            activity.requestPermissions(new String[]{Manifest.permission.SEND_SMS}, PackageManager.PERMISSION_GRANTED);
+
         return new Response("Скажи мне номер телефона, на который ты хочешь отправить смс", true);
     }
 

@@ -4,20 +4,17 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.util.Pair;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ldoublem.loadingviewlib.LVCircularCD;
-import com.lusfold.spinnerloading.SpinnerLoading;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -27,7 +24,9 @@ import com.slon_school.helloslon.core.Core;
 import com.slon_school.helloslon.core.Response;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
+import jp.wasabeef.recyclerview.animators.SlideInUpAnimator;
 import ru.yandex.speechkit.Error;
 import ru.yandex.speechkit.PhraseSpotter;
 import ru.yandex.speechkit.PhraseSpotterListener;
@@ -49,9 +48,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Core core;
     private ArrayList<Pair<String, Response>> dialogList;
     private RecyclerViewAdapter adapter;
-    private SpinnerLoading waitingForResponse;
-    private Shimmer shimmer;
     private ShimmerTextView shimmerTextView;
+    final int Network_Error= 7;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -65,23 +63,15 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         Button recording_button = (Button) findViewById(R.id.recording_button);
         RecyclerView dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerView.ItemAnimator itemAnimator = new DefaultItemAnimator();
+        RecyclerView.ItemAnimator itemAnimator = new SlideInUpAnimator();
         dialogList = new ArrayList<>();
         adapter = new RecyclerViewAdapter(dialogList, this);
-        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
 
-        //"Waiting response from core" animation declaration
-        waitingForResponse = (SpinnerLoading) findViewById(R.id.waitingForResponse);
-        assert waitingForResponse != null;
-        waitingForResponse.setVisibility(View.GONE);
-        waitingForResponse.setCircleRadius(10);
-        waitingForResponse.setPaintMode(0);
-
         //"We're listening you" animation declaration
         shimmerTextView = (ShimmerTextView) findViewById(R.id.progressBar);
-        shimmer = new Shimmer();
+        Shimmer shimmer = new Shimmer();
         shimmer.start(shimmerTextView);
         shimmerTextView.setVisibility(View.GONE);
 
@@ -121,12 +111,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             handleError(setModelResult);
         }
 
-        if ( ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
             requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
         } else {
             PhraseSpotter.start();
         }
-
     }
 
     //Methods for Recognizer
@@ -134,6 +123,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.VISIBLE);
+        //waitingForResponse.setVisibility(View.GONE);
     }
 
     @Override
@@ -149,7 +139,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecordingDone(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.GONE);
-        waitingForResponse.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -164,19 +153,18 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
-        waitingForResponse.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-        waitingForResponse.setVisibility(View.GONE);
         shimmerTextView.setVisibility(View.GONE);
 
         Response question = new Response(recognition.getBestResultText(), false);
         Response answer = core.request(question);
+
         Pair<String, Response> questionPair = Pair.create("User", question);
         dialogList.add(questionPair);
-        adapter.notifyDataSetChanged();
+        adapter.notifyItemInserted(dialogList.size());
 
         Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.ZAHAR);
         vocalizer.start();
@@ -185,13 +173,14 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         dialogList.add(answerPair);
 
-        adapter.notifyDataSetChanged();
+        adapter.notifyItemInserted(dialogList.size());
 
     }
 
     @Override
     public void onError(Recognizer recognizer, Error error) {
-        waitingForResponse.setVisibility(View.GONE);
+        if (error.getCode() == Network_Error)
+            Toast.makeText(MainActivity.this, getString(R.string.no_connection), Toast.LENGTH_LONG).show();
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -201,13 +190,13 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             return;
         }
 
-        if ( ContextCompat.checkSelfPermission(context, RECORD_AUDIO) != PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(context, RECORD_AUDIO) != PERMISSION_GRANTED) {
             requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
         } else {
             resetRecognizer();
             recognizer = Recognizer.create(Recognizer.Language.RUSSIAN, Recognizer.Model.QUERIES, this);
             recognizer.start();
-           }
+        }
     }
 
     private void resetRecognizer() {
@@ -221,12 +210,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @Override
     public void onPhraseSpotted(String s, int i) {
-        Toast.makeText(this, "I can hear you2" + s, Toast.LENGTH_LONG).show();
+        createAndStartRecognizer();
     }
 
     @Override
     public void onPhraseSpotterStarted() {
-        Toast.makeText(this, "I can hear you", Toast.LENGTH_LONG).show();
     }
 
     @Override
@@ -258,15 +246,23 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @TargetApi(Build.VERSION_CODES.M)
     private void startPhraseSpotter() {
         final Context context = this;
-        if (context == null) {
-            return;
-        }
 
         if (ContextCompat.checkSelfPermission(context, RECORD_AUDIO) != PERMISSION_GRANTED) {
             requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
         } else {
             Error startResult = PhraseSpotter.start();
             handleError(startResult);
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        for (String permission: permissions) {
+            Log.d("" + permission, "" + requestCode);
+            if(Objects.equals(permission, RECORD_AUDIO) && requestCode ==  REQUEST_PERMISSION_CODE)
+                startPhraseSpotter();
         }
     }
 }

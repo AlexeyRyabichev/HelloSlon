@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import com.slon_school.helloslon.R;
+import com.slon_school.helloslon.core.HelpMan;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -25,23 +26,35 @@ public class TownWorker extends Worker {
     boolean eog;
     private ArrayList<Key> keys;
     Map<String, ArrayList<String>> used_towns;
+    Map<String, ArrayList<String>>  special_towns;
     boolean just_started;
     char lastChar;
 
     public TownWorker( Activity activity ) {
-        super( activity );
+        super( activity , "игра города");
         Init();
     }
 
     private void Init() {
         eog = false;
-        keys = new ArrayList<Key>();
+        keys = new ArrayList<>();
         used_towns = new HashMap<String, ArrayList<String>>();
+        special_towns = new HashMap<String, ArrayList<String>>();
         just_started = true;
         lastChar = '0';
 
         fillKeys( keys, activity );
         usedInit();
+
+        special_towns.clear();
+        for ( char c = 'а'; c <= 'я'; c++ ) {
+            special_towns.put( String.valueOf( c ), new ArrayList<String>() );
+        }
+        special_towns.get("н").add("новый уренгой");
+        special_towns.get("н").add("нижний новгрорд");
+        special_towns.get("в").add("великий новгород");
+        special_towns.get("н").add("новый орлеан");
+        special_towns.get("н").add("нижний тагил");
     }
 
     @Override
@@ -56,10 +69,16 @@ public class TownWorker extends Worker {
 
     @Override
     public Response doWork( ArrayList<Key> keys, Key arguments ) {
+        if (arguments.contains(new Key(activity.getString(R.string.help0))) || arguments.contains(new Key(activity.getString(R.string.help1)))) {
+            return getHelp();
+        }
+
+
+
         if(eog || (arguments.get().size() == 0))
             Init();
 
-        if ( just_started ) {
+        if ( keys.size() != 0 ) {
             used_towns.get( "п" ).add("пущино" );
             just_started = false;
             lastChar = 'о';
@@ -76,6 +95,7 @@ public class TownWorker extends Worker {
         if ( just_started || ( str.charAt( 0 ) == lastChar ) )
             just_started = false;
         else
+
             return new Response( "Не та буква, ты проиграл", false );
 
         //проверка города и выбор
@@ -113,6 +133,11 @@ public class TownWorker extends Worker {
         return new Response( "123error", false );
     }
 
+    @Override
+    public Response getHelp() {
+        return new HelpMan(R.raw.town_help, activity).getHelp();
+    }
+
     private void usedInit() {
         used_towns.clear();
         for ( char c = 'а'; c <= 'я'; c++ ) {
@@ -134,12 +159,12 @@ public class TownWorker extends Worker {
         String str = "";
         boolean flag = false;
 
-
+        ArrayList<String> list = new ArrayList<String>();
         RawFileHelper f1 = new RawFileHelper( activity, c );
 
         while ( !flag ) {
-            while ( ( ( str = f1.readln() ) != null ) && !flag || ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) ))
-                if ( r.nextInt( 99 ) + 1 < 15 ) {
+            while (( !( str = f1.readln() ).equals("") ) && ( ( str = f1.readln() ) != null ) && !flag || ( used_towns.get( String.valueOf(c) ).contains( str.toLowerCase() ) ))
+                if ( r.nextInt( 59909  ) + 1 < 15 ) {
                     flag = true;
                 }
             if ( !flag ) {
@@ -157,10 +182,13 @@ public class TownWorker extends Worker {
         if ( used_towns.get( String.valueOf( town.charAt( 0 ) ) ).contains( town) )
             return 1;
 
+        if(special_towns.get( String.valueOf( town.charAt( 0 ) ) ).contains( town) )
+            return 1;
 
         RawFileHelper f1 = new RawFileHelper(activity, town.charAt( 0 ));
         String str = "";
         while(!(str = f1.readln()).equals( "" )) {
+            str = str.replaceAll( "ё", "е" );
             if(str.toLowerCase().trim().equalsIgnoreCase( town.trim() )) {
                 f1.dispose();
                 return 2;
