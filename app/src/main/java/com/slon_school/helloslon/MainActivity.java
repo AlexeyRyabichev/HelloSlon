@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private RecyclerViewAdapter adapter;
     private ShimmerTextView shimmerTextView;
     final int Network_Error= 7;
+    private Button recordingButton = (Button) findViewById(R.id.recording_button);
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -123,6 +124,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.VISIBLE);
+        recordingButton.setClickable(false);
         //waitingForResponse.setVisibility(View.GONE);
     }
 
@@ -175,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         adapter.notifyItemInserted(dialogList.size());
 
+        recordingButton.setClickable(true);
     }
 
     @Override
