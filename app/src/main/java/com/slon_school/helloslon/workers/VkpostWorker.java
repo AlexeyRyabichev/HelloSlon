@@ -31,7 +31,7 @@ public class VkpostWorker extends Worker {
     private State state;
 
     public VkpostWorker(Activity activity) {
-        super(activity);
+        super(activity, "");
         keys = new ArrayList<Key>();
         keys.add(new Key("пост"));
         keys.add(new Key("вк"));
@@ -66,6 +66,12 @@ public class VkpostWorker extends Worker {
         activity.startActivity(intent);
         return new Response("", false);
     }
+
+    @Override
+    public Response getHelp() {
+        return null;
+    }
+
     private Response writeText(Key arguments){
         state = State.Start;
         Intent sendIntent = new Intent(Intent.ACTION_SEND);

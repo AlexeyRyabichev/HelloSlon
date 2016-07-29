@@ -31,7 +31,7 @@ public class NotesWorker extends Worker {
     private State state;
 
     public NotesWorker(Activity activity) {
-        super(activity);
+        super(activity, "");
         keys = new ArrayList<Key>();
         keys.add(new Key("запомнить"));
         keys.add(new Key("заметка"));
@@ -65,6 +65,12 @@ public class NotesWorker extends Worker {
         activity.startActivity(intent);
         return new Response("", false);
     }
+
+    @Override
+    public Response getHelp() {
+        return null;
+    }
+
     private Response writeText(Key arguments){
         state = State.Start;
         Intent sendIntent = new Intent(Intent.ACTION_SEND);

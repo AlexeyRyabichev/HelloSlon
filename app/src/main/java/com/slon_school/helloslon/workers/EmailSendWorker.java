@@ -31,7 +31,7 @@ public class EmailSendWorker extends Worker {
     private State state;
 
     public EmailSendWorker(Activity activity) {
-        super(activity);
+        super(activity, "");
         keys = new ArrayList<Key>();
         keys.add(new Key("емайл"));
         keys.add(new Key("письмо"));
@@ -66,6 +66,12 @@ public class EmailSendWorker extends Worker {
         activity.startActivity(intent);
         return new Response("", false);
     }
+
+    @Override
+    public Response getHelp() {
+        return null;
+    }
+
     private Response writeText(Key arguments){
         state = State.Start;
         Intent sendIntent = new Intent(Intent.ACTION_SEND);
