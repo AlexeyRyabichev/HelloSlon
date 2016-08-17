@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     final int Network_Error= 7;
     private Button recording_button;
     private LinearLayoutManager layoutManager;
+    private RecyclerView recyclerView;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -63,7 +64,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         //Variables
         core = new Core(this);
         recording_button = (Button) findViewById(R.id.recording_button);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.dialog_window);
+        recyclerView = (RecyclerView) findViewById(R.id.dialog_window);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new SlideInUpAnimator();
         dialogList = new ArrayList<>();
@@ -180,8 +181,10 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         adapter.notifyItemInserted(dialogList.size());
 
+        recyclerView.scrollToPosition(dialogList.size());
+
         recording_button.setEnabled(true);
-        layoutManager.scrollToPosition(0);
+
     }
 
     @Override
@@ -192,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @TargetApi(Build.VERSION_CODES.M)
     private void createAndStartRecognizer() {
-        final Context context = getApplicationContext();
+        final Context   context = getApplicationContext();
         if (context == null) {
             return;
         }
