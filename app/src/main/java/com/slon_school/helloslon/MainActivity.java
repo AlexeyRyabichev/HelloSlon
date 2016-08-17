@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(itemAnimator);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(layoutManager);
 
         //Listener for button declaration
         assert recording_button != null;
@@ -182,6 +181,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         adapter.notifyItemInserted(dialogList.size());
 
         recording_button.setEnabled(true);
+        layoutManager.scrollToPosition(0);
     }
 
     @Override
