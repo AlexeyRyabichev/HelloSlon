@@ -38,6 +38,7 @@ import ru.yandex.speechkit.SpeechKit;
 import ru.yandex.speechkit.Vocalizer;
 
 import static android.Manifest.permission.RECORD_AUDIO;
+import static android.content.pm.PackageManager.FEATURE_MICROPHONE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity implements RecognizerListener, PhraseSpotterListener {
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         shimmerTextView.setVisibility(View.VISIBLE);
         recording_button.setEnabled(false);
         //waitingForResponse.setVisibility(View.GONE);
+        PhraseSpotter.stop();
     }
 
     @Override
@@ -161,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
         shimmerTextView.setVisibility(View.GONE);
@@ -184,7 +187,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         recyclerView.scrollToPosition(dialogList.size() - 1);
 
         recording_button.setEnabled(true);
-
+        
+        if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
+            requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
+        } else
+            PhraseSpotter.start();
     }
 
     @Override
