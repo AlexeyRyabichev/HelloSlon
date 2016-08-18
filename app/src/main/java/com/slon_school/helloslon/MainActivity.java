@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private ShimmerTextView shimmerTextView;
     final int Network_Error= 7;
     private Button recording_button;
+    private LinearLayoutManager layoutManager;
+    private RecyclerView recyclerView;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -62,13 +64,15 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         //Variables
         core = new Core(this);
         recording_button = (Button) findViewById(R.id.recording_button);
-        RecyclerView dialogWindow = (RecyclerView) findViewById(R.id.dialog_window);
+        recyclerView = (RecyclerView) findViewById(R.id.dialog_window);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new SlideInUpAnimator();
         dialogList = new ArrayList<>();
         adapter = new RecyclerViewAdapter(dialogList, this);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
+        layoutManager = new LinearLayoutManager(this);
+        layoutManager.setStackFromEnd(true);
 
         //"We're listening you" animation declaration
         shimmerTextView = (ShimmerTextView) findViewById(R.id.progressBar);
@@ -77,10 +81,10 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         shimmerTextView.setVisibility(View.GONE);
 
         //"Dialog window" declaration
-        assert dialogWindow != null;
-        dialogWindow.setLayoutManager(layoutManager);
-        dialogWindow.setItemAnimator(itemAnimator);
-        dialogWindow.setAdapter(adapter);
+        assert recyclerView != null;
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(itemAnimator);
+        recyclerView.setAdapter(adapter);
 
         //Listener for button declaration
         assert recording_button != null;
@@ -177,7 +181,10 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         adapter.notifyItemInserted(dialogList.size());
 
+        recyclerView.scrollToPosition(dialogList.size() - 1);
+
         recording_button.setEnabled(true);
+
     }
 
     @Override
@@ -188,7 +195,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     @TargetApi(Build.VERSION_CODES.M)
     private void createAndStartRecognizer() {
-        final Context context = getApplicationContext();
+        final Context   context = getApplicationContext();
         if (context == null) {
             return;
         }
