@@ -38,6 +38,7 @@ import ru.yandex.speechkit.SpeechKit;
 import ru.yandex.speechkit.Vocalizer;
 
 import static android.Manifest.permission.RECORD_AUDIO;
+import static android.content.pm.PackageManager.FEATURE_MICROPHONE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity implements RecognizerListener, PhraseSpotterListener {
@@ -130,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         shimmerTextView.setVisibility(View.VISIBLE);
         recording_button.setEnabled(false);
         //waitingForResponse.setVisibility(View.GONE);
+        PhraseSpotter.stop();
     }
 
     @Override
@@ -185,6 +187,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         recording_button.setEnabled(true);
 
+        PhraseSpotter.start();
     }
 
     @Override
