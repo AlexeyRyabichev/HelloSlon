@@ -163,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     public void onPartialResults(Recognizer recognizer, Recognition recognition, boolean b) {
     }
 
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
         shimmerTextView.setVisibility(View.GONE);
@@ -186,8 +187,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         recyclerView.scrollToPosition(dialogList.size() - 1);
 
         recording_button.setEnabled(true);
-
-        PhraseSpotter.start();
+        
+        if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
+            requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
+        } else
+            PhraseSpotter.start();
     }
 
     @Override
