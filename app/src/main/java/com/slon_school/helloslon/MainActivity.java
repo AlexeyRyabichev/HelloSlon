@@ -181,7 +181,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         adapter.notifyItemInserted(dialogList.size());
 
-        recyclerView.scrollToPosition(dialogList.size());
+        recyclerView.scrollToPosition(dialogList.size() - 1);
 
         recording_button.setEnabled(true);
 
