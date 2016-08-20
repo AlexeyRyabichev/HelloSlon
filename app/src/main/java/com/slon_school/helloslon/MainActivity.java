@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.melnykov.fab.FloatingActionButton;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -54,6 +55,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private Button recording_button;
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
+    private FloatingActionButton floatingActionButton;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -74,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         Error loadResult = model.load();
         layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
+        floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
         //"We're listening you" animation declaration
         shimmerTextView = (ShimmerTextView) findViewById(R.id.progressBar);
@@ -86,6 +89,16 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setItemAnimator(itemAnimator);
         recyclerView.setAdapter(adapter);
+
+        //Listener for floating button declaration
+        assert floatingActionButton != null;
+        floatingActionButton.attachToRecyclerView(recyclerView);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                createAndStartRecognizer();
+            }
+        });
 
         //Listener for button declaration
         assert recording_button != null;
