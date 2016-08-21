@@ -12,7 +12,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -39,7 +38,6 @@ import ru.yandex.speechkit.SpeechKit;
 import ru.yandex.speechkit.Vocalizer;
 
 import static android.Manifest.permission.RECORD_AUDIO;
-import static android.content.pm.PackageManager.FEATURE_MICROPHONE;
 import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 
 public class MainActivity extends AppCompatActivity implements RecognizerListener, PhraseSpotterListener {
@@ -48,11 +46,10 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
     private Recognizer recognizer;
     private Core core;
-    private ArrayList<Pair<String, Response>> dialogList;
+    private ArrayList<Pair<String, Response>> dialogList = new ArrayList<>();
     private RecyclerViewAdapter adapter;
     private ShimmerTextView shimmerTextView;
     final int Network_Error= 7;
-    private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
 
@@ -66,13 +63,11 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         //Variables
         core = new Core(this);
         recyclerView = (RecyclerView) findViewById(R.id.dialog_window);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new SlideInUpAnimator();
-        dialogList = new ArrayList<>();
         adapter = new RecyclerViewAdapter(dialogList, this);
         PhraseSpotterModel model = new PhraseSpotterModel("phrase-spotter/commands");
         Error loadResult = model.load();
-        layoutManager = new LinearLayoutManager(this);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
 
