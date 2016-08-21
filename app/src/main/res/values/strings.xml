@@ -6,6 +6,7 @@
     <string name="no_connection">Пожалуйста, проеверьте связь с интернетом</string>
     <string name="shimmer">I\'m listening you</string>
     <string name="imageTransitionName">SlonImage</string>
+    <string name="shimmerWaiting">I\'m thinking</string>
 
     <string name="fateball_keyword0">шар судьбы</string>
     <string name="fateball_general_key0">предскажи судьбу</string>

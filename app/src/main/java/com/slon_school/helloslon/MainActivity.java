@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private RecyclerViewAdapter adapter;
     private ShimmerTextView shimmerTextView;
     final int Network_Error= 7;
-    private Button recording_button;
     private LinearLayoutManager layoutManager;
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
@@ -66,7 +65,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         //Variables
         core = new Core(this);
-        recording_button = (Button) findViewById(R.id.recording_button);
         recyclerView = (RecyclerView) findViewById(R.id.dialog_window);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         RecyclerView.ItemAnimator itemAnimator = new SlideInUpAnimator();
@@ -94,15 +92,6 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         assert floatingActionButton != null;
         floatingActionButton.attachToRecyclerView(recyclerView);
         floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                createAndStartRecognizer();
-            }
-        });
-
-        //Listener for button declaration
-        assert recording_button != null;
-        recording_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 createAndStartRecognizer();
@@ -142,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @Override
     public void onRecordingBegin(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.VISIBLE);
-        recording_button.setEnabled(false);
+        floatingActionButton.setEnabled(false);
         //waitingForResponse.setVisibility(View.GONE);
         PhraseSpotter.stop();
     }
@@ -199,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
 
         recyclerView.scrollToPosition(dialogList.size() - 1);
 
-        recording_button.setEnabled(true);
+        floatingActionButton.setEnabled(true);
         
         if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
             requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
