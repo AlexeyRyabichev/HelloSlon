@@ -12,6 +12,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.melnykov.fab.FloatingActionButton;
@@ -49,9 +51,12 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     private ArrayList<Pair<String, Response>> dialogList = new ArrayList<>();
     private RecyclerViewAdapter adapter;
     private ShimmerTextView shimmerTextView;
+    private ShimmerTextView waitingForResponseText;
     final int Network_Error= 7;
     private RecyclerView recyclerView;
     private FloatingActionButton floatingActionButton;
+    private FloatingActionButton sendButton;
+    private EditText editText;
 
     @TargetApi(Build.VERSION_CODES.M)
     @Override
@@ -70,10 +75,17 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         layoutManager.setStackFromEnd(true);
         floatingActionButton = (FloatingActionButton) findViewById(R.id.floatingActionButton);
+        sendButton = (FloatingActionButton) findViewById(R.id.sendButton);
+        editText = (EditText) findViewById(R.id.text);
+
+        //"I'm thinking" animation declaration
+        waitingForResponseText = (ShimmerTextView) findViewById(R.id.shimmerTextWhenWaiting);
+        Shimmer shimmer = new Shimmer();
+        shimmer.start(waitingForResponseText);
+        waitingForResponseText.setVisibility(View.GONE);
 
         //"We're listening you" animation declaration
         shimmerTextView = (ShimmerTextView) findViewById(R.id.progressBar);
-        Shimmer shimmer = new Shimmer();
         shimmer.start(shimmerTextView);
         shimmerTextView.setVisibility(View.GONE);
 
@@ -119,6 +131,15 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
         } else {
             PhraseSpotter.start();
         }
+
+        //Button
+//        sendButton.attachToRecyclerView(recyclerView);
+        sendButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialogChanging(new Response(editText.getText().toString(), false));
+            }
+        });
     }
 
     //Methods for Recognizer
@@ -127,7 +148,8 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     public void onRecordingBegin(Recognizer recognizer) {
         shimmerTextView.setVisibility(View.VISIBLE);
         floatingActionButton.setEnabled(false);
-        //waitingForResponse.setVisibility(View.GONE);
+        sendButton.setEnabled(false);
+        waitingForResponseText.setVisibility(View.GONE);
         PhraseSpotter.stop();
     }
 
@@ -163,32 +185,7 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
     @TargetApi(Build.VERSION_CODES.M)
     @Override
     public void onRecognitionDone(Recognizer recognizer, Recognition recognition) {
-        shimmerTextView.setVisibility(View.GONE);
-
-        Response question = new Response(recognition.getBestResultText(), false);
-        Response answer = core.request(question);
-
-        Pair<String, Response> questionPair = Pair.create("User", question);
-        dialogList.add(questionPair);
-        adapter.notifyItemInserted(dialogList.size());
-
-        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.ZAHAR);
-        vocalizer.start();
-
-        Pair<String, Response> answerPair = Pair.create("Slon", answer);
-
-        dialogList.add(answerPair);
-
-        adapter.notifyItemInserted(dialogList.size());
-
-        recyclerView.scrollToPosition(dialogList.size() - 1);
-
-        floatingActionButton.setEnabled(true);
-        
-        if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
-            requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
-        } else
-            PhraseSpotter.start();
+        dialogChanging(new Response(recognition.getBestResultText(), false));
     }
 
     @Override
@@ -278,5 +275,38 @@ public class MainActivity extends AppCompatActivity implements RecognizerListene
             if(Objects.equals(permission, RECORD_AUDIO) && requestCode ==  REQUEST_PERMISSION_CODE)
                 startPhraseSpotter();
         }
+    }
+
+    @TargetApi(Build.VERSION_CODES.M)
+    private void dialogChanging(Response question){
+        shimmerTextView.setVisibility(View.GONE);
+        waitingForResponseText.setVisibility(View.VISIBLE);
+
+        Response answer = core.request(question);
+
+        Pair<String, Response> questionPair = Pair.create("User", question);
+        dialogList.add(questionPair);
+        adapter.notifyItemInserted(dialogList.size());
+
+        Vocalizer vocalizer = Vocalizer.createVocalizer(Vocalizer.Language.RUSSIAN, answer.getResponse(), true, Vocalizer.Voice.ZAHAR);
+        vocalizer.start();
+
+        Pair<String, Response> answerPair = Pair.create("Slon", answer);
+
+        dialogList.add(answerPair);
+
+        adapter.notifyItemInserted(dialogList.size());
+
+        recyclerView.scrollToPosition(dialogList.size() - 1);
+
+        floatingActionButton.setEnabled(true);
+        sendButton.setEnabled(true);
+
+        if (ContextCompat.checkSelfPermission(this, RECORD_AUDIO) != PERMISSION_GRANTED) {
+            requestPermissions(new String[]{RECORD_AUDIO}, REQUEST_PERMISSION_CODE);
+        } else
+            PhraseSpotter.start();
+
+        waitingForResponseText.setVisibility(View.GONE);
     }
 }
