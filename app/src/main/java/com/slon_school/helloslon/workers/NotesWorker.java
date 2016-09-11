@@ -23,13 +23,8 @@ public class NotesWorker extends Worker {
     private State state;
 
     public NotesWorker(Activity activity) {
-<<<<<<< HEAD
-        super(activity, "");
-        keys = new ArrayList<Key>();
-=======
         super(activity, "заметки");
         keys = new ArrayList<>();
->>>>>>> DimaI
         keys.add(new Key("запомнить"));
         keys.add(new Key("заметка"));
         keys.add(new Key("напоминалка"));

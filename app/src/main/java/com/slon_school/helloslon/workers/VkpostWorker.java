@@ -23,11 +23,7 @@ public class VkpostWorker extends Worker {
     private State state;
 
     public VkpostWorker(Activity activity) {
-<<<<<<< HEAD
-        super(activity, "");
-=======
         super(activity, "вконтакте");
->>>>>>> DimaI
         keys = new ArrayList<Key>();
         keys.add(new Key("пост"));
         keys.add(new Key("вк"));

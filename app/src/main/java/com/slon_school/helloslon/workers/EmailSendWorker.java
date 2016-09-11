@@ -22,11 +22,7 @@ public class EmailSendWorker extends Worker {
     private State state;
 
     public EmailSendWorker(Activity activity) {
-<<<<<<< HEAD
-        super(activity, "");
-=======
         super(activity,"email");
->>>>>>> DimaI
         keys = new ArrayList<Key>();
         keys.add(new Key("емайл"));
         keys.add(new Key("письмо"));
