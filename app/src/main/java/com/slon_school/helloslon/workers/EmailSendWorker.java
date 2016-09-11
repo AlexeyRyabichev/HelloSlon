@@ -1,24 +1,15 @@
 package com.slon_school.helloslon.workers;
 
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 
-        import android.Manifest;
-        import android.annotation.TargetApi;
-        import android.app.Activity;
-        import android.content.Intent;
-        import android.content.pm.PackageManager;
-        import android.net.Uri;
-        import android.os.Build;
-        import android.support.v4.app.ActivityCompat;
+import com.slon_school.helloslon.core.Key;
+import com.slon_school.helloslon.core.Response;
+import com.slon_school.helloslon.core.Worker;
 
-
-        import com.slon_school.helloslon.R;
-        import com.slon_school.helloslon.core.Helper;
-        import com.slon_school.helloslon.core.Key;
-        import com.slon_school.helloslon.core.Response;
-        import com.slon_school.helloslon.core.Worker;
-
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
 /**
  * Created by Mike on 19.07.2016.
@@ -31,7 +22,11 @@ public class EmailSendWorker extends Worker {
     private State state;
 
     public EmailSendWorker(Activity activity) {
+<<<<<<< HEAD
         super(activity, "");
+=======
+        super(activity,"email");
+>>>>>>> DimaI
         keys = new ArrayList<Key>();
         keys.add(new Key("емайл"));
         keys.add(new Key("письмо"));

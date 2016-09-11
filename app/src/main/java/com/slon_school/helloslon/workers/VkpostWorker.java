@@ -2,18 +2,10 @@ package com.slon_school.helloslon.workers;
 
 
 
-import android.Manifest;
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.net.Uri;
-import android.os.Build;
-import android.support.v4.app.ActivityCompat;
 
-
-import com.slon_school.helloslon.R;
-import com.slon_school.helloslon.core.Helper;
 import com.slon_school.helloslon.core.Key;
 import com.slon_school.helloslon.core.Response;
 import com.slon_school.helloslon.core.Worker;
@@ -31,7 +23,11 @@ public class VkpostWorker extends Worker {
     private State state;
 
     public VkpostWorker(Activity activity) {
+<<<<<<< HEAD
         super(activity, "");
+=======
+        super(activity, "вконтакте");
+>>>>>>> DimaI
         keys = new ArrayList<Key>();
         keys.add(new Key("пост"));
         keys.add(new Key("вк"));
