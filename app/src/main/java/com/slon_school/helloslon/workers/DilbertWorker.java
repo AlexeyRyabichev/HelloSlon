@@ -33,7 +33,7 @@ public class DilbertWorker extends Worker
     ArrayList<String> linkArr;
 
     public DilbertWorker( Activity activity ) {
-        super( activity, "дилберт" );
+        super( activity, "илберт" );
         keys.add(new Key("дилберт"));
         keys.add(new Key("гилберт"));
         fillPicLinks();

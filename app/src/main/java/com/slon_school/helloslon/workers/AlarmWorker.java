@@ -60,6 +60,7 @@ public class AlarmWorker extends Worker {
         } else if (state == State.SetTime) {
             state = State.FirstTime;
             deleteAlarm = false;
+            timeNow = (new HSTime()).parseTime(arguments);
             setOneTimeAlarm(timeNow);
             return new Response("Установлен одноразовый будильник на " + timeNow.hour + ":" + timeNow.minutes, false);
         }
